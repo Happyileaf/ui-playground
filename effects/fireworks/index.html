@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +7,127 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div class="controls">
-    <button id="autoToggle" class="control-btn active">Auto Launch: ON</button>
-    <button id="soundToggle" class="control-btn">Sound: OFF</button>
-    <button id="clearBtn" class="control-btn">Clear Canvas</button>
-    <span class="hint">Click or drag anywhere to launch fireworks</span>
-  </div>
+  <!-- 统一案例配置面板 (Top-Right Unified Config Panel) -->
+  <aside id="configPanel" class="case-config-panel" aria-label="烟花特效配置面板">
+    <div class="config-header">
+      <div class="config-title">
+        <svg class="config-title-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        <span>烟花参数配置</span>
+      </div>
+      <button id="configCloseBtn" class="config-close-btn" aria-label="关闭配置面板" title="关闭面板 (H)">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="config-body">
+      <!-- 基础开关组 -->
+      <div class="config-section">
+        <div class="config-row">
+          <span class="config-label">自动连发</span>
+          <label class="config-switch">
+            <input type="checkbox" id="autoToggle" checked>
+            <span class="config-slider"></span>
+          </label>
+        </div>
+        <div class="config-row">
+          <span class="config-label">燃放音效</span>
+          <label class="config-switch">
+            <input type="checkbox" id="soundToggle">
+            <span class="config-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="config-divider"></div>
+
+      <!-- 形态与色彩 -->
+      <div class="config-section">
+        <div class="config-control-group">
+          <label class="config-label" for="shapeSelect">绽放形态</label>
+          <select id="shapeSelect" class="config-select">
+            <option value="classic">经典全向散布 (Classic)</option>
+            <option value="heart">浪漫爱心形态 (Heart ❤️)</option>
+            <option value="ring">空心同心光环 (Ring)</option>
+            <option value="spiral">银河旋转漩涡 (Spiral)</option>
+            <option value="willow">垂柳繁星漫散 (Willow)</option>
+          </select>
+        </div>
+
+        <div class="config-control-group">
+          <label class="config-label" for="paletteSelect">色彩主题</label>
+          <select id="paletteSelect" class="config-select">
+            <option value="rainbow">缤纷全彩光谱 (Rainbow)</option>
+            <option value="gold">华丽鎏金盛宴 (Imperial Gold)</option>
+            <option value="cyber">赛博霓虹电光 (Cyber Neon)</option>
+            <option value="aurora">极光幽绿碧蓝 (Aurora)</option>
+            <option value="crimson">炽烈焰火绯红 (Blazing Crimson)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="config-divider"></div>
+
+      <!-- 滑块调节区 -->
+      <div class="config-section">
+        <div class="config-control-group">
+          <div class="config-label-row">
+            <span class="config-label">粒子密度</span>
+            <span id="particleCountVal" class="config-value-badge">60 颗</span>
+          </div>
+          <input type="range" id="particleCountRange" class="config-range" min="25" max="150" step="5" value="60">
+        </div>
+
+        <div class="config-control-group">
+          <div class="config-label-row">
+            <span class="config-label">尾迹留光</span>
+            <span id="trailDecayVal" class="config-value-badge">适中</span>
+          </div>
+          <input type="range" id="trailDecayRange" class="config-range" min="1" max="5" step="1" value="3">
+        </div>
+
+        <div class="config-control-group">
+          <div class="config-label-row">
+            <span class="config-label">重力引力</span>
+            <span id="gravityVal" class="config-value-badge">1.0x</span>
+          </div>
+          <input type="range" id="gravityRange" class="config-range" min="0.4" max="1.8" step="0.1" value="1.0">
+        </div>
+      </div>
+
+      <div class="config-divider"></div>
+
+      <!-- 快捷动作按钮组 -->
+      <div class="config-btn-grid">
+        <button id="barrageBtn" class="config-action-btn primary" title="同时向夜空发射 5 发礼花">
+          <span>🚀 齐发五枚</span>
+        </button>
+        <button id="clearBtn" class="config-action-btn" title="清空当前画布上的所有粒子">
+          <span>🧹 清空夜空</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="config-footer">
+      <span>点击夜空发射 · 按 <b>H</b> 快速折叠</span>
+    </div>
+  </aside>
+
+  <!-- 右上角折叠唤醒触发器 (Collapsed Trigger) -->
+  <button id="configToggleBtn" class="config-toggle-trigger" aria-label="展开特效配置面板" title="展开配置面板 (快捷键 H)">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+    </svg>
+    <span>特效配置</span>
+  </button>
+
+  <!-- 全屏渲染 Canvas -->
   <canvas id="fireworksCanvas"></canvas>
 
   <script src="./script.js"></script>

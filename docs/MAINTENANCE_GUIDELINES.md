@@ -45,7 +45,38 @@
 
 ---
 
-## 3. 常见问题排查与修复指南
+## 3. 统一案例配置面板规范 (Unified Case Config Panel Standard)
+
+当某个案例（特效或复杂交互组件）需要支持用户调节参数来观察不同效果时，建议采用统一的配置面板规范：
+
+### 核心设计原则
+1. **按需引入，非强制定式**：仅在确实需要多种参数对比（如物理系数、形态模式、色彩切换）时使用，避免无意义的装饰性面板。
+2. **案例自包含（非平台注入）**：面板的 HTML、CSS 与 JS 100% 属于案例自身物理文件，保持脱离平台下载后依然独立完整运行。
+3. **右上角紧凑布局与沉浸式折叠**：
+   - 固定在页面右上角（`top: 1rem; right: 1rem; position: fixed; z-index: 100;`）。
+   - 提供明确的关闭/折叠按钮（`✕`），折叠后切换为极简的右上角浮动按钮（如 `⚙️ 特效配置`）。
+   - 支持全局快捷键（如 `H` 键切换面板显隐、`Escape` 键快速折叠），方便用户随时进入无遮挡的沉浸式全屏体验。
+
+### 标准 DOM 结构与类名约定
+```html
+<aside id="configPanel" class="case-config-panel">
+  <div class="config-header">
+    <div class="config-title"><span>⚙️</span> 参数配置</div>
+    <button id="configCloseBtn" class="config-close-btn" title="关闭 (H)">✕</button>
+  </div>
+  <div class="config-body">
+    <!-- 开关组、下拉选择框、范围滑块等 -->
+  </div>
+  <div class="config-footer">
+    <span>按 <b>H</b> 快速折叠</span>
+  </div>
+</aside>
+<button id="configToggleBtn" class="config-toggle-trigger">⚙️ <span>特效配置</span></button>
+```
+
+---
+
+## 4. 常见问题排查与修复指南
 
 ### 问题 1：下载的 ZIP 解压后样式丢失（按钮无样式、布局错乱）
 - **原因分析**：在 Vite 开发环境下，直接 `fetch('/.../style.css')` 获取的是带有热更新客户端代码的 JS 包装模块。
@@ -61,7 +92,7 @@
 
 ---
 
-## 4. 任务交付前验证指令
+## 5. 任务交付前验证指令
 
 在完成代码修改后，务必运行构建与类型检查以验证无语法或编译错误：
 ```bash
