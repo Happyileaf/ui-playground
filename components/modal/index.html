@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessible Native Modal Dialog Component</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="page-container">
+    <div class="header">
+      <h1>Accessible Native Modal Dialog</h1>
+      <p>Powered by the standard HTML5 <code>&lt;dialog&gt;</code> element, native backdrop blur, keyboard <code>Esc</code> support, and smooth spring transitions.</p>
+    </div>
+
+    <div class="demo-actions">
+      <button class="open-btn" id="openModalBtn">Launch Modal Dialog</button>
+      <button class="open-btn secondary" id="openConfirmBtn">Launch Danger Alert</button>
+    </div>
+
+    <!-- 1. Standard Info Dialog -->
+    <dialog id="infoDialog" class="modal-dialog">
+      <div class="modal-box">
+        <div class="modal-header">
+          <div class="icon-wrap info">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+          </div>
+          <div class="header-text">
+            <h2>Independent Component</h2>
+            <p>Runs everywhere without framework runtime.</p>
+          </div>
+          <button class="close-icon-btn" aria-label="Close dialog" data-close>✕</button>
+        </div>
+
+        <div class="modal-body">
+          <p>This modal leverages the native HTML5 <code>&lt;dialog&gt;</code> API. It handles focus trapping, scroll locking, and accessible keyboard dismissal out of the box.</p>
+          <div class="code-snippet">
+            <code>dialog.showModal(); // Standard Browser Web API</code>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-close>Cancel</button>
+          <button class="btn btn-primary" id="confirmInfoBtn">Understood</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- 2. Destructive Confirmation Dialog -->
+    <dialog id="dangerDialog" class="modal-dialog danger">
+      <div class="modal-box">
+        <div class="modal-header">
+          <div class="icon-wrap danger">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <div class="header-text">
+            <h2>Delete Project?</h2>
+            <p>This action cannot be undone.</p>
+          </div>
+          <button class="close-icon-btn" aria-label="Close dialog" data-close>✕</button>
+        </div>
+
+        <div class="modal-body">
+          <p>Are you sure you want to proceed? All associated configurations and state history will be permanently removed.</p>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-close>Dismiss</button>
+          <button class="btn btn-danger" data-close>Confirm Delete</button>
+        </div>
+      </div>
+    </dialog>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

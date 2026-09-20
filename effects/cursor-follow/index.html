@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smooth Fluid Cursor Trail Effect</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Custom cursor elements -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-circle" id="cursorCircle"></div>
+
+  <main class="container">
+    <h1>Smooth Physics Cursor & Glow</h1>
+    <p class="subtitle">A multi-layer pointer physics trail utilizing lerp interpolation, velocity deformation, and interactive magnetic snapping on interactive targets.</p>
+
+    <div class="interactive-grid">
+      <div class="interactive-card" data-cursor-text="EXPLORE">
+        <h3>Magnetic Card A</h3>
+        <p>Hover over this card to watch the cursor expand and enter target mode.</p>
+      </div>
+      <div class="interactive-card" data-cursor-text="VIEW">
+        <h3>Magnetic Card B</h3>
+        <p>Dynamic velocity calculations squash and stretch the cursor based on movement speed.</p>
+      </div>
+      <div class="interactive-card" data-cursor-text="CLICK">
+        <h3>Magnetic Card C</h3>
+        <p>Zero external libraries — powered by raw <code>requestAnimationFrame</code> and pointer events.</p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="action-btn">Hover This Button</button>
+      <a href="#" class="action-link" onclick="event.preventDefault()">Interactive Link Tag</a>
+    </div>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

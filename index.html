@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UI Playground</title>
+    <meta name="description" content="A lightweight, native-first UI and visual effects playground featuring independent standalone HTML/CSS/JS components and animation effects." />
+    <meta property="og:title" content="UI Playground" />
+    <meta property="og:description" content="A lightweight, native-first UI and visual effects playground featuring independent standalone HTML/CSS/JS components and animation effects." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="/src/playground.css" />
+  </head>
+  <body>
+    <div class="app-container" id="appRoot">
+      <!-- Top Persistent Header -->
+      <header class="app-header" id="appHeader">
+        <!-- Left Brand Identity -->
+        <div class="header-left">
+          <div class="brand-wrapper" id="brandHomeBtn" title="Back to Gallery" data-i18n-title="navGalleryTitle">
+            <div class="brand-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <div class="brand-info">
+              <div class="brand-name">
+                UI Playground
+                <span class="brand-tag" data-i18n="brandTag">原生</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center View Navigation Mode (Gallery vs Studio) -->
+        <div class="header-center">
+          <div class="nav-pill-group">
+            <button class="pill-tab-btn active" id="modeGalleryBtn" title="Grid Showcase of All Cases" data-i18n-title="navGalleryTitle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              <span data-i18n="navGallery">画廊</span>
+            </button>
+            <button class="pill-tab-btn" id="modeStudioBtn" title="Interactive Workspace & Device Preview" data-i18n-title="navStudioTitle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+              <span data-i18n="navStudio">工作台</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Quick Actions -->
+        <div class="header-right">
+          <!-- Compact Language Selector Dropdown -->
+          <div class="lang-dropdown-wrapper" id="langDropdownWrapper">
+            <button class="lang-dropdown-trigger" id="langDropdownTrigger" title="Switch Language" data-i18n-title="langMenuTitle" aria-haspopup="true" aria-expanded="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lang-globe-icon">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span class="lang-current-label" id="langCurrentLabel">中文</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lang-chevron-icon">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="lang-dropdown-menu" id="langDropdownMenu" role="menu">
+              <button class="lang-option-item active" data-lang="zh-CN" role="menuitem">
+                <span class="lang-option-text">简体中文</span>
+                <svg class="lang-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+              <button class="lang-option-item" data-lang="en-US" role="menuitem">
+                <span class="lang-option-text">English</span>
+                <svg class="lang-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+              <button class="lang-option-item" data-lang="de-DE" role="menuitem">
+                <span class="lang-option-text">Deutsch</span>
+                <svg class="lang-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <button class="search-trigger-btn" id="openPaletteBtn" title="Quick Search (Cmd+K)" data-i18n-title="searchTitle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span data-i18n="searchBtn">搜索</span>
+            <kbd class="kbd-shortcut">⌘K</kbd>
+          </button>
+
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-github-link" id="topbarGithubLink" title="View on GitHub" data-i18n-title="githubTooltip">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            <span data-i18n="githubBtn">GitHub</span>
+          </a>
+
+          <button class="btn-primary-gradient" id="openGuideBtn" title="Native-First Principles & Guidelines" data-i18n-title="guideTitle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <span data-i18n="guideBtn">架构指南</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Workspace -->
+      <main class="main-view-container" id="mainViewContainer">
+        <!-- ============================================== -->
+        <!-- VIEW 1: GALLERY SHOWCASE (DEFAULT OVERVIEW)   -->
+        <!-- ============================================== -->
+        <section class="view-section active-view" id="galleryView">
+          <div class="gallery-layout">
+            <!-- Hero Header -->
+            <div class="gallery-hero">
+              <div class="gallery-hero-header">
+                <div class="hero-title-group">
+                  <h1 data-i18n="heroTitle">创意动效与原生 UI 组件工作台</h1>
+                  <p data-i18n="heroDesc">精选基于原生 Web 标准的物理动效与交互组件集合。100% 纯原生实现，零外部运行时依赖。</p>
+                </div>
+
+                <!-- Stats Bar -->
+                <div class="gallery-stats-bar">
+                  <div class="stat-item">
+                    <span class="stat-dot"></span>
+                    <span><strong id="statCountCasesNum">10</strong> <span data-i18n="statCases">个独立案例</span></span>
+                  </div>
+                  <div class="stat-divider"></div>
+                  <div class="stat-item">
+                    <span data-i18n="statDeps">0 外部依赖</span>
+                  </div>
+                  <div class="stat-divider"></div>
+                  <div class="stat-item">
+                    <span data-i18n="statNative">100% 原生 Web API</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Filter Pills & Inline Search -->
+              <div class="gallery-filter-bar">
+                <div class="category-filter-pills" id="galleryFilterPills">
+                  <button class="cat-pill active" data-filter="all">
+                    <span data-i18n="filterAll">全部案例</span>
+                    <span class="count-badge" id="badgeCountAll">10</span>
+                  </button>
+                  <button class="cat-pill" data-filter="effects">
+                    <span data-i18n="filterEffects">视觉特效</span>
+                    <span class="count-badge" id="badgeCountEffects">5</span>
+                  </button>
+                  <button class="cat-pill" data-filter="components">
+                    <span data-i18n="filterComponents">UI 组件</span>
+                    <span class="count-badge" id="badgeCountComponents">5</span>
+                  </button>
+                </div>
+
+                <div class="search-box-inline">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <input type="text" id="gallerySearchInput" placeholder="按标题、标签、API 过滤..." data-i18n-placeholder="gallerySearchPlaceholder" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Bento Card Grid -->
+            <div class="gallery-grid" id="galleryGrid">
+              <!-- Dynamically populated by JavaScript -->
+            </div>
+
+            <!-- Showcase Gallery Footer -->
+            <footer class="app-footer" id="appFooter">
+              <div class="footer-top-row">
+                <!-- Brand & Value Proposition Column -->
+                <div class="footer-brand-col">
+                  <div class="footer-logo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                      <polyline points="2 17 12 22 22 17"></polyline>
+                      <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                    <span class="footer-brand-title">UI Playground</span>
+                    <span class="footer-brand-badge" data-i18n="footerBadgeNative">原生优先</span>
+                  </div>
+                  <p class="footer-desc" data-i18n="footerDesc">
+                    面向现代 Web 的原生交互组件与物理动效试验台。100% 纯原生实现，免构建步骤，双击即用。
+                  </p>
+                  <div class="footer-features-pills">
+                    <span class="footer-pill"><span class="footer-pill-dot green"></span>0 Runtime Bloat</span>
+                    <span class="footer-pill"><span class="footer-pill-dot blue"></span>Iframe Sandbox</span>
+                    <span class="footer-pill"><span class="footer-pill-dot purple"></span>100% Standalone</span>
+                  </div>
+                </div>
+
+                <!-- Categories Column -->
+                <div class="footer-links-col">
+                  <h4 class="footer-col-title" data-i18n="footerColCategories">案例分类</h4>
+                  <ul class="footer-nav-list">
+                    <li><button class="footer-filter-link" data-filter="all" data-i18n="filterAll">全部案例</button></li>
+                    <li><button class="footer-filter-link" data-filter="effects" data-i18n="filterEffects">视觉特效</button></li>
+                    <li><button class="footer-filter-link" data-filter="components" data-i18n="filterComponents">UI 组件</button></li>
+                  </ul>
+                </div>
+
+                <!-- Tech Standards Column -->
+                <div class="footer-links-col">
+                  <h4 class="footer-col-title" data-i18n="footerColTech">技术标准</h4>
+                  <ul class="footer-nav-list">
+                    <li><span class="footer-tech-item">HTML5 Canvas 2D Physics</span></li>
+                    <li><span class="footer-tech-item">Web Audio API Synthesis</span></li>
+                    <li><span class="footer-tech-item">Modern CSS3 & Houdini</span></li>
+                    <li><span class="footer-tech-item">Pointer & Gesture Events</span></li>
+                  </ul>
+                </div>
+
+                <!-- Quick Actions Column -->
+                <div class="footer-links-col">
+                  <h4 class="footer-col-title" data-i18n="footerColQuick">快捷导航</h4>
+                  <ul class="footer-nav-list">
+                    <li><button class="footer-action-btn" id="footerSearchTrigger" data-i18n="footerActionSearch">⌘K 快捷搜索</button></li>
+                    <li><button class="footer-action-btn" id="footerGuideTrigger" data-i18n="footerActionGuide">架构指南与规范</button></li>
+                    <li><button class="footer-action-btn" id="footerStudioTrigger" data-i18n="footerActionStudio">进入 Studio 工作台</button></li>
+                    <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-action-link" id="footerGithubLink" data-i18n="footerActionGithub">GitHub 开源项目</a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Bottom Bar -->
+              <div class="footer-bottom-row">
+                <div class="footer-copyright">
+                  <span>© 2026 UI Playground · <span data-i18n="footerCopyrightText">纯原生零依赖交互试验台</span></span>
+                </div>
+                <div class="footer-shortcuts-bar">
+                  <span class="footer-shortcut-item"><kbd class="kbd-shortcut">⌘K</kbd> <span data-i18n="footerShortcutCmdK">命令检索</span></span>
+                  <span class="footer-shortcut-item"><kbd class="kbd-shortcut">Esc</kbd> <span data-i18n="footerShortcutEsc">关闭浮层</span></span>
+                  <span class="footer-status-pill" id="footerCaseCountPill">10 Active Cases</span>
+                </div>
+              </div>
+            </footer>
+          </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- VIEW 2: STUDIO WORKSPACE (INTERACTIVE LAB)    -->
+        <!-- ============================================== -->
+        <section class="view-section" id="studioView">
+          <div class="studio-layout">
+            <!-- Left Sidebar -->
+            <aside class="studio-sidebar" id="studioSidebar">
+              <div class="sidebar-header-box">
+                <div class="sidebar-search-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <input type="text" id="studioSearchInput" placeholder="快速查找案例..." data-i18n-placeholder="studioSearchPlaceholder" />
+                </div>
+                <div class="sidebar-tabs-row" id="studioCategoryTabs">
+                  <button class="sidebar-tab-btn active" data-cat="all" data-i18n="studioCatAll">全部</button>
+                  <button class="sidebar-tab-btn" data-cat="effects" data-i18n="studioCatEffects">特效</button>
+                  <button class="sidebar-tab-btn" data-cat="components" data-i18n="studioCatComponents">组件</button>
+                </div>
+              </div>
+
+              <!-- Sidebar Item List -->
+              <div class="sidebar-cases-list" id="studioCasesList">
+                <!-- Dynamically populated -->
+              </div>
+
+              <!-- Sidebar Footer -->
+              <div class="sidebar-footer-box">
+                <span id="studioCaseCounter">10 个案例</span>
+                <span data-i18n="studioCounterNative">原生自包含</span>
+              </div>
+            </aside>
+
+            <!-- Center Stage Workspace -->
+            <div class="studio-stage">
+              <!-- Stage Toolbar -->
+              <div class="stage-toolbar">
+                <div class="stage-breadcrumb" id="stageBreadcrumb">
+                  <span class="stage-breadcrumb-type effect">特效</span>
+                  <strong id="stageActiveTitle">Canvas Fireworks</strong>
+                  <div class="stage-path-badge" id="stagePathBadge">
+                    <code id="stageActivePath">/effects/fireworks/</code>
+                    <button class="btn-copy-path" id="copyStagePathBtn" title="Copy Path" data-i18n-title="copyPathTitle">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="stage-controls-right">
+                  <!-- Device Viewport Presets -->
+                  <div class="stage-vp-group" title="Viewport Resizer">
+                    <button class="vp-icon-btn active" id="vpDesktopBtn" data-viewport="desktop" title="桌面端 (100%)" data-i18n-title="vpDesktopTitle">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                      </svg>
+                    </button>
+                    <button class="vp-icon-btn" id="vpTabletBtn" data-viewport="tablet" title="平板端 (768px)" data-i18n-title="vpTabletTitle">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                      </svg>
+                    </button>
+                    <button class="vp-icon-btn" id="vpMobileBtn" data-viewport="mobile" title="移动端 (390px)" data-i18n-title="vpMobileTitle">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <!-- Stage Reload Frame -->
+                  <button class="vp-icon-btn" id="stageReloadBtn" title="重新加载预览" data-i18n-title="reloadStageTitle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="23 4 23 10 17 10"></polyline>
+                      <polyline points="1 20 1 14 7 14"></polyline>
+                      <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                    </svg>
+                  </button>
+
+                  <div class="stage-divider-vertical"></div>
+
+                  <!-- Source Code Drawer Toggle for Current Case -->
+                  <button class="btn-stage-action" id="toggleCodeBtn" title="查看当前案例源码" data-i18n-title="stageCodeTitle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="16 18 22 12 16 6"></polyline>
+                      <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                    <span data-i18n="stageCodeBtn">源码</span>
+                  </button>
+
+                  <!-- Download Case ZIP for Current Case -->
+                  <button class="btn-stage-action" id="downloadCurrentCaseBtn" title="下载当前案例压缩包 (ZIP)" data-i18n-title="stageDownloadTitle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="7 10 12 15 17 10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span data-i18n="stageDownloadBtn">下载 ZIP</span>
+                  </button>
+
+                  <!-- Standalone Popout for Current Case -->
+                  <a class="btn-stage-action" id="openExternalBtn" target="_blank" rel="noopener noreferrer" title="在独立新标签页中打开当前案例" data-i18n-title="stageStandaloneTitle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    <span data-i18n="stageStandaloneBtn">独立窗口</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Stage Canvas Area -->
+              <div class="stage-canvas-area" id="stageCanvasArea">
+                <div class="stage-frame-wrapper viewport-desktop" id="stageFrameWrapper">
+                  <iframe id="studioMainIframe" title="Studio Preview" sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Source Code Inspector Drawer -->
+      <div class="code-inspector-drawer" id="codeDrawer">
+        <div class="drawer-top-bar">
+          <div class="drawer-file-tabs" id="drawerFileTabs">
+            <!-- Tabs populated dynamically -->
+          </div>
+          <div class="drawer-actions-right">
+            <button class="btn-icon-subtle" id="copyCodeDrawerBtn" title="复制当前文件代码" data-i18n-title="drawerCopyTitle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span id="copyDrawerBtnText" data-i18n="drawerCopy">复制</span>
+            </button>
+            <button class="btn-icon-subtle" id="downloadDrawerCaseBtn" title="下载完整案例压缩包 (ZIP)" data-i18n-title="drawerDownloadTitle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span data-i18n="drawerDownload">下载 ZIP</span>
+            </button>
+            <button class="btn-icon-subtle" id="closeDrawerBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="drawer-body-viewer" id="drawerCodeViewer">
+          <pre><code id="codeViewerBlock">正在加载源码...</code></pre>
+        </div>
+      </div>
+
+      <!-- Quick Command Palette Modal (Cmd+K) -->
+      <div class="palette-backdrop" id="paletteBackdrop">
+        <div class="palette-modal">
+          <div class="palette-search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="paletteSearchInput" placeholder="输入组件名称或操作..." data-i18n-placeholder="palettePlaceholder" autofocus />
+          </div>
+          <div class="palette-results-list" id="paletteResultsList">
+            <!-- Populated via script -->
+          </div>
+          <div class="palette-footer">
+            <span data-i18n="paletteNavHint">导航：↑ ↓ 选择，↵ 确定</span>
+            <span data-i18n="paletteEscHint">ESC 关闭</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Architecture Guide Modal -->
+      <div class="guide-backdrop" id="guideBackdrop">
+        <div class="guide-modal-content">
+          <div class="guide-modal-header">
+            <h2 data-i18n="guideModalTitle">UI Playground 架构指南</h2>
+            <button class="btn-icon-subtle" id="closeGuideBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          <div class="guide-modal-body">
+            <div class="guide-principle-card">
+              <div class="guide-principle-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                <span data-i18n="guidePrinciple1Title">1. 原生优先与零运行时冗余 (Native First)</span>
+              </div>
+              <p data-i18n="guidePrinciple1Desc">每一个案例均纯粹基于原生 HTML5、现代 CSS3 与 ES6+ JavaScript 构建。绝无第三方打包器锁定，独立案例中零外部运行时框架依赖，还原极致原生 Web 性能。</p>
+            </div>
+
+            <div class="guide-principle-card">
+              <div class="guide-principle-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span data-i18n="guidePrinciple2Title">2. 100% 独立离线运行保证 (Standalone Guarantee)</span>
+              </div>
+              <p data-i18n="guidePrinciple2Desc">每个特效与组件均位于独立的专属目录中。脱离外壳直接在任何浏览器双击 index.html 即可 100% 完整运行，拥有完整视觉与交互体验。</p>
+              <div class="guide-code-snippet">
+📁 effects/
+   ├── fireworks/ (index.html, style.css, script.js)
+   └── magnetic-button/ (index.html)
+📁 components/
+   ├── button/ (index.html, style.css, script.js)
+   └── card/ (index.html, style.css, script.js)
+              </div>
+            </div>
+
+            <div class="guide-principle-card">
+              <div class="guide-principle-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span data-i18n="guidePrinciple3Title">3. 极速自主扩展新案例 (Rapid Extension)</span>
+              </div>
+              <p data-i18n="guidePrinciple3Desc">只需在 effects/ 或 components/ 下新建子文件夹，编写 index.html，并在 playground.js 中注册元数据即可瞬时接入沙箱工作台。</p>
+            </div>
+          </div>
+
+          <!-- Guide Modal Footer -->
+          <div class="guide-modal-footer">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-github-guide">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span data-i18n="guideGithubLink">在 GitHub 上 Star / 参与共建</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- App Toast -->
+      <div class="app-toast" id="appToast">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; color: #10b981;">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span id="toastMessage">Copied to clipboard!</span>
+      </div>
+    </div>
+
+    <script type="module" src="/src/playground.js"></script>
+  </body>
+</html>

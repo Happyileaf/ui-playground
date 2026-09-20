@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Perspective Tilt Card Component</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="page-container">
+    <div class="header">
+      <h1>3D Perspective Tilt Card</h1>
+      <p>Interactive 3D transform with dynamic holographic glare and multi-layered Z-depth parallax.</p>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Card 1: Nebula Cyber Edition -->
+      <div class="tilt-card-wrapper">
+        <div class="tilt-card" data-tilt-max="20">
+          <div class="card-glare"></div>
+          <div class="card-bg nebula"></div>
+          <div class="card-content">
+            <div class="badge layer" data-depth="25">CYBERPASS #0042</div>
+            <h2 class="title layer" data-depth="40">Quantum Portal</h2>
+            <p class="desc layer" data-depth="20">Next-generation decentralized rendering node with zero latency compute shards.</p>
+            <div class="footer layer" data-depth="30">
+              <div class="stat">
+                <span class="stat-label">FLOPS</span>
+                <span class="stat-val">128 TFLOPS</span>
+              </div>
+              <button class="action-btn">Connect</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Minimal Gold Edition -->
+      <div class="tilt-card-wrapper">
+        <div class="tilt-card" data-tilt-max="20">
+          <div class="card-glare"></div>
+          <div class="card-bg obsidian"></div>
+          <div class="card-content">
+            <div class="badge gold layer" data-depth="25">FOUNDER EDITION</div>
+            <h2 class="title layer" data-depth="40">Obsidian Vault</h2>
+            <p class="desc layer" data-depth="20">Cryptographically secure cold storage artifact crafted from anodized titanium.</p>
+            <div class="footer layer" data-depth="30">
+              <div class="stat">
+                <span class="stat-label">SECURITY</span>
+                <span class="stat-val">AES-512</span>
+              </div>
+              <button class="action-btn gold">Unlock</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

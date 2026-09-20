@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Native Tooltip Component</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="page-container">
+    <header class="header">
+      <h1>Smart Positioning Tooltip</h1>
+      <p>Lightweight, accessible tooltip component with auto-collision viewport detection and smooth micro-spring animations.</p>
+    </header>
+
+    <div class="tooltip-stage">
+      <div class="row">
+        <button class="target-btn" data-tooltip="Top tooltip with high-contrast accent." data-position="top">
+          Tooltip Top ↑
+        </button>
+      </div>
+
+      <div class="row middle-row">
+        <button class="target-btn" data-tooltip="Left aligned tooltip with quick spring animation." data-position="left">
+          ← Tooltip Left
+        </button>
+
+        <div class="center-badge" data-tooltip="Interactive badge with auto-flipped positioning." data-position="top">
+          Hover Badge
+        </div>
+
+        <button class="target-btn" data-tooltip="Right aligned tooltip with smart edge flipping." data-position="right">
+          Tooltip Right →
+        </button>
+      </div>
+
+      <div class="row">
+        <button class="target-btn" data-tooltip="Bottom tooltip with smooth opacity scale fade." data-position="bottom">
+          Tooltip Bottom ↓
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

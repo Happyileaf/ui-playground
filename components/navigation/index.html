@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sliding Pill Navigation Bar Component</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="page-container">
+    <header class="header">
+      <h1>Sliding Indicator Navigation</h1>
+      <p>A fluid navbar where the active background pill dynamically glides and stretches to the exact position and dimensions of the selected item.</p>
+    </header>
+
+    <!-- Nav 1: Glass Pill Navbar -->
+    <nav class="sliding-nav" id="mainNav">
+      <div class="nav-indicator" id="navIndicator"></div>
+      <a href="#overview" class="nav-item active">Overview</a>
+      <a href="#analytics" class="nav-item">Analytics</a>
+      <a href="#deployments" class="nav-item">Deployments</a>
+      <a href="#settings" class="nav-item">Settings</a>
+    </nav>
+
+    <!-- Content Display Area -->
+    <div class="content-panel" id="contentPanel">
+      <h2 id="activeTitle">Overview</h2>
+      <p id="activeDesc">Displaying primary project metrics, health statuses, and real-time operational feeds.</p>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

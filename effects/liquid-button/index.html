@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Gooey Liquid Button Effect</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- SVG Filter for the Gooey Liquid Merge Effect -->
+  <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+        <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+      </filter>
+    </defs>
+  </svg>
+
+  <div class="content">
+    <div class="info">
+      <h1>SVG Liquid Gooey Effect</h1>
+      <p>Pure SVG <code>&lt;feGaussianBlur&gt;</code> and <code>&lt;feColorMatrix&gt;</code> filter creates organic fluid blob physics. Hover and click to trigger liquid drops.</p>
+    </div>
+
+    <div class="button-wrapper">
+      <div class="liquid-container">
+        <button class="liquid-btn" id="liquidBtn">
+          <span>Click to Splash</span>
+          <div class="blobs-container" id="blobsContainer"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas Particle Text Effect</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="top-bar">
+    <div class="input-group">
+      <input type="text" id="textInput" value="NATIVE WEB" maxlength="15" placeholder="Type text here..." autocomplete="off">
+      <button id="renderBtn" class="btn">Update</button>
+    </div>
+    <div class="color-options">
+      <button class="color-btn active" data-palette="cyber">Cyber Cyan</button>
+      <button class="color-btn" data-palette="fire">Golden Sunset</button>
+      <button class="color-btn" data-palette="rainbow">Spectrum</button>
+    </div>
+  </div>
+
+  <canvas id="particleCanvas"></canvas>
+  <div class="tip-bar">Hover or touch over the particles to interactively disperse them</div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

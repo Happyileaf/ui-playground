@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magnetic Cursor Button Effect</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0f172a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #f8fafc;
+      overflow: hidden;
+      gap: 2.5rem;
+    }
+
+    .header {
+      text-align: center;
+      max-width: 480px;
+      padding: 0 1rem;
+    }
+
+    .header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      color: #f1f5f9;
+    }
+
+    .header p {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    .playground-area {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 2rem;
+    }
+
+    .magnetic-wrap {
+      display: inline-flex;
+      position: relative;
+      padding: 30px;
+    }
+
+    .magnetic-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1.25rem 2.5rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #ffffff;
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 9999px;
+      cursor: pointer;
+      outline: none;
+      box-shadow: 0 15px 35px -10px rgba(99, 102, 241, 0.6);
+      transform: translate(0px, 0px);
+      transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease, background 0.2s ease;
+      will-change: transform;
+    }
+
+    .magnetic-btn.secondary {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.4);
+    }
+
+    .magnetic-btn.circle {
+      width: 90px;
+      height: 90px;
+      padding: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
+      box-shadow: 0 15px 35px -10px rgba(236, 72, 153, 0.6);
+    }
+
+    .btn-text {
+      position: relative;
+      z-index: 2;
+      pointer-events: none;
+      transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+      display: inline-block;
+    }
+
+    .glow-spot {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.35) 0%, transparent 70%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .magnetic-btn:hover .glow-spot {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Magnetic Physics Button</h1>
+    <p>Move your cursor near or across any button. The elastic magnetic field draws the button and its inner contents towards your pointer with spring damping.</p>
+  </div>
+
+  <div class="playground-area">
+    <div class="magnetic-wrap">
+      <button class="magnetic-btn" data-strength="40">
+        <span class="glow-spot"></span>
+        <span class="btn-text">Explore Magic</span>
+      </button>
+    </div>
+
+    <div class="magnetic-wrap">
+      <button class="magnetic-btn secondary" data-strength="30">
+        <span class="glow-spot"></span>
+        <span class="btn-text">Interactive Magnet</span>
+      </button>
+    </div>
+
+    <div class="magnetic-wrap">
+      <button class="magnetic-btn circle" data-strength="55">
+        <span class="glow-spot"></span>
+        <span class="btn-text">★</span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.magnetic-wrap').forEach((wrap) => {
+      const btn = wrap.querySelector('.magnetic-btn');
+      const text = wrap.querySelector('.btn-text');
+      const strength = parseFloat(btn.dataset.strength) || 35;
+
+      wrap.addEventListener('pointermove', (e) => {
+        const rect = wrap.getBoundingClientRect();
+        const btnRect = btn.getBoundingClientRect();
+
+        const x = e.clientX - (rect.left + rect.width / 2);
+        const y = e.clientY - (rect.top + rect.height / 2);
+
+        const moveX = (x / (rect.width / 2)) * strength;
+        const moveY = (y / (rect.height / 2)) * strength;
+
+        btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        if (text) {
+          text.style.transform = `translate(${moveX * 0.4}px, ${moveY * 0.4}px)`;
+        }
+
+        const localX = e.clientX - btnRect.left;
+        const localY = e.clientY - btnRect.top;
+        btn.style.setProperty('--gx', `${localX}px`);
+        btn.style.setProperty('--gy', `${localY}px`);
+      });
+
+      wrap.addEventListener('pointerleave', () => {
+        btn.style.transform = 'translate(0px, 0px)';
+        if (text) {
+          text.style.transform = 'translate(0px, 0px)';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
