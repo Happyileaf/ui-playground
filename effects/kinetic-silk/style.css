@@ -66,65 +66,13 @@ html, body {
 }
 
 /* ==========================================================================
-   Header HUD
+   Top Right Floating HUD Controls
    ========================================================================== */
-.hud-header {
+.hud-actions {
   position: fixed;
   top: 20px;
-  left: 24px;
   right: 24px;
   z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  pointer-events: none;
-}
-
-.hud-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 999px;
-  padding: 6px 16px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  pointer-events: auto;
-}
-
-.hud-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent-gold);
-  box-shadow: 0 0 8px var(--accent-gold);
-  animation: pulseDot 2s infinite ease-in-out;
-}
-
-@keyframes pulseDot {
-  0%, 100% { opacity: 0.6; transform: scale(0.9); }
-  50% { opacity: 1; transform: scale(1.15); }
-}
-
-.hud-title {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: var(--text-pure);
-}
-
-.hud-version {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--text-tertiary);
-  letter-spacing: 0.04em;
-  border-left: 1px solid var(--border-subtle);
-  padding-left: 8px;
-}
-
-.hud-actions {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -169,6 +117,49 @@ html, body {
 }
 
 /* ==========================================================================
+   Bottom Right Brand & Telemetry Badge
+   ========================================================================== */
+.hud-brand {
+  position: fixed;
+  bottom: 20px;
+  right: 24px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 6px 16px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
+  transition: all 0.2s ease;
+}
+
+.hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  box-shadow: 0 0 8px var(--accent-gold);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.6; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+.hud-title {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-pure);
+}
+
+/* ==========================================================================
    Parametric Control Dock (Right Floating Panel)
    ========================================================================== */
 .control-dock {
@@ -178,10 +169,13 @@ html, body {
   width: 300px;
   max-height: calc(100vh - 140px);
   overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: 20px 18px 20px 20px;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6);
@@ -190,6 +184,30 @@ html, body {
   flex-direction: column;
   gap: 18px;
   transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Custom Haute-Design Scrollbar for Control Dock */
+.control-dock::-webkit-scrollbar {
+  width: 5px;
+}
+
+.control-dock::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 12px 0;
+}
+
+.control-dock::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  transition: background-color 0.2s ease;
+}
+
+.control-dock:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.control-dock::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold);
 }
 
 .control-dock.hidden {
@@ -465,16 +483,17 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 /* Responsive */
 @media (max-width: 640px) {
-  .hud-header {
+  .hud-actions {
     top: 12px;
-    left: 12px;
     right: 12px;
   }
-  .hud-version {
-    display: none;
+  .hud-brand {
+    bottom: 12px;
+    right: 12px;
+    padding: 5px 12px;
   }
   .control-dock {
-    top: 60px;
+    top: 56px;
     right: 12px;
     left: 12px;
     width: auto;
@@ -482,6 +501,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
   .bottom-hint {
     font-size: 10px;
     padding: 4px 12px;
-    bottom: 12px;
+    bottom: 46px;
   }
 }
