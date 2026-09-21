@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Embossed Collectible Card · 平面卡片与内部 3D 立体内容典藏卡</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Ambient Luxury Stage & Atmosphere -->
+  <div class="ambient-stage" id="ambientStage">
+    <div class="spotlight" id="spotlight"></div>
+    <div class="stage-dust" id="stageDust"></div>
+    <div class="stage-grid"></div>
+  </div>
+
+  <!-- Main Card Stage Viewport -->
+  <main class="card-viewport" id="cardViewport">
+    <div class="card-assembly" id="cardAssembly">
+      
+      <!-- Planar Card Slab (Ultra-thin flat exterior frame with deep internal 3D embossed space) -->
+      <div class="card-slab" id="cardSlab">
+
+        <!-- ============================================================ -->
+        <!-- INTERNAL 3D RELIEF & MULTI-LAYER PARALLAX STAGE (FLAT BOUNDARY)-->
+        <!-- ============================================================ -->
+        <div class="card-window" id="cardWindow">
+
+          <!-- Layer 0 (Z: -20px): Deep Background Plate & Base Illustration -->
+          <div class="relief-layer layer-0-bg" data-depth="-20">
+            <div class="card-bg-image-wrapper">
+              <img src="https://game-1255653016.file.myqcloud.com/manage/compress/custom_wzry_A1/20cf88980d05c56bce6722f7b58c16d2.jpg?imageMogr2/crop/1920x882/gravity/center" 
+                   alt="Collectible Artwork Base" 
+                   class="artwork-img artwork-bg" 
+                   id="artworkBgImg"
+                   referrerpolicy="no-referrer">
+            </div>
+            <div class="bg-vignette-overlay"></div>
+            <div class="bg-guilloche-grid"></div>
+          </div>
+
+          <!-- Layer 1 (Z: -5px): Sunken Astrological Mandala & Geometry Wheels -->
+          <div class="relief-layer layer-1-mandala" data-depth="-5">
+            <div class="celestial-mandala">
+              <svg viewBox="0 0 360 360" class="mandala-svg">
+                <circle cx="180" cy="180" r="160" class="foil-stroke" stroke-width="1" stroke-dasharray="6 4"/>
+                <circle cx="180" cy="180" r="138" class="foil-stroke" stroke-width="0.8"/>
+                <circle cx="180" cy="180" r="118" class="foil-stroke" stroke-width="1.2" stroke-dasharray="2 6"/>
+                <circle cx="180" cy="180" r="95" class="foil-stroke" stroke-width="0.6"/>
+                <!-- 12-Ray Radiant Star Flare -->
+                <g class="star-rays">
+                  <path d="M180 20 L180 340 M20 180 L340 180 M66 66 L294 294 M66 294 L294 66" class="foil-stroke" stroke-width="0.7" stroke-opacity="0.5"/>
+                  <polygon points="180,45 188,160 275,180 188,200 180,315 172,200 85,180 172,160" class="foil-fill" fill-opacity="0.12" stroke="currentColor" stroke-width="0.8"/>
+                </g>
+                <circle cx="180" cy="180" r="60" class="foil-stroke" stroke-width="1"/>
+                <polygon points="180,130 222,205 138,205" class="foil-stroke" stroke-width="1.2" fill="none"/>
+                <polygon points="180,230 222,155 138,155" class="foil-stroke" stroke-width="1.2" fill="none"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Layer 2 (Z: +12px): Character Silhouette Rim Lighting & Ambient Back-Aura -->
+          <div class="relief-layer layer-2-aura" data-depth="12">
+            <div class="character-aura-glow" id="characterAuraGlow"></div>
+            <div class="aura-radiance-rays"></div>
+          </div>
+
+          <!-- Layer 3 (Z: +24px): Character Focal Shallow Relief (Multi-Tier Cutout & Normal Highlight) -->
+          <div class="relief-layer layer-3-character" data-depth="24">
+            <div class="character-focal-wrapper" id="characterFocalWrapper">
+              <!-- Focal Image Layer with dynamic micro-drop shadow & edge rim embossed glow -->
+              <img src="https://game-1255653016.file.myqcloud.com/manage/compress/custom_wzry_A1/20cf88980d05c56bce6722f7b58c16d2.jpg?imageMogr2/crop/1920x882/gravity/center" 
+                   alt="Collectible Character Relief" 
+                   class="artwork-img artwork-focal" 
+                   id="artworkFocalImg"
+                   referrerpolicy="no-referrer">
+              <!-- Micro-Emboss Specular Rim Overlay for 3D Relief Edge Highlight -->
+              <div class="relief-rim-specular"></div>
+            </div>
+          </div>
+
+          <!-- Layer 4 (Z: +36px): Floating Gold Particles, Starlight Sparks & Runic Embers -->
+          <div class="relief-layer layer-4-floating" data-depth="36">
+            <div class="floating-runes-field">
+              <span class="rune-glyph rune-1">ᚱ</span>
+              <span class="rune-glyph rune-2">ᛉ</span>
+              <span class="rune-glyph rune-3">ᛟ</span>
+              <span class="rune-glyph rune-4">ᛊ</span>
+              <span class="rune-glyph rune-5">ᚲ</span>
+              <span class="starlight-sparkle spark-1">✦</span>
+              <span class="starlight-sparkle spark-2">✧</span>
+              <span class="starlight-sparkle spark-3">✦</span>
+              <span class="starlight-sparkle spark-4">✧</span>
+              <span class="gold-ember ember-1"></span>
+              <span class="gold-ember ember-2"></span>
+              <span class="gold-ember ember-3"></span>
+            </div>
+          </div>
+
+          <!-- Layer 5 (Z: +46px): 24K Hot-Stamped Gilded Framing & Deep-Embossed Typography -->
+          <div class="relief-layer layer-5-gilded" data-depth="46">
+            
+            <!-- Gilded Filigree Corner Crests -->
+            <div class="gilded-frame-border">
+              <div class="corner-crest top-left">
+                <svg viewBox="0 0 60 60" fill="none">
+                  <path d="M4 4 L56 4 C40 8 20 20 16 40 L16 56 L4 56 Z" class="foil-mesh-fill"/>
+                  <path d="M8 8 L44 8 C32 14 18 24 14 44 L8 44 Z" class="foil-stroke" stroke-width="1.5"/>
+                  <circle cx="20" cy="20" r="4" class="foil-mesh-fill"/>
+                  <path d="M4 4 L28 28" class="foil-stroke" stroke-width="1"/>
+                </svg>
+              </div>
+              <div class="corner-crest top-right">
+                <svg viewBox="0 0 60 60" fill="none">
+                  <path d="M56 4 L4 4 C20 8 40 20 44 40 L44 56 L56 56 Z" class="foil-mesh-fill"/>
+                  <path d="M52 8 L16 8 C28 14 42 24 46 44 L52 44 Z" class="foil-stroke" stroke-width="1.5"/>
+                  <circle cx="40" cy="20" r="4" class="foil-mesh-fill"/>
+                  <path d="M56 4 L32 28" class="foil-stroke" stroke-width="1"/>
+                </svg>
+              </div>
+              <div class="corner-crest bottom-left">
+                <svg viewBox="0 0 60 60" fill="none">
+                  <path d="M4 56 L56 56 C40 52 20 40 16 20 L16 4 L4 4 Z" class="foil-mesh-fill"/>
+                  <path d="M8 52 L44 52 C32 46 18 36 14 16 L8 16 Z" class="foil-stroke" stroke-width="1.5"/>
+                  <circle cx="20" cy="40" r="4" class="foil-mesh-fill"/>
+                  <path d="M4 56 L28 32" class="foil-stroke" stroke-width="1"/>
+                </svg>
+              </div>
+              <div class="corner-crest bottom-right">
+                <svg viewBox="0 0 60 60" fill="none">
+                  <path d="M56 56 L4 56 C20 52 40 40 44 20 L44 4 L56 4 Z" class="foil-mesh-fill"/>
+                  <path d="M52 52 L16 52 C28 46 42 36 46 16 L52 16 Z" class="foil-stroke" stroke-width="1.5"/>
+                  <circle cx="40" cy="40" r="4" class="foil-mesh-fill"/>
+                  <path d="M56 56 L32 32" class="foil-stroke" stroke-width="1"/>
+                </svg>
+              </div>
+
+              <!-- Top Series Header Pill -->
+              <div class="header-pill">
+                <span class="pill-gem">◈</span>
+                <span class="pill-text" id="cardSeriesText">MYTHIC ARCHIVES · 1ST EDITION</span>
+                <span class="pill-gem">◈</span>
+              </div>
+            </div>
+
+            <!-- Deep-Embossed Gold Typography Block -->
+            <div class="card-typography-block">
+              <!-- Top Rank & Rarity Badge -->
+              <div class="badge-rarity-row">
+                <span class="rarity-crest">✦ ✦ ✦ ✦ ✦</span>
+                <span class="rarity-title" id="cardRarityBadge">DIVINE MYTHIC COLLECTIBLE</span>
+                <span class="rarity-crest">✦ ✦ ✦ ✦ ✦</span>
+              </div>
+
+              <!-- Main Hero Nameplate with Deep Bevel & Foil Sheen -->
+              <div class="hero-nameplate">
+                <h1 class="hero-name-cn" id="cardTitleCn">苍穹圣武 · 炽羽战神</h1>
+                <h2 class="hero-name-en" id="cardTitleEn">ASTRID · SERAPHIC WARRIOR</h2>
+                <div class="hero-divider">
+                  <span class="div-line"></span>
+                  <span class="div-gem">❖</span>
+                  <span class="div-line"></span>
+                </div>
+              </div>
+
+              <!-- Collector Footer Metadata & Serial Matrix -->
+              <div class="collector-footer-meta">
+                <div class="meta-col">
+                  <span class="meta-label">COLLECTOR ID</span>
+                  <span class="meta-val gold-emboss-text" id="cardSerialId">#01 / 06 ED.</span>
+                </div>
+                <div class="meta-col seal-col">
+                  <div class="micro-stamp-seal">
+                    <span class="seal-ring">AUTHENTIC</span>
+                    <span class="seal-icon">♔</span>
+                  </div>
+                </div>
+                <div class="meta-col text-right">
+                  <span class="meta-label">AESTHETIC GRADE</span>
+                  <span class="meta-val gold-emboss-text">GEM MINT 10.0</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Layer 6 (Z: +55px): Dynamic Sweeping Metallic Foil Sheen & Fresnel Ray Glare -->
+          <div class="relief-layer layer-6-optics" data-depth="55">
+            <!-- Sweeping Metallic Foil Beam -->
+            <div class="foil-specular-beam" id="foilSpecularBeam"></div>
+            <!-- High-Refractive Fresnel Glass Glint -->
+            <div class="fresnel-glass-glint" id="fresnelGlassGlint"></div>
+            <!-- Dynamic Flare Hotspot -->
+            <div class="flare-hotspot" id="flareHotspot"></div>
+            <!-- Micro-Prismatic Rainbow Diffraction Edge -->
+            <div class="prismatic-diffraction-edge"></div>
+          </div>
+
+        </div>
+        <!-- End .card-window -->
+
+        <!-- Ultra-Thin Planar Outer Frame Border & Delicate Inner Chamfer Line -->
+        <div class="card-flat-outer-border"></div>
+        <div class="card-flat-inner-rail"></div>
+
+      </div>
+      <!-- End .card-slab -->
+
+    </div>
+    <!-- End .card-assembly -->
+
+    <!-- ============================================================ -->
+    <!-- COMPACT IMAGE GALLERY SWITCHER DOCK (6 Collectible Artworks) -->
+    <!-- ============================================================ -->
+    <nav class="gallery-switcher-dock" id="gallerySwitcherDock" aria-label="收藏卡画面切换导航">
+      <button type="button" class="btn-nav-arrow btn-nav-prev" id="btnNavPrev" title="上一张卡片 (← 方向键)" aria-label="上一张卡片">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="thumbnail-track" id="thumbnailTrack">
+        <!-- Dynamically injected via JavaScript with 6 artwork thumbnails -->
+      </div>
+
+      <button type="button" class="btn-nav-arrow btn-nav-next" id="btnNavNext" title="下一张卡片 (→ 方向键)" aria-label="下一张卡片">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </nav>
+
+  </main>
+
+  <!-- ============================================================ -->
+  <!-- TOP FLOATING HUD ACTIONS (Mandatory Title & Tuning Tool)     -->
+  <!-- ============================================================ -->
+  <div class="hud-actions">
+    <div class="hud-brand" id="hudBrand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">3D 立体收藏卡 · 3D COLLECTIBLE CARD</span>
+    </div>
+    <button type="button" class="btn-tool btn-icon-only" id="btnToggleHud" title="隐藏/显示控制台 (H)" aria-label="切换控制面板">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- FLOATING PARAMETRIC CONTROLLER DOCK (Default Hidden)         -->
+  <!-- ============================================================ -->
+  <aside class="control-dock hidden" id="controlDock">
+    <div class="dock-header">
+      <span class="dock-heading">立体浮雕与烫金调谐器</span>
+      <span class="dock-shortcut">按 H 收起</span>
+    </div>
+
+    <!-- Quick Action Modes -->
+    <div class="control-section">
+      <label class="control-label">交互与鉴赏模式</label>
+      <div class="dock-quick-actions">
+        <button type="button" class="btn-dock-action" id="btnAutoOrbit" title="开启自然物理光影漫游">
+          <span class="tool-icon" id="orbitIcon">✨</span>
+          <span class="tool-label" id="orbitLabel">光影漫游: 关</span>
+        </button>
+        <button type="button" class="btn-dock-action" id="btnMacroInspect" title="进入微距浮雕近景鉴赏">
+          <span class="tool-icon" id="inspectIcon">🔍</span>
+          <span class="tool-label" id="inspectLabel">微距浮雕: 关</span>
+        </button>
+        <button type="button" class="btn-dock-action" id="btnSoundToggle" title="开启金属触觉音效">
+          <span class="tool-icon" id="soundIcon">🔈</span>
+          <span class="tool-label" id="soundLabel">触觉音效: 关</span>
+        </button>
+        <button type="button" class="btn-dock-action" id="btnGalleryAutoPlay" title="开启卡片自动轮播巡演">
+          <span class="tool-icon" id="autoPlayIcon">▶️</span>
+          <span class="tool-label" id="autoPlayLabel">自动巡演: 关</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Collector Material Finishes -->
+    <div class="control-section">
+      <label class="control-label">典藏工艺色调 (Metallic Finish)</label>
+      <div class="palette-grid">
+        <button type="button" class="shape-chip active" data-finish="imperial-gold">
+          <span class="palette-swatch swatch-gold"></span>
+          <span>黑曜 24K 帝王金</span>
+        </button>
+        <button type="button" class="shape-chip" data-finish="royal-emerald">
+          <span class="palette-swatch swatch-emerald"></span>
+          <span>帝王翡翠 · 古金</span>
+        </button>
+        <button type="button" class="shape-chip" data-finish="midnight-sapphire">
+          <span class="palette-swatch swatch-sapphire"></span>
+          <span>深穹星蓝 · 秘银金</span>
+        </button>
+        <button type="button" class="shape-chip" data-finish="crimson-ruby">
+          <span class="palette-swatch swatch-ruby"></span>
+          <span>绛红赤金 · 典藏</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sliders for Depth, Relief, Sheen, Sensitivity -->
+    <div class="control-section">
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">3D 内部纵深 (Parallax Z-Depth)</span>
+          <span class="slider-val" id="depthVal">100%</span>
+        </div>
+        <input type="range" id="depthRange" min="30" max="180" step="5" value="100">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">浮雕凸起高度 (Relief Pop Height)</span>
+          <span class="slider-val" id="reliefVal">100%</span>
+        </div>
+        <input type="range" id="reliefRange" min="30" max="180" step="5" value="100">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">烫金动态高光 (Foil Sheen Power)</span>
+          <span class="slider-val" id="sheenVal">90%</span>
+        </div>
+        <input type="range" id="sheenRange" min="20" max="100" step="5" value="90">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">视差感应灵敏度 (Sensitivity)</span>
+          <span class="slider-val" id="sensitivityVal">100%</span>
+        </div>
+        <input type="range" id="sensitivityRange" min="40" max="160" step="5" value="100">
+      </div>
+    </div>
+
+    <!-- Reset Footer -->
+    <div class="dock-footer">
+      <button type="button" class="btn-reset" id="btnResetParams">重置参数与默认视角</button>
+    </div>
+  </aside>
+
+  <!-- ============================================================ -->
+  <!-- BOTTOM INTERACTIVE HELPER HINT                               -->
+  <!-- ============================================================ -->
+  <div class="bottom-hint" id="bottomHint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">移动光标探索内部 3D 浮雕与动态烫金反光 · 点击底部缩略图或按 ← → 切换卡片 · 按 H 唤出调谐器</span>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

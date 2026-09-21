@@ -1,0 +1,1285 @@
+/* ==========================================================================
+   3D EMBOSSED COLLECTIBLE CARD · STYLE SYSTEM
+   Flat Planar Card Exterior + Deep Internal 3D Layered Relief & Foil Sheen
+   ========================================================================== */
+
+:root {
+  /* Dynamic Interactive Vectors (driven by JS physics engine) */
+  --pointer-x: 0;
+  --pointer-y: 0;
+  --rotate-x: 0deg;
+  --rotate-y: 0deg;
+  --parallax-x: 0px;
+  --parallax-y: 0px;
+  --light-x: 50%;
+  --light-y: 35%;
+  --light-deg: 45deg;
+  --foil-sheen-pos: 50%;
+  --foil-sheen-opacity: 0.9;
+  --depth-multiplier: 1;
+  --relief-multiplier: 1;
+  --sensitivity-multiplier: 1;
+  --stage-zoom: 1;
+
+  /* Card Geometry (Flat 2D Planar Dimensions) */
+  --card-width: 360px;
+  --card-height: 540px;
+  --card-radius: 18px;
+
+  /* Theme Colors: Default Imperial 24K Gold & Obsidian Velvet */
+  --base-bg-primary: #0a0b0e;
+  --base-bg-secondary: #12141a;
+  --base-border-color: rgba(212, 175, 55, 0.4);
+  
+  /* Authentic 24K Hot Stamped Gold Gradients */
+  --gold-primary: #d4af37;
+  --gold-bright: #fff2a3;
+  --gold-deep: #996515;
+  --gold-bronze: #5e3f0e;
+  --gold-specular: #ffffff;
+  --gold-foil-gradient: linear-gradient(
+    var(--light-deg),
+    #8a5a14 0%,
+    #c99a38 22%,
+    #ffd700 45%,
+    #ffffff 50%,
+    #ffd700 55%,
+    #d4af37 78%,
+    #7a4e0f 100%
+  );
+  --gold-foil-border: linear-gradient(
+    var(--light-deg),
+    #996515 0%,
+    #fef08a 40%,
+    #ffffff 50%,
+    #eab308 60%,
+    #78350f 100%
+  );
+}
+
+/* Material Finish Presets */
+body[data-finish="royal-emerald"] {
+  --base-bg-primary: #04140c;
+  --base-bg-secondary: #082417;
+  --base-border-color: rgba(16, 185, 129, 0.45);
+  --gold-primary: #d1b86e;
+  --gold-bright: #fef3c7;
+  --gold-deep: #856117;
+}
+
+body[data-finish="midnight-sapphire"] {
+  --base-bg-primary: #050b18;
+  --base-bg-secondary: #0a1630;
+  --base-border-color: rgba(56, 189, 248, 0.45);
+  --gold-primary: #e0ca85;
+  --gold-bright: #ffffff;
+  --gold-deep: #785a19;
+}
+
+body[data-finish="crimson-ruby"] {
+  --base-bg-primary: #170407;
+  --base-bg-secondary: #2b080f;
+  --base-border-color: rgba(244, 63, 94, 0.45);
+  --gold-primary: #e6b843;
+  --gold-bright: #fff5c0;
+  --gold-deep: #8a4816;
+}
+
+/* Global Reset & Base Setup */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #060709;
+  color: #e2e8f0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ==========================================================================
+   AMBIENT LUXURY STAGE & ATMOSPHERE
+   ========================================================================== */
+.ambient-stage {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.spotlight {
+  position: absolute;
+  top: var(--light-y);
+  left: var(--light-x);
+  width: 900px;
+  height: 900px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 55, 0.12) 0%,
+    rgba(212, 175, 55, 0.03) 40%,
+    transparent 70%
+  );
+  filter: blur(50px);
+  transition: opacity 0.4s ease;
+}
+
+.stage-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.04) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 32px 32px, 64px 64px, 64px 64px;
+  opacity: 0.5;
+}
+
+.stage-dust {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(212, 175, 55, 0.05) 0%,
+    rgba(10, 11, 14, 0.9) 75%
+  );
+}
+
+/* ==========================================================================
+   MAIN 3D CARD VIEWPORT & ASSEMBLY
+   ========================================================================== */
+.card-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  padding: 20px 20px 90px 20px;
+  perspective: 1200px;
+}
+
+.card-assembly {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(var(--stage-zoom));
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* ==========================================================================
+   PLANAR CARD SLAB (FLAT 2D EXTERIOR CONTOUR WITH 3D ROTATION & ZERO THICKNESS)
+   ========================================================================== */
+.card-slab {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--card-radius);
+  background: #090a0d;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
+  will-change: transform;
+  box-shadow: 
+    calc(var(--pointer-x) * -24px) calc(var(--pointer-y) * -24px) 45px -10px rgba(0, 0, 0, 0.85),
+    0 25px 60px -15px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(212, 175, 55, 0.3),
+    0 0 25px -5px rgba(212, 175, 55, 0.2);
+  cursor: grab;
+  transition: box-shadow 0.2s ease;
+}
+
+.card-slab:active {
+  cursor: grabbing;
+}
+
+/* Ultra-Thin Planar Outer Edge & Inner Rail */
+.card-flat-outer-border {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--card-radius);
+  border: 1.5px solid transparent;
+  background: var(--gold-foil-border) border-box;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) padding-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.9;
+  transform: translateZ(calc(44px * var(--depth-multiplier)));
+  transform-style: preserve-3d;
+}
+
+.card-flat-inner-rail {
+  position: absolute;
+  inset: 8px;
+  border-radius: calc(var(--card-radius) - 8px);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  pointer-events: none;
+  z-index: 10;
+  transform: translateZ(calc(44px * var(--depth-multiplier)));
+  transform-style: preserve-3d;
+}
+
+/* ==========================================================================
+   INTERNAL 3D RELIEF & MULTI-LAYER UNIFIED 3D SPACE
+   ========================================================================== */
+.card-window {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--card-radius);
+  transform-style: preserve-3d;
+  background-color: #050608;
+}
+
+/* Shared Micro Relief Layer Styling */
+.relief-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+}
+
+/* ==========================================================================
+   LAYER 0: DEEP BACKGROUND PLATE (Z: -14px)
+   ========================================================================== */
+.layer-0-bg {
+  transform: translateZ(calc(-14px * var(--depth-multiplier)));
+  z-index: 1;
+}
+
+.card-bg-image-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
+.artwork-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity 0.45s ease;
+  display: block;
+}
+
+.artwork-bg {
+  filter: blur(1.5px) brightness(0.68) contrast(1.15) saturate(1.1);
+  transform: scale(1.05);
+}
+
+.bg-vignette-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--card-radius);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(5, 6, 8, 0.2) 20%,
+    rgba(5, 6, 8, 0.75) 75%,
+    rgba(5, 6, 8, 0.95) 100%
+  );
+}
+
+.bg-guilloche-grid {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--card-radius);
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   LAYER 1: CELESTIAL MANDALA & ASTRAL WHEELS (Z: 0px)
+   ========================================================================== */
+.layer-1-mandala {
+  transform: translateZ(calc(0px * var(--depth-multiplier)));
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.celestial-mandala {
+  width: 320px;
+  height: 320px;
+  opacity: 0.55;
+  filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.3));
+}
+
+.mandala-svg {
+  width: 100%;
+  height: 100%;
+  animation: mandalaSlowSpin 90s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes mandalaSlowSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.foil-stroke {
+  stroke: var(--gold-primary);
+  transition: stroke 0.3s ease;
+}
+
+.foil-fill {
+  fill: var(--gold-primary);
+  transition: fill 0.3s ease;
+}
+
+/* ==========================================================================
+   LAYER 2: CHARACTER SILHOUETTE RIM AURA (Z: +12px)
+   ========================================================================== */
+.layer-2-aura {
+  transform: translateZ(calc(12px * var(--depth-multiplier)));
+  z-index: 3;
+}
+
+.character-aura-glow {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 240px;
+  height: 280px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(212, 175, 55, 0.35) 0%,
+    rgba(212, 175, 55, 0.12) 45%,
+    transparent 75%
+  );
+  filter: blur(28px);
+  mix-blend-mode: screen;
+}
+
+.aura-radiance-rays {
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(
+    from var(--light-deg),
+    transparent 0deg,
+    rgba(212, 175, 55, 0.08) 30deg,
+    transparent 60deg,
+    rgba(212, 175, 55, 0.08) 120deg,
+    transparent 150deg,
+    rgba(212, 175, 55, 0.1) 210deg,
+    transparent 240deg,
+    rgba(212, 175, 55, 0.08) 300deg,
+    transparent 360deg
+  );
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
+
+/* ==========================================================================
+   LAYER 3: CHARACTER FOCAL SHALLOW RELIEF (Z: +24px)
+   ========================================================================== */
+.layer-3-character {
+  transform: translateZ(calc(24px * var(--depth-multiplier) * var(--relief-multiplier)));
+  z-index: 4;
+}
+
+.character-focal-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  /* Shallow relief masking and elevation */
+  -webkit-mask-image: radial-gradient(
+    ellipse 85% 78% at 50% 48%,
+    black 40%,
+    rgba(0, 0, 0, 0.85) 65%,
+    transparent 96%
+  );
+  mask-image: radial-gradient(
+    ellipse 85% 78% at 50% 48%,
+    black 40%,
+    rgba(0, 0, 0, 0.85) 65%,
+    transparent 96%
+  );
+}
+
+.artwork-focal {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  /* Deep shallow relief pop with dynamic contact shadow */
+  filter: 
+    drop-shadow(calc(var(--pointer-x) * -7px) calc(var(--pointer-y) * -7px) 12px rgba(0, 0, 0, 0.9))
+    contrast(1.08) 
+    brightness(1.06)
+    saturate(1.05);
+  transform: scale(1.02);
+  transition: opacity 0.45s ease, filter 0.2s ease;
+}
+
+/* Micro-Emboss Specular Rim Overlay */
+.relief-rim-specular {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    var(--light-deg),
+    transparent 0%,
+    rgba(255, 242, 163, 0.15) calc(var(--foil-sheen-pos) - 10%),
+    rgba(255, 255, 255, 0.35) var(--foil-sheen-pos),
+    rgba(255, 242, 163, 0.15) calc(var(--foil-sheen-pos) + 10%),
+    transparent 100%
+  );
+  mix-blend-mode: overlay;
+  opacity: var(--foil-sheen-opacity);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   LAYER 4: FLOATING GOLD PARTICLES & RUNES (Z: +34px)
+   ========================================================================== */
+.layer-4-floating {
+  transform: translateZ(calc(34px * var(--depth-multiplier)));
+  z-index: 5;
+}
+
+.floating-runes-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.rune-glyph {
+  position: absolute;
+  font-size: 18px;
+  font-family: serif;
+  color: var(--gold-bright);
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  opacity: 0.65;
+  animation: floatDrift 8s ease-in-out infinite alternate;
+}
+
+.rune-1 { top: 18%; left: 14%; animation-delay: 0s; }
+.rune-2 { top: 28%; right: 15%; animation-delay: -1.5s; font-size: 22px; }
+.rune-3 { top: 58%; left: 12%; animation-delay: -3s; }
+.rune-4 { top: 68%; right: 14%; animation-delay: -4.5s; font-size: 20px; }
+.rune-5 { top: 40%; right: 10%; animation-delay: -6s; }
+
+.starlight-sparkle {
+  position: absolute;
+  color: var(--gold-bright);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 16px rgba(212, 175, 55, 0.8);
+  font-size: 14px;
+  animation: sparkleTwinkle 4s ease-in-out infinite;
+}
+
+.spark-1 { top: 22%; right: 24%; animation-delay: 0s; }
+.spark-2 { top: 48%; left: 20%; animation-delay: -1s; font-size: 18px; }
+.spark-3 { top: 72%; left: 28%; animation-delay: -2s; }
+.spark-4 { top: 32%; left: 16%; animation-delay: -3s; font-size: 12px; }
+
+.gold-ember {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  box-shadow: 0 0 8px var(--gold-primary);
+  animation: floatEmber 6s ease-in-out infinite;
+}
+
+.ember-1 { top: 35%; left: 30%; animation-delay: 0s; }
+.ember-2 { top: 62%; right: 28%; animation-delay: -2s; width: 3px; height: 3px; }
+.ember-3 { top: 78%; left: 45%; animation-delay: -4s; width: 5px; height: 5px; }
+
+@keyframes floatDrift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(6px, -10px) rotate(8deg); }
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+
+@keyframes floatEmber {
+  0% { transform: translateY(0) scale(1); opacity: 0.4; }
+  50% { transform: translateY(-16px) scale(1.3); opacity: 0.9; }
+  100% { transform: translateY(-32px) scale(0.6); opacity: 0.1; }
+}
+
+/* ==========================================================================
+   LAYER 5: GILDED FRAMING & DEEP-EMBOSSED TYPOGRAPHY (Z: +44px)
+   ========================================================================== */
+.layer-5-gilded {
+  transform: translateZ(calc(44px * var(--depth-multiplier)));
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px 14px 18px 14px;
+}
+
+/* Corner Filigree Crests */
+.gilded-frame-border {
+  position: absolute;
+  inset: 12px;
+  pointer-events: none;
+}
+
+.corner-crest {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  opacity: 0.9;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+}
+
+.corner-crest.top-left { top: 0; left: 0; }
+.corner-crest.top-right { top: 0; right: 0; }
+.corner-crest.bottom-left { bottom: 0; left: 0; }
+.corner-crest.bottom-right { bottom: 0; right: 0; }
+
+.foil-mesh-fill {
+  fill: url(#goldFoilPattern, var(--gold-foil-gradient));
+  fill: var(--gold-primary);
+}
+
+/* Header Series Pill */
+.header-pill {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 12px;
+  background: rgba(9, 10, 14, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+}
+
+.pill-gem {
+  font-size: 8px;
+  color: var(--gold-bright);
+}
+
+.pill-text {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+}
+
+/* Typography Block */
+.card-typography-block {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(9, 10, 14, 0.7) 0%,
+    rgba(9, 10, 14, 0.92) 100%
+  );
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+.badge-rarity-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.rarity-crest {
+  color: var(--gold-primary);
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+
+.rarity-title {
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+}
+
+.hero-nameplate {
+  text-align: center;
+}
+
+.hero-name-cn {
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  background: var(--gold-foil-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+  line-height: 1.25;
+}
+
+.hero-name-en {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: rgba(254, 240, 138, 0.85);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.div-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.6),
+    transparent
+  );
+}
+
+.div-gem {
+  font-size: 8px;
+  color: var(--gold-primary);
+}
+
+/* Collector Footer Metadata */
+.collector-footer-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4px;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.meta-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-col.text-right {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.meta-label {
+  font-size: 7.5px;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.meta-val {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--gold-bright);
+}
+
+.gold-emboss-text {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.seal-col {
+  align-items: center;
+}
+
+.micro-stamp-seal {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(212, 175, 55, 0.15);
+  border: 0.8px solid rgba(212, 175, 55, 0.5);
+}
+
+.seal-ring {
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--gold-bright);
+}
+
+.seal-icon {
+  font-size: 8px;
+  color: var(--gold-primary);
+}
+
+/* ==========================================================================
+   LAYER 6: OPTICAL SWEEPING SHEEN & FRESNEL GLARE (Z: +46px)
+   ========================================================================== */
+.layer-6-optics {
+  transform: translateZ(calc(46px * var(--depth-multiplier)));
+  z-index: 7;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
+.foil-specular-beam {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    var(--light-deg),
+    transparent 35%,
+    rgba(255, 242, 163, 0.08) 46%,
+    rgba(255, 255, 255, 0.38) 50%,
+    rgba(255, 242, 163, 0.08) 54%,
+    transparent 65%
+  );
+  transform: translate(calc(var(--pointer-x) * -20%), calc(var(--pointer-y) * -20%));
+  mix-blend-mode: color-dodge;
+  pointer-events: none;
+  opacity: var(--foil-sheen-opacity);
+}
+
+.fresnel-glass-glint {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at var(--light-x) var(--light-y),
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(212, 175, 55, 0.1) 25%,
+    transparent 60%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.flare-hotspot {
+  position: absolute;
+  top: var(--light-y);
+  left: var(--light-x);
+  width: 120px;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 215, 0, 0.25) 35%,
+    transparent 70%
+  );
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.prismatic-diffraction-edge {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 0, 0.04) 0%,
+    rgba(255, 255, 0, 0.04) 25%,
+    rgba(0, 255, 0, 0.04) 50%,
+    rgba(0, 255, 255, 0.04) 75%,
+    rgba(0, 0, 255, 0.04) 100%
+  );
+  mix-blend-mode: color-dodge;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   IMAGE GALLERY SWITCHER DOCK (Bottom Navigation)
+   ========================================================================== */
+.gallery-switcher-dock {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  background: rgba(13, 16, 23, 0.88);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 999px;
+  box-shadow: 
+    0 12px 30px rgba(0, 0, 0, 0.85),
+    0 0 15px rgba(212, 175, 55, 0.1);
+  backdrop-filter: blur(20px);
+  z-index: 20;
+}
+
+.btn-nav-arrow {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: var(--gold-bright);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-nav-arrow:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: var(--gold-primary);
+  transform: scale(1.08);
+}
+
+.btn-nav-arrow:active {
+  transform: scale(0.95);
+}
+
+.thumbnail-track {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.thumb-item {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  background: #090a0d;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+  outline: none;
+}
+
+.thumb-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.65;
+  transition: opacity 0.2s ease, transform 0.25s ease;
+}
+
+.thumb-badge {
+  position: absolute;
+  bottom: 2px;
+  right: 3px;
+  font-size: 8px;
+  font-weight: 800;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 0 3px;
+  border-radius: 3px;
+  line-height: 1.2;
+}
+
+.thumb-item:hover {
+  border-color: rgba(212, 175, 55, 0.6);
+  transform: translateY(-2px);
+}
+
+.thumb-item:hover img {
+  opacity: 0.9;
+  transform: scale(1.08);
+}
+
+.thumb-item.active {
+  border-color: var(--gold-bright);
+  box-shadow: 
+    0 0 12px rgba(212, 175, 55, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.8);
+  transform: translateY(-3px) scale(1.05);
+}
+
+.thumb-item.active img {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* ==========================================================================
+   TOP FLOATING HUD ACTIONS (Mandatory Title & Controls)
+   ========================================================================== */
+.hud-actions {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 30;
+}
+
+.hud-brand {
+  height: 32px;
+  box-sizing: border-box;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 8px #f59e0b;
+  animation: pulseDot 2s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.75); }
+}
+
+.hud-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #f1f5f9;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.btn-tool {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.btn-tool:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: var(--gold-bright);
+  color: var(--gold-bright);
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   FLOATING PARAMETRIC CONTROLLER DOCK
+   ========================================================================== */
+.control-dock {
+  position: fixed;
+  top: 60px;
+  right: 18px;
+  width: 310px;
+  background: rgba(13, 16, 23, 0.94);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85);
+  z-index: 30;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
+}
+
+.control-dock.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.96);
+  pointer-events: none;
+}
+
+.dock-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dock-heading {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #f1f5f9;
+}
+
+.dock-shortcut {
+  font-size: 10px;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.control-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 0.04em;
+}
+
+.dock-quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.btn-dock-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  font-size: 10.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-dock-action:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.5);
+  color: var(--gold-bright);
+}
+
+.btn-dock-action.active {
+  background: rgba(212, 175, 55, 0.22);
+  border-color: var(--gold-bright);
+  color: var(--gold-bright);
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.shape-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.shape-chip:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.shape-chip.active {
+  background: rgba(212, 175, 55, 0.18);
+  border-color: var(--gold-primary);
+  color: #ffffff;
+}
+
+.palette-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.swatch-gold { background: #d4af37; box-shadow: 0 0 6px #d4af37; }
+.swatch-emerald { background: #10b981; box-shadow: 0 0 6px #10b981; }
+.swatch-sapphire { background: #38bdf8; box-shadow: 0 0 6px #38bdf8; }
+.swatch-ruby { background: #f43f5e; box-shadow: 0 0 6px #f43f5e; }
+
+.slider-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.slider-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10.5px;
+  color: #94a3b8;
+}
+
+.slider-val {
+  color: var(--gold-bright);
+  font-weight: 700;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  accent-color: var(--gold-primary);
+  cursor: pointer;
+}
+
+.dock-footer {
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-reset {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  font-size: 10.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-reset:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #f1f5f9;
+}
+
+/* ==========================================================================
+   BOTTOM INTERACTIVE HELPER HINT
+   ========================================================================== */
+.bottom-hint {
+  position: fixed;
+  bottom: 74px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 28px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+  z-index: 15;
+}
+
+.hint-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-primary);
+}
+
+.hint-msg {
+  font-size: 10px;
+  color: #cbd5e1;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+@media (max-width: 640px) {
+  :root {
+    --card-width: 310px;
+    --card-height: 465px;
+  }
+  
+  .bottom-hint {
+    display: none;
+  }
+  
+  .gallery-switcher-dock {
+    bottom: 12px;
+    padding: 4px 6px;
+    gap: 6px;
+  }
+  
+  .thumb-item {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+
+  .btn-nav-arrow {
+    width: 28px;
+    height: 28px;
+  }
+
+  .hero-name-cn {
+    font-size: 15px;
+  }
+}

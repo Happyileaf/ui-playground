@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topological Ribbon Loop · 拓扑莫比乌斯织带</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Fullscreen Interactive Canvas -->
+  <canvas id="ribbonCanvas"></canvas>
+
+  <!-- Ambient Backdrop Grain & Vignette Overlay -->
+  <div class="canvas-vignette"></div>
+
+  <!-- Top Floating Controls -->
+  <div class="hud-actions">
+    <div class="hud-brand" id="hudBrand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">拓扑莫比乌斯织带 · TOPOLOGICAL RIBBON</span>
+    </div>
+    <button type="button" class="btn-tool btn-icon-only" id="btnToggleHud" title="隐藏/显示控制台 (H)" aria-label="切换控制面板">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Floating Parametric Controller Panel (HUD) -->
+  <aside class="control-dock hidden" id="controlDock">
+    <div class="dock-header">
+      <span class="dock-heading">拓扑几何物理调谐器</span>
+      <span class="dock-shortcut">按 H 收起</span>
+    </div>
+
+    <!-- Quick Operations Inside Panel -->
+    <div class="control-section">
+      <label class="control-label">快捷演进操控</label>
+      <div class="dock-quick-actions">
+        <button type="button" class="btn-dock-action active" id="btnAutoOrbit" title="切换三维视点自动缓动旋转" aria-label="切换自动自转">
+          <span class="tool-icon">🔄</span>
+          <span class="tool-label" id="autoOrbitLabel">自动自转: 开</span>
+        </button>
+        <button type="button" class="btn-dock-action" id="btnToggleSound" title="开启/关闭拓扑流形谐波音效" aria-label="切换谐波音效">
+          <span class="tool-icon" id="soundIcon">🔈</span>
+          <span class="tool-label" id="soundLabel">谐波音效: 关</span>
+        </button>
+        <button type="button" class="btn-dock-action" id="btnEnergyPulse" title="沿织带单侧表面释放能量脉冲" aria-label="能量脉冲">
+          <span class="tool-icon">⚡</span>
+          <span class="tool-label">能量脉冲</span>
+        </button>
+        <button type="button" class="btn-dock-action" id="btnResetView" title="重置相机旋转角度与缩放" aria-label="重置视角">
+          <span class="tool-icon">🎯</span>
+          <span class="tool-label">重置视角</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Topology Manifold Form Selector -->
+    <div class="control-section">
+      <label class="control-label">拓扑流形形态 (Topology Manifold)</label>
+      <div class="palette-grid">
+        <button type="button" class="shape-chip active" data-form="mobius">
+          <span class="tool-icon">♾️</span>
+          <span>经典莫比乌斯</span>
+        </button>
+        <button type="button" class="shape-chip" data-form="trefoil">
+          <span class="tool-icon">☘️</span>
+          <span>三叶扭结织带</span>
+        </button>
+        <button type="button" class="shape-chip" data-form="double-twist">
+          <span class="tool-icon">🧬</span>
+          <span>双重环面带</span>
+        </button>
+        <button type="button" class="shape-chip" data-form="klein">
+          <span class="tool-icon">🪐</span>
+          <span>8字克莱因带</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Palette Preset Selector -->
+    <div class="control-section">
+      <label class="control-label">色彩光谱 (Color Spectra)</label>
+      <div class="palette-grid">
+        <button type="button" class="palette-chip active" data-palette="cyber">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #06b6d4, #8b5cf6);"></span>
+          <span>量子极光</span>
+        </button>
+        <button type="button" class="palette-chip" data-palette="gold">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);"></span>
+          <span>深空黑金</span>
+        </button>
+        <button type="button" class="palette-chip" data-palette="neon">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #f43f5e, #38bdf8);"></span>
+          <span>霓虹星云</span>
+        </button>
+        <button type="button" class="palette-chip" data-palette="emerald">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #10b981, #06b6d4);"></span>
+          <span>碧空翠晶</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sliders -->
+    <div class="control-section">
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">织带宽度 (Ribbon Width)</span>
+          <span class="slider-val" id="ribbonWidthVal">60px</span>
+        </div>
+        <input type="range" id="ribbonWidthRange" min="20" max="110" step="5" value="60">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">自转速度 (Orbit Velocity)</span>
+          <span class="slider-val" id="orbitSpeedVal">1.0x</span>
+        </div>
+        <input type="range" id="orbitSpeedRange" min="0.2" max="3.0" step="0.2" value="1.0">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">能量流密度 (Flow Density)</span>
+          <span class="slider-val" id="flowDensityVal">80 股</span>
+        </div>
+        <input type="range" id="flowDensityRange" min="20" max="150" step="10" value="80">
+      </div>
+    </div>
+
+    <div class="dock-footer">
+      <button type="button" class="btn-reset" id="btnResetParams">重置默认参数</button>
+    </div>
+  </aside>
+
+  <!-- Bottom Interactive Helper Hint -->
+  <div class="bottom-hint" id="bottomHint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">拖拽旋转三维拓扑视点 · 滚轮缩放 · 双击释放能量脉冲 · 按 H 切换控制台</span>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

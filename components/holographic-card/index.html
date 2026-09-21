@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Holographic Specular Card · 拟真全息金属折射卡片</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Ambient Background Canvas & Grid -->
+  <div class="ambient-stage" id="ambientStage">
+    <div class="stage-glow"></div>
+    <div class="stage-mesh"></div>
+  </div>
+
+  <!-- Main 3D Card Stage -->
+  <main class="card-stage" id="cardStage">
+    <div class="card-perspective-wrapper" id="cardWrapper">
+      <div class="holographic-card" id="holoCard">
+        
+        <!-- FRONT FACE -->
+        <div class="card-face card-front">
+          <!-- Brushed Metal Base Layer -->
+          <div class="metal-base"></div>
+          
+          <!-- Chromatic Hologram Prism Foil Layer -->
+          <div class="holo-prism-foil"></div>
+          
+          <!-- Specular Glare & Dynamic Fresnel Glint -->
+          <div class="specular-glare"></div>
+          <div class="fresnel-sheen"></div>
+          
+          <!-- Embossed Graphic & Typography Layer -->
+          <div class="card-content">
+            <header class="card-header">
+              <div class="brand-badge">
+                <span class="chip-icon">
+                  <svg width="34" height="26" viewBox="0 0 34 26" fill="none">
+                    <rect x="0.5" y="0.5" width="33" height="25" rx="3.5" stroke="currentColor" stroke-opacity="0.3"/>
+                    <rect x="5" y="5" width="24" height="16" rx="2" fill="currentColor" fill-opacity="0.25"/>
+                    <line x1="5" y1="13" x2="29" y2="13" stroke="currentColor" stroke-opacity="0.4"/>
+                    <line x1="17" y1="5" x2="17" y2="21" stroke="currentColor" stroke-opacity="0.4"/>
+                    <circle cx="17" cy="13" r="3" fill="currentColor" fill-opacity="0.5"/>
+                  </svg>
+                </span>
+                <span class="contactless-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M8.5 16.5a5 5 0 0 1 0-9"/>
+                    <path d="M12 19a8.5 8.5 0 0 0 0-14"/>
+                    <path d="M15.5 21.5a12 12 0 0 0 0-19"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="tier-tag" id="tierTag">TITANIUM PRIVILEGE</div>
+            </header>
+
+            <div class="card-body">
+              <div class="holo-seal">
+                <div class="seal-inner">
+                  <span class="seal-symbol">◈</span>
+                  <span class="seal-text">AUTHENTIC SPECULAR</span>
+                </div>
+              </div>
+              <div class="card-number" id="cardNumber">
+                <span>4892</span>
+                <span>8024</span>
+                <span>9150</span>
+                <span>3618</span>
+              </div>
+            </div>
+
+            <footer class="card-footer">
+              <div class="card-holder-group">
+                <span class="field-label">CARDMEMBER</span>
+                <span class="field-val">ALEXANDER V. VANCE</span>
+              </div>
+              <div class="card-expiry-group">
+                <span class="field-label">VALID THRU</span>
+                <span class="field-val">09 / 32</span>
+              </div>
+              <div class="network-logo">
+                <div class="logo-circle logo-red"></div>
+                <div class="logo-circle logo-yellow"></div>
+              </div>
+            </footer>
+          </div>
+        </div>
+
+        <!-- BACK FACE -->
+        <div class="card-face card-back">
+          <div class="metal-base"></div>
+          <div class="holo-prism-foil"></div>
+          <div class="specular-glare"></div>
+          
+          <div class="back-stripe"></div>
+          
+          <div class="back-content">
+            <div class="signature-strip">
+              <div class="sig-lines"></div>
+              <div class="cvv-badge">
+                <span class="cvv-label">CVV</span>
+                <span class="cvv-number">892</span>
+              </div>
+            </div>
+
+            <div class="back-disclaimer">
+              This holographic specular physical asset is protected by continuous topological optical dispersion and laser-engraved micro-encryption. Authorized signature only.
+            </div>
+
+            <div class="back-footer">
+              <span class="serial-num">SN-9042-X7B-LUMEN</span>
+              <span class="back-hologram">✦ VERIFIED SPECULAR</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Top Floating Controls -->
+  <div class="hud-actions">
+    <div class="hud-brand" id="hudBrand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">全息金属折射卡片 · HOLOGRAPHIC CARD</span>
+    </div>
+    <button type="button" class="btn-tool btn-icon-only" id="btnToggleHud" title="隐藏/显示控制台 (H)" aria-label="切换控制面板">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Floating Parametric Controller Panel (HUD) -->
+  <aside class="control-dock hidden" id="controlDock">
+    <div class="dock-header">
+      <span class="dock-heading">金属光学折射控制台</span>
+      <span class="dock-shortcut">按 H 收起</span>
+    </div>
+
+    <!-- Quick Operations -->
+    <div class="control-section">
+      <label class="control-label">交互与演进</label>
+      <div class="dock-quick-actions">
+        <button type="button" class="btn-dock-action" id="btnFlipCard" title="3D 翻转卡片至背面">
+          <span class="tool-icon">🔄</span>
+          <span class="tool-label">3D 翻转</span>
+        </button>
+        <button type="button" class="btn-dock-action" id="btnToggleSound" title="开启/关闭触觉音效">
+          <span class="tool-icon" id="soundIcon">🔈</span>
+          <span class="tool-label" id="soundLabel">触觉音效: 关</span>
+        </button>
+        <button type="button" class="btn-dock-action" id="btnAutoTilt" title="演示动态折射自动摇摆">
+          <span class="tool-icon">✨</span>
+          <span class="tool-label" id="autoTiltLabel">自动摇摆: 关</span>
+        </button>
+        <button type="button" class="btn-dock-action" id="btnResetTilt" title="复位卡片角度">
+          <span class="tool-icon">🎯</span>
+          <span class="tool-label">归位视角</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Metal Finish Material Selector -->
+    <div class="control-section">
+      <label class="control-label">材质与表面工艺 (Metal Finish)</label>
+      <div class="palette-grid">
+        <button type="button" class="shape-chip active" data-finish="titanium">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #1e293b, #0f172a);"></span>
+          <span>钛空暗黑</span>
+        </button>
+        <button type="button" class="shape-chip" data-finish="platinum">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #e2e8f0, #94a3b8);"></span>
+          <span>液态铂金</span>
+        </button>
+        <button type="button" class="shape-chip" data-finish="rosegold">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #fbcfe8, #f43f5e);"></span>
+          <span>奢雅玫瑰金</span>
+        </button>
+        <button type="button" class="shape-chip" data-finish="aurora">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #06b6d4, #d946ef);"></span>
+          <span>极光全息箔</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sliders -->
+    <div class="control-section">
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">全息折射浓度 (Holo Prism)</span>
+          <span class="slider-val" id="holoIntensityVal">85%</span>
+        </div>
+        <input type="range" id="holoIntensityRange" min="20" max="100" step="5" value="85">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">3D 倾角灵敏度 (Tilt Max)</span>
+          <span class="slider-val" id="tiltMaxVal">24°</span>
+        </div>
+        <input type="range" id="tiltMaxRange" min="10" max="45" step="1" value="24">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">镜面光泽锐度 (Specular Shine)</span>
+          <span class="slider-val" id="specularVal">90%</span>
+        </div>
+        <input type="range" id="specularRange" min="20" max="100" step="5" value="90">
+      </div>
+    </div>
+
+    <div class="dock-footer">
+      <button type="button" class="btn-reset" id="btnResetParams">重置默认参数</button>
+    </div>
+  </aside>
+
+  <!-- Bottom Interactive Helper Hint -->
+  <div class="bottom-hint" id="bottomHint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">移动光标感知全息棱镜折射 · 点击卡片 3D 翻转 · 按 H 切换控制台</span>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

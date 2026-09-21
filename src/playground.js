@@ -13,6 +13,50 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
   // Master Case Catalog
   const cases = [
     {
+      id: 'embossed-foil-card',
+      title: '3D Embossed Collectible Card · 3D 立体收藏卡',
+      type: 'component',
+      category: 'components',
+      path: 'components/embossed-foil-card/',
+      url: '/components/embossed-foil-card/index.html',
+      description: '极薄平面卡面外轮廓与内部多层微型 3D 浮雕空间视差、24K 动态烫金金属高光、支持 6 张典藏插画平滑切换与光影漫游。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['3d-relief', 'shallow-depth', 'flat-card', 'gold-foil', 'parallax-depth', 'collectible-card', 'gallery-switcher', 'web-audio']
+    },
+    {
+      id: 'topological-ribbon',
+      title: 'Topological Ribbon · 拓扑莫比乌斯织带',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/topological-ribbon/',
+      url: '/effects/topological-ribbon/index.html',
+      description: '三维参数化莫比乌斯环与拓扑多维流形织带，具备实时深度光栅化、能量流脉冲测地线与谐波共鸣合成。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['canvas', 'topology', 'mobius', 'parametric-3d', 'geodesic-flow', 'generative-art', 'web-audio']
+    },
+    {
+      id: 'holographic-card',
+      title: 'Holographic Specular Card · 全息金属折射卡片',
+      type: 'component',
+      category: 'components',
+      path: 'components/holographic-card/',
+      url: '/components/holographic-card/index.html',
+      description: '拟真金属拉丝基底、色散全息棱镜彩箔与菲涅尔镜面反射卡片，支持 3D 触觉翻转与多种奢雅贵金属工艺。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['3d-transform', 'holographic', 'specular-reflection', 'prismatic-foil', 'metal-finish', 'card-flip']
+    },
+    {
+      id: 'origami-sheet',
+      title: 'Fluid Origami Note · 流体折纸与翻页手势',
+      type: 'component',
+      category: 'components',
+      path: 'components/origami-sheet/',
+      url: '/components/origami-sheet/index.html',
+      description: '动态流体多角卷曲折叠手势与物理撕纸便签本，具备拟真折痕阴影、弹性回弹与纯前端 Web Audio 纸张音效。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['origami', 'paper-curl', 'peel-gesture', 'tear-physics', 'spring-lerp', 'web-audio', 'interactive-note']
+    },
+    {
       id: 'auth',
       title: 'LUMEN · Digital Studio Auth',
       type: 'page',
