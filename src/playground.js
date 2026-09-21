@@ -24,6 +24,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['page', 'auth', 'generative-art', 'haute-design', 'kinetic', 'web-audio', 'atelier']
     },
     {
+      id: 'living-constellation',
+      title: 'Living Constellation · 活体星图',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/living-constellation/',
+      url: '/effects/living-constellation/index.html',
+      description: '具有深空纵深、活体星图结缔、潮汐引力扰动与低频宇宙事件的艺术级深空视觉作品。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['canvas', 'astronomy', 'constellation', 'particles', 'deep-space', 'generative-art']
+    },
+    {
       id: 'kinetic-silk',
       title: 'Kinetic Silk Waves',
       type: 'effect',

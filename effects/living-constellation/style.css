@@ -1,0 +1,631 @@
+/* ==========================================================================
+   Living Constellation · 活体星图深空视觉系统样式表
+   Aesthetic: Contemporary Haute-Design Obsidian & Precision Micro-HUD
+   100% Pure Native CSS, Zero external bloat.
+   ========================================================================== */
+
+:root {
+  --bg-deep: #03050c;
+  --bg-surface: rgba(16, 18, 26, 0.78);
+  --bg-surface-solid: #0d111c;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.16);
+  --text-pure: #ffffff;
+  --text-primary: #f1f3f7;
+  --text-secondary: #8d95a5;
+  --text-tertiary: #525969;
+  --accent-cyan: #38bdf8;
+  --accent-blue: #93c5fd;
+  --accent-gold: #fbbf24;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "Roboto Mono", Menlo, Consolas, monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+/* Fullscreen Canvas */
+#spaceCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;
+  cursor: crosshair;
+}
+
+/* Optical Vignette Overlay */
+.canvas-vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(circle at center, transparent 45%, rgba(3, 5, 12, 0.78) 100%);
+}
+
+/* ==========================================================================
+   Top Right Floating HUD Controls
+   ========================================================================== */
+.hud-actions {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.btn-tool {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.btn-tool:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-medium);
+  color: var(--text-pure);
+}
+
+.btn-tool.btn-icon-only {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.tool-icon {
+  font-size: 13px;
+  color: var(--accent-cyan);
+}
+
+/* ==========================================================================
+   Top Right Brand Badge
+   ========================================================================== */
+.hud-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  box-sizing: border-box;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 0 14px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.6; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+.hud-title {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-pure);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Parametric Control Dock (Right Floating Panel)
+   ========================================================================== */
+.control-dock {
+  position: fixed;
+  top: 76px;
+  right: 24px;
+  width: 300px;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px 18px 20px 20px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Custom Obsidian Scrollbar for Control Dock */
+.control-dock::-webkit-scrollbar {
+  width: 5px;
+}
+
+.control-dock::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 12px 0;
+}
+
+.control-dock::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  transition: background-color 0.2s ease;
+}
+
+.control-dock:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.control-dock::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+}
+
+.control-dock.hidden {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.96);
+  pointer-events: none;
+}
+
+.dock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 12px;
+}
+
+.dock-heading {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-pure);
+  letter-spacing: 0.02em;
+}
+
+.dock-shortcut {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-tertiary);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.control-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.control-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Quick Actions Grid inside Panel */
+.dock-quick-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.btn-dock-action {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-dock-action:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-medium);
+  color: var(--text-pure);
+}
+
+.btn-dock-action.active {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: var(--accent-cyan);
+  color: var(--text-pure);
+}
+
+.btn-dock-action .tool-icon {
+  font-size: 13px;
+  color: var(--accent-cyan);
+}
+
+/* Palette Preset Grid */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.palette-chip {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+}
+
+.palette-chip:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-pure);
+  border-color: var(--border-medium);
+}
+
+.palette-chip.active {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: var(--accent-cyan);
+  color: var(--text-pure);
+}
+
+.palette-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Sliders */
+.slider-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.slider-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slider-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.slider-val {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-pure);
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--text-pure);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  transition: transform 0.1s, background-color 0.15s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: var(--accent-cyan);
+}
+
+/* Switch Rows */
+.switch-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.switch-row input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-ui {
+  position: relative;
+  width: 32px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  transition: background-color 0.2s ease;
+}
+
+.switch-ui::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--text-pure);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.switch-row input[type="checkbox"]:checked + .switch-ui {
+  background: var(--accent-cyan);
+}
+
+.switch-row input[type="checkbox"]:checked + .switch-ui::after {
+  transform: translateX(14px);
+  background: #090a0f;
+}
+
+.dock-footer {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 12px;
+}
+
+.btn-reset {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 11px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-reset:hover {
+  color: var(--text-pure);
+  border-color: var(--border-medium);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ==========================================================================
+   Bottom Left Celestial Telemetry
+   ========================================================================== */
+.cosmic-telemetry {
+  position: fixed;
+  bottom: 20px;
+  left: 24px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.telemetry-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: var(--bg-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  max-width: 460px;
+}
+
+.telemetry-star-icon {
+  font-size: 14px;
+  color: var(--accent-cyan);
+  line-height: 1;
+}
+
+.telemetry-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.telemetry-headline {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-pure);
+  letter-spacing: 0.02em;
+}
+
+.telemetry-meta {
+  font-size: 10px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+   Bottom Helper Hint
+   ========================================================================== */
+.bottom-hint {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  box-sizing: border-box;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 0 16px;
+  border-radius: 999px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.hint-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+}
+
+.hint-msg {
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Star Tooltip Hover Overlay
+   ========================================================================== */
+.star-tooltip {
+  position: fixed;
+  z-index: 30;
+  padding: 8px 12px;
+  background: var(--bg-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), 0 0 12px rgba(56, 189, 248, 0.15);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -125%) scale(0.96);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 220px;
+}
+
+.star-tooltip.visible {
+  opacity: 1;
+  transform: translate(-50%, -135%) scale(1);
+}
+
+.star-tooltip-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-pure);
+}
+
+.star-tooltip-type {
+  font-size: 10px;
+  color: var(--accent-blue);
+  font-family: var(--font-mono);
+}
+
+.star-tooltip-links {
+  font-size: 10px;
+  color: var(--text-tertiary);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 640px) {
+  .hud-actions {
+    top: 12px;
+    right: 12px;
+  }
+  .hud-brand {
+    padding: 0 10px;
+    height: 28px;
+  }
+  .hud-title {
+    font-size: 10px;
+  }
+  .control-dock {
+    top: 52px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+  }
+  .bottom-hint {
+    font-size: 10px;
+    padding: 0 12px;
+    height: 28px;
+    bottom: 12px;
+    max-width: calc(100vw - 32px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cosmic-telemetry {
+    display: none;
+  }
+}

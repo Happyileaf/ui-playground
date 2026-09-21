@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Living Constellation · 活体星图深空特效</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Fullscreen Deep Space Canvas -->
+  <canvas id="spaceCanvas"></canvas>
+
+  <!-- Ambient Backdrop Grain & Vignette Overlay -->
+  <div class="canvas-vignette"></div>
+
+  <!-- Top Floating Controls -->
+  <div class="hud-actions">
+    <div class="hud-brand" id="hudBrand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">活体星图 · DEEP SPACE</span>
+    </div>
+    <button type="button" class="btn-tool btn-icon-only" id="btnToggleHud" title="隐藏/显示控制台 (H)" aria-label="切换控制面板">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Floating Parametric Controller Panel (HUD) -->
+  <aside class="control-dock hidden" id="controlDock">
+    <div class="dock-header">
+      <span class="dock-heading">深空活体星图调谐器</span>
+      <span class="dock-shortcut">按 H 收起</span>
+    </div>
+
+    <!-- Quick Operations Inside Panel -->
+    <div class="control-section">
+      <label class="control-label">快捷演进操控</label>
+      <div class="dock-quick-actions">
+        <button type="button" class="btn-dock-action active" id="btnStarWander" title="切换深空自动慢速漫游" aria-label="切换自动漫游">
+          <span class="tool-icon">∿</span>
+          <span class="tool-label" id="wanderLabel">慢速漫游: 开</span>
+        </button>
+        <button type="button" class="btn-dock-action" id="btnRecluster" title="引发引力扰动重组星座" aria-label="星图重组">
+          <span class="tool-icon">✦</span>
+          <span class="tool-label">星图重组</span>
+        </button>
+        <button type="button" class="btn-dock-action" id="btnSpawnMeteor" title="召唤流星划过天际" aria-label="召唤流星">
+          <span class="tool-icon">☄</span>
+          <span class="tool-label">划过流星</span>
+        </button>
+        <button type="button" class="btn-dock-action" id="btnToggleAudio" title="开启/关闭深空沉浸微音" aria-label="切换宇宙音效">
+          <span class="tool-icon" id="audioIcon">🔈</span>
+          <span class="tool-label" id="audioLabel">宇宙微音: 关</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Palette Preset Selector -->
+    <div class="control-section">
+      <label class="control-label">深空星谱与星云色阶</label>
+      <div class="palette-grid">
+        <button type="button" class="palette-chip active" data-palette="cobalt">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #38bdf8, #03050c);"></span>
+          <span>深空钴蓝</span>
+        </button>
+        <button type="button" class="palette-chip" data-palette="vega">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #e0edff, #1e293b);"></span>
+          <span>织女冰白</span>
+        </button>
+        <button type="button" class="palette-chip" data-palette="nebula">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #c084fc, #3b0764);"></span>
+          <span>星云秘紫</span>
+        </button>
+        <button type="button" class="palette-chip" data-palette="amber">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #fbbf24, #78350f);"></span>
+          <span>猎户赤金</span>
+        </button>
+        <button type="button" class="palette-chip" data-palette="aurora">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #34d399, #064e3b);"></span>
+          <span>极光幽绿</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Dynamics Sliders -->
+    <div class="control-section">
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">星座结缔亲和度 (Affinity)</span>
+          <span class="slider-val" id="valAffinity">平衡</span>
+        </div>
+        <input type="range" id="paramAffinity" min="0.5" max="2.0" step="0.1" value="1.0">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">宇宙时间流速 (Time Scale)</span>
+          <span class="slider-val" id="valTimeScale">1.0x</span>
+        </div>
+        <input type="range" id="paramTimeScale" min="0.2" max="2.5" step="0.1" value="1.0">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">潮汐引力扰动 (Gravity Pull)</span>
+          <span class="slider-val" id="valGravity">柔和</span>
+        </div>
+        <input type="range" id="paramGravity" min="0.2" max="2.0" step="0.1" value="1.0">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">深空星云微光 (Nebula Fog)</span>
+          <span class="slider-val" id="valNebula">适度</span>
+        </div>
+        <input type="range" id="paramNebula" min="0" max="1.0" step="0.05" value="0.55">
+      </div>
+    </div>
+
+    <!-- Mode Switches -->
+    <div class="control-section bottom-section">
+      <label class="switch-row">
+        <span>主星标识与引力光圈 (Labels & Lens)</span>
+        <input type="checkbox" id="checkShowLabels" checked>
+        <span class="switch-ui"></span>
+      </label>
+      <label class="switch-row">
+        <span>星座星线光脉冲流动 (Photon Pulse)</span>
+        <input type="checkbox" id="checkEnergyPulse" checked>
+        <span class="switch-ui"></span>
+      </label>
+    </div>
+
+    <div class="dock-footer">
+      <button type="button" class="btn-reset" id="btnResetParams">重置出厂星图参数</button>
+    </div>
+  </aside>
+
+  <!-- Bottom Left Celestial Telemetry -->
+  <div class="cosmic-telemetry" id="cosmicTelemetry" aria-live="polite">
+    <div class="telemetry-inner">
+      <div class="telemetry-star-icon" id="telemetryIcon">✦</div>
+      <div class="telemetry-info">
+        <div class="telemetry-headline" id="telemetryHeadline">天琴座核心星区 · 织女一 (Vega)</div>
+        <div class="telemetry-meta" id="telemetryMeta">A0V 型主序蓝白恒星 · 光度 40.12 L☉ · 空间深度 0.82 · 静谧演进中</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Interactive Helper Hint -->
+  <div class="bottom-hint" id="bottomHint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">光标作为弱引力扰动源 · 轻拂星群感受时空涟漪 · 点击画布释放引力波</span>
+  </div>
+
+  <!-- Interactive Star Detail Floating Tooltip -->
+  <div class="star-tooltip" id="starTooltip" aria-hidden="true">
+    <div class="star-tooltip-name" id="starTooltipName">织女一 (Vega)</div>
+    <div class="star-tooltip-type" id="starTooltipType">光谱型 A0V · 恒星级锚点</div>
+    <div class="star-tooltip-links" id="starTooltipLinks">活跃连接: 3 条星座线</div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
