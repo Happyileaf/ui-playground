@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUMEN · Digital Studio Auth</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Ambient Interactive Canvas (Living generative light sculpture) -->
+  <div class="art-backdrop" id="artBackdrop">
+    <canvas id="generativeCanvas"></canvas>
+  </div>
+
+  <!-- Global Top Bar -->
+  <header class="lumen-header">
+    <div class="brand-group">
+      <div class="brand-mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 3v18"/>
+          <path d="M3 12h18"/>
+          <circle cx="12" cy="12" r="3" fill="currentColor"/>
+        </svg>
+      </div>
+      <span class="brand-name">LUMEN</span>
+      <span class="brand-divider">/</span>
+      <span class="brand-sub">STUDIO ATELIER</span>
+    </div>
+
+    <div class="header-tools">
+      <div class="telemetry-pill">
+        <span class="telemetry-dot"></span>
+        <span class="telemetry-label">GEN-ART: 60 FPS</span>
+      </div>
+
+      <button type="button" class="btn-icon-toggle" id="audioToggle" title="切换交互音效" aria-label="切换交互音效">
+        <svg class="icon-audio-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+        </svg>
+        <svg class="icon-audio-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <line x1="23" y1="9" x2="17" y2="15"/>
+          <line x1="17" y1="9" x2="23" y2="15"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Stage Container -->
+  <main class="lumen-viewport">
+
+    <!-- Left: Studio Visual Showcase & Interactive Kinetic Art -->
+    <section class="gallery-column">
+      <div class="gallery-inner">
+
+        <div class="curator-badge">
+          <span class="curator-index">ISSUE № 09</span>
+          <span class="curator-sep">—</span>
+          <span class="curator-theme">HARMONICS &amp; FLUIDITY</span>
+        </div>
+
+        <div class="art-title-group">
+          <h1 class="art-title">Crafted for minds that shape the invisible.</h1>
+          <p class="art-lead">
+            将纯粹的美学直觉与严密的工程逻辑相融合。探索光影、微交互与灵感涌现的数字创作工作台。
+          </p>
+        </div>
+
+        <!-- Live Generative Interaction Hint -->
+        <div class="canvas-controller-hint">
+          <div class="hint-pointer">
+            <span class="pulse-ring"></span>
+            <span class="pulse-core"></span>
+          </div>
+          <span class="hint-text">移动鼠标感知实时流体动能光织</span>
+        </div>
+
+        <!-- Studio Manifesto & Details -->
+        <div class="gallery-footer">
+          <div class="spec-capsule">
+            <div class="spec-item">
+              <span class="spec-label">STATION</span>
+              <span class="spec-val">LUMEN CORE v3.4</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">SECURITY</span>
+              <span class="spec-val">ZERO-KNOWLEDGE AUTH</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">STATUS</span>
+              <span class="spec-val live">SYSTEM OPTIMAL</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Right: Sculpted Authentication Terminal -->
+    <section class="terminal-column">
+      <div class="terminal-card" id="terminalCard">
+
+        <!-- Card Header & Navigation Switcher -->
+        <div class="terminal-header">
+          <div class="mode-switcher" role="tablist">
+            <button type="button" class="mode-tab active" id="tabSignIn" role="tab" aria-selected="true">
+              <span>登入账户</span>
+            </button>
+            <button type="button" class="mode-tab" id="tabSignUp" role="tab" aria-selected="false">
+              <span>开创空间</span>
+            </button>
+            <div class="mode-indicator" id="modeIndicator"></div>
+          </div>
+        </div>
+
+        <!-- Demo Quick-Fill Bar -->
+        <div class="quick-preset-bar">
+          <span class="preset-title">快速测试体验：</span>
+          <div class="preset-chips">
+            <button type="button" class="preset-chip" id="presetDesigner">
+              <span class="preset-avatar">✦</span>
+              <span>资深设计师 (Clara)</span>
+            </button>
+            <button type="button" class="preset-chip" id="presetEngineer">
+              <span class="preset-avatar">▲</span>
+              <span>工程总监 (Marcus)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Forms Container -->
+        <div class="terminal-body">
+
+          <!-- SIGN IN FORM -->
+          <form id="formSignIn" class="auth-form active" novalidate>
+            
+            <div class="field-group">
+              <label for="signInEmail" class="field-label">
+                <span>电子邮箱</span>
+                <span class="field-tip">企业或工作邮箱</span>
+              </label>
+              <div class="field-box">
+                <span class="field-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                  </svg>
+                </span>
+                <input 
+                  type="email" 
+                  id="signInEmail" 
+                  class="field-input" 
+                  placeholder="name@studio.design"
+                  autocomplete="email"
+                  spellcheck="false"
+                  required
+                >
+              </div>
+              <div class="field-error" id="signInEmailErr"></div>
+            </div>
+
+            <div class="field-group">
+              <div class="label-row">
+                <label for="signInPass" class="field-label">
+                  <span>安全密码</span>
+                </label>
+                <button type="button" class="link-subtle" id="btnForgotPass">忘记密码？</button>
+              </div>
+              <div class="field-box">
+                <span class="field-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                </span>
+                <input 
+                  type="password" 
+                  id="signInPass" 
+                  class="field-input" 
+                  placeholder="请输入您的安全密码"
+                  autocomplete="current-password"
+                  required
+                >
+                <button type="button" class="toggle-pass-btn" id="toggleSignInPass" aria-label="显示/隐藏密码">
+                  <svg class="icon-eye" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                  <svg class="icon-eye-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                    <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+                    <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+                    <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+                    <line x1="2" y1="2" x2="22" y2="22"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="field-error" id="signInPassErr"></div>
+            </div>
+
+            <div class="preference-row">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="rememberMe" checked>
+                <span class="checkbox-box">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+                <span class="checkbox-text">在此设备保持安全登录会话</span>
+              </label>
+            </div>
+
+            <button type="submit" class="submit-btn" id="btnSignInSubmit">
+              <span class="btn-label">进入 LUMEN 工作台</span>
+              <span class="btn-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </span>
+              <span class="btn-spinner"></span>
+            </button>
+          </form>
+
+          <!-- SIGN UP FORM -->
+          <form id="formSignUp" class="auth-form" novalidate>
+            
+            <div class="field-group">
+              <label for="signUpName" class="field-label">
+                <span>创作者全名 / 昵称</span>
+              </label>
+              <div class="field-box">
+                <span class="field-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                </span>
+                <input 
+                  type="text" 
+                  id="signUpName" 
+                  class="field-input" 
+                  placeholder="例如：Clara Vance"
+                  autocomplete="name"
+                  required
+                >
+              </div>
+              <div class="field-error" id="signUpNameErr"></div>
+            </div>
+
+            <div class="field-group">
+              <label for="signUpEmail" class="field-label">
+                <span>登记邮箱</span>
+              </label>
+              <div class="field-box">
+                <span class="field-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                  </svg>
+                </span>
+                <input 
+                  type="email" 
+                  id="signUpEmail" 
+                  class="field-input" 
+                  placeholder="name@company.com"
+                  autocomplete="email"
+                  spellcheck="false"
+                  required
+                >
+              </div>
+              <div class="field-error" id="signUpEmailErr"></div>
+            </div>
+
+            <div class="field-group">
+              <div class="label-row">
+                <label for="signUpPass" class="field-label">
+                  <span>设定安全密码</span>
+                </label>
+                <span class="strength-tag" id="strengthTag">密码强度待输入</span>
+              </div>
+              <div class="field-box">
+                <span class="field-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                </span>
+                <input 
+                  type="password" 
+                  id="signUpPass" 
+                  class="field-input" 
+                  placeholder="至少 8 位包含字母与符号"
+                  autocomplete="new-password"
+                  required
+                >
+                <button type="button" class="toggle-pass-btn" id="toggleSignUpPass" aria-label="显示/隐藏密码">
+                  <svg class="icon-eye" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                  <svg class="icon-eye-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                    <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+                    <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+                    <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+                    <line x1="2" y1="2" x2="22" y2="22"/>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Refined Spectrometer Strength Meter -->
+              <div class="spectrometer-bar">
+                <div class="meter-track">
+                  <div class="meter-fill" id="meterFill"></div>
+                </div>
+                <div class="rules-indicators">
+                  <span class="rule-chip" id="ruleLen">8+ 字符</span>
+                  <span class="rule-chip" id="ruleCase">大小写混合</span>
+                  <span class="rule-chip" id="ruleNum">数字字符</span>
+                  <span class="rule-chip" id="ruleSym">特殊符号</span>
+                </div>
+              </div>
+
+              <div class="field-error" id="signUpPassErr"></div>
+            </div>
+
+            <div class="preference-row">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="agreeCharter" required>
+                <span class="checkbox-box">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+                <span class="checkbox-text">已阅读并遵守 <button type="button" class="text-link" id="btnOpenCharter">《LUMEN 数字工作室准则》</button></span>
+              </label>
+            </div>
+
+            <button type="submit" class="submit-btn" id="btnSignUpSubmit">
+              <span class="btn-label">创建工作空间并签发凭据</span>
+              <span class="btn-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </span>
+              <span class="btn-spinner"></span>
+            </button>
+          </form>
+
+        </div>
+
+        <!-- Social Federation / Passkey Bridge -->
+        <div class="federation-footer">
+          <div class="divider-line">
+            <span>或使用通行密钥快速验证</span>
+          </div>
+          <div class="federation-grid">
+            <button type="button" class="fed-btn" id="fedPasskey" title="使用 Passkey 指纹或人脸识别">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="10" r="3"/>
+                <path d="M12 2a8 8 0 0 0-8 8c0 1.89.66 3.63 1.76 5L12 22l6.24-7A7.95 7.95 0 0 0 20 10a8 8 0 0 0-8-8z"/>
+              </svg>
+              <span>Passkey</span>
+            </button>
+            <button type="button" class="fed-btn" id="fedApple" title="通过 Apple ID 登录">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.89c.63-.78 1.06-1.85.94-2.89-.91.04-2.02.61-2.67 1.38-.58.67-1.08 1.76-.95 2.8.01 0 .02 0 .03 0 1.01 0 2.02-.51 2.65-1.29z"/>
+              </svg>
+              <span>Apple</span>
+            </button>
+            <button type="button" class="fed-btn" id="fedGoogle" title="通过 Google 账户登录">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+              </svg>
+              <span>Google</span>
+            </button>
+            <button type="button" class="fed-btn" id="fedGithub" title="通过 GitHub 账户登录">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              <span>GitHub</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- Modals (Native HTML5 <dialog> with fluid modern styling) -->
+  <!-- ======================================================== -->
+
+  <!-- 1. Verified / Session Issued Modal -->
+  <dialog class="studio-modal" id="modalSession">
+    <div class="modal-card">
+      <button type="button" class="modal-close-btn" id="closeSessionBtn" aria-label="关闭">✕</button>
+      
+      <div class="modal-status-pill">
+        <span class="status-glow"></span>
+        <span id="sessionStatusText">SESSION ESTABLISHED</span>
+      </div>
+
+      <h2 class="modal-title" id="sessionTitle">验证通过，欢迎进入工作室</h2>
+      <p class="modal-desc" id="sessionDesc">您的工作会话凭据已安全生成，即将接入专属协同画布。</p>
+
+      <div class="pass-card">
+        <div class="pass-row">
+          <span class="pass-label">持证者 IDENTIFIER</span>
+          <span class="pass-val" id="passEmail">clara@studio.design</span>
+        </div>
+        <div class="pass-row">
+          <span class="pass-label">安全令牌 TOKEN</span>
+          <span class="pass-val font-mono" id="passToken">LMN-9428-TX</span>
+        </div>
+        <div class="pass-row">
+          <span class="pass-label">权限级别 ROLE</span>
+          <span class="pass-val tag" id="passRole">STAFF DESIGNER</span>
+        </div>
+      </div>
+
+      <button type="button" class="submit-btn" id="btnGoDashboard">
+        <span>立即前往工作面板</span>
+        <span class="btn-icon">→</span>
+      </button>
+    </div>
+  </dialog>
+
+  <!-- 2. Passphrase Recovery Modal -->
+  <dialog class="studio-modal" id="modalRecovery">
+    <div class="modal-card">
+      <button type="button" class="modal-close-btn" id="closeRecoveryBtn" aria-label="关闭">✕</button>
+
+      <div class="modal-status-pill">
+        <span>KEY RECOVERY</span>
+      </div>
+
+      <h2 class="modal-title">找回安全凭证</h2>
+      <p class="modal-desc">输入您的工作邮箱，系统将生成一份一次性专属恢复秘钥发送至您的收件箱。</p>
+
+      <form id="formRecovery" class="modal-form" novalidate>
+        <div class="field-group">
+          <label for="recoveryEmail" class="field-label">注册工作邮箱</label>
+          <div class="field-box">
+            <span class="field-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </span>
+            <input type="email" id="recoveryEmail" class="field-input" placeholder="name@company.com" required>
+          </div>
+          <div class="field-error" id="recoveryEmailErr"></div>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <span>发送秘钥重置指令</span>
+          <span class="btn-icon">→</span>
+        </button>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- 3. Studio Charter Modal -->
+  <dialog class="studio-modal" id="modalCharter">
+    <div class="modal-card wide">
+      <button type="button" class="modal-close-btn" id="closeCharterBtn" aria-label="关闭">✕</button>
+
+      <div class="modal-status-pill">
+        <span>LUMEN ATELIER CHARTER</span>
+      </div>
+
+      <h2 class="modal-title">LUMEN 创作公约与隐私守则</h2>
+      
+      <div class="charter-text">
+        <p><strong>一、审美与克制</strong><br>
+        我们相信，顶级的生产力工具无需喧嚣的视觉杂音。LUMEN 承诺不引入干扰创作者注意力的多余广告、追踪像素与浮夸特效。</p>
+        
+        <p><strong>二、数据私密与完全自主</strong><br>
+        您的每一个草稿、组件与逻辑树均受端到端加密保护。您的创作资产永远归属于您本人或您的机构，未经许可绝不用于第三方模型训练。</p>
+
+        <p><strong>三、零摩擦协同</strong><br>
+        工作空间通过轻量级分布式信令同步，实现低延迟无缝团队共创体验。</p>
+      </div>
+
+      <button type="button" class="secondary-btn" id="btnAckCharter">
+        <span>确认并遵守公约</span>
+      </button>
+    </div>
+  </dialog>
+
+  <!-- Floating Feedback Toast -->
+  <div class="lumen-toast" id="lumenToast" role="status" aria-live="polite">
+    <span class="toast-dot"></span>
+    <span class="toast-msg" id="toastMsg">欢迎体验 LUMEN</span>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

@@ -9,7 +9,7 @@ import { defineConfig, type Plugin } from 'vite';
  * 案例内部使用非 module 的经典 script 以保证 file:// 双击可用，
  * Vite 无法将其打包进产物，必须以静态文件形式随构建输出分发
  */
-const STANDALONE_CASE_DIRS = ['effects', 'components'];
+const STANDALONE_CASE_DIRS = ['effects', 'components', 'pages'];
 
 /**
  * 构建后将案例目录原样复制进 dist

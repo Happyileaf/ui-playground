@@ -1,6 +1,6 @@
 {
   "name": "UI Playground",
-  "description": "A lightweight, native-first UI and visual effects playground featuring independent standalone HTML/CSS/JS components and animation effects.",
+  "description": "A lightweight, native-first UI, visual effects, and page-level cases playground featuring independent standalone HTML/CSS/JS components, animation effects, and artistic page designs.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

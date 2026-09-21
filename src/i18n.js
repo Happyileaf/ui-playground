@@ -24,15 +24,16 @@ export const translations = {
 
     // Gallery Hero & Stats
     heroTitle: '创意动效与原生 UI 组件工作台',
-    heroDesc: '精选基于原生 Web 标准的物理动效与交互组件集合。100% 纯原生实现，零外部运行时依赖。',
+    heroDesc: '精选基于原生 Web 标准的物理动效与交互组件集合。100% 纯原生实现，零构建配置。',
     statCases: '个独立案例',
-    statDeps: '0 外部依赖',
-    statNative: '100% 原生 Web API',
+    statDeps: '构建配置',
+    statNative: '原生 Web API',
 
     // Gallery Filters & Search
     filterAll: '全部案例',
     filterEffects: '视觉特效',
     filterComponents: 'UI 组件',
+    filterPages: '页面',
     gallerySearchPlaceholder: '按标题、标签、API 过滤...',
     noCasesFoundTitle: '未找到匹配案例',
     noCasesFoundHint: '尝试更换关键词或切换上方分类。',
@@ -48,6 +49,7 @@ export const translations = {
     studioCatAll: '全部',
     studioCatEffects: '特效',
     studioCatComponents: '组件',
+    studioCatPages: '页面',
     studioCounterOf: '/',
     studioCounterCases: '个案例',
     studioCounterNative: '原生自包含',
@@ -56,6 +58,7 @@ export const translations = {
     // Studio Stage Toolbar & Breadcrumb
     breadcrumbEffect: '特效',
     breadcrumbComponent: '组件',
+    breadcrumbPage: '页面',
     copyPathTitle: '复制路径到剪贴板',
     toastCopiedPath: '案例路径已复制到剪贴板！',
     langMenuTitle: '切换语言',
@@ -134,15 +137,16 @@ export const translations = {
 
     // Gallery Hero & Stats
     heroTitle: 'Creative UI & Motion Playground',
-    heroDesc: 'A curated collection of physics-based visual effects and interactive UI components. Crafted with 100% native Web standards and zero external runtime bloat.',
+    heroDesc: 'A curated collection of physics-based visual effects and interactive UI components. Crafted with 100% native Web standards and zero build configuration.',
     statCases: 'Standalone Cases',
-    statDeps: '0 Dependencies',
-    statNative: '100% Native Web APIs',
+    statDeps: 'Build Config',
+    statNative: 'Native Web APIs',
 
     // Gallery Filters & Search
     filterAll: 'All Cases',
     filterEffects: 'Visual Effects',
     filterComponents: 'UI Components',
+    filterPages: 'Pages',
     gallerySearchPlaceholder: 'Filter by title, tag, API...',
     noCasesFoundTitle: 'No cases found',
     noCasesFoundHint: 'Try searching for a different keyword or switch categories.',
@@ -158,6 +162,7 @@ export const translations = {
     studioCatAll: 'All',
     studioCatEffects: 'Effects',
     studioCatComponents: 'Components',
+    studioCatPages: 'Pages',
     studioCounterOf: 'of',
     studioCounterCases: 'cases',
     studioCounterNative: 'Native Standalone',
@@ -166,6 +171,7 @@ export const translations = {
     // Studio Stage Toolbar & Breadcrumb
     breadcrumbEffect: 'Effect',
     breadcrumbComponent: 'Component',
+    breadcrumbPage: 'Page',
     copyPathTitle: 'Copy path to clipboard',
     toastCopiedPath: 'Case path copied to clipboard!',
     langMenuTitle: 'Switch Language',
@@ -244,15 +250,16 @@ export const translations = {
 
     // Gallery Hero & Stats
     heroTitle: 'Kreatives UI- & Animations-Playground',
-    heroDesc: 'Eine kuratierte Sammlung physikbasierter visueller Effekte und interaktiver UI-Komponenten. Zu 100 % mit nativen Webstandards und ohne externe Laufzeit-Abhängigkeiten erstellt.',
+    heroDesc: 'Eine kuratierte Sammlung physikbasierter visueller Effekte und interaktiver UI-Komponenten. Zu 100 % mit nativen Webstandards und ohne Build-Konfiguration erstellt.',
     statCases: 'Eigenständige Fälle',
-    statDeps: '0 Abhängigkeiten',
-    statNative: '100% Native Web-APIs',
+    statDeps: 'Build-Konfiguration',
+    statNative: 'Native Web-APIs',
 
     // Gallery Filters & Search
     filterAll: 'Alle Fälle',
     filterEffects: 'Visuelle Effekte',
     filterComponents: 'UI-Komponenten',
+    filterPages: 'Seiten',
     gallerySearchPlaceholder: 'Nach Titel, Tag, API filtern...',
     noCasesFoundTitle: 'Keine Fälle gefunden',
     noCasesFoundHint: 'Versuchen Sie ein anderes Suchwort oder wechseln Sie die Kategorie.',
@@ -268,6 +275,7 @@ export const translations = {
     studioCatAll: 'Alle',
     studioCatEffects: 'Effekte',
     studioCatComponents: 'Komponenten',
+    studioCatPages: 'Seiten',
     studioCounterOf: 'von',
     studioCounterCases: 'Fälle',
     studioCounterNative: 'Nativ Eigenständig',
@@ -276,6 +284,7 @@ export const translations = {
     // Studio Stage Toolbar & Breadcrumb
     breadcrumbEffect: 'Effekt',
     breadcrumbComponent: 'Komponente',
+    breadcrumbPage: 'Seite',
     copyPathTitle: 'Pfad in die Zwischenablage kopieren',
     toastCopiedPath: 'Pfad in die Zwischenablage kopiert!',
     langMenuTitle: 'Sprache wechseln',

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kinetic Silk Waves · 动能光织流体特效</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Fullscreen Interactive Canvas -->
+  <canvas id="silkCanvas"></canvas>
+
+  <!-- Ambient Backdrop Grain & Vignette Overlay -->
+  <div class="canvas-vignette"></div>
+
+  <!-- Top Floating Header & Telemetry -->
+  <header class="hud-header">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">KINETIC SILK WAVES</span>
+      <span class="hud-version">v2.0 · 60 FPS</span>
+    </div>
+
+    <div class="hud-actions">
+      <button type="button" class="btn-tool btn-icon-only" id="btnToggleHud" title="隐藏/显示控制台 (H)" aria-label="切换控制面板">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Floating Parametric Controller Panel (HUD) -->
+  <aside class="control-dock" id="controlDock">
+    <div class="dock-header">
+      <span class="dock-heading">谐波流体物理调谐器</span>
+      <span class="dock-shortcut">按 H 收起</span>
+    </div>
+
+    <!-- Quick Operations Inside Panel -->
+    <div class="control-section">
+      <label class="control-label">快捷操控</label>
+      <div class="dock-quick-actions">
+        <button type="button" class="btn-dock-action" id="btnAutoCruise" title="切换自动巡航/手动探索" aria-label="切换自动巡航">
+          <span class="tool-icon">∿</span>
+          <span class="tool-label">自动漂移: 开</span>
+        </button>
+        <button type="button" class="btn-dock-action" id="btnRandomize" title="随机生成流体谐波参数" aria-label="随机参数">
+          <span class="tool-icon">✦</span>
+          <span class="tool-label">随机谐波</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Palette Preset Selector -->
+    <div class="control-section">
+      <label class="control-label">色彩与光影光谱</label>
+      <div class="palette-grid">
+        <button type="button" class="palette-chip active" data-palette="atelier">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #e2b170, #ffffff);"></span>
+          <span>黑曜琥珀金</span>
+        </button>
+        <button type="button" class="palette-chip" data-palette="emerald">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #10b981, #064e3b);"></span>
+          <span>矩阵翠绿</span>
+        </button>
+        <button type="button" class="palette-chip" data-palette="violet">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #a855f7, #3b82f6);"></span>
+          <span>星云秘紫</span>
+        </button>
+        <button type="button" class="palette-chip" data-palette="silver">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #ffffff, #64748b);"></span>
+          <span>水银纯白</span>
+        </button>
+        <button type="button" class="palette-chip" data-palette="solar">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #f97316, #f43f5e);"></span>
+          <span>日冕赤霞</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Dynamics Sliders -->
+    <div class="control-section">
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">织线密度 (Density)</span>
+          <span class="slider-val" id="valStrands">44 线束</span>
+        </div>
+        <input type="range" id="paramStrands" min="16" max="72" step="4" value="44">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">指针引力 (Warp Force)</span>
+          <span class="slider-val" id="valWarp">1.0x</span>
+        </div>
+        <input type="range" id="paramWarp" min="0.2" max="2.5" step="0.1" value="1.0">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">流体波速 (Speed)</span>
+          <span class="slider-val" id="valSpeed">1.0x</span>
+        </div>
+        <input type="range" id="paramSpeed" min="0.2" max="2.8" step="0.1" value="1.0">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">谐波振幅 (Amplitude)</span>
+          <span class="slider-val" id="valAmp">85px</span>
+        </div>
+        <input type="range" id="paramAmp" min="30" max="180" step="5" value="85">
+      </div>
+    </div>
+
+    <!-- Mode Switches -->
+    <div class="control-section bottom-section">
+      <label class="switch-row">
+        <span>脉冲波纹激荡 (Click Ripple)</span>
+        <input type="checkbox" id="checkRipples" checked>
+        <span class="switch-ui"></span>
+      </label>
+      <label class="switch-row">
+        <span>光斑透镜聚束 (Ambient Pool)</span>
+        <input type="checkbox" id="checkGlow" checked>
+        <span class="switch-ui"></span>
+      </label>
+    </div>
+
+    <div class="dock-footer">
+      <button type="button" class="btn-reset" id="btnResetParams">重置默认参数</button>
+    </div>
+  </aside>
+
+  <!-- Bottom Interactive Helper Hint -->
+  <div class="bottom-hint" id="bottomHint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">移动鼠标施加引力流形 · 点击画布释放能量冲击波</span>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

@@ -2,7 +2,7 @@ import JSZip from 'jszip';
 import { getInitialLanguage, setStoredLanguage, t, SUPPORTED_LANGS } from './i18n.js';
 
 // Load raw source files directly via Vite glob to avoid dev server HMR CSS wrapping
-const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
+const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/pages/**/*'], {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -12,6 +12,28 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
 (function () {
   // Master Case Catalog
   const cases = [
+    {
+      id: 'auth',
+      title: 'LUMEN · Digital Studio Auth',
+      type: 'page',
+      category: 'pages',
+      path: 'pages/auth/',
+      url: '/pages/auth/index.html',
+      description: 'Haute-design digital atelier login & registration with living kinetic generative silk canvas, fine optical borders, tactile Web Audio feedback, and accessible modal flows.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['page', 'auth', 'generative-art', 'haute-design', 'kinetic', 'web-audio', 'atelier']
+    },
+    {
+      id: 'kinetic-silk',
+      title: 'Kinetic Silk Waves',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/kinetic-silk/',
+      url: '/effects/kinetic-silk/index.html',
+      description: 'Generative fluid silk wave physics with pointer gravity warp, impulse shockwaves, harmonic frequency weaving, and real-time color spectra.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['canvas', 'generative-art', 'kinetic', 'fluid-physics', 'interactive']
+    },
     {
       id: 'fireworks',
       title: 'Canvas Fireworks',
@@ -155,6 +177,7 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
   const badgeCountAll = document.getElementById('badgeCountAll');
   const badgeCountEffects = document.getElementById('badgeCountEffects');
   const badgeCountComponents = document.getElementById('badgeCountComponents');
+  const badgeCountPages = document.getElementById('badgeCountPages');
   const statCountCasesNum = document.getElementById('statCountCasesNum');
   const footerCaseCountPill = document.getElementById('footerCaseCountPill');
   const footerSearchTrigger = document.getElementById('footerSearchTrigger');
@@ -213,6 +236,23 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
     }
   }
 
+  function updateCategoryBadges() {
+    const totalCount = cases.length;
+    const effectsCount = cases.filter(c => c.category === 'effects').length;
+    const componentsCount = cases.filter(c => c.category === 'components').length;
+    const pagesCount = cases.filter(c => c.category === 'pages').length;
+
+    const bAll = document.getElementById('badgeCountAll');
+    const bEff = document.getElementById('badgeCountEffects');
+    const bComp = document.getElementById('badgeCountComponents');
+    const bPages = document.getElementById('badgeCountPages');
+
+    if (bAll) bAll.textContent = totalCount;
+    if (bEff) bEff.textContent = effectsCount;
+    if (bComp) bComp.textContent = componentsCount;
+    if (bPages) bPages.textContent = pagesCount;
+  }
+
   // Multi-Language Application for Shell Layer
   function applyLanguage(lang) {
     if (!lang) return;
@@ -264,6 +304,7 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
     // Update dynamic stats
     if (statCountCasesNum) statCountCasesNum.textContent = cases.length;
     if (footerCaseCountPill) footerCaseCountPill.textContent = `${cases.length} ${t('footerTotalCases', currentLang)}`;
+    updateCategoryBadges();
 
     // Refresh dynamic views
     if (currentMode === 'gallery') {
@@ -283,7 +324,9 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
     const typeSpan = stageBreadcrumb.querySelector('.stage-breadcrumb-type');
     if (typeSpan) {
       typeSpan.className = `stage-breadcrumb-type ${c.type}`;
-      typeSpan.textContent = c.type === 'effect' ? t('breadcrumbEffect', currentLang) : t('breadcrumbComponent', currentLang);
+      typeSpan.textContent = c.type === 'effect'
+        ? t('breadcrumbEffect', currentLang)
+        : (c.type === 'page' ? t('breadcrumbPage', currentLang) : t('breadcrumbComponent', currentLang));
     }
   }
 
@@ -369,9 +412,11 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
 
     const effectsCount = cases.filter(c => c.category === 'effects').length;
     const componentsCount = cases.filter(c => c.category === 'components').length;
+    const pagesCount = cases.filter(c => c.category === 'pages').length;
     if (badgeCountAll) badgeCountAll.textContent = cases.length;
     if (badgeCountEffects) badgeCountEffects.textContent = effectsCount;
     if (badgeCountComponents) badgeCountComponents.textContent = componentsCount;
+    if (badgeCountPages) badgeCountPages.textContent = pagesCount;
 
     const filtered = cases.filter((c) => {
       const matchCat = (galleryFilter === 'all' || c.category === galleryFilter);
@@ -398,7 +443,9 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
     filtered.forEach((c) => {
       const card = document.createElement('div');
       card.className = 'showcase-card';
-      const typeLabel = c.type === 'effect' ? t('breadcrumbEffect', currentLang) : t('breadcrumbComponent', currentLang);
+      const typeLabel = c.type === 'effect'
+        ? t('breadcrumbEffect', currentLang)
+        : (c.type === 'page' ? t('breadcrumbPage', currentLang) : t('breadcrumbComponent', currentLang));
 
       card.innerHTML = `
         <div class="card-top-row">
@@ -507,11 +554,12 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
     filtered.forEach((c) => {
       const item = document.createElement('div');
       item.className = `sidebar-case-item ${c.id === currentCase.id ? 'active' : ''}`;
+      const badgeText = c.type === 'effect' ? 'FX' : (c.type === 'page' ? 'PAGE' : 'UI');
       item.innerHTML = `
         <div class="case-item-left">
           <span class="case-item-title">${c.title}</span>
         </div>
-        <span class="case-item-badge ${c.type}">${c.type === 'effect' ? 'FX' : 'UI'}</span>
+        <span class="case-item-badge ${c.type}">${badgeText}</span>
       `;
       item.addEventListener('click', () => {
         loadStudioCase(c);
@@ -696,9 +744,10 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
     filtered.forEach((c, idx) => {
       const item = document.createElement('div');
       item.className = `palette-item ${idx === 0 && !showGithubAction ? 'selected' : ''}`;
+      const badgeText = c.type === 'effect' ? 'FX' : (c.type === 'page' ? 'PAGE' : 'UI');
       item.innerHTML = `
         <div class="palette-item-left">
-          <span class="case-item-badge ${c.type}">${c.type === 'effect' ? 'FX' : 'UI'}</span>
+          <span class="case-item-badge ${c.type}">${badgeText}</span>
           <div>
             <div class="palette-item-title">${c.title}</div>
             <div class="palette-item-desc">${c.description}</div>

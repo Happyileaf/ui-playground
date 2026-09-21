@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UI Playground</title>
-    <meta name="description" content="A lightweight, native-first UI and visual effects playground featuring independent standalone HTML/CSS/JS components and animation effects." />
+    <meta name="description" content="A lightweight, native-first UI, visual effects, and page-level cases playground featuring independent standalone HTML/CSS/JS components, animation effects, and artistic page designs." />
     <meta property="og:title" content="UI Playground" />
-    <meta property="og:description" content="A lightweight, native-first UI and visual effects playground featuring independent standalone HTML/CSS/JS components and animation effects." />
+    <meta property="og:description" content="A lightweight, native-first UI, visual effects, and page-level cases playground featuring independent standalone HTML/CSS/JS components, animation effects, and artistic page designs." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="stylesheet" href="/src/playground.css" />
@@ -143,11 +143,11 @@
                   </div>
                   <div class="stat-divider"></div>
                   <div class="stat-item">
-                    <span data-i18n="statDeps">0 外部依赖</span>
+                    <span><strong>0</strong> <span data-i18n="statDeps">构建配置</span></span>
                   </div>
                   <div class="stat-divider"></div>
                   <div class="stat-item">
-                    <span data-i18n="statNative">100% 原生 Web API</span>
+                    <span><strong>100%</strong> <span data-i18n="statNative">原生 Web API</span></span>
                   </div>
                 </div>
               </div>
@@ -157,15 +157,19 @@
                 <div class="category-filter-pills" id="galleryFilterPills">
                   <button class="cat-pill active" data-filter="all">
                     <span data-i18n="filterAll">全部案例</span>
-                    <span class="count-badge" id="badgeCountAll">10</span>
+                    <span class="count-badge" id="badgeCountAll">12</span>
                   </button>
                   <button class="cat-pill" data-filter="effects">
                     <span data-i18n="filterEffects">视觉特效</span>
-                    <span class="count-badge" id="badgeCountEffects">5</span>
+                    <span class="count-badge" id="badgeCountEffects">6</span>
                   </button>
                   <button class="cat-pill" data-filter="components">
                     <span data-i18n="filterComponents">UI 组件</span>
                     <span class="count-badge" id="badgeCountComponents">5</span>
+                  </button>
+                  <button class="cat-pill" data-filter="pages">
+                    <span data-i18n="filterPages">页面</span>
+                    <span class="count-badge" id="badgeCountPages">1</span>
                   </button>
                 </div>
 
@@ -215,6 +219,7 @@
                     <li><button class="footer-filter-link" data-filter="all" data-i18n="filterAll">全部案例</button></li>
                     <li><button class="footer-filter-link" data-filter="effects" data-i18n="filterEffects">视觉特效</button></li>
                     <li><button class="footer-filter-link" data-filter="components" data-i18n="filterComponents">UI 组件</button></li>
+                    <li><button class="footer-filter-link" data-filter="pages" data-i18n="filterPages">页面</button></li>
                   </ul>
                 </div>
 
@@ -275,6 +280,7 @@
                   <button class="sidebar-tab-btn active" data-cat="all" data-i18n="studioCatAll">全部</button>
                   <button class="sidebar-tab-btn" data-cat="effects" data-i18n="studioCatEffects">特效</button>
                   <button class="sidebar-tab-btn" data-cat="components" data-i18n="studioCatComponents">组件</button>
+                  <button class="sidebar-tab-btn" data-cat="pages" data-i18n="studioCatPages">页面</button>
                 </div>
               </div>
 
