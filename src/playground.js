@@ -68,6 +68,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
       tags: ['lerp-physics', 'pointer', 'velocity', 'cursor']
     },
     {
+      id: 'gradient-border-beam',
+      title: 'Gradient Border Beam',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/gradient-border-beam/',
+      url: '/effects/gradient-border-beam/index.html',
+      description: 'Animated conic gradient border beam with continuous rotation, interactive pause and responsive sizing.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['gradient-animation', 'border-beam', 'conic-gradient', 'micro-interaction']
+    },
+    {
       id: 'button',
       title: 'Modern UI Buttons',
       type: 'component',
