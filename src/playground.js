@@ -121,6 +121,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
       description: 'Floating navigation bar with dynamic elastic sliding pill indicator that resizes to the active tab.',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['navigation', 'sliding-pill', 'elastic-indicator']
+    },
+    {
+      id: 'noise-flow-field',
+      title: 'Perlin Noise Flow Field',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/noise-flow-field/',
+      url: '/effects/noise-flow-field/index.html',
+      description: 'Animated Perlin noise flow field with interactive particles following organic vector directions.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['perlin-noise', 'particles', 'flow-field', 'algorithmic-art']
     }
   ];
 
