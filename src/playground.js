@@ -68,6 +68,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
       tags: ['lerp-physics', 'pointer', 'velocity', 'cursor']
     },
     {
+      id: 'perlin-flow-field',
+      title: 'Perlin Noise Flow Field',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/perlin-flow-field/',
+      url: '/effects/perlin-flow-field/index.html',
+      description: 'Interactive Perlin noise-driven particle flow field with configurable particle count, noise scale, and flow speed.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['perlin-noise', 'particles', 'flow-field', 'generative-art']
+    },
+    {
       id: 'button',
       title: 'Modern UI Buttons',
       type: 'component',
