@@ -126,8 +126,9 @@ effects/<case-id>/
 | 验收项 | 验证方法 | 预期结果 |
 | :--- | :--- | :--- |
 | **1. 独立运行** | 浏览器直接打开 `/<path>/index.html` | 脱离外壳仍能完整展示与交互，控制台零报错 |
-| **2. 画廊网格** | 在首页 Gallery 查看对应卡片 | 标题、标签、分类徽章渲染正确，点击能进入 Studio |
-| **3. 工作台沙箱** | 在 Studio 查看 iframe 预览 | 界面正确定位，切换 `Desktop/Tablet/Mobile` 视口响应平滑 |
-| **4. 源码抽屉** | 打开 Code 抽屉切换所有文件 Tab | 文件内容完整呈现，Prism 高亮无误，无 Vite 包装代码 |
-| **5. ZIP 导出** | 点击 Download 导出压缩包并在本地解压 | 本地双击 `index.html` 效果与线上 100% 一致 |
-| **6. 构建检查** | 终端运行 `npm run build && npm run lint` | 零 TypeScript / 编译错误，编译通过 |
+| **2. HUD 与 Title 规范** | 检查案例右上角布局与交互 | **每个特效必须包含右上角 Title 胶囊**（固定主题色呼吸点、单行文字）；若包含控制面板，**必须默认收起 (`.hidden`)** 并支持齿轮按钮与 `H` 快捷键切换 |
+| **3. 画廊网格** | 在首页 Gallery 查看对应卡片 | 标题、标签、分类徽章渲染正确，点击能进入 Studio |
+| **4. 工作台沙箱** | 在 Studio 查看 iframe 预览 | 界面正确定位，切换 `Desktop/Tablet/Mobile` 视口响应平滑 |
+| **5. 源码抽屉** | 打开 Code 抽屉切换所有文件 Tab | 文件内容完整呈现，Prism 高亮无误，无 Vite 包装代码 |
+| **6. ZIP 导出** | 点击 Download 导出压缩包并在本地解压 | 本地双击 `index.html` 效果与线上 100% 一致 |
+| **7. 构建检查** | 终端运行 `npm run build && npm run lint` | 零 TypeScript / 编译错误，编译通过 |

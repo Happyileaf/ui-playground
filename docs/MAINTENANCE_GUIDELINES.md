@@ -45,33 +45,188 @@
 
 ---
 
-## 3. 统一案例配置面板规范 (Unified Case Config Panel Standard)
+## 3. 统一案例视觉 HUD 规范：强制 Title 模块与按需控制面板 (Title & Control Dock Standard)
 
-当某个案例（特效或复杂交互组件）需要支持用户调节参数来观察不同效果时，建议采用统一的配置面板规范：
+为了让所有案例在独立运行与工作台沙箱中保持极致纯净、统一克制的高级感（Obsidian Micro-HUD），制定以下视觉与控制层标准：
 
-### 核心设计原则
-1. **按需引入，非强制定式**：仅在确实需要多种参数对比（如物理系数、形态模式、色彩切换）时使用，避免无意义的装饰性面板。
-2. **案例自包含（非平台注入）**：面板的 HTML、CSS 与 JS 100% 属于案例自身物理文件，保持脱离平台下载后依然独立完整运行。
-3. **右上角紧凑布局与沉浸式折叠**：
-   - 固定在页面右上角（`top: 1rem; right: 1rem; position: fixed; z-index: 100;`）。
-   - 提供明确的关闭/折叠按钮（`✕`），折叠后切换为极简的右上角浮动按钮（如 `⚙️ 特效配置`）。
-   - 支持全局快捷键（如 `H` 键切换面板显隐、`Escape` 键快速折叠），方便用户随时进入无遮挡的沉浸式全屏体验。
+### 核心铁律
+1. **Title 品牌模块（强制必备，Mandatory）**：
+   - **每个特效案例都必须包含右上角 Title 模块**，用于呈现当前案例的中文名与英文标识。
+   - **位置规范**：固定在右上角 `.hud-actions` 容器中（若有设置按钮，则位于设置按钮左侧）。
+   - **尺寸与对齐**：固定高度 `32px`（`box-sizing: border-box; padding: 0 14px;`），圆角胶囊 `border-radius: 999px`，背景为高质感毛玻璃（`background: rgba(15, 23, 42, 0.72); backdrop-filter: blur(16px);`）。
+   - **固定点阵指示灯**：左侧带有 6px 呼吸光点（`.hud-dot`）。**必须采用固定主题色**（如深空青 `#38bdf8`、金光 `#f59e0b` 或赤红 `#f43f5e`），**严禁随面板内部色彩参数切换而联动改变**，确保标识的视觉稳定性。
+   - **防折行约束**：标题文字必须单行显示（`white-space: nowrap; line-height: 1;`），禁止任何换行。
 
-### 标准 DOM 结构与类名约定
+2. **控制面板模块（按需引入，Optional）**：
+   - **不是每个特效都必须有控制面板**。仅当判断该特效确实需要参数对比调谐（如物理重力、粒子密度、绽放形态、调色板预设）时，才按需引入。
+   - **如果引入控制面板，必须严格遵循统一的 Micro-HUD 规范**：
+     - **默认状态必须为收起**：初始加载时面板默认隐藏（赋予 `.control-dock.hidden` 类名），保证初次呈现给用户的是无遮挡的纯净视觉。
+     - **唤醒与折叠交互**：
+       - 点击右上角极简齿轮图标按钮（`#btnToggleHud`）触发展开/收起。
+       - 支持键盘全局快捷键 **`H`** 切换显隐，支持 **`Escape`** 快捷键收起。
+     - **标准结构**：
+       - **顶部标题与快捷提示**：包含面板名称与 `按 H 收起` 提示。
+       - **快捷演进操控区**（可选）：2 列网格（`.dock-quick-actions`），用于连发开关、音效开关、齐发或重置。
+       - **形态/色彩选择晶片**（可选）：2 列网格（`.palette-grid`），使用 `.shape-chip` 与 `.palette-chip`。
+       - **参数滑块组**（可选）：包含标签、实时数值胶囊（`.slider-val`）与轻量化 range 滑块。
+       - **底部重置栏**：包含全宽边框风格的「重置默认参数」按钮（`.btn-reset`）。
+     - **防穿透铁律**：必须在 JS 中为 `.control-dock` 与 `.hud-actions` 注册 `stopPropagation()`，禁止面板上的点击/拖拽穿透到底层 Canvas 触发意外的粒子发射或物理扰动。
+
+3. **底部交互指引胶囊（建议按需配备）**：
+   - 底部居中悬浮（`bottom: 20px; left: 50%; transform: translateX(-50%);`）。
+   - 统一高度 `32px`、`padding: 0 16px`、圆角 `999px`、`pointer-events: none`。
+   - 包含微光小圆点与单行简练的操作提示（例如：`点击画布释放引力波 · 按 H 切换控制台`）。
+
+---
+
+### 标准 DOM 骨架模板 (HTML)
+
 ```html
-<aside id="configPanel" class="case-config-panel">
-  <div class="config-header">
-    <div class="config-title"><span>⚙️</span> 参数配置</div>
-    <button id="configCloseBtn" class="config-close-btn" title="关闭 (H)">✕</button>
+<!-- Top Floating Controls (Title 必须存在，设置按钮仅在有控制面板时存在) -->
+<div class="hud-actions">
+  <div class="hud-brand" id="hudBrand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">案例名称 · ENGLISH SUBTITLE</span>
   </div>
-  <div class="config-body">
-    <!-- 开关组、下拉选择框、范围滑块等 -->
+  <!-- 仅当需要控制面板时添加下方按钮 -->
+  <button type="button" class="btn-tool btn-icon-only" id="btnToggleHud" title="隐藏/显示控制台 (H)" aria-label="切换控制面板">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </svg>
+  </button>
+</div>
+
+<!-- Floating Parametric Controller Panel (HUD) - 仅在需要时引入，且默认 class="control-dock hidden" -->
+<aside class="control-dock hidden" id="controlDock">
+  <div class="dock-header">
+    <span class="dock-heading">参数物理调谐器</span>
+    <span class="dock-shortcut">按 H 收起</span>
   </div>
-  <div class="config-footer">
-    <span>按 <b>H</b> 快速折叠</span>
+  <!-- 业务调谐项... -->
+  <div class="dock-footer">
+    <button type="button" class="btn-reset" id="btnResetParams">重置默认参数</button>
   </div>
 </aside>
-<button id="configToggleBtn" class="config-toggle-trigger">⚙️ <span>特效配置</span></button>
+
+<!-- Bottom Interactive Helper Hint (按需配备) -->
+<div class="bottom-hint" id="bottomHint">
+  <span class="hint-dot"></span>
+  <span class="hint-msg">交互提示文案 · 按 H 切换控制台</span>
+</div>
+```
+
+---
+
+### 标准 CSS 模板
+
+```css
+/* 右上角 HUD 工具栏 */
+.hud-actions {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+/* 强制必备：Title 徽标 */
+.hud-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  box-sizing: border-box;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 0 14px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+  line-height: 1;
+}
+
+.hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8; /* 固定主题色 */
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.6; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+.hud-title {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* 齿轮触发按钮 (32px x 32px) */
+.btn-tool.btn-icon-only {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  transition: all 0.2s ease;
+}
+
+.btn-tool.btn-icon-only:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+/* 控制面板主体 (默认 hidden) */
+.control-dock {
+  position: fixed;
+  top: 64px;
+  right: 24px;
+  width: 310px;
+  max-height: calc(100vh - 110px);
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.65);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 16px 18px;
+  gap: 16px;
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.28s;
+  transform-origin: top right;
+}
+
+.control-dock.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.96);
+  pointer-events: none;
+}
 ```
 
 ---

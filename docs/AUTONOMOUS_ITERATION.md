@@ -163,6 +163,10 @@ document.addEventListener('pointerdown', () => {
 - 严禁引入任何外部网络 CSS 或 JS CDN 链接（如 unpkg, cdnjs, tailwind cdn 等）。
 - 所有样式与逻辑必须自包含在本地 `style.css` 或 `script.js` 中。
 
+### 铁律 4：强制 Title 胶囊与按需 Micro-HUD 控制面板
+- **强制 Title 模块**：每个特效案例必须包含右上角 Title 胶囊（`.hud-brand`，高度 32px，圆角 999px），左侧呼吸光点（`.hud-dot`）**必须使用固定主题色**（禁止随面板参数动态变色），标题文字严格单行防换行。
+- **按需控制面板 (Micro-HUD)**：仅在需要参数调谐/多形态演进时配备。若配备控制面板，**必须默认收起 (`.control-dock.hidden`)**，支持右上角齿轮图标点击以及全局 `H` / `Escape` 快捷键切换显隐，并必须注册事件防穿透 (`e.stopPropagation()`)。
+
 ---
 
 ## 5. 闭环自愈机制 (Autonomous Self-Healing)

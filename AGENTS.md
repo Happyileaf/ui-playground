@@ -107,6 +107,7 @@
 
 4. 🛡️ [**`docs/MAINTENANCE_GUIDELINES.md`（维护规范与排错指南）**](./docs/MAINTENANCE_GUIDELINES.md)
    - 原生 JS 编码规范（`requestAnimationFrame` 销毁、Web Audio 手势解锁、Pointer Events 统一事件）。
+   - 统一案例视觉 HUD 规范：**每个特效必备右上角固定点阵色 Title 胶囊**，按需配备默认折叠的 Micro-HUD 控制面板（支持 `H`/`Esc` 快捷键与事件防穿透）。
    - 响应式视口适配约束与移动端触控标准。
    - 拒绝“AI 廉价感（Anti-Slop）”的设计与审美准则。
    - 常见疑难问题排查手册。
