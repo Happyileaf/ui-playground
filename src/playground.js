@@ -121,6 +121,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
       description: 'Floating navigation bar with dynamic elastic sliding pill indicator that resizes to the active tab.',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['navigation', 'sliding-pill', 'elastic-indicator']
+    },
+    {
+      id: 'dynamic-waves',
+      title: 'Perlin Dynamic Waves',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/dynamic-waves/',
+      url: '/effects/dynamic-waves/index.html',
+      description: 'Animated layered flowing waves generated with Perlin Noise, interactive with mouse position influence.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['perlin-noise', 'generative-art', 'animation', 'waves']
     }
   ];
 
