@@ -68,6 +68,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
       tags: ['lerp-physics', 'pointer', 'velocity', 'cursor']
     },
     {
+      id: 'glitch-text',
+      title: 'Interactive Glitch Text',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/glitch-text/',
+      url: '/effects/glitch-text/index.html',
+      description: 'Cyberpunk style interactive glitch text effect with adjustable intensity and speed, CSS clip-path + SVG color channel distortion.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['typography', 'glitch', 'css-clip-path', 'interactive']
+    },
+    {
       id: 'button',
       title: 'Modern UI Buttons',
       type: 'component',
