@@ -68,6 +68,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
       tags: ['lerp-physics', 'pointer', 'velocity', 'cursor']
     },
     {
+      id: 'perlin-flow',
+      title: 'Perlin Flow Field',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/perlin-flow/',
+      url: '/effects/perlin-flow/index.html',
+      description: 'Procedurally generated organic particle flow field with Perlin Noise, interactive mouse perturbation and animated continuous motion.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['perlin-noise', 'procedural-generation', 'particle-flow', 'generative-art']
+    },
+    {
       id: 'button',
       title: 'Modern UI Buttons',
       type: 'component',
