@@ -16,6 +16,10 @@
 
   <!-- Top Floating Controls -->
   <div class="hud-actions">
+    <div class="hud-brand" id="hudBrand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">动能光织流体 · KINETIC SILK</span>
+    </div>
     <button type="button" class="btn-tool btn-icon-only" id="btnToggleHud" title="隐藏/显示控制台 (H)" aria-label="切换控制面板">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
@@ -25,7 +29,7 @@
   </div>
 
   <!-- Floating Parametric Controller Panel (HUD) -->
-  <aside class="control-dock" id="controlDock">
+  <aside class="control-dock hidden" id="controlDock">
     <div class="dock-header">
       <span class="dock-heading">谐波流体物理调谐器</span>
       <span class="dock-shortcut">按 H 收起</span>
@@ -131,12 +135,6 @@
   <div class="bottom-hint" id="bottomHint">
     <span class="hint-dot"></span>
     <span class="hint-msg">移动鼠标施加引力流形 · 点击画布释放能量冲击波</span>
-  </div>
-
-  <!-- Bottom-Right Brand Badge -->
-  <div class="hud-brand" id="hudBrand">
-    <span class="hud-dot"></span>
-    <span class="hud-title">动能光织流体</span>
   </div>
 
   <script src="./script.js"></script>

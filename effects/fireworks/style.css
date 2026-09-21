@@ -1,3 +1,7 @@
+/* ==========================================================================
+   Obsidian & Precision Micro-HUD Design System — Canvas Fireworks
+   ========================================================================== */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,404 +11,461 @@
 }
 
 :root {
-  --panel-bg: rgba(15, 23, 42, 0.88);
-  --panel-border: rgba(255, 255, 255, 0.12);
-  --panel-text: #f1f5f9;
-  --panel-subtext: #94a3b8;
-  --panel-accent: #3b82f6;
-  --panel-accent-hover: #60a5fa;
-  --panel-control-bg: rgba(255, 255, 255, 0.07);
-  --panel-control-border: rgba(255, 255, 255, 0.14);
+  --bg-void: #030712;
+  --bg-surface: rgba(15, 23, 42, 0.72);
+  --bg-elevated: rgba(30, 41, 59, 0.85);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.16);
+  --text-pure: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  --text-muted: rgba(255, 255, 255, 0.4);
+  --accent-crimson: #f43f5e;
+  --accent-gold: #f59e0b;
+  --accent-cyan: #38bdf8;
+  --font-mono: "SF Mono", "Fira Code", "Roboto Mono", Menlo, monospace;
 }
 
-body {
+html, body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: radial-gradient(circle at center, #0a0f1d 0%, #030712 100%);
+  background-color: var(--bg-void);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  color: var(--panel-text);
-}
-
-canvas {
-  display: block;
-  width: 100vw;
-  height: 100vh;
-  cursor: crosshair;
+  color: var(--text-pure);
 }
 
 /* ==========================================================================
-   统一案例配置面板体系 (Unified Case Config Panel System)
+   Interactive Canvas & Ambient Backdrop
    ========================================================================== */
+#fireworksCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  display: block;
+  cursor: crosshair;
+}
 
-.case-config-panel {
+.canvas-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(circle at center, transparent 40%, rgba(3, 7, 18, 0.65) 100%);
+}
+
+/* ==========================================================================
+   Top Floating Controls (Micro-Bar)
+   ========================================================================== */
+.hud-actions {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 100;
-  width: 290px;
-  max-width: calc(100vw - 2rem);
-  background: var(--panel-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--panel-border);
-  border-radius: 14px;
-  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  top: 20px;
+  right: 24px;
+  z-index: 10;
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transform-origin: top right;
-  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, visibility 0.24s;
+  align-items: center;
+  gap: 8px;
   pointer-events: auto;
 }
 
-/* 折叠隐藏态 (沉浸式全屏) */
-.case-config-panel.collapsed {
+.btn-tool {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.btn-tool:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-medium);
+  color: var(--text-pure);
+}
+
+.btn-tool.btn-icon-only {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.tool-icon {
+  font-size: 13px;
+  color: var(--accent-crimson);
+}
+
+/* ==========================================================================
+   Top Right Brand Badge
+   ========================================================================== */
+.hud-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  box-sizing: border-box;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 0 14px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-crimson);
+  box-shadow: 0 0 8px var(--accent-crimson);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.6; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+.hud-title {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-pure);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Parametric Control Dock (Right Floating Panel)
+   ========================================================================== */
+.control-dock {
+  position: fixed;
+  top: 64px;
+  right: 24px;
+  width: 310px;
+  max-height: calc(100vh - 110px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px 18px;
+  gap: 16px;
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.28s;
+  transform-origin: top right;
+}
+
+.control-dock.hidden {
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8px) scale(0.96);
   pointer-events: none;
 }
 
-/* 面板头部 */
-.config-header {
+/* Custom Scrollbar for Dock */
+.control-dock::-webkit-scrollbar {
+  width: 4px;
+}
+.control-dock::-webkit-scrollbar-track {
+  background: transparent;
+}
+.control-dock::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.dock-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.8rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.02);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.config-title {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.875rem;
+.dock-heading {
+  font-size: 13px;
   font-weight: 600;
-  color: #f8fafc;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
+  color: var(--text-pure);
 }
 
-.config-title-icon {
-  color: var(--panel-accent-hover);
-  flex-shrink: 0;
+.dock-shortcut {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 
-.config-close-btn {
-  background: transparent;
-  border: none;
-  color: var(--panel-subtext);
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
+.control-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.control-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Quick Actions Button Grid inside Dock */
+.dock-quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.btn-dock-action {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 11px;
+  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   cursor: pointer;
   transition: all 0.15s ease;
+  white-space: nowrap;
 }
 
-.config-close-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+.btn-dock-action:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-medium);
+  color: var(--text-pure);
 }
 
-/* 面板主体内容区 */
-.config-body {
-  padding: 0.85rem 1rem;
+.btn-dock-action.active {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: var(--accent-crimson);
+  color: var(--text-pure);
+}
+
+.btn-dock-action .tool-icon {
+  font-size: 13px;
+  color: var(--accent-crimson);
+}
+
+/* Palette Preset Selector Grid */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.palette-chip, .shape-chip {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 6px 10px;
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  max-height: calc(100vh - 7rem);
-  overflow-y: auto;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
 }
 
-/* 自定义纤细滚动条 */
-.config-body::-webkit-scrollbar {
-  width: 4px;
-}
-.config-body::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-}
-
-.config-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-
-.config-divider {
-  height: 1px;
+.palette-chip:hover, .shape-chip:hover {
   background: rgba(255, 255, 255, 0.07);
-  margin: 0.1rem 0;
+  color: var(--text-pure);
+  border-color: var(--border-medium);
 }
 
-/* 水平开关行 */
-.config-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.palette-chip.active, .shape-chip.active {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-crimson);
+  color: var(--text-pure);
 }
 
-.config-label {
-  font-size: 0.8125rem;
-  color: #cbd5e1;
-  font-weight: 500;
+.palette-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
-/* 单项控件组 (标签+控件) */
-.config-control-group {
+/* Sliders */
+.slider-row {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 6px;
 }
 
-.config-label-row {
+.slider-info {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
 }
 
-.config-value-badge {
-  font-size: 0.75rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  color: var(--panel-accent-hover);
-  background: rgba(59, 130, 246, 0.12);
-  padding: 0.125rem 0.4rem;
+.slider-label {
+  color: var(--text-secondary);
+}
+
+.slider-val {
+  font-family: var(--font-mono);
+  color: var(--text-pure);
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1px 6px;
   border-radius: 4px;
 }
 
-/* 下拉选择框 */
-.config-select {
-  width: 100%;
-  background: var(--panel-control-bg);
-  border: 1px solid var(--panel-control-border);
-  border-radius: 7px;
-  color: #f1f5f9;
-  font-size: 0.8125rem;
-  padding: 0.45rem 0.65rem;
-  outline: none;
-  cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
-  appearance: none;
+input[type="range"] {
   -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.65rem center;
-}
-
-.config-select:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.25);
-}
-
-.config-select:focus {
-  border-color: var(--panel-accent);
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
-}
-
-.config-select option {
-  background: #0f172a;
-  color: #f8fafc;
-}
-
-/* 范围滑动条 */
-.config-range {
+  appearance: none;
   width: 100%;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 9999px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
   outline: none;
   cursor: pointer;
-  accent-color: var(--panel-accent);
-  margin: 0.35rem 0 0.1rem 0;
-  transition: background 0.15s ease;
 }
 
-.config-range::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 14px;
   height: 14px;
   border-radius: 50%;
   background: #ffffff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  transition: transform 0.15s ease;
+  transition: transform 0.1s ease;
 }
 
-.config-range::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
 }
 
-/* 开关组件 (Switch) */
-.config-switch {
-  position: relative;
-  display: inline-block;
-  width: 36px;
-  height: 20px;
-  cursor: pointer;
-  flex-shrink: 0;
+/* Footer & Reset Button */
+.dock-footer {
+  padding-top: 6px;
 }
 
-.config-switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.config-slider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.16);
-  transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 20px;
-}
-
-.config-slider:before {
-  position: absolute;
-  content: "";
-  height: 14px;
-  width: 14px;
-  left: 3px;
-  bottom: 3px;
-  background-color: #ffffff;
-  transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.config-switch input:checked + .config-slider {
-  background-color: var(--panel-accent);
-}
-
-.config-switch input:checked + .config-slider:before {
-  transform: translateX(16px);
-}
-
-/* 操作按钮网格 */
-.config-btn-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-}
-
-.config-action-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  background: var(--panel-control-bg);
-  border: 1px solid var(--panel-control-border);
-  color: #e2e8f0;
-  font-size: 0.78rem;
-  font-weight: 500;
-  padding: 0.45rem 0.5rem;
-  border-radius: 7px;
+.btn-reset {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  padding: 8px;
   cursor: pointer;
   transition: all 0.15s ease;
-  white-space: nowrap;
 }
 
-.config-action-btn:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.28);
-  color: #ffffff;
-}
-
-.config-action-btn.primary {
-  background: rgba(59, 130, 246, 0.2);
-  border-color: rgba(59, 130, 246, 0.4);
-  color: #93c5fd;
-}
-
-.config-action-btn.primary:hover {
-  background: rgba(59, 130, 246, 0.35);
-  border-color: rgba(59, 130, 246, 0.6);
-  color: #ffffff;
-}
-
-.config-action-btn:active {
-  transform: scale(0.97);
-}
-
-/* 面板底部提示 */
-.config-footer {
-  padding: 0.6rem 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  font-size: 0.72rem;
-  color: var(--panel-subtext);
-  text-align: center;
-  background: rgba(0, 0, 0, 0.1);
-}
-
-.config-footer b {
-  color: #cbd5e1;
-  font-weight: 600;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 1px 4px;
-  border-radius: 3px;
+.btn-reset:hover {
+  color: var(--text-pure);
+  border-color: var(--border-medium);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 /* ==========================================================================
-   折叠唤醒触发按钮 (Compact Floating Trigger Button)
+   Bottom Helper Hint
    ========================================================================== */
-
-.config-toggle-trigger {
+.bottom-hint {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 99;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--panel-border);
-  color: #e2e8f0;
-  padding: 0.45rem 0.85rem;
-  border-radius: 9999px;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.4);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  opacity: 0;
+  gap: 8px;
+  height: 32px;
+  box-sizing: border-box;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 0 16px;
+  border-radius: 999px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   pointer-events: none;
-  transform: scale(0.9);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  line-height: 1;
+  white-space: nowrap;
 }
 
-.config-toggle-trigger:hover {
-  background: rgba(30, 41, 59, 0.95);
-  border-color: rgba(255, 255, 255, 0.3);
-  color: #ffffff;
-  transform: translateY(-1px) scale(1);
-  box-shadow: 0 10px 28px -2px rgba(0, 0, 0, 0.5);
+.hint-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-crimson);
 }
 
-/* 当面板折叠时，触发按钮显现 */
-.case-config-panel.collapsed ~ .config-toggle-trigger {
-  opacity: 1;
-  pointer-events: auto;
-  transform: scale(1);
+.hint-msg {
+  line-height: 1;
 }
 
-/* 移动端视口调优 */
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
 @media (max-width: 640px) {
-  .case-config-panel {
-    top: 0.5rem;
-    right: 0.5rem;
-    width: calc(100vw - 1rem);
+  .hud-actions {
+    top: 12px;
+    right: 12px;
   }
-
-  .config-toggle-trigger {
-    top: 0.5rem;
-    right: 0.5rem;
+  .hud-brand {
+    padding: 0 10px;
+    height: 28px;
+  }
+  .hud-title {
+    font-size: 10px;
+  }
+  .control-dock {
+    top: 52px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+  }
+  .bottom-hint {
+    font-size: 10px;
+    padding: 0 12px;
+    height: 28px;
+    bottom: 12px;
+    max-width: calc(100vw - 32px);
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

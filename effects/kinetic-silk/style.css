@@ -117,25 +117,24 @@ html, body {
 }
 
 /* ==========================================================================
-   Bottom Right Brand & Telemetry Badge
+   Top Right Brand Badge
    ========================================================================== */
 .hud-brand {
-  position: fixed;
-  bottom: 20px;
-  right: 24px;
-  z-index: 10;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  height: 32px;
+  box-sizing: border-box;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: 999px;
-  padding: 6px 16px;
+  padding: 0 14px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   pointer-events: auto;
   transition: all 0.2s ease;
+  line-height: 1;
 }
 
 .hud-dot {
@@ -157,6 +156,8 @@ html, body {
   font-weight: 500;
   letter-spacing: 0.08em;
   color: var(--text-pure);
+  line-height: 1;
+  white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -462,9 +463,11 @@ input[type="range"]::-webkit-slider-thumb:hover {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  height: 32px;
+  box-sizing: border-box;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  padding: 6px 14px;
+  padding: 0 16px;
   border-radius: 999px;
   font-size: 11px;
   color: var(--text-secondary);
@@ -472,6 +475,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
   -webkit-backdrop-filter: blur(16px);
   pointer-events: none;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .hint-dot {
@@ -481,6 +486,10 @@ input[type="range"]::-webkit-slider-thumb:hover {
   background: var(--accent-gold);
 }
 
+.hint-msg {
+  line-height: 1;
+}
+
 /* Responsive */
 @media (max-width: 640px) {
   .hud-actions {
@@ -488,19 +497,25 @@ input[type="range"]::-webkit-slider-thumb:hover {
     right: 12px;
   }
   .hud-brand {
-    bottom: 12px;
-    right: 12px;
-    padding: 5px 12px;
+    padding: 0 10px;
+    height: 28px;
+  }
+  .hud-title {
+    font-size: 10px;
   }
   .control-dock {
-    top: 56px;
+    top: 52px;
     right: 12px;
     left: 12px;
     width: auto;
   }
   .bottom-hint {
     font-size: 10px;
-    padding: 4px 12px;
-    bottom: 46px;
+    padding: 0 12px;
+    height: 28px;
+    bottom: 12px;
+    max-width: calc(100vw - 32px);
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

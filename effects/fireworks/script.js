@@ -2,24 +2,29 @@
   const canvas = document.getElementById('fireworksCanvas');
   const ctx = canvas.getContext('2d');
 
-  // 配置面板与触发器元素
-  const configPanel = document.getElementById('configPanel');
-  const configCloseBtn = document.getElementById('configCloseBtn');
-  const configToggleBtn = document.getElementById('configToggleBtn');
+  // DOM 控件引用
+  const controlDock = document.getElementById('controlDock');
+  const btnToggleHud = document.getElementById('btnToggleHud');
+  const hudActions = document.querySelector('.hud-actions');
 
-  // 控制表单控件
-  const autoToggle = document.getElementById('autoToggle');
-  const soundToggle = document.getElementById('soundToggle');
-  const shapeSelect = document.getElementById('shapeSelect');
-  const paletteSelect = document.getElementById('paletteSelect');
+  const btnAutoLaunch = document.getElementById('btnAutoLaunch');
+  const autoLaunchLabel = document.getElementById('autoLaunchLabel');
+  const btnToggleSound = document.getElementById('btnToggleSound');
+  const soundIcon = document.getElementById('soundIcon');
+  const soundLabel = document.getElementById('soundLabel');
+  const barrageBtn = document.getElementById('barrageBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const btnResetParams = document.getElementById('btnResetParams');
+
   const particleCountRange = document.getElementById('particleCountRange');
   const particleCountVal = document.getElementById('particleCountVal');
   const trailDecayRange = document.getElementById('trailDecayRange');
   const trailDecayVal = document.getElementById('trailDecayVal');
   const gravityRange = document.getElementById('gravityRange');
   const gravityVal = document.getElementById('gravityVal');
-  const barrageBtn = document.getElementById('barrageBtn');
-  const clearBtn = document.getElementById('clearBtn');
+
+  const shapeChips = document.querySelectorAll('.shape-chip');
+  const paletteChips = document.querySelectorAll('.palette-chip');
 
   // 运行参数配置对象 (统一受控状态)
   const config = {
@@ -170,7 +175,7 @@
       case 'aurora':
         return { hue: Math.floor(Math.random() * 45 + 140), sat: 95, light: Math.random() * 25 + 60 };
       case 'crimson':
-        return { hue: Math.floor(Math.random() * 24 + 350) % 360, sat: 100, light: Math.random() * 25 + 60 };
+        return { hue: (Math.floor(Math.random() * 24 + 350) + 360) % 360, sat: 100, light: Math.random() * 25 + 60 };
       case 'rainbow':
       default:
         return { hue: Math.floor(Math.random() * 360), sat: 100, light: Math.random() * 25 + 65 };
@@ -293,8 +298,7 @@
     const totalCount = config.particleCount;
 
     if (shape === 'heart') {
-      // 浪漫爱心极坐标参数方程:
-      // x = 16 * sin(t)^3, y = -(13*cos(t) - 5*cos(2t) - 2*cos(3t) - cos(4t))
+      // 浪漫爱心极坐标参数方程
       for (let i = 0; i < totalCount; i++) {
         const t = (i / totalCount) * Math.PI * 2;
         const hx = 16 * Math.pow(Math.sin(t), 3);
@@ -364,7 +368,7 @@
     // 自动连续燃放判定
     if (config.autoLaunch) {
       timer++;
-      if (timer % 32 === 0) {
+      if (timer % 34 === 0) {
         const sx = width / 2 + (Math.random() * 320 - 160);
         const sy = height;
         const tx = Math.random() * (width - 180) + 90;
@@ -400,112 +404,182 @@
   // =========================================================================
 
   // 画布点击/触摸发射礼花
+  let isPointerDown = false;
+  let dragThrottle = 0;
+
   canvas.addEventListener('pointerdown', (e) => {
+    isPointerDown = true;
     launchAt(e.clientX, e.clientY);
   });
 
-  // 阻止配置面板内的点击穿透到画布
-  configPanel.addEventListener('pointerdown', (e) => {
-    e.stopPropagation();
+  window.addEventListener('pointermove', (e) => {
+    if (!isPointerDown) return;
+    dragThrottle++;
+    if (dragThrottle % 6 === 0) {
+      launchAt(e.clientX, e.clientY);
+    }
   });
-  configPanel.addEventListener('click', (e) => {
-    e.stopPropagation();
+
+  window.addEventListener('pointerup', () => {
+    isPointerDown = false;
   });
+
+  // 阻止控制面板与顶栏内的点击穿透到画布
+  if (controlDock) {
+    controlDock.addEventListener('pointerdown', (e) => e.stopPropagation());
+    controlDock.addEventListener('click', (e) => e.stopPropagation());
+  }
+  if (hudActions) {
+    hudActions.addEventListener('pointerdown', (e) => e.stopPropagation());
+    hudActions.addEventListener('click', (e) => e.stopPropagation());
+  }
 
   // 1. 自动燃放开关
-  autoToggle.addEventListener('change', (e) => {
-    config.autoLaunch = e.target.checked;
-  });
+  if (btnAutoLaunch) {
+    btnAutoLaunch.addEventListener('click', () => {
+      config.autoLaunch = !config.autoLaunch;
+      if (autoLaunchLabel) autoLaunchLabel.textContent = `自动连发: ${config.autoLaunch ? '开' : '关'}`;
+      btnAutoLaunch.classList.toggle('active', config.autoLaunch);
+    });
+  }
 
   // 2. 音效模拟开关
-  soundToggle.addEventListener('change', (e) => {
-    config.soundEnabled = e.target.checked;
-    if (config.soundEnabled) {
-      initAudioContext();
+  if (btnToggleSound) {
+    btnToggleSound.addEventListener('click', () => {
+      config.soundEnabled = !config.soundEnabled;
+      if (config.soundEnabled) {
+        initAudioContext();
+      }
+      if (soundIcon) soundIcon.textContent = config.soundEnabled ? '🔊' : '🔈';
+      if (soundLabel) soundLabel.textContent = `燃放音效: ${config.soundEnabled ? '开' : '关'}`;
+      btnToggleSound.classList.toggle('active', config.soundEnabled);
+    });
+  }
+
+  // 3. 齐发五枚
+  if (barrageBtn) {
+    barrageBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      launchBarrage();
+    });
+  }
+
+  // 4. 清空夜空
+  if (clearBtn) {
+    clearBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      fireworks.length = 0;
+      particles.length = 0;
+      ctx.clearRect(0, 0, width, height);
+    });
+  }
+
+  // 5. 绽放形态选择
+  shapeChips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      shapeChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const shape = chip.dataset.shape;
+      if (shape) {
+        config.shape = shape;
+      }
+    });
+  });
+
+  // 6. 色彩方案选择
+  paletteChips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      paletteChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const palette = chip.dataset.palette;
+      if (palette) {
+        config.palette = palette;
+      }
+    });
+  });
+
+  // 7. 粒子密度滑块
+  if (particleCountRange) {
+    particleCountRange.addEventListener('input', (e) => {
+      config.particleCount = parseInt(e.target.value, 10);
+      if (particleCountVal) particleCountVal.textContent = `${config.particleCount} 颗`;
+    });
+  }
+
+  // 8. 尾迹留光滑块
+  if (trailDecayRange) {
+    trailDecayRange.addEventListener('input', (e) => {
+      config.trailDecayLevel = parseInt(e.target.value, 10);
+      if (trailDecayVal) trailDecayVal.textContent = trailTextMap[config.trailDecayLevel] || '适中';
+    });
+  }
+
+  // 9. 重力引力滑块
+  if (gravityRange) {
+    gravityRange.addEventListener('input', (e) => {
+      config.gravityMultiplier = parseFloat(e.target.value);
+      if (gravityVal) gravityVal.textContent = `${config.gravityMultiplier.toFixed(1)}x`;
+    });
+  }
+
+  // 10. 重置参数
+  if (btnResetParams) {
+    btnResetParams.addEventListener('click', () => {
+      config.autoLaunch = true;
+      config.soundEnabled = false;
+      config.shape = 'classic';
+      config.palette = 'rainbow';
+      config.particleCount = 60;
+      config.trailDecayLevel = 3;
+      config.gravityMultiplier = 1.0;
+
+      if (btnAutoLaunch) {
+        btnAutoLaunch.classList.add('active');
+        if (autoLaunchLabel) autoLaunchLabel.textContent = '自动连发: 开';
+      }
+      if (btnToggleSound) {
+        btnToggleSound.classList.remove('active');
+        if (soundIcon) soundIcon.textContent = '🔈';
+        if (soundLabel) soundLabel.textContent = '燃放音效: 关';
+      }
+
+      shapeChips.forEach(c => c.classList.toggle('active', c.dataset.shape === 'classic'));
+      paletteChips.forEach(c => c.classList.toggle('active', c.dataset.palette === 'rainbow'));
+
+      if (particleCountRange) particleCountRange.value = 60;
+      if (particleCountVal) particleCountVal.textContent = '60 颗';
+      if (trailDecayRange) trailDecayRange.value = 3;
+      if (trailDecayVal) trailDecayVal.textContent = '适中';
+      if (gravityRange) gravityRange.value = 1.0;
+      if (gravityVal) gravityVal.textContent = '1.0x';
+    });
+  }
+
+  // =========================================================================
+  // 面板折叠/展开与快捷键支持 (H / ESC)
+  // =========================================================================
+  function toggleHud() {
+    if (controlDock) {
+      controlDock.classList.toggle('hidden');
     }
-  });
-
-  // 3. 绽放形态选择
-  shapeSelect.addEventListener('change', (e) => {
-    config.shape = e.target.value;
-  });
-
-  // 4. 色彩方案选择
-  paletteSelect.addEventListener('change', (e) => {
-    config.palette = e.target.value;
-  });
-
-  // 5. 粒子密度滑块
-  particleCountRange.addEventListener('input', (e) => {
-    config.particleCount = parseInt(e.target.value, 10);
-    particleCountVal.textContent = `${config.particleCount} 颗`;
-  });
-
-  // 6. 尾迹留光滑块
-  trailDecayRange.addEventListener('input', (e) => {
-    config.trailDecayLevel = parseInt(e.target.value, 10);
-    trailDecayVal.textContent = trailTextMap[config.trailDecayLevel] || '适中';
-  });
-
-  // 7. 重力引力滑块
-  gravityRange.addEventListener('input', (e) => {
-    config.gravityMultiplier = parseFloat(e.target.value);
-    gravityVal.textContent = `${config.gravityMultiplier.toFixed(1)}x`;
-  });
-
-  // 8. 快捷动作：齐发五枚
-  barrageBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    launchBarrage();
-  });
-
-  // 9. 快捷动作：清空夜空
-  clearBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    fireworks.length = 0;
-    particles.length = 0;
-    ctx.clearRect(0, 0, width, height);
-  });
-
-  // =========================================================================
-  // 面板折叠/展开与沉浸式快捷键支持
-  // =========================================================================
-
-  function closePanel() {
-    configPanel.classList.add('collapsed');
   }
 
-  function openPanel() {
-    configPanel.classList.remove('collapsed');
+  if (btnToggleHud) {
+    btnToggleHud.addEventListener('click', toggleHud);
   }
 
-  function togglePanel() {
-    configPanel.classList.toggle('collapsed');
-  }
-
-  configCloseBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    closePanel();
-  });
-
-  configToggleBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    openPanel();
-  });
-
-  // 快捷键支持：按 H 键折叠/唤醒面板，按 Escape 键收起面板
   window.addEventListener('keydown', (e) => {
-    if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) {
+    if (e.target && ['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName)) {
       return;
     }
-    if (e.key === 'h' || e.key === 'H') {
-      togglePanel();
-    } else if (e.key === 'Escape') {
-      closePanel();
+    if (e.key.toLowerCase() === 'h') {
+      toggleHud();
+    } else if (e.key === 'Escape' && controlDock && !controlDock.classList.contains('hidden')) {
+      controlDock.classList.add('hidden');
     }
   });
 
-  // 卸载清理 (保证 iframe 销毁时无后台残留)
+  // 卸载清理
   window.addEventListener('beforeunload', () => {
     if (animId) cancelAnimationFrame(animId);
     if (audioCtx) {

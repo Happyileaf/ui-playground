@@ -3,132 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canvas Fireworks Effect</title>
+  <title>Canvas Fireworks · 璀璨焰火粒子特效</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <!-- 统一案例配置面板 (Top-Right Unified Config Panel) -->
-  <aside id="configPanel" class="case-config-panel" aria-label="烟花特效配置面板">
-    <div class="config-header">
-      <div class="config-title">
-        <svg class="config-title-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="3"></circle>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-        </svg>
-        <span>烟花参数配置</span>
-      </div>
-      <button id="configCloseBtn" class="config-close-btn" aria-label="关闭配置面板" title="关闭面板 (H)">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
+
+  <!-- Fullscreen Interactive Canvas -->
+  <canvas id="fireworksCanvas"></canvas>
+
+  <!-- Ambient Backdrop Grain & Vignette Overlay -->
+  <div class="canvas-vignette"></div>
+
+  <!-- Top Floating Controls -->
+  <div class="hud-actions">
+    <div class="hud-brand" id="hudBrand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">盛典烟花 · FIREWORKS</span>
+    </div>
+    <button type="button" class="btn-tool btn-icon-only" id="btnToggleHud" title="隐藏/显示控制台 (H)" aria-label="切换控制面板">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Floating Parametric Controller Panel (HUD) -->
+  <aside class="control-dock hidden" id="controlDock">
+    <div class="dock-header">
+      <span class="dock-heading">绚烂烟花物理调谐器</span>
+      <span class="dock-shortcut">按 H 收起</span>
     </div>
 
-    <div class="config-body">
-      <!-- 基础开关组 -->
-      <div class="config-section">
-        <div class="config-row">
-          <span class="config-label">自动连发</span>
-          <label class="config-switch">
-            <input type="checkbox" id="autoToggle" checked>
-            <span class="config-slider"></span>
-          </label>
-        </div>
-        <div class="config-row">
-          <span class="config-label">燃放音效</span>
-          <label class="config-switch">
-            <input type="checkbox" id="soundToggle">
-            <span class="config-slider"></span>
-          </label>
-        </div>
-      </div>
-
-      <div class="config-divider"></div>
-
-      <!-- 形态与色彩 -->
-      <div class="config-section">
-        <div class="config-control-group">
-          <label class="config-label" for="shapeSelect">绽放形态</label>
-          <select id="shapeSelect" class="config-select">
-            <option value="classic">经典全向散布 (Classic)</option>
-            <option value="heart">浪漫爱心形态 (Heart ❤️)</option>
-            <option value="ring">空心同心光环 (Ring)</option>
-            <option value="spiral">银河旋转漩涡 (Spiral)</option>
-            <option value="willow">垂柳繁星漫散 (Willow)</option>
-          </select>
-        </div>
-
-        <div class="config-control-group">
-          <label class="config-label" for="paletteSelect">色彩主题</label>
-          <select id="paletteSelect" class="config-select">
-            <option value="rainbow">缤纷全彩光谱 (Rainbow)</option>
-            <option value="gold">华丽鎏金盛宴 (Imperial Gold)</option>
-            <option value="cyber">赛博霓虹电光 (Cyber Neon)</option>
-            <option value="aurora">极光幽绿碧蓝 (Aurora)</option>
-            <option value="crimson">炽烈焰火绯红 (Blazing Crimson)</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="config-divider"></div>
-
-      <!-- 滑块调节区 -->
-      <div class="config-section">
-        <div class="config-control-group">
-          <div class="config-label-row">
-            <span class="config-label">粒子密度</span>
-            <span id="particleCountVal" class="config-value-badge">60 颗</span>
-          </div>
-          <input type="range" id="particleCountRange" class="config-range" min="25" max="150" step="5" value="60">
-        </div>
-
-        <div class="config-control-group">
-          <div class="config-label-row">
-            <span class="config-label">尾迹留光</span>
-            <span id="trailDecayVal" class="config-value-badge">适中</span>
-          </div>
-          <input type="range" id="trailDecayRange" class="config-range" min="1" max="5" step="1" value="3">
-        </div>
-
-        <div class="config-control-group">
-          <div class="config-label-row">
-            <span class="config-label">重力引力</span>
-            <span id="gravityVal" class="config-value-badge">1.0x</span>
-          </div>
-          <input type="range" id="gravityRange" class="config-range" min="0.4" max="1.8" step="0.1" value="1.0">
-        </div>
-      </div>
-
-      <div class="config-divider"></div>
-
-      <!-- 快捷动作按钮组 -->
-      <div class="config-btn-grid">
-        <button id="barrageBtn" class="config-action-btn primary" title="同时向夜空发射 5 发礼花">
-          <span>🚀 齐发五枚</span>
+    <!-- Quick Operations Inside Panel -->
+    <div class="control-section">
+      <label class="control-label">快捷演进操控</label>
+      <div class="dock-quick-actions">
+        <button type="button" class="btn-dock-action active" id="btnAutoLaunch" title="切换夜空自动连续发射" aria-label="切换自动发射">
+          <span class="tool-icon">⚡</span>
+          <span class="tool-label" id="autoLaunchLabel">自动连发: 开</span>
         </button>
-        <button id="clearBtn" class="config-action-btn" title="清空当前画布上的所有粒子">
-          <span>🧹 清空夜空</span>
+        <button type="button" class="btn-dock-action" id="btnToggleSound" title="开启/关闭拟真燃放音效" aria-label="切换燃放音效">
+          <span class="tool-icon" id="soundIcon">🔈</span>
+          <span class="tool-label" id="soundLabel">燃放音效: 关</span>
+        </button>
+        <button type="button" class="btn-dock-action" id="barrageBtn" title="同时向夜空发射 5 发礼花" aria-label="齐发五枚">
+          <span class="tool-icon">🚀</span>
+          <span class="tool-label">齐发五枚</span>
+        </button>
+        <button type="button" class="btn-dock-action" id="clearBtn" title="清空当前夜空上的所有粒子" aria-label="清空夜空">
+          <span class="tool-icon">🧹</span>
+          <span class="tool-label">清空夜空</span>
         </button>
       </div>
     </div>
 
-    <div class="config-footer">
-      <span>点击夜空发射 · 按 <b>H</b> 快速折叠</span>
+    <!-- Bloom Shape Selector -->
+    <div class="control-section">
+      <label class="control-label">绽放形态 (Bloom Shape)</label>
+      <div class="palette-grid">
+        <button type="button" class="shape-chip active" data-shape="classic">
+          <span class="tool-icon">✦</span>
+          <span>经典散布</span>
+        </button>
+        <button type="button" class="shape-chip" data-shape="heart">
+          <span class="tool-icon">♥</span>
+          <span>浪漫爱心</span>
+        </button>
+        <button type="button" class="shape-chip" data-shape="ring">
+          <span class="tool-icon">◎</span>
+          <span>同心光环</span>
+        </button>
+        <button type="button" class="shape-chip" data-shape="spiral">
+          <span class="tool-icon">🌀</span>
+          <span>旋转漩涡</span>
+        </button>
+        <button type="button" class="shape-chip" data-shape="willow">
+          <span class="tool-icon">❊</span>
+          <span>垂柳繁星</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Palette Preset Selector -->
+    <div class="control-section">
+      <label class="control-label">色彩主题光谱 (Color Spectrum)</label>
+      <div class="palette-grid">
+        <button type="button" class="palette-chip active" data-palette="rainbow">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #f43f5e, #38bdf8, #a855f7);"></span>
+          <span>缤纷全彩</span>
+        </button>
+        <button type="button" class="palette-chip" data-palette="gold">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #f59e0b, #fef08a);"></span>
+          <span>华丽鎏金</span>
+        </button>
+        <button type="button" class="palette-chip" data-palette="cyber">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #06b6d4, #ec4899);"></span>
+          <span>赛博霓虹</span>
+        </button>
+        <button type="button" class="palette-chip" data-palette="aurora">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #10b981, #3b82f6);"></span>
+          <span>极光碧蓝</span>
+        </button>
+        <button type="button" class="palette-chip" data-palette="crimson">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #ef4444, #f97316);"></span>
+          <span>炽烈焰火</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sliders -->
+    <div class="control-section">
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">粒子密度 (Particles)</span>
+          <span class="slider-val" id="particleCountVal">60 颗</span>
+        </div>
+        <input type="range" id="particleCountRange" min="25" max="150" step="5" value="60">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">尾迹留光 (Trail Decay)</span>
+          <span class="slider-val" id="trailDecayVal">适中</span>
+        </div>
+        <input type="range" id="trailDecayRange" min="1" max="5" step="1" value="3">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">重力引力 (Gravity)</span>
+          <span class="slider-val" id="gravityVal">1.0x</span>
+        </div>
+        <input type="range" id="gravityRange" min="0.4" max="1.8" step="0.1" value="1.0">
+      </div>
+    </div>
+
+    <div class="dock-footer">
+      <button type="button" class="btn-reset" id="btnResetParams">重置默认参数</button>
     </div>
   </aside>
 
-  <!-- 右上角折叠唤醒触发器 (Collapsed Trigger) -->
-  <button id="configToggleBtn" class="config-toggle-trigger" aria-label="展开特效配置面板" title="展开配置面板 (快捷键 H)">
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="3"></circle>
-      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-    </svg>
-    <span>特效配置</span>
-  </button>
-
-  <!-- 全屏渲染 Canvas -->
-  <canvas id="fireworksCanvas"></canvas>
+  <!-- Bottom Interactive Helper Hint -->
+  <div class="bottom-hint" id="bottomHint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">点击夜空发射礼花 · 拖拽连续绽放 · 按 H 切换控制台</span>
+  </div>
 
   <script src="./script.js"></script>
 </body>
