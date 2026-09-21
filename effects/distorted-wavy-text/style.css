@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  padding: 2rem;
+  max-width: 100%;
+}
+
+.wavy-text {
+  display: block;
+  position: relative;
+  color: transparent;
+  font-size: clamp(2rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin: 0.5em 0;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.wavy-text::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: #00ffaa;
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+  transform: translateY(0);
+  filter: drop-shadow(0 0 8px rgba(0, 255, 170, 0.5));
+}
+
+.wavy-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: #ff0088;
+  clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+  transform: translateY(0);
+  filter: drop-shadow(0 0 8px rgba(255, 0, 136, 0.5));
+}
+
+.controls {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.controls input[type="range"] {
+  width: 200px;
+  accent-color: #00ffaa;
+}
+
+.controls span {
+  min-width: 50px;
+  text-align: right;
+  color: #00ffaa;
+}
+
+@media (max-width: 600px) {
+  .controls label {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

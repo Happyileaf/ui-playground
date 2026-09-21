@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Distorted Wavy Text</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="wavy-text" data-text="Distorted Wavy Text">Distorted Wavy Text</h1>
+    <p class="wavy-text" data-text="Interactive Perlin Noise Distortion">Interactive Perlin Noise Distortion</p>
+    <div class="controls">
+      <label>
+        Amplitude
+        <input type="range" id="amplitude" min="0" max="100" value="30">
+        <span id="amplitudeValue">30</span>
+      </label>
+      <label>
+        Frequency
+        <input type="range" id="frequency" min="0" max="0.1" step="0.001" value="0.02">
+        <span id="frequencyValue">0.02</span>
+      </label>
+      <label>
+        Speed
+        <input type="range" id="speed" min="0" max="0.1" step="0.001" value="0.005">
+        <span id="speedValue">0.005</span>
+      </label>
+    </div>
+  </div>
+  <script src="./script.js"></script>
+</body>
+</html>

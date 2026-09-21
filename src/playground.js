@@ -121,6 +121,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
       description: 'Floating navigation bar with dynamic elastic sliding pill indicator that resizes to the active tab.',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['navigation', 'sliding-pill', 'elastic-indicator']
+    },
+    {
+      id: 'distorted-wavy-text',
+      title: 'Distorted Wavy Text',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/distorted-wavy-text/',
+      url: '/effects/distorted-wavy-text/index.html',
+      description: 'Perlin Noise based animated distorted wavy text with split-color clipping and interactive parameter controls.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['text-distortion', 'perlin-noise', 'animation', 'interactive']
     }
   ];
 
