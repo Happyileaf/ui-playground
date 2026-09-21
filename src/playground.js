@@ -156,6 +156,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['text', 'glitch', 'css-animation', 'clip-path', 'interaction']
     },
     {
+      id: 'audio-spectrum',
+      title: 'Canvas Audio Spectrum',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/audio-spectrum/',
+      url: '/effects/audio-spectrum/index.html',
+      description: 'Real-time frequency spectrum audio visualizer with Web Audio API, built-in melody oscillator and adjustable sensitivity.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['canvas', 'web-audio', 'visualizer', 'spectrum', 'oscillator']
+    },
+    {
       id: 'button',
       title: 'Modern UI Buttons',
       type: 'component',
