@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Piano Keyboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Interactive Piano</span>
+  </div>
+
+  <div class="container">
+    <div class="piano-container">
+      <div class="piano-keys">
+        <!-- White keys -->
+        <div class="key white" data-note="C4"></div>
+        <div class="key black" data-note="C#4"></div>
+        <div class="key white" data-note="D4"></div>
+        <div class="key black" data-note="D#4"></div>
+        <div class="key white" data-note="E4"></div>
+        <div class="key white" data-note="F4"></div>
+        <div class="key black" data-note="F#4"></div>
+        <div class="key white" data-note="G4"></div>
+        <div class="key black" data-note="G#4"></div>
+        <div class="key white" data-note="A4"></div>
+        <div class="key black" data-note="A#4"></div>
+        <div class="key white" data-note="B4"></div>
+        <div class="key white" data-note="C5"></div>
+        <div class="key black" data-note="C#5"></div>
+        <div class="key white" data-note="D5"></div>
+        <div class="key black" data-note="D#5"></div>
+        <div class="key white" data-note="E5"></div>
+        <div class="key white" data-note="F5"></div>
+        <div class="key black" data-note="F#5"></div>
+        <div class="key white" data-note="G5"></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="toggleSustain" class="control-btn">Sustain: Off</button>
+      <span class="note-label">Click or touch keys to play</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
