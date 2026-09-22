@@ -145,6 +145,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['lerp-physics', 'pointer', 'velocity', 'cursor']
     },
     {
+      id: 'interactive-piano',
+      title: 'Interactive Piano Keyboard',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/interactive-piano/',
+      url: '/effects/interactive-piano/index.html',
+      description: 'Interactive multi-note piano keyboard with Web Audio synthesis, keyboard support and sustain pedal.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['web-audio', 'interactive', 'keyboard', 'synthesizer']
+    },
+    {
       id: 'button',
       title: 'Modern UI Buttons',
       type: 'component',
