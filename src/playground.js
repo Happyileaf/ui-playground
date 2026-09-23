@@ -13,6 +13,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
   // Master Case Catalog
   const cases = [
     {
+      id: 'wavy-lines',
+      title: 'Perlin Wavy Lines · 佩林噪声波动曲线',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/wavy-lines/',
+      url: '/effects/wavy-lines/index.html',
+      description: '基于Perlin噪声生成的动态多色流动波动曲线，参数可调振幅、频率、动画速度，流畅平滑的视觉体验。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['perlin-noise', 'generative-art', 'dynamic-curves', 'parameter-adjustable']
+    },
+    {
       id: 'embossed-foil-card',
       title: '3D Embossed Collectible Card · 3D 立体收藏卡',
       type: 'component',
