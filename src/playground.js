@@ -134,6 +134,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['svg-filters', 'gooey', 'liquid-motion']
     },
     {
+      id: 'glitch-text',
+      title: 'Interactive Glitch Text',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/glitch-text/',
+      url: '/effects/glitch-text/index.html',
+      description: 'Interactive cyberpunk glitch typography with configurable intensity, speed, and color shifting effects.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['typography', 'glitch', 'generative', 'interactive', 'text-effects']
+    },
+    {
       id: 'cursor-follow',
       title: 'Fluid Cursor Trail',
       type: 'effect',
