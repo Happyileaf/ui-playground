@@ -198,6 +198,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: 'Floating navigation bar with dynamic elastic sliding pill indicator that resizes to the active tab.',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['navigation', 'sliding-pill', 'elastic-indicator']
+    },
+    {
+      id: 'glitch-text',
+      title: 'Cyber Glitch Text',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/glitch-text/',
+      url: '/effects/glitch-text/index.html',
+      description: 'Classic cyberpunk digital glitch typography with channel separation, dynamic offset, and interactive color shift control.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['typography', 'glitch', 'channel-separation', 'text-effects', 'interactive']
     }
   ];
 
