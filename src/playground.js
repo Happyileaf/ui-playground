@@ -198,6 +198,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: 'Floating navigation bar with dynamic elastic sliding pill indicator that resizes to the active tab.',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['navigation', 'sliding-pill', 'elastic-indicator']
+    },
+    {
+      id: 'animated-waves',
+      title: 'Animated Waves Background',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/animated-waves/',
+      url: '/effects/animated-waves/index.html',
+      description: 'Multi-layered procedural sine wave animated background with adjustable amplitude, frequency, speed and layer count. Smooth gradient color transitions.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['canvas', 'waves', 'mathematics', 'generative-art', 'procedural', 'animation', 'background']
     }
   ];
 
