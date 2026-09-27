@@ -145,6 +145,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['lerp-physics', 'pointer', 'velocity', 'cursor']
     },
     {
+      id: 'interactive-waves',
+      title: 'Interactive Ripple Waves',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/interactive-waves/',
+      url: '/effects/interactive-waves/index.html',
+      description: 'Canvas-based interactive ripple propagation with particle field interference and smooth physics simulation.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['canvas', 'ripple', 'wave', 'physics', 'particle-field', 'interactive']
+    },
+    {
       id: 'button',
       title: 'Modern UI Buttons',
       type: 'component',
