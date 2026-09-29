@@ -145,6 +145,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['lerp-physics', 'pointer', 'velocity', 'cursor']
     },
     {
+      id: 'glitch-text',
+      title: 'Digital Glitch Text',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/glitch-text/',
+      url: '/effects/glitch-text/index.html',
+      description: 'Interactive RGB channel split and digital distortion text effect with mouse 3D tilt and click-to-glitch.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['glitch', 'typography', 'rgb-split', 'interactive', 'rasterization', 'web-audio']
+    },
+    {
       id: 'button',
       title: 'Modern UI Buttons',
       type: 'component',
