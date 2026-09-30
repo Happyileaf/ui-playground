@@ -145,6 +145,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['lerp-physics', 'pointer', 'velocity', 'cursor']
     },
     {
+      id: 'glitch-text',
+      title: 'Cyber Glitch Text · 赛博故障文字',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/glitch-text/',
+      url: '/effects/glitch-text/index.html',
+      description: 'Cyberpunk style glitch typography with RGB color channel shifting, scanline overlay and interactive RGB jitter on interaction.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['glitch', 'typography', 'rgb-shift', 'cyberpunk', 'interaction']
+    },
+    {
       id: 'button',
       title: 'Modern UI Buttons',
       type: 'component',
