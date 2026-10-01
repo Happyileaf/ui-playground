@@ -1,0 +1,204 @@
+:root {
+  --bg: #0f0f17;
+  --piano-white: #ffffff;
+  --piano-white-hover: #f0f0f0;
+  --piano-black: #1a1a2e;
+  --piano-black-hover: #16213e;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --accent: #7c3aed;
+  --hud-bg: rgba(15, 15, 23, 0.9);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  overflow: hidden;
+}
+
+/* HUD Title - Required by Design Guidelines */
+.hud-brand {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 6px;
+  background: var(--hud-bg);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hud-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.8;
+}
+
+.hud-title {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.piano-container {
+  width: 100%;
+  max-width: 1100px;
+  padding: 2rem;
+}
+
+.piano-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.piano-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #7c3aed, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.piano-header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.piano {
+  display: flex;
+  position: relative;
+  height: 200px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  border-radius: 0 0 8px 8px;
+  padding: 0 4px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.key {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 16px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  user-select: none;
+}
+
+.key.active {
+  background: var(--accent);
+  opacity: 0.9;
+  transform: translateY(2px);
+}
+
+.white {
+  width: 14.285%;
+  max-width: 80px;
+  height: 100%;
+  background: var(--piano-white);
+  color: #1a1a2e;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 6px 6px;
+  margin: 0 2px;
+}
+
+.white:hover {
+  background: var(--piano-white-hover);
+}
+
+.black {
+  position: absolute;
+  width: 50%;
+  max-width: 40px;
+  height: 60%;
+  background: var(--piano-black);
+  color: var(--piano-white);
+  border-radius: 0 0 4px 4px;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.black:hover {
+  background: var(--piano-black-hover);
+}
+
+.key-label {
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.key-label.show {
+  opacity: 0.7;
+}
+
+.white .key-label {
+  color: #0f0f17;
+}
+
+.black .key-label {
+  color: #ffffff;
+}
+
+.controls {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.controls label {
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.controls label:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+  .piano-container {
+    padding: 1rem;
+  }
+  
+  .piano {
+    height: 160px;
+  }
+  
+  .key-label {
+    font-size: 10px;
+  }
+  
+  .hud-brand {
+    top: 8px;
+    right: 8px;
+    transform: scale(0.9);
+  }
+}
