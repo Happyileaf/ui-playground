@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shimmer Skeleton Loading · 流光骨架屏</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- HUD Title Capsule -->
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Shimmer Skeleton Loading</span>
+    <button class="hud-toggle" id="toggleControl" title="显示/隐藏控制面板 (H)">⚙️</button>
+  </div>
+
+  <!-- Micro-HUD Control Panel (Default Hidden) -->
+  <div class="control-dock hidden" id="controlDock">
+    <div class="control-panel">
+      <h3>控制面板</h3>
+      
+      <div class="control-item">
+        <label for="speedRange">流光速度: <span id="speedValue">1.0s</span></label>
+        <input type="range" id="speedRange" min="0.3" max="3.0" step="0.1" value="1.0">
+      </div>
+
+      <div class="control-item">
+        <label for="opacityRange">背景透明度: <span id="opacityValue">0.12</span></label>
+        <input type="range" id="opacityRange" min="0.05" max="0.3" step="0.01" value="0.12">
+      </div>
+
+      <div class="control-item">
+        <label for="brWidthRange">光斑宽度: <span id="brWidthValue">120px</span></label>
+        <input type="range" id="brWidthRange" min="40" max="200" step="10" value="120">
+      </div>
+
+      <div class="control-item">
+        <label>
+          <input type="checkbox" id="pulseToggle" checked>
+          启用脉动振幅
+        </label>
+      </div>
+
+      <div class="control-hint">
+        快捷键: H 或 ESC 关闭面板
+      </div>
+    </div>
+  </div>
+
+  <!-- Demo Content: Card with Skeleton Placeholders -->
+  <main class="demo-container">
+    <div class="demo-card">
+      <!-- Avatar Skeleton -->
+      <div class="skeleton avatar"></div>
+      
+      <!-- Text Lines -->
+      <div class="skeleton-text">
+        <div class="skeleton-line w-75"></div>
+        <div class="skeleton-line w-100"></div>
+        <div class="skeleton-line w-60"></div>
+      </div>
+
+      <!-- Multiple Card Grid Demo -->
+      <div class="skeleton-grid">
+        <div class="skeleton rect"></div>
+        <div class="skeleton rect"></div>
+        <div class="skeleton rect"></div>
+      </div>
+
+      <!-- List Item Demo -->
+      <div class="skeleton-list">
+        <div class="skeleton avatar-sm"></div>
+        <div class="skeleton-text-sm">
+          <div class="skeleton-line w-80"></div>
+          <div class="skeleton-line w-50"></div>
+        </div>
+      </div>
+
+      <button class="toggle-btn" id="toggleContent">切换真实内容</button>
+    </div>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

@@ -198,6 +198,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: 'Floating navigation bar with dynamic elastic sliding pill indicator that resizes to the active tab.',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['navigation', 'sliding-pill', 'elastic-indicator']
+    },
+    {
+      id: 'skeleton-loading',
+      title: 'Shimmer Skeleton Loading',
+      type: 'component',
+      category: 'components',
+      path: 'components/skeleton-loading/',
+      url: '/components/skeleton-loading/index.html',
+      description: 'Configurable animated shimmer skeleton loading placeholders with adjustable speed, opacity and beam width.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['skeleton', 'shimmer', 'loading', 'placeholder', 'micro-interaction', 'css-variables']
     }
   ];
 
