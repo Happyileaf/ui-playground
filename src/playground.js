@@ -13,6 +13,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
   // Master Case Catalog
   const cases = [
     {
+      id: 'glitch-text',
+      title: 'Glitch Text · 故障文字特效',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/glitch-text/',
+      url: '/effects/glitch-text/index.html',
+      description: '交互式赛博朋克风格故障文字，动态随机字符替换、RGB色彩偏移和clip-path随机裁切动画，支持强度与速度调节。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['typography', 'glitch', 'raster-analysis', 'interactive', 'cyberpunk']
+    },
+    {
       id: 'embossed-foil-card',
       title: '3D Embossed Collectible Card · 3D 立体收藏卡',
       type: 'component',
