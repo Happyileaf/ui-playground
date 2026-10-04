@@ -13,6 +13,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
   // Master Case Catalog
   const cases = [
     {
+      id: 'interactive-piano',
+      title: 'Interactive Web Audio Piano · 交互式钢琴',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/interactive-piano/',
+      url: '/effects/interactive-piano/index.html',
+      description: '基于 Web Audio API 的交互式钢琴，支持多种波形选择、音调微调与可调节释音时间，点击或滑动即可弹奏。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['web-audio', 'interactive', 'piano', 'oscillator', 'synthesizer', 'music']
+    },
+    {
       id: 'embossed-foil-card',
       title: '3D Embossed Collectible Card · 3D 立体收藏卡',
       type: 'component',
