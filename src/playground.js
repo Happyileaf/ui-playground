@@ -24,6 +24,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['web-audio', 'interactive', 'piano', 'oscillator', 'synthesizer', 'music']
     },
     {
+      id: 'glitch-text',
+      title: 'Glitch Text Effect · 故障文字效果',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/glitch-text/',
+      url: '/effects/glitch-text/index.html',
+      description: '赛博朋克风格故障文字效果，CSS clip-path 切割伪层实现红蓝错位，支持鼠标位置控制故障强度。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['text', 'glitch', 'cyberpunk', 'css', 'interactive']
+    },
+    {
       id: 'embossed-foil-card',
       title: '3D Embossed Collectible Card · 3D 立体收藏卡',
       type: 'component',
