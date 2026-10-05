@@ -198,6 +198,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: 'Floating navigation bar with dynamic elastic sliding pill indicator that resizes to the active tab.',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['navigation', 'sliding-pill', 'elastic-indicator']
+    },
+    {
+      id: 'piano-keyboard',
+      title: 'Interactive Web Audio Piano',
+      type: 'component',
+      category: 'components',
+      path: 'components/piano-keyboard/',
+      url: '/components/piano-keyboard/index.html',
+      description: 'Pure Web Audio oscillator-based interactive piano keyboard, configurable octaves and multiple waveforms with adjustable sustain.',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['web-audio', 'oscillator', 'piano', 'interactive', 'keyboard', 'synthesizer']
     }
   ];
 
