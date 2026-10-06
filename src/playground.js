@@ -198,6 +198,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: 'Floating navigation bar with dynamic elastic sliding pill indicator that resizes to the active tab.',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['navigation', 'sliding-pill', 'elastic-indicator']
+    },
+    {
+      id: 'glitch-text',
+      title: 'CSS Glitch Text · 赛博故障文字',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/glitch-text/',
+      url: '/effects/glitch-text/index.html',
+      description: '交互式 CSS 文字故障效果，支持强度、速度调节，鼠标悬停触发与自动播放切换。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['glitch', 'text-effect', 'typography', 'css-animation', 'interactive']
     }
   ];
 
