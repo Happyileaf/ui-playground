@@ -1,0 +1,29 @@
+name: auto-merge
+
+on:
+  pull_request:
+    types: [opened, reopened, labeled]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  enable-auto-merge:
+    name: enable auto-merge
+    runs-on: ubuntu-latest
+    if: |
+      github.event.pull_request.base.ref == 'main' &&
+      startsWith(github.event.pull_request.head.ref, 'feat/autonomous-iteration/')
+    steps:
+      - name: Enable auto-merge when all required checks pass
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          if gh pr view "$PR_URL" --json labels --jq '.labels[].name' | grep -qx 'no-auto-merge'; then
+            echo "PR carries no-auto-merge label, skipping."
+            exit 0
+          fi
+
+          gh pr merge "$PR_URL" --auto --merge
+          echo "Auto-merge enabled; PR will merge once all required checks pass."
