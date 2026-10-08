@@ -504,5 +504,13 @@
   </div>
 
   <script src="./script.js"></script>
+  <script>
+    // Prevent browser from auto-focusing the first input on page load
+    window.addEventListener('load', () => {
+      if (document.activeElement) {
+        document.activeElement.blur();
+      }
+    });
+  </script>
 </body>
 </html>
