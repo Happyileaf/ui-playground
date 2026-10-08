@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perlin Wavy Lines - 佩林噪声波动曲线</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Perlin Wavy Lines</span>
+  </div>
+
+  <div class="control-dock hidden">
+    <button class="toggle-btn" id="toggleBtn">⚙️</button>
+    <div class="controls">
+      <div class="control-row">
+        <label for="lineCount">线条数量: <span id="lineCountValue">12</span></label>
+        <input type="range" id="lineCount" min="5" max="30" value="12">
+      </div>
+      <div class="control-row">
+        <label for="amplitude">振幅强度: <span id="amplitudeValue">80</span></label>
+        <input type="range" id="amplitude" min="20" max="200" value="80">
+      </div>
+      <div class="control-row">
+        <label for="frequency">波动频率: <span id="frequencyValue">0.05</span></label>
+        <input type="range" id="frequency" min="0.01" max="0.2" step="0.01" value="0.05">
+      </div>
+      <div class="control-row">
+        <label for="speed">动画速度: <span id="speedValue">0.003</span></label>
+        <input type="range" id="speed" min="0.001" max="0.01" step="0.001" value="0.003">
+      </div>
+      <div class="control-row">
+        <button id="resetBtn">重置参数</button>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="canvas"></canvas>
+  <script src="./script.js"></script>
+</body>
+</html>
