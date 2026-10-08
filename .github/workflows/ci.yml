@@ -8,20 +8,27 @@ on:
 
 jobs:
   ci:
-    name: build & lint
+    # 注意：不要为此 job 设置 name，check 上下文名必须与
+    # main 分支保护中的 required status check "ci" 严格一致，
+    # 否则 auto-merge 会因 check 永不满足而永久挂起
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: pnpm/action-setup@v4
         with:
-          bun-version: latest
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Build
-        run: npm run build
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: npm run lint
+        run: pnpm run lint
+
+      - name: Build
+        run: pnpm run build
