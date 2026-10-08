@@ -6,7 +6,7 @@
 
 ## 1. 自动化自主迭代飞轮 (Autonomous Growth Loop)
 
-Agent 在执行独立迭代任务时，应遵循完整的**“洞察 ➔ 策划 ➔ 落地 ➔ 注册 ➔ 自愈”**闭环流程：
+Agent 在执行独立迭代任务时，应遵循完整的**“洞察 ➔ 策划 ➔ 落地 ➔ 注册 ➔ 自愈 ➔ 提交 ➔ PR 自动合并”**闭环流程：
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -49,6 +49,14 @@ Agent 在执行独立迭代任务时，应遵循完整的**“洞察 ➔ 策划 
 │  阶段 6：自动提交与详尽 Commit (Autonomous Commit & Changelog)         │
 │  - 校验通过后自动执行 git 暂存与提交                                    │
 │  - 严格按照「结构化 Commit 模板」生成包含动机、技术、防御与自愈的提交日志 │
+└──────────────────────────────────────────────────┬─────────────────────┘
+                                                   │ 推送分支并创建 PR
+                                                   ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│  阶段 7：PR 化与全绿自动合并 (PR & Auto-Merge)                          │
+│  - 推送 feat/autonomous-iteration/* 分支并创建 PR                      │
+│  - auto-merge workflow 自动启用 GitHub 原生 auto-merge                 │
+│  - CI (build/lint) 全绿后由 GitHub 自动完成合并并删除远端分支           │
 └────────────────────────────────────────────────────────────────────────┘
 
 #### 1.1 约束检查与内部评审
@@ -247,3 +255,29 @@ feat(effects): 新增流体漩涡粒子特效并完成沙箱元数据注册
 - npm run lint: PASS
 - 质量验收矩阵：通过 6 项自检，ZIP 导出解压本地运行正常
 ```
+
+---
+
+## 7. PR 化与全绿自动合并 (PR & Auto-Merge)
+
+> 自 2026-10 起，迭代产物通过 GitHub PR 交付，并在 CI 全绿后由 GitHub 原生 auto-merge 自动完成合并，Agent 无需等待人工点击 Merge。
+
+### 7.1 机制组成（三层）
+1. **CI 门禁**（`.github/workflows/ci.yml`）：PR 与 main push 触发 `pnpm install --frozen-lockfile` + `lint` + `build`；main 分支保护要求 `ci` check 必须通过。
+   - ⚠️ 维护铁律：ci.yml 中的 job **不得设置自定义 `name`**，否则 check 上下文名将与分支保护要求的 `ci` 不一致，导致 auto-merge 永久挂起。
+2. **自动启用合并**（`.github/workflows/auto-merge.yml`）：`feat/autonomous-iteration/*` 分支的 PR 在打开/更新时自动执行 `gh pr merge --auto --merge`，CI 全绿后由 GitHub 自动合并并删除远端分支（`delete_branch_on_merge` 已开启）。
+3. **仓库设置**：`allow_auto_merge` 已开启；依赖安装统一使用 pnpm（`pnpm-lock.yaml` 为唯一锁文件，禁止重新引入其他锁文件）。
+
+### 7.2 熔断护栏（命中任一条即不自动合并，转人工审查）
+- PR 带有 `no-auto-merge` label；
+- PR 处于 draft 状态；
+- 分支名不以 `feat/autonomous-iteration/` 开头；
+- 改动触及受保护路径：`.github/`、`AGENTS.md`、`package.json`、锁文件（`pnpm-lock.yaml` 等）、`.env*`。
+
+### 7.3 人类角色的转变
+- 合并从“逐个点击 Merge”转变为“异常兜底”：处理 CI 红灯、合并冲突、被熔断的 PR 与方向性把关；
+- 高风险变更（依赖升级、CI/流程修改、规范文档修改）会**天然命中熔断护栏**而进入人工通道，这是有意设计。
+
+### 7.4 Agent 注意事项
+- 每次迭代的 commit 仍遵循第 6 节的结构化模板；
+- 创建 PR 后无需轮询合并状态：CI 绿即会自动合并；若 CI 红，按第 5 节自愈后推送修复提交即可（`synchronize` 重新触发检查，auto-merge 保持有效）。
