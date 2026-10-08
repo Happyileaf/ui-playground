@@ -5,6 +5,9 @@ on:
     types: [opened, reopened, ready_for_review, synchronize, labeled, unlabeled]
 
 permissions:
+  # enablePullRequestAutoMerge 变更要求 contents: write，
+  # 仅 pull-requests: write 会报 "Resource not accessible by integration"
+  contents: write
   pull-requests: write
 
 jobs:
