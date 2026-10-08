@@ -242,6 +242,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '纯 CSS mask 合成的光标追踪环形描边高光与内部柔光卡片组，具备 Lerp 阻尼跟随、离卡弹性回中与独立主题色。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['css-mask', 'spotlight-border', 'pointer-tracking', 'lerp-easing', 'micro-interaction', 'light-shadow']
+    },
+    {
+      id: 'swipe-card-deck',
+      title: 'Swipe Card Deck · 弹性拖拽卡牌堆',
+      type: 'component',
+      category: 'components',
+      path: 'components/swipe-card-deck/',
+      url: '/components/swipe-card-deck/index.html',
+      description: 'Tinder 式拖拽滑动卡牌堆，具备指针拖拽倾斜、LIKE/NOPE 印章、阈值飞出与弹性回弹、底层卡片前推、撤回重抽与 Web Audio 音效。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['pointer-events', 'drag-gesture', 'spring-physics', 'swipe-deck', 'throw-dismiss', 'web-audio', 'micro-interaction']
     }
   ];
 
