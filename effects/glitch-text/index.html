@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glitch Text · 故障文字</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Glitch Text</span>
+  </div>
+
+  <div class="container">
+    <h1 class="glitch-title" data-text="GLITCH TEXT">GLITCH TEXT</h1>
+    <p class="glitch-subtitle" data-text="INTERACTIVE TYPOGRAPHY">INTERACTIVE TYPOGRAPHY</p>
+    <div class="control-dock hidden">
+      <button class="control-toggle" title="Toggle Controls (H/Esc)">⚙️</button>
+      <div class="control-panel">
+        <label>
+          Intensity:
+          <input type="range" id="intensityRange" min="1" max="15" value="6">
+          <span id="intensityValue">6</span>
+        </label>
+        <label>
+          Speed:
+          <input type="range" id="speedRange" min="1" max="20" value="10">
+          <span id="speedValue">10</span>
+        </label>
+        <label>
+          Color Shift:
+          <input type="checkbox" id="colorShiftToggle" checked>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
