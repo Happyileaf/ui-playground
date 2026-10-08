@@ -231,6 +231,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: 'Interactive circular radial menu with smooth spinning selection to bring clicked item to top position.',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['circular-menu', 'radial-navigation', 'spinning-selection', 'interactive-menu']
+    },
+    {
+      id: 'spotlight-cards',
+      title: 'Spotlight Border Cards · 光标聚光描边卡片',
+      type: 'component',
+      category: 'components',
+      path: 'components/spotlight-cards/',
+      url: '/components/spotlight-cards/index.html',
+      description: '纯 CSS mask 合成的光标追踪环形描边高光与内部柔光卡片组，具备 Lerp 阻尼跟随、离卡弹性回中与独立主题色。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['css-mask', 'spotlight-border', 'pointer-tracking', 'lerp-easing', 'micro-interaction', 'light-shadow']
     }
   ];
 
