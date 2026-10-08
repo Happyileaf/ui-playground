@@ -1,0 +1,1302 @@
+/* ==========================================================================
+   HOLO CARD STUDIO · 3D 全息典藏卡工坊
+   Inspired by EverettFish/holo-card-studio (4-Layer Parallax & Foil Shaders)
+   Native Web Standards · 100% Zero-Framework · GPU Hardware Accelerated
+   ========================================================================== */
+
+:root {
+  /* Color Harmony - Obsidian Luxury Studio */
+  --bg-deep: #06080d;
+  --bg-surface: #0c111a;
+  --bg-card-frame: #111827;
+  --accent-gold: #fbbf24;
+  --accent-amber: #f59e0b;
+  --accent-cyan: #38bdf8;
+  --accent-emerald: #10b981;
+  --accent-purple: #c084fc;
+  --text-pure: #ffffff;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-bright: rgba(255, 255, 255, 0.22);
+
+  /* Card Geometry & Physical Proportions (TCG Standard 2.5:3.5) */
+  --card-width: 320px;
+  --card-height: 480px;
+  --card-radius: 18px;
+
+  /* Dynamic Shader & Optical Variables (Controlled via JS) */
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --light-x: 50%;
+  --light-y: 50%;
+  --glare-opacity: 0.8;
+  --depth-mult: 1;
+  --layer-spacing: 60px;
+  --rainbow-opacity: 0.85;
+  --sparkle-opacity: 0.9;
+  --specular-power: 0.85;
+
+  /* Material Foil Gradients (Default: Laser Rainbow) */
+  --foil-tint-1: #ff2a85;
+  --foil-tint-2: #ffbc00;
+  --foil-tint-3: #00f0ff;
+  --foil-tint-4: #7000ff;
+  --foil-blend-mode: color-dodge;
+  --foil-metal-accent: #fbbf24;
+}
+
+/* Material Variations */
+body[data-foil="starlight"] {
+  --foil-tint-1: #ffffff;
+  --foil-tint-2: #67e8f9;
+  --foil-tint-3: #0284c7;
+  --foil-tint-4: #38bdf8;
+  --foil-blend-mode: screen;
+  --foil-metal-accent: #67e8f9;
+}
+
+body[data-foil="gold"] {
+  --foil-tint-1: #fef08a;
+  --foil-tint-2: #fbbf24;
+  --foil-tint-3: #d97706;
+  --foil-tint-4: #92400e;
+  --foil-blend-mode: overlay;
+  --foil-metal-accent: #fbbf24;
+}
+
+body[data-foil="chrome"] {
+  --foil-tint-1: #f8fafc;
+  --foil-tint-2: #94a3b8;
+  --foil-tint-3: #38bdf8;
+  --foil-tint-4: #334155;
+  --foil-blend-mode: color-dodge;
+  --foil-metal-accent: #cbd5e1;
+}
+
+body[data-foil="aurora"] {
+  --foil-tint-1: #c084fc;
+  --foil-tint-2: #f43f5e;
+  --foil-tint-3: #2dd4bf;
+  --foil-tint-4: #818cf8;
+  --foil-blend-mode: hard-light;
+  --foil-metal-accent: #e879f9;
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-deep);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  color: var(--text-primary);
+  user-select: none;
+}
+
+/* ==========================================================================
+   AMBIENT LUXURY STAGE & LIGHTING
+   ========================================================================== */
+.ambient-stage {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.stage-spotlight {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(192, 132, 252, 0.06) 40%, transparent 75%);
+  filter: blur(40px);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stage-stars {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 70px 120px, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1.5px 1.5px at 150px 80px, rgba(251,191,36,0.5), transparent),
+    radial-gradient(1px 1px at 240px 180px, rgba(56,189,248,0.4), transparent),
+    radial-gradient(1px 1px at 320px 260px, rgba(255,255,255,0.3), transparent);
+  background-size: 380px 380px;
+  opacity: 0.5;
+}
+
+.stage-matrix-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+/* ==========================================================================
+   CARD VIEWPORT & 3D ASSEMBLY
+   ========================================================================== */
+.card-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  z-index: 1;
+  cursor: grab;
+}
+
+.card-viewport:active {
+  cursor: grabbing;
+}
+
+.card-assembly {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* 3D Exploded View Isometric Staging */
+.card-assembly.exploded {
+  transform: rotateX(24deg) rotateY(-36deg) scale(0.9);
+}
+
+.holo-card-object {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition: transform 0.12s ease-out;
+  border-radius: var(--card-radius);
+  box-shadow: 
+    0 25px 60px -12px rgba(0, 0, 0, 0.85),
+    0 0 40px rgba(56, 189, 248, 0.15);
+}
+
+/* Flipped State */
+.holo-card-object.flipped {
+  transform: rotateX(var(--tilt-x)) rotateY(calc(var(--tilt-y) + 180deg));
+}
+
+/* Card Faces */
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--card-radius);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  overflow: visible;
+}
+
+/* FRONT FACE */
+.card-front {
+  background: var(--bg-card-frame);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Outer Planar Bezel Frame */
+.card-frame-bezel {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--card-radius);
+  border: 3px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    inset 0 0 0 1px rgba(0, 0, 0, 0.9),
+    inset 0 0 16px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ==========================================================================
+   THE 4-LAYER MULTI-PLANE PARALLAX STACK
+   ========================================================================== */
+.card-chamber {
+  position: absolute;
+  inset: 8px;
+  border-radius: calc(var(--card-radius) - 6px);
+  transform-style: preserve-3d;
+  overflow: visible;
+}
+
+.card-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+/* Default Normal Parallax Stacking */
+.layer-1-bg {
+  transform: translateZ(calc(-30px * var(--depth-mult)));
+}
+
+.layer-2-subject {
+  transform: translateZ(calc(0px * var(--depth-mult)));
+}
+
+.layer-3-mandala {
+  transform: translateZ(calc(25px * var(--depth-mult)));
+}
+
+.layer-4-holo {
+  transform: translateZ(calc(50px * var(--depth-mult)));
+}
+
+/* Exploded 3D State Stacking */
+.card-assembly.exploded .layer-1-bg {
+  transform: translateZ(calc(-1 * var(--layer-spacing) * 1.3));
+}
+
+.card-assembly.exploded .layer-2-subject {
+  transform: translateZ(0px);
+}
+
+.card-assembly.exploded .layer-3-mandala {
+  transform: translateZ(calc(var(--layer-spacing) * 1.1));
+}
+
+.card-assembly.exploded .layer-4-holo {
+  transform: translateZ(calc(var(--layer-spacing) * 2.3));
+}
+
+/* Exploded Floating Guide Labels */
+.exploded-label {
+  position: absolute;
+  top: 10px;
+  right: calc(100% + 20px);
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--accent-cyan);
+  white-space: nowrap;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.exploded-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 18px;
+  height: 1px;
+  background: rgba(56, 189, 248, 0.4);
+  border-top: 1px dashed rgba(56, 189, 248, 0.6);
+}
+
+.card-assembly.exploded .exploded-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --------------------------------------------------------------------------
+   LAYER 1: BACKGROUND COSMOS PLATE
+   -------------------------------------------------------------------------- */
+.bg-art-wrapper {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  background: #090d16;
+}
+
+.card-img.bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.15);
+  filter: brightness(0.65) saturate(1.2) contrast(1.1);
+  transition: opacity 0.4s ease;
+}
+
+.bg-nebula-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 30%, rgba(6, 8, 13, 0.85) 90%);
+}
+
+.bg-coordinate-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* --------------------------------------------------------------------------
+   LAYER 2: CORE SUBJECT ARTWORK RELIEF
+   -------------------------------------------------------------------------- */
+.subject-art-wrapper {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-img.subject-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 48%, black 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 48%, black 60%, transparent 100%);
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.9));
+  transform: translateZ(10px) scale(1.02);
+  transition: opacity 0.4s ease;
+}
+
+.subject-rim-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--light-x) var(--light-y), rgba(255, 255, 255, 0.25) 0%, transparent 60%);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   LAYER 3: VECTOR MANDALA & ASTROLABE
+   -------------------------------------------------------------------------- */
+.mandala-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.astrolabe-svg {
+  width: 90%;
+  height: 90%;
+  transform: rotate(0deg);
+  transition: transform 0.1s linear;
+}
+
+.foil-stroke {
+  stroke: var(--foil-metal-accent);
+  fill: none;
+}
+
+.foil-fill {
+  fill: var(--foil-metal-accent);
+}
+
+.thin-stroke {
+  stroke-width: 0.8;
+  stroke-opacity: 0.55;
+}
+
+.medium-stroke {
+  stroke-width: 1.2;
+  stroke-opacity: 0.8;
+}
+
+.thick-stroke {
+  stroke-width: 1.8;
+  stroke-opacity: 0.9;
+}
+
+/* --------------------------------------------------------------------------
+   LAYER 4: HOLOGRAM OPTICAL FILM & HOT-STAMPED FOIL TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+.holo-optics-stage {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* 1. Laser Rainbow Diffraction Grating */
+.holo-diffraction-grating {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    calc(var(--tilt-x) * 3 + 125deg),
+    var(--foil-tint-1) 0%,
+    var(--foil-tint-2) 25%,
+    var(--foil-tint-3) 50%,
+    var(--foil-tint-4) 75%,
+    var(--foil-tint-1) 100%
+  );
+  background-size: 200% 200%;
+  background-position: var(--light-x) var(--light-y);
+  mix-blend-mode: var(--foil-blend-mode);
+  opacity: var(--rainbow-opacity);
+  transition: opacity 0.3s ease;
+}
+
+/* 2. Voronoi Starlight Diamond Sparkles (Canvas) */
+.holo-sparkles-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: screen;
+  opacity: var(--sparkle-opacity);
+  pointer-events: none;
+}
+
+/* 3. Dynamic Specular Light Glare Beam */
+.holo-specular-beam {
+  position: absolute;
+  inset: -100%;
+  background: linear-gradient(
+    calc(var(--tilt-y) * 2 + 135deg),
+    transparent 42%,
+    rgba(255, 255, 255, 0.6) 49%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0.6) 51%,
+    transparent 58%
+  );
+  transform: translate(calc(var(--light-x) - 50%), calc(var(--light-y) - 50%));
+  mix-blend-mode: overlay;
+  opacity: var(--specular-power);
+  pointer-events: none;
+}
+
+/* 4. Lenticular Prismatic Lines */
+.lenticular-lines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 0px,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+/* 5. Fresnel Edge Rim Flare */
+.fresnel-rim-flare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 
+    inset 0 0 18px rgba(255, 255, 255, 0.25),
+    inset 0 0 3px rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+/* Hot-Stamped Gilded Framing & Filigree */
+.hot-stamped-filigree {
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  border-radius: calc(var(--card-radius) - 10px);
+  pointer-events: none;
+}
+
+.crest-corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  fill: var(--foil-metal-accent);
+  opacity: 0.75;
+}
+
+.crest-corner.top-l { top: 0; left: 0; }
+.crest-corner.top-r { top: 0; right: 0; }
+.crest-corner.btm-l { bottom: 0; left: 0; }
+.crest-corner.btm-r { bottom: 0; right: 0; }
+
+/* Top Card Header */
+.card-top-banner {
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.edition-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+
+.tag-gem {
+  color: var(--foil-metal-accent);
+}
+
+.card-cost-gems {
+  display: flex;
+  gap: 3px;
+  color: var(--accent-cyan);
+  font-size: 10px;
+  filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.8));
+}
+
+/* Central Holographic Security Seal */
+.holo-security-seal {
+  position: absolute;
+  top: 48%;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--foil-metal-accent);
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.35), rgba(15, 23, 42, 0.9));
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+  backdrop-filter: blur(8px);
+}
+
+.seal-lens {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.seal-icon {
+  font-size: 11px;
+  color: var(--foil-metal-accent);
+}
+
+.seal-code {
+  font-size: 6px;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+}
+
+/* Bottom Embossed Typography & Metadata */
+.card-bottom-banner {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(9, 13, 22, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px 12px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+  z-index: 5;
+}
+
+.rarity-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 9px;
+  color: var(--foil-metal-accent);
+  letter-spacing: 0.1em;
+}
+
+.rarity-badge {
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
+}
+
+.hero-name-block {
+  text-align: center;
+}
+
+.hero-title-cn {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+}
+
+.hero-title-en {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.hero-divider-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.hl-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+}
+
+.hl-crest {
+  font-size: 8px;
+  color: var(--foil-metal-accent);
+}
+
+.card-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.meta-cell {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  padding: 4px;
+  text-align: center;
+}
+
+.meta-label {
+  display: block;
+  font-size: 7px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.meta-value {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  margin-top: 1px;
+}
+
+.gold-foil-text {
+  color: var(--foil-metal-accent);
+  text-shadow: 0 0 6px rgba(251, 191, 36, 0.4);
+}
+
+.card-edge-highlight {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--card-radius);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   BACK FACE: TRADING CARD SECURITY PLATE
+   ========================================================================== */
+.card-back {
+  background: #0d121c;
+  transform: rotateY(180deg);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 20px;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.85);
+}
+
+.back-bg-pattern {
+  position: absolute;
+  inset: 8px;
+  border-radius: calc(var(--card-radius) - 6px);
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 12px 12px;
+  pointer-events: none;
+}
+
+.back-holo-strip {
+  position: relative;
+  width: 100%;
+  height: 28px;
+  background: #111827;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.strip-diffraction {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 42, 133, 0.6),
+    rgba(251, 191, 36, 0.6),
+    rgba(56, 189, 248, 0.6),
+    rgba(192, 132, 252, 0.6)
+  );
+  mix-blend-mode: color-dodge;
+}
+
+.strip-text {
+  position: relative;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+}
+
+.back-medallion {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px 0;
+}
+
+.medallion-ring-inner {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-gold);
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, rgba(13, 18, 28, 0.95) 70%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 24px rgba(251, 191, 36, 0.3);
+}
+
+.medallion-svg {
+  width: 60px;
+  height: 60px;
+  color: var(--accent-gold);
+}
+
+.foil-star {
+  fill: var(--accent-gold);
+}
+
+.medallion-caption {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent-gold);
+  margin-top: 4px;
+}
+
+.back-security-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.microchip-gold {
+  width: 28px;
+  height: 22px;
+  background: linear-gradient(135deg, #fbbf24, #d97706);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  padding: 2px;
+}
+
+.chip-pin {
+  background: #78350f;
+  border-radius: 1px;
+}
+
+.security-serial {
+  display: flex;
+  flex-direction: column;
+  font-size: 7px;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+.serial-hash {
+  color: var(--accent-cyan);
+}
+
+.back-disclaimer-text {
+  font-size: 7px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* ==========================================================================
+   COLLECTIBLE GALLERY SWITCHER DOCK
+   ========================================================================== */
+.gallery-dock {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(15, 23, 42, 0.76);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 6px 14px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.btn-dock-arrow {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-dock-arrow:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.dock-thumbnails-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.thumb-card-item {
+  position: relative;
+  width: 36px;
+  height: 48px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #1e293b;
+}
+
+.thumb-card-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+  transition: filter 0.2s ease;
+}
+
+.thumb-card-item:hover img {
+  filter: brightness(1);
+}
+
+.thumb-card-item.active {
+  border-color: var(--accent-cyan);
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+}
+
+.thumb-card-item.active img {
+  filter: brightness(1);
+}
+
+/* ==========================================================================
+   MANDATORY HUD STANDARD (MAINTENANCE_GUIDELINES.md)
+   ========================================================================== */
+.hud-actions {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.hud-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  box-sizing: border-box;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 0 14px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+  line-height: 1;
+}
+
+.hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8; /* Fixed cyan dot */
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.6; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+.hud-title {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.btn-tool.btn-icon-only {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.2s ease;
+}
+
+.btn-tool.btn-icon-only:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   FLOATING PARAMETRIC CONTROLLER DOCK
+   ========================================================================== */
+.control-dock {
+  position: fixed;
+  top: 64px;
+  right: 24px;
+  width: 310px;
+  max-height: calc(100vh - 110px);
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.65);
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 16px 18px;
+  gap: 16px;
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.28s;
+  transform-origin: top right;
+}
+
+.control-dock.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.96);
+  pointer-events: none;
+}
+
+.dock-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dock-heading {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.dock-shortcut {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.control-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* 2-Column Quick Actions Grid */
+.dock-quick-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.btn-dock-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-dock-action:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-dock-action.active {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--accent-cyan);
+  color: #ffffff;
+}
+
+.tool-icon {
+  font-size: 14px;
+}
+
+/* Material Selector Grid */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.shape-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.shape-chip:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.shape-chip.active {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent-gold);
+  color: #fff;
+}
+
+.palette-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Range Sliders */
+.slider-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.slider-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+.slider-label {
+  color: var(--text-secondary);
+}
+
+.slider-val {
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(56, 189, 248, 0.8);
+  transition: transform 0.1s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Footer Reset */
+.dock-footer {
+  margin-top: 6px;
+}
+
+.btn-reset {
+  width: 100%;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-reset:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   BOTTOM INTERACTIVE HELPER HINT
+   ========================================================================== */
+.bottom-hint {
+  position: fixed;
+  bottom: 84px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 16px;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.hint-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+}
+
+.hint-msg {
+  font-size: 11px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  :root {
+    --card-width: 270px;
+    --card-height: 405px;
+  }
+  .control-dock {
+    width: 280px;
+    right: 12px;
+    top: 56px;
+  }
+  .bottom-hint {
+    display: none;
+  }
+}

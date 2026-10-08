@@ -13,6 +13,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
   // Master Case Catalog
   const cases = [
     {
+      id: 'holo-card-studio',
+      title: 'Holo Card Studio · 3D 全息典藏卡工坊',
+      type: 'component',
+      category: 'components',
+      path: 'components/holo-card-studio/',
+      url: '/components/holo-card-studio/index.html',
+      description: '基于 EverettFish/holo-card-studio 的 4 层视差纵深架构、动态激光彩虹衍射光栅、Voronoi 星芒闪钻粒子与 3D 分解图层鉴赏工坊。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['holo-studio', '4-layer-depth', 'exploded-view', 'laser-rainbow', 'voronoi-starlight', 'foil-shader', '3d-flip', 'web-audio']
+    },
+    {
       id: 'embossed-foil-card',
       title: '3D Embossed Collectible Card · 3D 立体收藏卡',
       type: 'component',

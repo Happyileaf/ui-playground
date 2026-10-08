@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Holo Card Studio · 3D 全息典藏卡工坊</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Ambient Luxury Studio Stage -->
+  <div class="ambient-stage" id="ambientStage">
+    <div class="stage-spotlight" id="stageSpotlight"></div>
+    <div class="stage-stars"></div>
+    <div class="stage-matrix-grid"></div>
+  </div>
+
+  <!-- Main 3D Card Viewport -->
+  <main class="card-viewport" id="cardViewport">
+    <div class="card-assembly" id="cardAssembly">
+      
+      <!-- 3D Card Structure (Flips between Front and Back) -->
+      <div class="holo-card-object" id="holoCard">
+
+        <!-- ============================================================ -->
+        <!-- FRONT FACE: 4-LAYER MULTI-PLANE PARALLAX STACK              -->
+        <!-- ============================================================ -->
+        <div class="card-face card-front" id="cardFront">
+          
+          <!-- Outer Planar Bezel Frame -->
+          <div class="card-frame-bezel"></div>
+
+          <!-- INTERNAL 4-LAYER 3D EXPANDABLE CHAMBER -->
+          <div class="card-chamber" id="cardChamber">
+
+            <!-- LAYER 1 (Z: -30px / Exploded: -60px): Background Cosmos Plate -->
+            <div class="card-layer layer-1-bg" id="layer1" data-base-z="-30">
+              <div class="exploded-label">L1 · 深空背景层 (Cosmos Plate)</div>
+              <div class="bg-art-wrapper">
+                <img src="./assets/valkyrie.jpg" 
+                     alt="Background Plate Artwork" 
+                     class="card-img bg-img" 
+                     id="imgBg"
+                     referrerpolicy="no-referrer">
+                <div class="bg-nebula-vignette"></div>
+                <div class="bg-coordinate-grid"></div>
+              </div>
+            </div>
+
+            <!-- LAYER 2 (Z: 0px / Exploded: 0px): Core Subject Artwork Relief -->
+            <div class="card-layer layer-2-subject" id="layer2" data-base-z="0">
+              <div class="exploded-label">L2 · 主体雕版层 (Focal Subject)</div>
+              <div class="subject-art-wrapper" id="subjectWrapper">
+                <img src="./assets/valkyrie.jpg" 
+                     alt="Focal Character Artwork" 
+                     class="card-img subject-img" 
+                     id="imgSubject"
+                     referrerpolicy="no-referrer">
+                <!-- Dynamic Specular Rim Light -->
+                <div class="subject-rim-glow"></div>
+                <div class="subject-drop-shadow"></div>
+              </div>
+            </div>
+
+            <!-- LAYER 3 (Z: +25px / Exploded: +60px): Vector Mandala & Astrolabe -->
+            <div class="card-layer layer-3-mandala" id="layer3" data-base-z="25">
+              <div class="exploded-label">L3 · 矢量星轨层 (Vector Astrolabe)</div>
+              <div class="mandala-container">
+                <svg viewBox="0 0 400 400" class="astrolabe-svg" id="astrolabeSvg">
+                  <!-- Outer Dial with Ticks -->
+                  <circle cx="200" cy="200" r="185" class="foil-stroke thick-stroke" stroke-dasharray="2 4"/>
+                  <circle cx="200" cy="200" r="172" class="foil-stroke thin-stroke"/>
+                  <circle cx="200" cy="200" r="156" class="foil-stroke medium-stroke" stroke-dasharray="12 6 4 6"/>
+                  
+                  <!-- 16-Axis Chrono Starburst -->
+                  <g class="chrono-rays">
+                    <line x1="200" y1="20" x2="200" y2="380" class="foil-stroke thin-stroke"/>
+                    <line x1="20" y1="200" x2="380" y2="200" class="foil-stroke thin-stroke"/>
+                    <line x1="72" y1="72" x2="328" y2="328" class="foil-stroke thin-stroke" stroke-dasharray="6 6"/>
+                    <line x1="72" y1="328" x2="328" y2="72" class="foil-stroke thin-stroke" stroke-dasharray="6 6"/>
+                  </g>
+
+                  <!-- Sacred Geometry Hexagram & Diamond Insignia -->
+                  <polygon points="200,60 321,130 321,270 200,340 79,270 79,130" class="foil-stroke" stroke-width="1.2" fill="none"/>
+                  <polygon points="200,80 304,140 304,260 200,320 96,260 96,140" class="foil-stroke" stroke-width="0.8" fill="none" stroke-dasharray="4 4"/>
+                  <circle cx="200" cy="200" r="110" class="foil-stroke thin-stroke"/>
+                  <circle cx="200" cy="200" r="80" class="foil-stroke medium-stroke" stroke-dasharray="1 8"/>
+                  
+                  <!-- Floating Star Glyphs -->
+                  <g class="constellation-nodes">
+                    <circle cx="200" cy="60" r="4" class="foil-fill"/>
+                    <circle cx="321" cy="130" r="4" class="foil-fill"/>
+                    <circle cx="321" cy="270" r="4" class="foil-fill"/>
+                    <circle cx="200" cy="340" r="4" class="foil-fill"/>
+                    <circle cx="79" cy="270" r="4" class="foil-fill"/>
+                    <circle cx="79" cy="130" r="4" class="foil-fill"/>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <!-- LAYER 4 (Z: +50px / Exploded: +120px): Hologram Optical Film & Hot-Stamped Foil Typography -->
+            <div class="card-layer layer-4-holo" id="layer4" data-base-z="50">
+              <div class="exploded-label">L4 · 全息光栅与烫金 (Optical Film & Foil)</div>
+
+              <!-- Real-time Shaders & Optical Effects -->
+              <div class="holo-optics-stage">
+                <!-- 1. Laser Rainbow Diffraction Grating -->
+                <div class="holo-diffraction-grating" id="diffractionGrating"></div>
+
+                <!-- 2. Voronoi Starlight Diamond Sparkles (Canvas) -->
+                <canvas class="holo-sparkles-canvas" id="sparklesCanvas"></canvas>
+
+                <!-- 3. Dynamic Specular Light Glare Beam -->
+                <div class="holo-specular-beam" id="specularBeam"></div>
+
+                <!-- 4. Lenticular Prismatic Lines -->
+                <div class="lenticular-lines"></div>
+
+                <!-- 5. Dynamic Fresnel Edge Rim Flare -->
+                <div class="fresnel-rim-flare"></div>
+              </div>
+
+              <!-- Hot-Stamped 24K Gilded Border & Filigree Corners -->
+              <div class="hot-stamped-filigree">
+                <div class="crest-corner top-l">
+                  <svg viewBox="0 0 48 48"><path d="M2 2 L46 2 C32 6 16 16 12 36 L12 46 L2 46 Z"/></svg>
+                </div>
+                <div class="crest-corner top-r">
+                  <svg viewBox="0 0 48 48"><path d="M46 2 L2 2 C16 6 32 16 36 36 L36 46 L46 46 Z"/></svg>
+                </div>
+                <div class="crest-corner btm-l">
+                  <svg viewBox="0 0 48 48"><path d="M2 46 L46 46 C32 42 16 32 12 12 L12 2 L2 2 Z"/></svg>
+                </div>
+                <div class="crest-corner btm-r">
+                  <svg viewBox="0 0 48 48"><path d="M46 46 L2 46 C16 42 32 32 36 12 L36 2 L46 2 Z"/></svg>
+                </div>
+              </div>
+
+              <!-- Top Card Header -->
+              <header class="card-top-banner">
+                <div class="edition-tag">
+                  <span class="tag-gem">◈</span>
+                  <span class="tag-text" id="editionText">HOLO STUDIO · 1ST EDITION</span>
+                  <span class="tag-gem">◈</span>
+                </div>
+                <div class="card-cost-gems" id="costGems">
+                  <span class="gem-point">◆</span>
+                  <span class="gem-point">◆</span>
+                  <span class="gem-point">◆</span>
+                  <span class="gem-point">◆</span>
+                  <span class="gem-point">◆</span>
+                </div>
+              </header>
+
+              <!-- Central Holographic Verification Seal -->
+              <div class="holo-security-seal">
+                <div class="seal-lens">
+                  <span class="seal-icon">✦</span>
+                  <span class="seal-code" id="sealCode">LUMEN-99</span>
+                </div>
+              </div>
+
+              <!-- Bottom Embossed Typography & Metadata Block -->
+              <footer class="card-bottom-banner">
+                <!-- Rarity Crest -->
+                <div class="rarity-row">
+                  <span class="rarity-stars">★★★★★</span>
+                  <span class="rarity-badge" id="cardRarityBadge">SSR · DIVINE PRISMATIC</span>
+                  <span class="rarity-stars">★★★★★</span>
+                </div>
+
+                <!-- Hero Title -->
+                <div class="hero-name-block">
+                  <h1 class="hero-title-cn" id="cardTitleCn">炽光机能女武神</h1>
+                  <h2 class="hero-title-en" id="cardTitleEn">CYBERNETIC VALKYRIE · ASTRA</h2>
+                  <div class="hero-divider-line">
+                    <span class="hl-line"></span>
+                    <span class="hl-crest">❖</span>
+                    <span class="hl-line"></span>
+                  </div>
+                </div>
+
+                <!-- Stats & Collector Attributes -->
+                <div class="card-meta-grid">
+                  <div class="meta-cell">
+                    <span class="meta-label">ATTACK</span>
+                    <span class="meta-value gold-foil-text" id="statAtk">9850</span>
+                  </div>
+                  <div class="meta-cell">
+                    <span class="meta-label">DEFENSE</span>
+                    <span class="meta-value gold-foil-text" id="statDef">9400</span>
+                  </div>
+                  <div class="meta-cell">
+                    <span class="meta-label">SERIAL</span>
+                    <span class="meta-value gold-foil-text" id="cardSerial">#01 / 03</span>
+                  </div>
+                  <div class="meta-cell">
+                    <span class="meta-label">GRADE</span>
+                    <span class="meta-value gold-foil-text">GEM MINT 10</span>
+                  </div>
+                </div>
+              </footer>
+
+            </div>
+            <!-- End Layer 4 -->
+
+          </div>
+          <!-- End .card-chamber -->
+
+          <!-- Micro-Prismatic Card Edge Chamfer Highlight -->
+          <div class="card-edge-highlight"></div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- BACK FACE: AUTHENTIC TRADING CARD BACK SECURITY PLATE       -->
+        <!-- ============================================================ -->
+        <div class="card-face card-back" id="cardBack">
+          <div class="back-bg-pattern"></div>
+          
+          <!-- Back Holographic Foil Ribbon -->
+          <div class="back-holo-strip">
+            <div class="strip-diffraction"></div>
+            <span class="strip-text">AUTHENTIC HOLO CARD STUDIO · VERIFIED SPECULAR DISPERSION</span>
+          </div>
+
+          <!-- Back Ornate Central Medallion -->
+          <div class="back-medallion">
+            <div class="medallion-ring-outer"></div>
+            <div class="medallion-ring-inner">
+              <svg viewBox="0 0 120 120" class="medallion-svg">
+                <polygon points="60,10 72,48 110,60 72,72 60,110 48,72 10,60 48,48" class="foil-star"/>
+                <circle cx="60" cy="60" r="18" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="60" cy="60" r="6" fill="currentColor"/>
+              </svg>
+              <div class="medallion-caption">HOLO CARD STUDIO</div>
+            </div>
+          </div>
+
+          <!-- Back Security Magnetic Bar & Authentication Chip -->
+          <div class="back-security-bar">
+            <div class="magnetic-tracks"></div>
+            <div class="microchip-gold">
+              <span class="chip-pin"></span>
+              <span class="chip-pin"></span>
+              <span class="chip-pin"></span>
+              <span class="chip-pin"></span>
+            </div>
+            <div class="security-serial">
+              <span>HCS-VERIFIED-CRYPTO-CHIP-2026</span>
+              <span class="serial-hash">SHA256: 9e8a71b2d304f5e6</span>
+            </div>
+          </div>
+
+          <div class="back-disclaimer-text">
+            All rights reserved. Designed with native 4-layer parallax depth, angle-sensitive laser diffraction grating, Voronoi starlight diamond sparkle particles, and 24K hot-stamped gilded foil shaders.
+          </div>
+        </div>
+
+      </div>
+      <!-- End .holo-card-object -->
+
+    </div>
+    <!-- End .card-assembly -->
+
+    <!-- ============================================================ -->
+    <!-- COLLECTIBLE CARD CAROUSEL SELECTOR DOCK                      -->
+    <!-- ============================================================ -->
+    <nav class="gallery-dock" id="galleryDock" aria-label="收藏卡切换导航">
+      <button type="button" class="btn-dock-arrow" id="btnPrevCard" title="上一张卡片 (← 方向键)" aria-label="上一张卡片">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="dock-thumbnails-row" id="thumbnailsRow">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <button type="button" class="btn-dock-arrow" id="btnNextCard" title="下一张卡片 (→ 方向键)" aria-label="下一张卡片">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </nav>
+  </main>
+
+  <!-- ============================================================ -->
+  <!-- TOP FLOATING HUD ACTIONS (Mandatory Title & Tuning Tool)     -->
+  <!-- ============================================================ -->
+  <div class="hud-actions">
+    <div class="hud-brand" id="hudBrand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">全息卡片工坊 · HOLO CARD STUDIO</span>
+    </div>
+    <button type="button" class="btn-tool btn-icon-only" id="btnToggleHud" title="隐藏/显示控制台 (H)" aria-label="切换控制面板">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- FLOATING PARAMETRIC CONTROLLER DOCK (Default Hidden)         -->
+  <!-- ============================================================ -->
+  <aside class="control-dock hidden" id="controlDock">
+    <div class="dock-header">
+      <span class="dock-heading">全息工坊调谐器 (Holo Studio)</span>
+      <span class="dock-shortcut">按 H 收起</span>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="control-section">
+      <label class="control-label">工坊鉴赏模式</label>
+      <div class="dock-quick-actions">
+        <!-- 4-Layer Exploded 3D View Toggle -->
+        <button type="button" class="btn-dock-action" id="btnExplodedView" title="分离展开 4 大视差图层">
+          <span class="tool-icon" id="explodedIcon">📑</span>
+          <span class="tool-label" id="explodedLabel">图层分解: 关</span>
+        </button>
+        <!-- 3D Card Flip -->
+        <button type="button" class="btn-dock-action" id="btnFlipCard" title="3D 翻转卡片至背面">
+          <span class="tool-icon">🔄</span>
+          <span class="tool-label">3D 翻转</span>
+        </button>
+        <!-- Auto Tilt / Orbit -->
+        <button type="button" class="btn-dock-action" id="btnAutoOrbit" title="开启动态全息折射漫游">
+          <span class="tool-icon" id="orbitIcon">✨</span>
+          <span class="tool-label" id="orbitLabel">光影漫游: 关</span>
+        </button>
+        <!-- Web Audio Tactile Sound Toggle -->
+        <button type="button" class="btn-dock-action" id="btnSoundToggle" title="开启全息触觉与折射音效">
+          <span class="tool-icon" id="soundIcon">🔈</span>
+          <span class="tool-label" id="soundLabel">触觉音效: 关</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Holographic Material Finishes (Shader Presets) -->
+    <div class="control-section">
+      <label class="control-label">全息箔片材质 (Holo Foil Shader)</label>
+      <div class="palette-grid">
+        <button type="button" class="shape-chip active" data-foil="rainbow">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #f43f5e, #fbbf24, #34d399, #60a5fa, #c084fc);"></span>
+          <span>彩虹衍射箔</span>
+        </button>
+        <button type="button" class="shape-chip" data-foil="starlight">
+          <span class="palette-swatch" style="background: radial-gradient(circle, #ffffff, #67e8f9, #0284c7);"></span>
+          <span>星芒璀璨闪钻</span>
+        </button>
+        <button type="button" class="shape-chip" data-foil="gold">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #fbbf24, #d97706, #78350f);"></span>
+          <span>24K 帝皇烫金</span>
+        </button>
+        <button type="button" class="shape-chip" data-foil="chrome">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #e2e8f0, #06b6d4, #475569);"></span>
+          <span>赛博冷光镀铬</span>
+        </button>
+        <button type="button" class="shape-chip" data-foil="aurora">
+          <span class="palette-swatch" style="background: linear-gradient(135deg, #a855f7, #ec4899, #06b6d4);"></span>
+          <span>极光幽影棱镜</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Optical Parameters Sliders -->
+    <div class="control-section">
+      <!-- Parallax Depth Slider -->
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">3D 视差纵深 (Parallax Depth)</span>
+          <span class="slider-val" id="depthVal">100%</span>
+        </div>
+        <input type="range" id="depthRange" min="20" max="180" step="5" value="100">
+      </div>
+
+      <!-- Sparkle Diamonds Density -->
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">星芒闪钻密度 (Diamond Sparkles)</span>
+          <span class="slider-val" id="sparkleVal">90%</span>
+        </div>
+        <input type="range" id="sparkleRange" min="10" max="100" step="5" value="90">
+      </div>
+
+      <!-- Laser Rainbow Diffraction Power -->
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">激光彩虹彩度 (Laser Rainbow Sat)</span>
+          <span class="slider-val" id="rainbowVal">85%</span>
+        </div>
+        <input type="range" id="rainbowRange" min="10" max="100" step="5" value="85">
+      </div>
+
+      <!-- Exploded View Distance -->
+      <div class="slider-row">
+        <div class="slider-info">
+          <span class="slider-label">图层分解间距 (Exploded Spacing)</span>
+          <span class="slider-val" id="spacingVal">60px</span>
+        </div>
+        <input type="range" id="spacingRange" min="30" max="100" step="5" value="60">
+      </div>
+    </div>
+
+    <!-- Footer Reset Button -->
+    <div class="dock-footer">
+      <button type="button" class="btn-reset" id="btnResetParams">重置参数与初始视角</button>
+    </div>
+  </aside>
+
+  <!-- ============================================================ -->
+  <!-- BOTTOM INTERACTIVE HELPER HINT                               -->
+  <!-- ============================================================ -->
+  <div class="bottom-hint" id="bottomHint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">移动光标感知 4 层视差与全息光栅 · 点击卡片 3D 翻转 · 按 H 唤出工坊控制台</span>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
