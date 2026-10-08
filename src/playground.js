@@ -222,17 +222,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['navigation', 'sliding-pill', 'elastic-indicator']
     },
     {
-      id: 'spinning-menu',
-      title: 'Circular Spinning Menu',
-      type: 'component',
-      category: 'components',
-      path: 'components/spinning-menu/',
-      url: '/components/spinning-menu/index.html',
-      description: 'Interactive circular radial menu with smooth spinning selection to bring clicked item to top position.',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['circular-menu', 'radial-navigation', 'spinning-selection', 'interactive-menu']
-    },
-    {
       id: 'spotlight-cards',
       title: 'Spotlight Border Cards · 光标聚光描边卡片',
       type: 'component',
