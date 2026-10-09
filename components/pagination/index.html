@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagination · 智能省略分页</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Pagination · 智能分页</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · NAVIGATION</span>
+      <h1>会智能省略的分页器</h1>
+      <p>页码较多时自动折叠中段为省略号，并始终保留首末页与当前页附近的页码。支持跳页、每页条数切换，完整键盘可操作。</p>
+    </header>
+
+    <section class="data-panel">
+      <div class="panel-toolbar">
+        <div class="result-info">
+          <span id="rangeStart">1</span> – <span id="rangeEnd">10</span> / 共 <strong id="totalItems">128</strong> 条
+        </div>
+        <label class="size-select">
+          每页
+          <select id="pageSize">
+            <option value="8">8</option>
+            <option value="10" selected>10</option>
+            <option value="16">16</option>
+            <option value="24">24</option>
+          </select>
+          条
+        </label>
+      </div>
+
+      <ul class="data-list" id="dataList"></ul>
+
+      <nav class="pagination" aria-label="分页导航">
+        <button type="button" class="page-btn edge-btn" id="firstBtn" aria-label="第一页">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
+        </button>
+        <button type="button" class="page-btn edge-btn" id="prevBtn" aria-label="上一页">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+
+        <div class="page-numbers" id="pageNumbers"></div>
+
+        <button type="button" class="page-btn edge-btn" id="nextBtn" aria-label="下一页">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+        <button type="button" class="page-btn edge-btn" id="lastBtn" aria-label="最后一页">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
+        </button>
+      </nav>
+
+      <div class="jump-row">
+        跳至
+        <input type="number" id="jumpInput" min="1" value="1">
+        页
+        <button type="button" class="jump-btn" id="jumpBtn">确定</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">← → 切页 · Home / End 首末页 · 点击页码跳转</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

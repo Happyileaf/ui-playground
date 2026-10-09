@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide Drawer · 弹性四向抽屉</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Slide Drawer · 四向抽屉</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · ACCESSIBLE PANEL</span>
+      <h1>从四个方向滑出的抽屉</h1>
+      <p>抽屉打开时自动捕获焦点并在面板内循环，关闭后归还触发元素；Esc 可关闭，背景滚动会被锁定。选择方向后点击按钮体验。</p>
+    </header>
+
+    <section class="launch-panel">
+      <div class="dir-grid">
+        <button type="button" class="dir-card" data-side="left">
+          <span class="dir-icon">←</span>
+          <span class="dir-label">左侧滑出</span>
+          <span class="dir-sub">Left</span>
+        </button>
+        <button type="button" class="dir-card" data-side="right">
+          <span class="dir-icon">→</span>
+          <span class="dir-label">右侧滑出</span>
+          <span class="dir-sub">Right</span>
+        </button>
+        <button type="button" class="dir-card" data-side="top">
+          <span class="dir-icon">↑</span>
+          <span class="dir-label">顶部滑出</span>
+          <span class="dir-sub">Top</span>
+        </button>
+        <button type="button" class="dir-card" data-side="bottom">
+          <span class="dir-icon">↓</span>
+          <span class="dir-label">底部滑出</span>
+          <span class="dir-sub">Bottom</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <div class="drawer-overlay" id="drawerOverlay" hidden>
+    <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" tabindex="-1">
+      <header class="drawer-head">
+        <div>
+          <span class="drawer-eyebrow" id="drawerSideLabel">PANEL</span>
+          <h2 class="drawer-title" id="drawerTitle">抽屉面板</h2>
+        </div>
+        <button type="button" class="drawer-close" id="drawerClose" aria-label="关闭抽屉">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </header>
+
+      <div class="drawer-body">
+        <p class="drawer-text">这是一个完全原生实现的无障碍抽屉。焦点被限制在面板内部循环移动，点击遮罩或按下 Esc 即可关闭。</p>
+
+        <div class="field">
+          <label for="drawerName">收件人名称</label>
+          <input type="text" id="drawerName" placeholder="请输入名称">
+        </div>
+        <div class="field">
+          <label for="drawerMsg">留言内容</label>
+          <textarea id="drawerMsg" rows="3" placeholder="写点什么..."></textarea>
+        </div>
+
+        <div class="switch-row">
+          <span>订阅更新通知</span>
+          <label class="switch">
+            <input type="checkbox" id="drawerSwitch">
+            <span class="slider-track"></span>
+          </label>
+        </div>
+      </div>
+
+      <footer class="drawer-foot">
+        <button type="button" class="btn-ghost" id="drawerCancel">取消</button>
+        <button type="button" class="btn-primary" id="drawerConfirm">确认保存</button>
+      </footer>
+    </aside>
+  </div>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">Esc 关闭 · Tab 焦点循环 · 点击遮罩关闭</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
