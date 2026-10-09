@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Dropzone · 拖拽上传区</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">File Dropzone · 拖拽上传</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · UPLOAD CONTROL</span>
+      <h1>把文件拖进来就好</h1>
+      <p>支持拖拽高亮、多文件、类型与大小校验、图片缩略图预览、模拟进度上传与失败重试。纯前端演示，不会真正上传到服务器。</p>
+    </header>
+
+    <section class="drop-card">
+      <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="选择或拖拽文件到此处上传">
+        <input type="file" id="fileInput" multiple hidden
+          accept="image/*,.pdf,.doc,.docx,.zip,application/zip">
+        <div class="drop-inner">
+          <span class="drop-cloud" id="dropIcon">
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+          </span>
+          <p class="drop-title">拖拽文件到此处，或 <span class="drop-browse">点击浏览</span></p>
+          <p class="drop-meta">支持图片、PDF、Word、ZIP，单个文件不超过 10 MB</p>
+        </div>
+      </div>
+
+      <div class="drop-toolbar">
+        <span class="toolbar-count" id="fileCount">尚未添加文件</span>
+        <button type="button" class="text-btn" id="clearAllBtn" hidden>全部清除</button>
+      </div>
+
+      <ul class="file-list" id="fileList"></ul>
+    </section>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">拖入文件即添加 · 点击 × 移除 · 失败项可点击重试</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -528,6 +528,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '弹出式日历选择器，过去日期自动禁用，今天与选中态清晰区分；完整键盘网格支持方向键移动、翻月翻年、Home/End 跳首尾、Enter 确认，外部点击关闭并归还焦点。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['date-picker', 'calendar', 'keyboard-nav', 'disabled-dates', 'focus-management', 'form-control']
+    },
+    {
+      id: 'combo-box',
+      title: 'Searchable Combo Box · 可搜索下拉选择框',
+      type: 'component',
+      category: 'components',
+      path: 'components/combo-box/',
+      url: '/components/combo-box/index.html',
+      description: '长列表即时过滤的可搜索选择框，分组标题与命中高亮、空结果提示、清除与快速定位，完整 ARIA combobox 语义与 ↑↓ Enter Esc 键盘操作。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['combo-box', 'searchable-select', 'filter', 'autocomplete', 'keyboard-nav', 'aria', 'form-control']
+    },
+    {
+      id: 'mega-menu',
+      title: 'Mega Menu · 全宽下拉导航菜单',
+      type: 'component',
+      category: 'components',
+      path: 'components/mega-menu/',
+      url: '/components/mega-menu/index.html',
+      description: '悬停意图延迟展开的全宽多列导航菜单，图标化链接、特色推荐侧栏与平滑位移过渡，支持方向键漫游、Esc 收起，窄屏自动折叠。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['mega-menu', 'full-width-nav', 'hover-intent', 'dropdown', 'keyboard-nav', 'site-header', 'accessibility']
+    },
+    {
+      id: 'file-dropzone',
+      title: 'File Dropzone · 拖拽上传区',
+      type: 'component',
+      category: 'components',
+      path: 'components/file-dropzone/',
+      url: '/components/file-dropzone/index.html',
+      description: '拖拽高亮的多文件上传区，类型与大小校验、图片缩略图预览、模拟进度上传、失败重试与一键清除，全程纯前端演示不上传服务器。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['file-dropzone', 'drag-and-drop', 'file-upload', 'thumbnail', 'progress', 'validation', 'form-control']
+    },
+    {
+      id: 'copy-button',
+      title: 'Copy Button · 一键复制按钮组',
+      type: 'component',
+      category: 'components',
+      path: 'components/copy-button/',
+      url: '/components/copy-button/index.html',
+      description: '覆盖命令、密钥与链接场景的一键复制按钮组，Clipboard API 配 execCommand 回退，图标 morph 对勾与成功吐司反馈，密钥默认模糊悬停揭示。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['copy-button', 'clipboard-api', 'copy-to-clipboard', 'icon-morph', 'toast', 'micro-interaction']
+    },
+    {
+      id: 'split-pane',
+      title: 'Split Pane · 可调节分栏面板',
+      type: 'component',
+      category: 'components',
+      path: 'components/split-pane/',
+      url: '/components/split-pane/index.html',
+      description: '嵌套的水平与垂直可调节分栏，Pointer Capture 拖拽分隔条、最小尺寸保护、双击重置、键盘 ←→ 微调与实时百分比显示，含文件树编辑器终端拟真场景。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['split-pane', 'resizable', 'pointer-capture', 'nested-layout', 'keyboard-nav', 'developer-tools']
     }
   ];
 
