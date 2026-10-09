@@ -1,0 +1,302 @@
+:root {
+  --accent: #22d3ee;
+  --accent-strong: #06b6d4;
+  --ink: #e2e8f0;
+  --ink-dim: #94a3b8;
+  --bg: #07121a;
+  --success: #34d399;
+  --error: #fb7185;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(900px 560px at 84% -14%, rgba(34, 211, 238, 0.14), transparent 60%),
+    radial-gradient(720px 520px at -6% 108%, rgba(14, 165, 233, 0.1), transparent 60%),
+    var(--bg);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 80px 16px;
+}
+
+.hud-actions {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 60;
+}
+
+.hud-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  height: 32px;
+  padding: 0 15px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.66);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.hud-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.4);
+  animation: hudPulse 2.2s ease-out infinite;
+}
+
+@keyframes hudPulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.4); }
+  70% { box-shadow: 0 0 0 7px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.hud-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #cbd5e1;
+  white-space: nowrap;
+}
+
+.page-container {
+  width: min(460px, 100%);
+}
+
+.otp-card {
+  border-radius: 24px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(16, 28, 38, 0.72);
+  box-shadow: 0 36px 90px rgba(0, 0, 0, 0.5);
+  padding: 40px 34px 32px;
+  text-align: center;
+  backdrop-filter: blur(14px);
+}
+
+.otp-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  color: var(--accent);
+  background: rgba(34, 211, 238, 0.12);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+}
+
+.otp-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.otp-card h1 {
+  font-size: 25px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.otp-card p {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--ink-dim);
+  margin-bottom: 28px;
+}
+
+.otp-card p strong {
+  color: #cbd5e1;
+}
+
+.otp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.otp-inputs {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.otp-box {
+  width: 100%;
+  aspect-ratio: 0.86;
+  min-width: 0;
+  border-radius: 13px;
+  border: 1.5px solid rgba(148, 163, 184, 0.24);
+  background: rgba(7, 18, 26, 0.6);
+  color: #f0f9ff;
+  font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+  font-size: clamp(20px, 6vw, 28px);
+  font-weight: 700;
+  text-align: center;
+  caret-color: transparent;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.otp-box:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(34, 211, 238, 0.07);
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.16);
+  transform: translateY(-2px);
+}
+
+.otp-box.is-filled {
+  border-color: rgba(34, 211, 238, 0.45);
+  background: rgba(34, 211, 238, 0.05);
+}
+
+.otp-box.shake {
+  animation: shake 0.4s ease;
+  border-color: var(--error);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.otp-card.is-success .otp-box {
+  border-color: var(--success);
+  background: rgba(52, 211, 153, 0.08);
+  animation: pop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.otp-status {
+  min-height: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-idle { color: var(--ink-dim); }
+.status-error { color: var(--error); }
+.status-success { color: var(--success); }
+
+.verify-btn {
+  height: 50px;
+  border-radius: 13px;
+  border: 0;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #04222b;
+  background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+  box-shadow: 0 12px 28px rgba(6, 182, 212, 0.32);
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.verify-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.verify-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.otp-foot {
+  margin-top: 22px;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+.resend-btn {
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.resend-btn:disabled {
+  color: var(--ink-dim);
+  cursor: default;
+}
+
+.bottom-hint {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  height: 32px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.66);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.hint-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.hint-msg {
+  font-size: 12px;
+  color: var(--ink-dim);
+}
+
+@media (max-width: 400px) {
+  .otp-card { padding: 32px 20px 26px; }
+  .otp-inputs { gap: 6px; }
+  .bottom-hint { max-width: 92vw; overflow: hidden; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .otp-box,
+  .verify-btn {
+    transition: none;
+    animation: none;
+  }
+}

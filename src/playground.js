@@ -418,6 +418,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '成功/信息/警告/错误四类型吐司通知系统，右上角堆叠滑入、倒计时进度条、悬停暂停计时、内联操作按钮即时处理，支持 Esc 关闭与一键清空。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['toast', 'notifications', 'countdown-progress', 'pause-on-hover', 'action-buttons', 'accessibility']
+    },
+    {
+      id: 'carousel',
+      title: 'Swipe Carousel · 弹性视差轮播',
+      type: 'component',
+      category: 'components',
+      path: 'components/carousel/',
+      url: '/components/carousel/index.html',
+      description: 'Pointer Events 拖拽切换的轮播组件，跟手位移配合边缘阻尼、相邻幻灯片多层视差、自动播放悬停暂停，并支持指示点、箭头按钮与键盘左右方向键控制。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['carousel', 'drag-swipe', 'parallax', 'autoplay', 'keyboard-nav', 'micro-interaction']
+    },
+    {
+      id: 'drawer',
+      title: 'Slide Drawer · 弹性四向抽屉',
+      type: 'component',
+      category: 'components',
+      path: 'components/drawer/',
+      url: '/components/drawer/index.html',
+      description: '支持上下左右四个方向滑出的抽屉面板，带高斯模糊遮罩、Tab 焦点陷阱循环、Esc 关闭、背景滚动锁定，关闭后焦点自动归还触发按钮。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['drawer', 'slide-panel', 'focus-trap', 'scroll-lock', 'four-direction', 'accessibility']
+    },
+    {
+      id: 'pagination',
+      title: 'Pagination · 智能省略分页',
+      type: 'component',
+      category: 'components',
+      path: 'components/pagination/',
+      url: '/components/pagination/index.html',
+      description: '大数据集分页导航，页码过多时智能插入首尾与省略号，支持每页条数切换、跳转指定页、边界按钮禁用态，以及方向键与 Home/End 键盘翻页。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['pagination', 'smart-ellipsis', 'jump-to-page', 'page-size', 'keyboard-nav', 'navigation']
+    },
+    {
+      id: 'otp-input',
+      title: 'OTP Input · 分段验证码输入',
+      type: 'component',
+      category: 'components',
+      path: 'components/otp-input/',
+      url: '/components/otp-input/index.html',
+      description: '六位分段验证码输入框，输入自动前进、退格回跳清除、整段粘贴自动拆分填充、方向键移动光标，校验通过呈现成功态，失败抖动提示并支持倒计时重发。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['otp-input', 'one-time-code', 'auto-advance', 'paste-fill', 'form-control', 'verification']
+    },
+    {
+      id: 'skeleton-shimmer',
+      title: 'Skeleton Shimmer · 扫光骨架屏',
+      type: 'component',
+      category: 'components',
+      path: 'components/skeleton-shimmer/',
+      url: '/components/skeleton-shimmer/index.html',
+      description: '与真实布局结构一致的内容占位块配合循环扫光动画，模拟异步请求加载，加载完成后真实内容淡入切换且页面零跳动，可一键关闭扫光动画。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['skeleton', 'shimmer', 'loading-state', 'placeholder', 'fade-transition', 'micro-interaction']
     }
   ];
 

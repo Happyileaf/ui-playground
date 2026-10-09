@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skeleton Shimmer · 扫光骨架屏</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Skeleton · 扫光骨架屏</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · LOADING STATE</span>
+      <h1>内容加载时的骨架屏</h1>
+      <p>用与真实布局结构一致的占位块配合循环扫光，降低加载等待焦虑。点击按钮模拟请求，观察骨架屏与真实内容间的平滑过渡。</p>
+    </header>
+
+    <div class="toolbar">
+      <button type="button" class="reload-btn" id="reloadBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+        重新模拟加载
+      </button>
+      <label class="mode-switch">
+        <input type="checkbox" id="waveToggle" checked>
+        <span class="mode-label">扫光动画</span>
+      </label>
+    </div>
+
+    <section class="feed" id="feed">
+      <article class="feed-card" data-index="0">
+        <div class="skeleton sk-avatar"></div>
+        <div class="card-main">
+          <div class="skeleton sk-line w-60"></div>
+          <div class="skeleton sk-line w-90"></div>
+          <div class="skeleton sk-line w-40"></div>
+        </div>
+      </article>
+
+      <article class="feed-card" data-index="1">
+        <div class="skeleton sk-cover"></div>
+        <div class="card-body">
+          <div class="skeleton sk-line w-70"></div>
+          <div class="skeleton sk-line w-100"></div>
+          <div class="skeleton sk-line w-100"></div>
+          <div class="skeleton sk-line w-30"></div>
+        </div>
+      </article>
+
+      <article class="feed-card" data-index="2">
+        <div class="skeleton sk-avatar"></div>
+        <div class="card-main">
+          <div class="skeleton sk-line w-50"></div>
+          <div class="skeleton sk-line w-80"></div>
+          <div class="skeleton sk-line w-60"></div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">骨架结构与真实内容一致 · 加载完成淡入切换</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Input · 分段验证码输入</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">OTP Input · 验证码</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <div class="otp-card" id="otpCard">
+      <div class="otp-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+      </div>
+      <span class="eyebrow">SECURE VERIFICATION</span>
+      <h1>输入 6 位验证码</h1>
+      <p>验证码已发送至 <strong>+86 138****2026</strong>，请在下方输入。支持整段粘贴自动填充。</p>
+
+      <form class="otp-form" id="otpForm" autocomplete="one-time-code">
+        <div class="otp-inputs" id="otpInputs" role="group" aria-label="6 位验证码输入"></div>
+
+        <div class="otp-status" id="otpStatus" aria-live="polite">
+          <span class="status-idle">等待输入…</span>
+        </div>
+
+        <button type="button" class="verify-btn" id="verifyBtn" disabled>验证并继续</button>
+      </form>
+
+      <div class="otp-foot">
+        <span id="resendText">没有收到验证码？<button type="button" class="resend-btn" id="resendBtn">重新发送</button></span>
+      </div>
+    </div>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">数字自动跳格 · 退格回跳 · Ctrl+V 整段粘贴</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

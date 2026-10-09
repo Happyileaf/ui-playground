@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swipe Carousel · 弹性视差轮播</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Swipe Carousel · 视差轮播</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · CONTENT SHOWCASE</span>
+      <h1>拖拽滑动的视差轮播</h1>
+      <p>支持指针/触控拖拽跟手、阈值切换与弹性回弹，文字与装饰层以不同速率视差移动。悬停暂停自动播放，圆点、进度条与方向键均可控制。</p>
+    </header>
+
+    <section class="carousel" id="carousel" aria-roledescription="carousel" aria-label="精选内容轮播">
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="carouselTrack"></div>
+
+        <button type="button" class="nav-arrow nav-prev" id="prevBtn" aria-label="上一张">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button type="button" class="nav-arrow nav-next" id="nextBtn" aria-label="下一张">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+
+        <div class="carousel-progress"><span id="progressBar"></span></div>
+      </div>
+
+      <div class="carousel-footer">
+        <div class="dots" id="dots" role="tablist" aria-label="选择幻灯片"></div>
+        <div class="counter"><span id="currentIdx">01</span><i>/</i><span id="totalIdx">05</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">拖拽 / 滑动切换 · ← → 方向键 · 悬停暂停自动播放</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
