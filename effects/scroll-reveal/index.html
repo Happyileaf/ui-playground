@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Reveal · 滚动入场</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Scroll Reveal · 滚动入场</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="hero">
+      <span class="eyebrow reveal" data-reveal="fade">NATIVE EFFECT · SCROLL ENTRANCE</span>
+      <h1 class="reveal" data-reveal="up">向下滚动，看内容自然浮现</h1>
+      <p class="reveal" data-reveal="up" data-delay="120">基于 IntersectionObserver 的入场系统，元素进入视口时一次性触发并解除观察。支持上移、缩放、左右滑入与模糊四种形态，同组元素自动错峰，并尊重系统的减弱动效设置。</p>
+      <div class="scroll-cue reveal" data-reveal="fade" data-delay="260" aria-hidden="true">
+        <span class="mouse"><span class="wheel"></span></span>
+        <span class="cue-text">向下滚动</span>
+      </div>
+    </header>
+
+    <section class="show-section">
+      <h2 class="section-title reveal" data-reveal="left">上移 · 默认节奏</h2>
+      <div class="card-grid">
+        <article class="tile reveal" data-reveal="up"><span class="tile-num">01</span><h3>性能友好</h3><p>仅在交叉时回调，不监听 scroll，不占用主线程。</p></article>
+        <article class="tile reveal" data-reveal="up" data-delay="100"><span class="tile-num">02</span><h3>一次触发</h3><p>入场后 unobserve，来回滚动不会重复闪烁。</p></article>
+        <article class="tile reveal" data-reveal="up" data-delay="200"><span class="tile-num">03</span><h3>错峰编排</h3><p>用 data-delay 为同组元素制造递进的韵律。</p></article>
+      </div>
+    </section>
+
+    <section class="show-section">
+      <h2 class="section-title reveal" data-reveal="right">缩放 · 聚焦出现</h2>
+      <div class="spot-grid">
+        <div class="spot reveal" data-reveal="zoom">Scale</div>
+        <div class="spot reveal" data-reveal="zoom" data-delay="120">Zoom</div>
+        <div class="spot reveal" data-reveal="zoom" data-delay="240">Focus</div>
+      </div>
+    </section>
+
+    <section class="show-section">
+      <h2 class="section-title reveal" data-reveal="up">模糊 · 由虚到实</h2>
+      <div class="blur-list">
+        <p class="blur-item reveal" data-reveal="blur">先看清结构，再读懂细节。</p>
+        <p class="blur-item reveal" data-reveal="blur" data-delay="120">模糊去除时，注意力被轻轻引导。</p>
+        <p class="blur-item reveal" data-reveal="blur" data-delay="240">适合做章节标题或引言的入场。</p>
+      </div>
+    </section>
+
+    <section class="show-section end">
+      <h2 class="section-title reveal" data-reveal="up">到底啦</h2>
+      <button class="top-btn reveal" id="topBtn" type="button" data-reveal="zoom" data-delay="120">回到顶部再看一次</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

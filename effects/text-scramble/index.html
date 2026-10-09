@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Scramble · 字符解密</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Text Scramble · 字符解密</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE EFFECT · TYPOGRAPHY</span>
+      <h1 class="scramble-target" data-text="解码下一个灵感">解码下一个灵感</h1>
+      <p>标题在进入页面时会经历一轮乱码扫描再逐字定格。把鼠标移到下方任意文案上即可重新触发，也可以点击按钮切换短语。中文以等宽方块占位、拉丁字符在字符集中滚动，保证排版不跳动。</p>
+    </header>
+
+    <section class="phrase-board">
+      <p class="phrase-line scramble-hover">Hover to decode the interface.</p>
+      <p class="phrase-line scramble-hover">纯原生，零依赖，离线可用。</p>
+      <p class="phrase-line scramble-hover">SYSTEM ONLINE — READY WHEN YOU ARE.</p>
+    </section>
+
+    <div class="action-row">
+      <button class="replay-btn" id="replayBtn" type="button">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+        重新解码标题
+      </button>
+    </div>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">悬停文案重新触发 · 点击按钮重播标题 · 支持减弱动效</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

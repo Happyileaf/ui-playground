@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choice Control · 选择控件组</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Choice Control · 选择控件组</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · FORM CONTROLS</span>
+      <h1>让每一次选择都有清晰的回应</h1>
+      <p>卡片式复选、单选与开关三组原生控件：真实的 input 承载语义，自定义层负责弹性勾选与描边反馈。支持空格切换、方向键移动，并在下方实时汇总当前选择。</p>
+    </header>
+
+    <form class="choice-form" id="choiceForm">
+      <fieldset class="choice-block">
+        <legend class="block-title">
+          <span class="title-text">关注的设计方向（多选）</span>
+          <span class="title-meta" id="checkCount">已选 0 项</span>
+        </legend>
+        <div class="option-grid">
+          <label class="option-card">
+            <input type="checkbox" name="topic" value="交互动效">
+            <span class="card-box">
+              <span class="mark mark-check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <span class="card-text">
+                <span class="card-name">交互动效</span>
+                <span class="card-sub">微交互 · 过渡曲线</span>
+              </span>
+            </span>
+          </label>
+          <label class="option-card">
+            <input type="checkbox" name="topic" value="视觉规范">
+            <span class="card-box">
+              <span class="mark mark-check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <span class="card-text">
+                <span class="card-name">视觉规范</span>
+                <span class="card-sub">Design Token · 主题</span>
+              </span>
+            </span>
+          </label>
+          <label class="option-card">
+            <input type="checkbox" name="topic" value="信息架构">
+            <span class="card-box">
+              <span class="mark mark-check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <span class="card-text">
+                <span class="card-name">信息架构</span>
+                <span class="card-sub">导航 · 层级组织</span>
+              </span>
+            </span>
+          </label>
+          <label class="option-card">
+            <input type="checkbox" name="topic" value="无障碍">
+            <span class="card-box">
+              <span class="mark mark-check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <span class="card-text">
+                <span class="card-name">无障碍</span>
+                <span class="card-sub">ARIA · 键盘操作</span>
+              </span>
+            </span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="choice-block">
+        <legend class="block-title">
+          <span class="title-text">默认工作视图（单选）</span>
+        </legend>
+        <div class="option-grid single">
+          <label class="option-card">
+            <input type="radio" name="view" value="画廊模式" checked>
+            <span class="card-box">
+              <span class="mark mark-radio" aria-hidden="true"><span class="dot-inner"></span></span>
+              <span class="card-text">
+                <span class="card-name">画廊模式</span>
+                <span class="card-sub">网格浏览全部案例</span>
+              </span>
+            </span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="view" value="工作台模式">
+            <span class="card-box">
+              <span class="mark mark-radio" aria-hidden="true"><span class="dot-inner"></span></span>
+              <span class="card-text">
+                <span class="card-name">工作台模式</span>
+                <span class="card-sub">分屏调试与预览</span>
+              </span>
+            </span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="view" value="专注模式">
+            <span class="card-box">
+              <span class="mark mark-radio" aria-hidden="true"><span class="dot-inner"></span></span>
+              <span class="card-text">
+                <span class="card-name">专注模式</span>
+                <span class="card-sub">隐藏干扰沉浸创作</span>
+              </span>
+            </span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="choice-block switch-block">
+        <legend class="block-title"><span class="title-text">偏好开关</span></legend>
+        <div class="switch-list">
+          <label class="switch-row">
+            <span class="switch-text">
+              <span class="switch-name">自动保存草稿</span>
+              <span class="switch-sub">每隔 30 秒保存一次</span>
+            </span>
+            <input type="checkbox" name="prefs" value="自动保存" checked>
+            <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+          </label>
+          <label class="switch-row">
+            <span class="switch-text">
+              <span class="switch-name">开启触感音效</span>
+              <span class="switch-sub">操作时播放轻微反馈音</span>
+            </span>
+            <input type="checkbox" name="prefs" value="触感音效">
+            <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+          </label>
+          <label class="switch-row">
+            <span class="switch-text">
+              <span class="switch-name">减弱动态效果</span>
+              <span class="switch-sub">遵循系统的减弱动效设置</span>
+            </span>
+            <input type="checkbox" name="prefs" value="减弱动效">
+            <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+          </label>
+        </div>
+      </fieldset>
+    </form>
+
+    <section class="summary-card" aria-live="polite">
+      <p class="summary-line" id="summaryTopics">方向：未选择</p>
+      <p class="summary-line" id="summaryView">视图：画廊模式</p>
+      <p class="summary-line" id="summaryPrefs">开关：自动保存</p>
+    </section>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">空格切换选中 · ↑ ↓ 在同组移动 · Tab 在组间跳转</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

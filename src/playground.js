@@ -13,6 +13,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
   // Master Case Catalog
   const cases = [
     {
+      id: 'ring-progress',
+      title: 'Ring Progress · 环形进度反馈',
+      type: 'component',
+      category: 'components',
+      path: 'components/ring-progress/',
+      url: '/components/ring-progress/index.html',
+      description: 'SVG stroke-dashoffset 环形进度，含缓冲轨道、模拟任务、完成态，支持在圆环上指针拖拽直接设定数值与方向键微调。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['ring-progress', 'svg', 'stroke-dashoffset', 'drag-to-set', 'form-control', 'micro-interaction']
+    },
+    {
+      id: 'scroll-reveal',
+      title: 'Scroll Reveal · 滚动入场揭示',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/scroll-reveal/',
+      url: '/effects/scroll-reveal/index.html',
+      description: 'IntersectionObserver 驱动的入场系统，支持上移、缩放、左右滑入与模糊四形态，同组错峰、一次触发解除观察并尊重减弱动效。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['scroll-reveal', 'intersection-observer', 'entrance-animation', 'stagger', 'fade-transition', 'reduced-motion']
+    },
+    {
+      id: 'text-scramble',
+      title: 'Text Scramble · 字符乱码解密',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/text-scramble/',
+      url: '/effects/text-scramble/index.html',
+      description: '字符在乱码字符集中滚动后逐字定格还原的解密动效，悬停重播、按钮切换，中文方块占位保证排版零跳动并支持减弱动效。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['typography', 'text-scramble', 'decode', 'micro-interaction', 'text-effects', 'reduced-motion']
+    },
+    {
+      id: 'choice-control',
+      title: 'Choice Control · 复选单选开关控件组',
+      type: 'component',
+      category: 'components',
+      path: 'components/choice-control/',
+      url: '/components/choice-control/index.html',
+      description: '卡片式复选、单选与开关三组原生控件，自定义层弹性勾选与描边反馈，支持空格切换、方向键移动并实时汇总选择。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['checkbox', 'radio', 'toggle-switch', 'form-control', 'accessible', 'keyboard-nav']
+    },
+    {
+      id: 'speed-dial',
+      title: 'Speed Dial · 悬浮快捷操作',
+      type: 'component',
+      category: 'components',
+      path: 'components/speed-dial/',
+      url: '/components/speed-dial/index.html',
+      description: 'FAB 主按钮向上、向左或扇形弹性展开动作项，Esc 与外点收起，展开自动聚焦首个动作，支持完整键盘操作。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['speed-dial', 'floating-action', 'fab', 'spring-physics', 'keyboard-nav', 'micro-interaction']
+    },
+    {
       id: 'dynamic-dock',
       title: 'Dynamic Magnification Dock · 动态鱼眼浮动坞台',
       type: 'component',

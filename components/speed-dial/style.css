@@ -1,0 +1,384 @@
+:root {
+  --accent: #6366f1;
+  --accent-strong: #818cf8;
+  --ink: #e2e8f0;
+  --ink-dim: #94a3b8;
+  --bg: #0b0e16;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(900px 520px at 86% -12%, rgba(99, 102, 241, 0.12), transparent 60%),
+    radial-gradient(720px 500px at 0% 108%, rgba(56, 189, 248, 0.08), transparent 60%),
+    var(--bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.hud-actions {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 60;
+}
+
+.hud-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  height: 32px;
+  padding: 0 15px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.66);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.hud-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+  animation: hudPulse 2.2s ease-out infinite;
+}
+
+@keyframes hudPulse {
+  0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+  70% { box-shadow: 0 0 0 7px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.hud-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #cbd5e1;
+  white-space: nowrap;
+}
+
+.page-container {
+  width: min(620px, 92vw);
+  margin: 0 auto;
+  padding: 92px 0 140px;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  color: var(--accent-strong);
+  margin-bottom: 14px;
+}
+
+.page-header h1 {
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 800;
+  line-height: 1.25;
+  background: linear-gradient(120deg, #f8fafc 25%, var(--accent-strong) 115%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-header p {
+  margin: 14px auto 0;
+  max-width: 540px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ink-dim);
+}
+
+.demo-card {
+  border-radius: 20px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  background: rgba(20, 25, 38, 0.7);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+  padding: 26px 28px;
+}
+
+.demo-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.demo-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.seg-group {
+  display: inline-flex;
+  background: rgba(11, 14, 22, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 999px;
+  padding: 4px;
+}
+
+.seg-btn {
+  border: none;
+  background: transparent;
+  color: var(--ink-dim);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+.seg-btn.is-active {
+  color: #fff;
+  background: linear-gradient(120deg, var(--accent), #4f46e5);
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
+}
+
+.demo-log {
+  margin-top: 20px;
+  min-height: 46px;
+  border-radius: 12px;
+  border: 1px dashed rgba(148, 163, 184, 0.2);
+  background: rgba(11, 14, 22, 0.5);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.log-placeholder {
+  color: var(--ink-dim);
+}
+
+.speed-dial {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dial-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.dial-item {
+  position: relative;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(14px) scale(0.4);
+  transition: transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.28s ease;
+}
+
+.dial-action {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(24, 30, 46, 0.92);
+  color: var(--accent-strong);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.dial-action:hover {
+  transform: translateY(-2px) scale(1.06);
+  background: rgba(38, 46, 70, 0.95);
+  color: #c7d2fe;
+}
+
+.dial-action:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+}
+
+.dial-tip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  background: rgba(15, 20, 32, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  padding: 6px 11px;
+  border-radius: 9px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.dial-item:hover .dial-tip {
+  opacity: 1;
+}
+
+.dial-fab {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), #4338ca);
+  box-shadow: 0 14px 34px rgba(67, 56, 202, 0.5);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.dial-fab:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 18px 40px rgba(67, 56, 202, 0.6);
+}
+
+.dial-fab:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+}
+
+.speed-dial.is-open .dial-item {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  transition-delay: calc(var(--i) * 45ms);
+}
+
+.speed-dial.is-open .dial-fab {
+  transform: rotate(135deg);
+}
+
+.speed-dial.dir-left {
+  flex-direction: row;
+  align-items: center;
+}
+
+.speed-dial.dir-left .dial-list {
+  flex-direction: row;
+  margin-bottom: 0;
+  margin-right: 14px;
+  order: -1;
+}
+
+.speed-dial.dir-left .dial-item {
+  transform: translateX(16px) scale(0.4);
+}
+
+.speed-dial.dir-left.is-open .dial-item {
+  transform: translateX(0) scale(1);
+}
+
+.speed-dial.dir-left .dial-tip {
+  right: 50%;
+  top: calc(100% + 8px);
+  transform: translateX(50%);
+}
+
+.speed-dial.dir-left .dial-item:hover .dial-tip {
+  opacity: 1;
+}
+
+.speed-dial.dir-fan .dial-list {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+}
+
+.speed-dial.dir-fan .dial-item {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: rotate(0deg) translate(0, 0) scale(0.4);
+}
+
+.speed-dial.dir-fan.is-open .dial-item {
+  animation: fanPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: calc(var(--i) * 55ms);
+}
+
+@keyframes fanPop {
+  0% { transform: rotate(var(--a)) translate(0, 0) scale(0.4); opacity: 0; }
+  100% { transform: rotate(var(--a)) translate(var(--r)) scale(1); opacity: 1; }
+}
+
+.bottom-hint {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(15, 20, 32, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  backdrop-filter: blur(10px);
+  z-index: 50;
+}
+
+.hint-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-strong);
+}
+
+.hint-msg {
+  font-size: 12px;
+  color: var(--ink-dim);
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .bottom-hint { display: none; }
+  .speed-dial { right: 20px; bottom: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .speed-dial.is-open .dial-item,
+  .speed-dial.dir-fan.is-open .dial-item {
+    transition-delay: 0s;
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+}
