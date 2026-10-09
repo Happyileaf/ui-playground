@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Command Palette · 命令面板</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Command Palette · 命令面板</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · COMMAND SURFACE</span>
+      <h1>一个快捷键，掌控全部操作</h1>
+      <p>纯键盘驱动的命令面板：按 <kbd>Ctrl</kbd> / <kbd>⌘</kbd> + <kbd>K</kbd> 唤出，输入即时模糊检索动作，<kbd>↑</kbd><kbd>↓</kbd> 移动、<kbd>Enter</kbd> 执行、<kbd>Esc</kbd> 关闭。支持分组、快捷键提示与最近使用记录。</p>
+    </header>
+
+    <section class="stage">
+      <button class="open-trigger" id="openPaletteBtn" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <span>输入命令或搜索…</span>
+        <span class="trigger-keys"><kbd>⌘</kbd><kbd>K</kbd></span>
+      </button>
+
+      <div class="command-preview" id="commandPreview" role="status" aria-live="polite">
+        尚未执行命令，打开面板选择一个动作试试。
+      </div>
+    </section>
+  </main>
+
+  <div class="palette-backdrop" id="paletteBackdrop" hidden>
+    <div class="palette" role="dialog" aria-modal="true" aria-labelledby="paletteLabel">
+      <div class="palette-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="paletteInput" autocomplete="off" spellcheck="false"
+               placeholder="输入命令、页面或设置…" aria-label="搜索命令">
+      </div>
+
+      <div class="palette-results" id="paletteResults"></div>
+
+      <div class="palette-footer">
+        <div class="footer-group">
+          <kbd>↑</kbd><kbd>↓</kbd><span>导航</span>
+        </div>
+        <div class="footer-group">
+          <kbd>↵</kbd><span>执行</span>
+        </div>
+        <div class="footer-group">
+          <kbd>Esc</kbd><span>关闭</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Card Input · 银行卡输入</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Payment Card Input · 银行卡输入</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · PAYMENT FORM</span>
+      <h1>输入即所见，支付更安心</h1>
+      <p>实时联动的 3D 银行卡表单：卡号自动分组并识别卡组织，聚焦安全码时卡片翻转，配合逐字段校验与 Luhn 校验，让填写过程清晰可信。</p>
+    </header>
+
+    <div class="checkout-layout">
+      <section class="card-scene" aria-hidden="true">
+        <div class="card-3d" id="card3d">
+          <div class="card-face card-front">
+            <div class="card-topline">
+              <div class="card-chip">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="card-brand" id="cardBrand">CARD</span>
+            </div>
+            <div class="card-number" id="previewNumber">#### &nbsp;#### &nbsp;#### &nbsp;####</div>
+            <div class="card-meta">
+              <div class="meta-block">
+                <small>持卡人</small>
+                <span id="previewName">YOUR NAME</span>
+              </div>
+              <div class="meta-block meta-block--right">
+                <small>有效期</small>
+                <span id="previewExpiry">MM / YY</span>
+              </div>
+            </div>
+            <div class="card-shine"></div>
+          </div>
+          <div class="card-face card-back">
+            <div class="card-strip"></div>
+            <div class="card-signature">
+              <small>安全码</small>
+              <div class="cvc-line" id="previewCvc">###</div>
+            </div>
+            <p class="card-back-note">此卡片为交互演示，不产生任何真实支付。</p>
+          </div>
+        </div>
+      </section>
+
+      <form class="payment-form" id="paymentForm" novalidate>
+        <div class="field">
+          <label for="numberInput">卡号</label>
+          <div class="input-wrap">
+            <input type="text" id="numberInput" inputmode="numeric" maxlength="19"
+                   placeholder="1234 5678 9012 3456" autocomplete="cc-number">
+          </div>
+          <span class="field-error" id="numberError"></span>
+        </div>
+
+        <div class="field">
+          <label for="nameInput">持卡人姓名</label>
+          <div class="input-wrap">
+            <input type="text" id="nameInput" maxlength="24"
+                   placeholder="ZHANG SAN" autocomplete="cc-name">
+          </div>
+          <span class="field-error" id="nameError"></span>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="expiryInput">有效期</label>
+            <div class="input-wrap">
+              <input type="text" id="expiryInput" inputmode="numeric" maxlength="5"
+                     placeholder="MM/YY" autocomplete="cc-exp">
+            </div>
+            <span class="field-error" id="expiryError"></span>
+          </div>
+
+          <div class="field">
+            <label for="cvcInput">安全码</label>
+            <div class="input-wrap">
+              <input type="text" id="cvcInput" inputmode="numeric" maxlength="3"
+                     placeholder="123" autocomplete="cc-csc">
+            </div>
+            <span class="field-error" id="cvcError"></span>
+          </div>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" type="submit">
+          <span class="btn-text">确认支付</span>
+          <span class="btn-amount">¥ 1,288.00</span>
+        </button>
+
+        <div class="form-success" id="formSuccess" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+          <span>表单校验通过（演示环境，未发起真实扣款）</span>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

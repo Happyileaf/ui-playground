@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signature Pad · 电子签名板</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Signature Pad · 电子签名板</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · POINTER CANVAS</span>
+      <h1>落笔有锋，收笔有痕</h1>
+      <p>基于 Pointer Events 的电子签名板：压感速度自适应笔触粗细，支持撤销、清空与导出 PNG。画布按设备像素比（DPR）高清渲染，在手机与桌面端均可流畅书写。</p>
+    </header>
+
+    <section class="pad-card">
+      <div class="pad-toolbar">
+        <div class="tool-group">
+          <button class="tool-btn" id="undoBtn" type="button" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 7v6h6"></path>
+              <path d="M21 17a9 9 0 0 0-15-6.7L3 13"></path>
+            </svg>
+            <span>撤销</span>
+          </button>
+          <button class="tool-btn" id="clearBtn" type="button" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
+              <path d="M10 11v6M14 11v6"></path>
+            </svg>
+            <span>清空</span>
+          </button>
+        </div>
+        <div class="tool-group">
+          <div class="ink-swatches" role="group" aria-label="笔触颜色">
+            <button class="swatch is-active" data-color="#e2e8f0" style="--sw:#e2e8f0" aria-label="墨白"></button>
+            <button class="swatch" data-color="#22d3ee" style="--sw:#22d3ee" aria-label="青蓝"></button>
+            <button class="swatch" data-color="#f472b6" style="--sw:#f472b6" aria-label="玫粉"></button>
+          </div>
+          <button class="tool-btn tool-btn--primary" id="saveBtn" type="button" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>导出 PNG</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="canvas-wrap" id="canvasWrap">
+        <canvas id="signCanvas" aria-label="签名画布"></canvas>
+        <div class="canvas-placeholder" id="canvasPlaceholder">请在此区域签名</div>
+        <div class="canvas-grid" aria-hidden="true"></div>
+      </div>
+
+      <div class="pad-footer">
+        <span class="status-line" id="statusLine" role="status">就绪 · 等待落笔</span>
+        <span class="hint-line">支持鼠标 / 触控 / 触控笔书写</span>
+      </div>
+    </section>
+
+    <section class="export-preview" id="exportPreview" hidden>
+      <div class="preview-head">
+        <strong>导出预览</strong>
+        <button class="tool-btn" id="downloadBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>下载</span>
+        </button>
+      </div>
+      <img id="previewImg" alt="签名导出预览">
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

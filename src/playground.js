@@ -693,6 +693,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '嵌套的水平与垂直可调节分栏，Pointer Capture 拖拽分隔条、最小尺寸保护、双击重置、键盘 ←→ 微调与实时百分比显示，含文件树编辑器终端拟真场景。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['split-pane', 'resizable', 'pointer-capture', 'nested-layout', 'keyboard-nav', 'developer-tools']
+    },
+    {
+      id: 'command-palette',
+      title: 'Command Palette · 命令面板',
+      type: 'component',
+      category: 'components',
+      path: 'components/command-palette/',
+      url: '/components/command-palette/index.html',
+      description: 'Ctrl 或 Cmd + K 唤出的键盘命令面板，模糊检索 15 个分组动作，方向键循环导航、回车执行、Esc 关闭，支持匹配高亮、快捷键提示与最近使用记录。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['command-palette', 'keyboard-nav', 'fuzzy-search', 'developer-tools', 'accessible', 'micro-interaction']
+    },
+    {
+      id: 'data-grid',
+      title: 'Data Grid · 数据表格',
+      type: 'component',
+      category: 'components',
+      path: 'components/data-grid/',
+      url: '/components/data-grid/index.html',
+      description: '承载 42 条记录的数据表格，列头点击排序、部门筛选与关键词搜索、跨页多选与批量操作、每页条数切换与智能省略号分页，中文本地化排序。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['data-grid', 'table', 'sorting', 'filtering', 'pagination', 'multi-select', 'data-viz']
+    },
+    {
+      id: 'signature-pad',
+      title: 'Signature Pad · 电子签名板',
+      type: 'component',
+      category: 'components',
+      path: 'components/signature-pad/',
+      url: '/components/signature-pad/index.html',
+      description: 'Pointer Events 统一鼠标触控与手写笔的电子签名板，运笔速度自适应笔触粗细，DPR 高清渲染、合并事件平滑书写，支持撤销、清空与导出下载 PNG。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['signature-pad', 'canvas', 'pointer-events', 'dpr-scaling', 'drawing', 'form-control', 'reduced-motion']
+    },
+    {
+      id: 'payment-card-input',
+      title: 'Payment Card Input · 银行卡输入',
+      type: 'component',
+      category: 'components',
+      path: 'components/payment-card-input/',
+      url: '/components/payment-card-input/index.html',
+      description: '实时联动 3D 银行卡的支付表单，卡号自动分组并识别六大卡组织、聚焦安全码卡片翻转，逐字段校验、月份过期检查与 Luhn 算法校验卡号。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['payment-form', 'credit-card', 'luhn-check', 'input-formatting', 'validation', 'flip-card', 'form-control']
+    },
+    {
+      id: 'logo-marquee',
+      title: 'Logo Marquee · 无缝跑马灯',
+      type: 'component',
+      category: 'components',
+      path: 'components/logo-marquee/',
+      url: '/components/logo-marquee/index.html',
+      description: '纯 CSS 动画驱动的 Logo 无缝跑马灯，轨道复制并平移恰好 50% 消除循环跳跃，悬停暂停、方向切换、边缘渐隐遮罩并支持减弱动态效果偏好。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['marquee', 'logo-wall', 'css-animation', 'infinite-scroll', 'seamless-loop', 'reduced-motion']
     }
   ];
 
