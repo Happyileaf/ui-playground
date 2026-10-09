@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Zoom · 商品放大镜</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Image Zoom</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">PRODUCT · LENS MAGNIFIER · POINTER</span>
+      <h1>移动指针，细节纤毫毕现</h1>
+      <p>电商商品图放大镜：指针进入画面出现圆形镜片并同步呈现放大区域，支持 2× / 3× / 4× 倍率切换，触屏与桌面统一可用，零外部图片。</p>
+    </header>
+
+    <section class="zoom-stage">
+      <div class="zoom-frame" id="zoomFrame" tabindex="0" role="application"
+           aria-label="商品图放大预览，使用方向键平移放大区域">
+        <div class="scene-art" id="sceneArt" aria-hidden="true"></div>
+        <div class="lens" id="lens" aria-hidden="true"></div>
+        <span class="zoom-badge" id="zoomBadge">2×</span>
+      </div>
+
+      <div class="zoom-panel">
+        <div class="product-meta">
+          <span class="product-name">Aurora 机械键盘</span>
+          <span class="product-price">¥ 699</span>
+        </div>
+        <p class="product-desc">将指针移入左侧画面查看键帽工艺与轴体细节，离开后镜片自动隐藏，也可用键盘方向键逐格检视。</p>
+
+        <div class="zoom-controls">
+          <span class="control-label">放大倍率</span>
+          <div class="seg-group" id="zoomSeg">
+            <button type="button" class="seg-btn" data-level="1">2×</button>
+            <button type="button" class="seg-btn active" data-level="2">3×</button>
+            <button type="button" class="seg-btn" data-level="3">4×</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="page-foot-tip">提示：移动指针或手指查看放大细节 · 键盘聚焦后可用方向键平移</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

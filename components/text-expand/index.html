@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Expand · 长文展开收起</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Text Expand</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">GRID ROWS · GRADIENT FADE · ARTICLE</span>
+      <h1>先读摘要，感兴趣再展开全文</h1>
+      <p>内容卡片默认折叠为固定行数，底部用渐变遮罩提示还有下文；点击展开后通过 grid-template-rows 实现高度自适应过渡，无需手动测量尺寸，收起后自动回滚到卡片位置。</p>
+      <div class="header-tools">
+        <button type="button" class="tool-btn" id="expandAllBtn">全部展开</button>
+        <button type="button" class="tool-btn" id="collapseAllBtn">全部收起</button>
+      </div>
+    </header>
+
+    <section class="article-list" id="articleList"></section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

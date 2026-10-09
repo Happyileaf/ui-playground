@@ -803,6 +803,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '多段文案循环打字与删除的打字机特效，光标闪烁、文案进度点跳转、点击重播，H 呼出的控制台可调节打字速度、循环开关与光标显隐，并适配减弱动态偏好。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['typewriter', 'text-animation', 'typing-effect', 'loop', 'control-dock', 'reduced-motion']
+    },
+    {
+      id: 'image-zoom',
+      title: 'Image Zoom · 商品放大镜',
+      type: 'component',
+      category: 'components',
+      path: 'components/image-zoom/',
+      url: '/components/image-zoom/index.html',
+      description: '电商场景商品放大镜：鼠标或手指在主图上移动时显示圆形镜片并同步呈现局部放大细节，支持 2×/3×/4× 三档倍率切换、键盘方向键平移与边界自动钳制，纯 CSS 渐变构造商品图零外部资源。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['image-zoom', 'e-commerce', 'magnifier', 'pointer-events', 'keyboard-nav', 'zero-image']
+    },
+    {
+      id: 'tree-view',
+      title: 'Tree View · 可访问文件树',
+      type: 'component',
+      category: 'components',
+      path: 'components/tree-view/',
+      url: '/components/tree-view/index.html',
+      description: 'WAI-ARIA 文件目录树：分支展开收起、实时关键词过滤（自动展开命中路径）、一键全展/全收与选中路径回显，完整支持方向键、Home/End、Enter/Space 键盘导航，文件类型图标内联 SVG 绘制。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['tree-view', 'file-tree', 'wai-aria', 'keyboard-nav', 'search-filter', 'navigation']
+    },
+    {
+      id: 'swipe-list',
+      title: 'Swipe List · 滑动操作列表',
+      type: 'component',
+      category: 'components',
+      path: 'components/swipe-list/',
+      url: '/components/swipe-list/index.html',
+      description: '移动端经典滑动操作列表：右滑露出标记完成、左滑露出删除，超过阈值自动吸附、不足回弹，同时只允许一个条目展开；删除带折叠动画与五秒撤销 Toast，Pointer Events 统一鼠标与触屏。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['swipe-list', 'gesture', 'pointer-events', 'threshold', 'undo', 'mobile-pattern']
+    },
+    {
+      id: 'infinite-feed',
+      title: 'Infinite Feed · 无限加载信息流',
+      type: 'component',
+      category: 'components',
+      path: 'components/infinite-feed/',
+      url: '/components/infinite-feed/index.html',
+      description: '基于 IntersectionObserver 的无限信息流：哨兵提前进入视口即模拟异步请求，先展示贴近真实布局的骨架屏，数据返回后卡片入场，支持点赞、关注与失败重试，加载全部内容后展示明确终态。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['infinite-scroll', 'intersection-observer', 'skeleton', 'lazy-loading', 'feed', 'retry']
+    },
+    {
+      id: 'text-expand',
+      title: 'Text Expand · 长文展开收起',
+      type: 'component',
+      category: 'components',
+      path: 'components/text-expand/',
+      url: '/components/text-expand/index.html',
+      description: '渐进式披露的长文卡片：折叠态显示三行摘要与渐变遮罩，展开时通过 grid-template-rows 0fr↔1fr 实现高度自适应过渡，无需手动测量尺寸；支持全部展开/收起、收起回滚视口，短内容自动隐藏开关。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['text-expand', 'collapse', 'grid-rows', 'progressive-disclosure', 'article', 'reduced-motion']
     }
   ];
 

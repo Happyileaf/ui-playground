@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infinite Feed · 无限加载信息流</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Infinite Feed</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">INTERSECTION OBSERVER · SKELETON · LAZY</span>
+      <h1>滚动到底，内容自动接上</h1>
+      <p>基于 IntersectionObserver 的无限信息流：哨兵进入视口即模拟异步请求，先渲染骨架屏占位，数据返回后无缝替换。可点亮喜欢，加载到末尾会给出明确终态。</p>
+    </header>
+
+    <section class="feed" id="feed" aria-label="动态信息流"></section>
+
+    <div class="feed-status" id="feedStatus">
+      <div class="sentinel-loader" id="sentinelLoader" aria-hidden="true">
+        <span class="spinner"></span>
+        <span class="loader-text">正在加载更多…</span>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
