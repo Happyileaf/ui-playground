@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guided Tour · 新手引导</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Guided Tour · 新手引导</span>
+    </div>
+  </div>
+
+  <div class="tour-overlay" id="overlay" hidden>
+    <div class="spotlight" id="spotlight"></div>
+    <div class="tour-pop" id="tourPop" role="dialog" aria-modal="true" aria-labelledby="tourTitle">
+      <div class="tour-progress">
+        <span class="step-pill" id="stepPill">1 / 4</span>
+        <button class="tour-close" id="tourClose" type="button" aria-label="退出引导">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <h3 class="tour-title" id="tourTitle"></h3>
+      <p class="tour-desc" id="tourDesc"></p>
+      <div class="tour-actions">
+        <button class="tour-skip" id="tourSkip" type="button">跳过引导</button>
+        <div class="nav-cluster">
+          <button class="tour-prev" id="tourPrev" type="button">上一步</button>
+          <button class="tour-next" id="tourNext" type="button">下一步</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mini-shell">
+    <aside class="mini-sidebar" id="demoSidebar">
+      <div class="mini-logo">N.</div>
+      <nav class="mini-nav">
+        <span class="nav-dot is-on"></span>
+        <span class="nav-dot"></span>
+        <span class="nav-dot"></span>
+        <span class="nav-dot"></span>
+      </nav>
+    </aside>
+
+    <div class="mini-main">
+      <header class="mini-topbar">
+        <div>
+          <span class="mini-eyebrow">OVERVIEW</span>
+          <h1 class="mini-h1">工作台</h1>
+        </div>
+        <button class="mini-search" id="demoSearch" type="button">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          搜索…
+        </button>
+        <button class="restart-btn" id="restartBtn" type="button">重新开始引导</button>
+      </header>
+
+      <section class="stat-row">
+        <div class="stat-card" id="demoStat">
+          <span class="stat-label">本月活跃用户</span>
+          <strong class="stat-num">12,480</strong>
+          <span class="stat-trend up">▲ 8.2%</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">转化率</span>
+          <strong class="stat-num">3.64%</strong>
+          <span class="stat-trend up">▲ 0.4%</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">退订率</span>
+          <strong class="stat-num">0.82%</strong>
+          <span class="stat-trend down">▼ 0.1%</span>
+        </div>
+      </section>
+
+      <section class="chart-card" id="demoChart">
+        <div class="chart-head">
+          <strong>访问趋势</strong>
+          <span class="chart-tag">近 7 天</span>
+        </div>
+        <div class="chart-bars">
+          <span style="height:42%"></span>
+          <span style="height:58%"></span>
+          <span style="height:46%"></span>
+          <span style="height:70%"></span>
+          <span style="height:62%"></span>
+          <span style="height:84%"></span>
+          <span style="height:76%"></span>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

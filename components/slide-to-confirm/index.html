@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slide to Confirm · 滑动确认</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Slide to Confirm · 滑动确认</span>
+  </div>
+
+  <main class="stage">
+    <header class="stage-head">
+      <p class="eyebrow">Intent Guard</p>
+      <h1 class="stage-title">滑动到底，确认操作</h1>
+      <p class="stage-sub">通过物理拖拽阻挡误触。松手未满即弹簧回弹，滑到终点触发确认态与完成动效。</p>
+    </header>
+
+    <section class="order-card">
+      <div class="order-top">
+        <div class="order-id">
+          <span class="oi-label">订单编号</span>
+          <span class="oi-value">#UI-20261010-088</span>
+        </div>
+        <span class="order-badge">待支付</span>
+      </div>
+
+      <ul class="goods">
+        <li class="goods-item">
+          <div class="g-thumb g-thumb-a"></div>
+          <div class="g-info">
+            <p class="g-name">极光机械键盘 · 雾屿蓝</p>
+            <p class="g-spec">75% 配列 / 红轴</p>
+          </div>
+          <span class="g-price">¥ 649</span>
+        </li>
+        <li class="goods-item">
+          <div class="g-thumb g-thumb-b"></div>
+          <div class="g-info">
+            <p class="g-name">磁吸桌垫 · 暗夜灰</p>
+            <p class="g-spec">900 × 400 mm</p>
+          </div>
+          <span class="g-price">¥ 129</span>
+        </li>
+      </ul>
+
+      <div class="order-total">
+        <span>合计</span>
+        <strong>¥ 778.00</strong>
+      </div>
+
+      <div class="slider" id="slider">
+        <div class="slider-fill" id="fill"></div>
+        <span class="slider-label" id="label">向右滑动确认支付</span>
+        <span class="slider-done" id="doneText" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          已确认
+        </span>
+        <button class="slider-knob" id="knob" type="button" role="switch" aria-checked="false" aria-label="滑动确认支付">
+          <svg class="knob-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <svg class="knob-check" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+        </button>
+      </div>
+
+      <button class="reset" id="resetBtn" type="button" hidden>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v4h4"/></svg>
+        重置演示
+      </button>
+    </section>
+
+    <p class="hint">提示：也可聚焦滑块后按 <kbd>Enter</kbd> 或 <kbd>Space</kbd> 确认</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

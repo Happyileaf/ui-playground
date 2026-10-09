@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Date Range Picker · 日期区间选择</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Date Range Picker · 日期区间</span>
+  </div>
+
+  <main class="stage">
+    <header class="stage-head">
+      <p class="eyebrow">Native Calendar</p>
+      <h1 class="stage-title">双月日历区间选择</h1>
+      <p class="stage-sub">点击任意日期作为起点，再次点击确定终点。支持悬停预览、快捷范围与键盘操作。</p>
+    </header>
+
+    <section class="field-card">
+      <label class="field-label" id="fieldLabel">预订日期</label>
+      <button class="range-trigger" id="trigger" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="panel">
+        <span class="rt-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg>
+        </span>
+        <span class="rt-text" id="triggerText">选择入住 — 退房日期</span>
+        <span class="rt-clear" id="clearBtn" role="button" tabindex="-1" aria-label="清除选择" hidden>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </span>
+      </button>
+
+      <div class="panel" id="panel" role="dialog" aria-modal="false" aria-labelledby="fieldLabel" hidden>
+        <div class="panel-side">
+          <p class="side-title">快捷选择</p>
+          <button class="preset" type="button" data-preset="7">近 7 天</button>
+          <button class="preset" type="button" data-preset="30">近 30 天</button>
+          <button class="preset" type="button" data-preset="90">近 90 天</button>
+          <button class="preset" type="button" data-preset="thisMonth">本月</button>
+          <div class="side-foot">
+            <div class="quick-dates">
+              <span class="qd-label">起</span><span class="qd-value" id="qdStart">—</span>
+              <span class="qd-label">止</span><span class="qd-value" id="qdEnd">—</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-main">
+          <div class="cal-nav">
+            <button class="nav-btn" id="prevBtn" type="button" aria-label="上两个月">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <div class="cal-meta" id="calMeta"></div>
+            <button class="nav-btn" id="nextBtn" type="button" aria-label="后两个月">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <div class="cal-grids" id="calGrids"></div>
+        </div>
+
+        <div class="panel-foot">
+          <button class="foot-ghost" id="resetBtn" type="button">清空</button>
+          <button class="foot-primary" id="applyBtn" type="button" disabled>确定</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="summary" id="summary" hidden>
+      <div class="sum-cell">
+        <span class="sum-k">入住</span>
+        <span class="sum-v" id="sumStart">—</span>
+      </div>
+      <div class="sum-link" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div class="sum-cell">
+        <span class="sum-k">退房</span>
+        <span class="sum-v" id="sumEnd">—</span>
+      </div>
+      <div class="sum-cell sum-nights">
+        <span class="sum-k">共</span>
+        <span class="sum-v"><em id="sumNights">0</em> 晚</span>
+      </div>
+    </section>
+
+    <p class="hint">
+      <kbd>←</kbd><kbd>→</kbd> 切换月份 ·
+      <kbd>Enter</kbd> 选定日期 ·
+      <kbd>Esc</kbd> 关闭面板
+    </p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

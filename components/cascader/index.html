@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cascader · 级联选择</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Cascader · 级联选择</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · FORM CONTROL</span>
+      <h1>沿着层级一路点下去，末级才落定</h1>
+      <p>纯原生级联选择器：点击展开多列面板，悬停或键盘方向键逐级深入，抵达末级后写回完整路径并自动收起；支持清除、外部点击与 Esc 关闭、焦点归位与屏幕边缘自动对齐，常用于地区、分类与多级目录。</p>
+    </header>
+
+    <section class="stage">
+      <div class="field" id="field">
+        <label class="field-label" id="fieldLabel">选择目标地区</label>
+        <button class="select-trigger" id="trigger" type="button" aria-haspopup="tree" aria-expanded="false" aria-labelledby="fieldLabel">
+          <span class="trigger-value" id="value">请选择 / 省 / 市 / 区县</span>
+          <span class="trigger-icons">
+            <svg class="icon-clear" id="clearBtn" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-label="清除选择"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            <svg class="icon-caret" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+
+        <div class="cascader-pop" id="pop" role="tree" hidden></div>
+      </div>
+
+      <div class="result-card" id="resultCard">
+        <span class="result-eyebrow">当前选择结果</span>
+        <strong class="result-value" id="resultValue">尚未选择</strong>
+        <span class="result-code" id="resultCode">value: —</span>
+      </div>
+    </section>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">点击展开 · ↑↓ 切换 · → 进入 · ← 返回 · Enter 选定 · Esc 关闭</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
