@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swipe List · 滑动操作列表</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Swipe List</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">MOBILE PATTERN · GESTURE · THRESHOLD</span>
+      <h1>左右滑动，常用操作触手可及</h1>
+      <p>移动端经典手势：左滑露出删除操作、右滑标记完成，超过阈值自动吸附展开，不足则回弹；桌面端可直接点击按钮。删除支持撤销，全程纯前端演示。</p>
+    </header>
+
+    <section class="list-card">
+      <div class="list-header">
+        <span class="list-title">今日待办</span>
+        <span class="list-count" id="listCount"></span>
+      </div>
+      <ul class="swipe-list" id="swipeList"></ul>
+    </section>
+
+    <p class="page-foot-tip">提示：在条目上左右拖拽试试 · 删除后可立即撤销</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

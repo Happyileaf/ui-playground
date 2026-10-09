@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tree View · 文件树导航</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Tree View</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">FILE TREE · ARIA · KEYBOARD</span>
+      <h1>层级清晰，键盘可达</h1>
+      <p>符合 WAI-ARIA Tree View 模式的文件树：文件夹展开折叠、缩进引导线、文件类型图标，支持完整方向键导航与名称过滤，选中项实时呈现完整路径。</p>
+    </header>
+
+    <section class="tree-card">
+      <div class="tree-toolbar">
+        <label class="search-field">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="treeSearch" placeholder="筛选文件或文件夹…" autocomplete="off">
+        </label>
+        <div class="tree-tool-actions">
+          <button type="button" class="tool-action" id="expandAllBtn">全部展开</button>
+          <button type="button" class="tool-action" id="collapseAllBtn">全部收起</button>
+        </div>
+      </div>
+
+      <div class="tree-root" id="treeRoot" role="tree" aria-label="项目文件树"></div>
+    </section>
+
+    <div class="selection-bar" aria-live="polite">
+      <span class="selection-label">当前选中</span>
+      <span class="selection-path" id="selectionPath">未选择任何文件</span>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

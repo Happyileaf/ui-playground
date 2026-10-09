@@ -1,0 +1,298 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0a0c10;
+  --surface: #12151c;
+  --surface-2: #171b24;
+  --line: rgba(255, 255, 255, 0.08);
+  --text: #f3f5f9;
+  --text-dim: #9aa3b2;
+  --text-faint: #67707f;
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.13);
+  --hud-bg: rgba(13, 16, 22, 0.72);
+  --scene:
+    radial-gradient(150px 110px at 24% 22%, rgba(245, 158, 11, 0.4), transparent 70%),
+    radial-gradient(260px 180px at 82% 82%, rgba(56, 189, 248, 0.28), transparent 72%),
+    radial-gradient(90px 90px at 68% 30%, rgba(52, 211, 153, 0.22), transparent 70%),
+    repeating-linear-gradient(90deg, transparent 0 46px, rgba(0, 0, 0, 0.55) 46px 50px),
+    repeating-linear-gradient(0deg, transparent 0 46px, rgba(0, 0, 0, 0.55) 46px 50px),
+    linear-gradient(160deg, #2a303d 0%, #1a1f29 55%, #141821 100%);
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(820px 520px at 50% -12%, rgba(56, 189, 248, 0.08), transparent 62%),
+    var(--bg);
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  padding: 5.5rem 1.5rem 4rem;
+}
+
+.hud-brand {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  height: 32px;
+  background: var(--hud-bg);
+  padding: 0 16px 0 10px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+.hud-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+  animation: hud-pulse 2.4s infinite ease-in-out;
+}
+
+.hud-title {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+@keyframes hud-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.8); }
+}
+
+.page-container {
+  max-width: 920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.page-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--text-faint);
+}
+
+.page-header h1 {
+  font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  background: linear-gradient(180deg, #ffffff, #c6d6e8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-header p {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.zoom-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 1.2rem;
+  align-items: stretch;
+}
+
+.zoom-frame {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 60px -36px rgba(0, 0, 0, 0.9);
+  cursor: none;
+  outline: none;
+  touch-action: none;
+}
+
+.zoom-frame:focus-visible {
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.45);
+}
+
+.scene-art {
+  position: absolute;
+  inset: 0;
+  background-image: var(--scene);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.lens {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background-image: var(--scene);
+  background-repeat: no-repeat;
+  box-shadow:
+    0 0 0 9999px rgba(8, 10, 14, 0.25),
+    0 14px 30px -8px rgba(0, 0, 0, 0.7),
+    inset 0 0 18px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: scale(0.7);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.lens.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.zoom-badge {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--hud-bg);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+
+.zoom-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.product-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.product-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.product-price {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.product-desc {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.zoom-controls {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.control-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+}
+
+.seg-group {
+  display: inline-flex;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.seg-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 8px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.seg-btn.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.seg-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.page-foot-tip {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-faint);
+}
+
+@media (max-width: 720px) {
+  .zoom-stage {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-dot,
+  .lens {
+    animation: none;
+    transition: none;
+  }
+
+  .seg-btn {
+    transition: none;
+  }
+}
