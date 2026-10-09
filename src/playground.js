@@ -473,6 +473,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '与真实布局结构一致的内容占位块配合循环扫光动画，模拟异步请求加载，加载完成后真实内容淡入切换且页面零跳动，可一键关闭扫光动画。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['skeleton', 'shimmer', 'loading-state', 'placeholder', 'fade-transition', 'micro-interaction']
+    },
+    {
+      id: 'multi-step-form',
+      title: 'Multi-Step Form · 分步表单',
+      type: 'component',
+      category: 'components',
+      path: 'components/multi-step-form/',
+      url: '/components/multi-step-form/index.html',
+      description: '三步工作区分步表单，顶部进度点指示当前步骤，逐页校验姓名、邮箱、角色、方案与协议，错误字段内联提示，末步汇总确认，提交后展示成功态并可重新填写。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['multi-step-form', 'wizard', 'form-validation', 'stepper', 'summary', 'form-control']
+    },
+    {
+      id: 'tags-input',
+      title: 'Tags Input · 标签输入',
+      type: 'component',
+      category: 'components',
+      path: 'components/tags-input/',
+      url: '/components/tags-input/index.html',
+      description: '邮箱邀请标签输入框，回车或逗号成签、退格删除末签、整段粘贴批量解析，自动校验邮箱格式与去重，联系人联想列表支持方向键高亮选择，并实时统计人数上限。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['tags-input', 'email-validation', 'autocomplete', 'bulk-paste', 'form-control', 'keyboard-nav']
+    },
+    {
+      id: 'lightbox',
+      title: 'Lightbox Gallery · 全屏灯箱',
+      type: 'component',
+      category: 'components',
+      path: 'components/lightbox/',
+      url: '/components/lightbox/index.html',
+      description: '纯 CSS 渐变场景的零图片画廊，点击缩略图进入全屏灯箱，左右按钮与方向键循环切换、Esc 与点击遮罩关闭，面板内 Tab 焦点陷阱，关闭后焦点自动归还缩略图。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['lightbox', 'gallery', 'focus-trap', 'keyboard-nav', 'zero-images', 'overlay']
+    },
+    {
+      id: 'color-picker',
+      title: 'Color Studio · HSL 色彩工作台',
+      type: 'component',
+      category: 'components',
+      path: 'components/color-picker/',
+      url: '/components/color-picker/index.html',
+      description: 'HSL 三滑块联动原生取色器，实时输出 HEX、RGB、HSL 三种色值并一键复制，12 色预设板快速起稿，另据色相自动生成互补、邻近、三角与明暗共 7 种和谐配色。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['color-picker', 'hsl', 'color-harmony', 'copy-to-clipboard', 'presets', 'form-control']
+    },
+    {
+      id: 'date-picker',
+      title: 'Date Picker · 键盘日历选择器',
+      type: 'component',
+      category: 'components',
+      path: 'components/date-picker/',
+      url: '/components/date-picker/index.html',
+      description: '弹出式日历选择器，过去日期自动禁用，今天与选中态清晰区分；完整键盘网格支持方向键移动、翻月翻年、Home/End 跳首尾、Enter 确认，外部点击关闭并归还焦点。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['date-picker', 'calendar', 'keyboard-nav', 'disabled-dates', 'focus-management', 'form-control']
     }
   ];
 

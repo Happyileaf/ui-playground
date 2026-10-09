@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tags Input · 标签输入器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Tags Input</span>
+  </div>
+
+  <main class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">EMAIL TOKENS · PASTE &amp; DEDUPE</span>
+      <h1>邀请团队成员</h1>
+      <p>输入邮箱后按 <kbd>Enter</kbd> 或逗号添加；粘贴整段文本会自动拆分。</p>
+    </header>
+
+    <section class="card">
+      <div class="tags-box" id="tagsBox">
+        <ul class="tag-list" id="tagList" aria-live="polite"></ul>
+        <input
+          type="text"
+          id="tagInput"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="输入邮箱地址…"
+          aria-label="添加邮箱标签"
+          aria-describedby="tagHint">
+      </div>
+
+      <ul class="suggestions" id="suggestions" role="listbox" aria-label="常用联系人" hidden></ul>
+
+      <div class="meta-row">
+        <span class="count" id="countLine">已添加 0 / 8 人</span>
+        <button type="button" class="btn-text" id="clearBtn">全部清空</button>
+      </div>
+      <p class="hint" id="tagHint">支持逗号、分号、空格或换行分隔；重复邮箱会被忽略。</p>
+
+      <button type="button" class="btn btn-primary" id="sendBtn">发送邀请</button>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

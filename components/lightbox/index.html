@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lightbox · 全屏灯箱画廊</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Lightbox Gallery</span>
+  </div>
+
+  <main class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">FOCUS TRAP · KEYBOARD NAV · ZERO IMAGES</span>
+      <h1>光影作品集</h1>
+      <p>点击任意作品进入灯箱，使用 <kbd>←</kbd> <kbd>→</kbd> 切换，<kbd>Esc</kbd> 关闭。</p>
+    </header>
+
+    <section class="gallery" id="gallery" aria-label="作品集"></section>
+  </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lbCaption">
+    <button type="button" class="lb-close" id="lbClose" aria-label="关闭灯箱">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg>
+    </button>
+    <button type="button" class="lb-nav lb-prev" id="lbPrev" aria-label="上一张">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+
+    <figure class="lb-stage">
+      <div class="lb-art" id="lbArt"></div>
+      <figcaption class="lb-caption">
+        <strong id="lbCaption"></strong>
+        <span id="lbCounter"></span>
+      </figcaption>
+    </figure>
+
+    <button type="button" class="lb-nav lb-next" id="lbNext" aria-label="下一张">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
