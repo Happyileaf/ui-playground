@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Async Button · 异步状态按钮</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Async Button · 异步状态按钮</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · ACTION FEEDBACK</span>
+      <h1>让每一次点击都有交代</h1>
+      <p>带完整状态机的异步按钮：空闲、加载、成功三态自动切换。加载时显示进度与旋转指示并禁用重复点击，完成后用对勾与文字即时确认；读屏器通过 aria-busy 与实时状态区感知进展，Esc 可中途取消。</p>
+    </header>
+
+    <section class="stage">
+      <div class="row">
+        <button class="async-btn primary" id="submitBtn" type="button">
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <svg class="btn-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="btn-text" data-idle="提交订单" data-loading="正在提交…" data-success="提交成功">提交订单</span>
+        </button>
+      </div>
+
+      <div class="row">
+        <button class="async-btn" id="saveBtn" type="button">
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <svg class="btn-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="btn-text" data-idle="保存草稿" data-loading="保存中…" data-success="已保存">保存草稿</span>
+        </button>
+
+        <button class="async-btn ghost" id="downloadBtn" type="button">
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <svg class="btn-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="btn-text" data-idle="下载文件" data-loading="下载中…" data-success="下载完成">下载文件</span>
+        </button>
+      </div>
+
+      <div class="progress-track" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <p class="cancel-hint">提示：加载过程中按 Esc 可取消操作。</p>
+    </section>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg" id="statusMsg" role="status" aria-live="polite">按钮空闲，等待操作</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

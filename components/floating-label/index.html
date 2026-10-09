@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Floating Label · 浮动标签</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Floating Label · 浮动标签</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · FORM MICRO-INTERACTION</span>
+      <h1>标签轻轻上浮，提示始终在位</h1>
+      <p>基于 :focus / :placeholder-shown 与填充态切换的浮动标签：聚焦或输入时标签收缩上浮到边框，占位符仅在此时显现，布局零跳动，键盘与读屏器通过真实 label 关联完整可用。</p>
+    </header>
+
+    <section class="stage">
+      <form class="form" id="demoForm" novalidate>
+        <div class="field">
+          <input class="field-input" type="text" id="nameField" name="name" placeholder=" " required>
+          <label class="field-label" for="nameField">姓名</label>
+          <span class="field-bar" aria-hidden="true"></span>
+        </div>
+
+        <div class="field">
+          <input class="field-input" type="email" id="emailField" name="email" placeholder=" " required>
+          <label class="field-label" for="emailField">邮箱地址</label>
+          <span class="field-bar" aria-hidden="true"></span>
+        </div>
+
+        <div class="field">
+          <textarea class="field-input area" id="messageField" name="message" rows="3" maxlength="120" placeholder=" "></textarea>
+          <label class="field-label textarea-label" for="messageField">留言（可选）</label>
+          <span class="field-counter" id="counter" aria-live="polite">0 / 120</span>
+        </div>
+
+        <button class="submit-btn" type="submit">
+          <span class="btn-label">提交信息</span>
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">点击输入框看标签上浮 · Tab 键可依次聚焦</span>
+  </div>
+
+  <div class="toast" id="formToast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

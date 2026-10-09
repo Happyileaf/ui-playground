@@ -13,6 +13,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
   // Master Case Catalog
   const cases = [
     {
+      id: 'count-up',
+      title: 'Count Up · 数字滚动',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/count-up/',
+      url: '/effects/count-up/index.html',
+      description: 'requestAnimationFrame 与 easeOutExpo 驱动的数字爬升特效，进入视口独立触发，支持千分位、小数位、前缀后缀与一键重播。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['count-up', 'easing', 'intersection-observer', 'tabular-nums', 'data-viz', 'reduced-motion']
+    },
+    {
+      id: 'popover-card',
+      title: 'Popover Card · 智能气泡卡片',
+      type: 'component',
+      category: 'components',
+      path: 'components/popover-card/',
+      url: '/components/popover-card/index.html',
+      description: '声明期望方位、实时测量视口空间的气泡卡片，空间不足自动翻转平移，方向箭头随触发点移动，外点与 Esc 关闭并完整管理焦点。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['popover', 'floating-layer', 'edge-detection', 'focus-trap', 'keyboard-nav', 'micro-interaction']
+    },
+    {
+      id: 'password-strength',
+      title: 'Password Strength · 密码强度仪表',
+      type: 'component',
+      category: 'components',
+      path: 'components/password-strength/',
+      url: '/components/password-strength/index.html',
+      description: '五规则实时打分的密码强度仪表，四段进度条按弱到极强分色，规则清单逐条打勾，明文切换与确认按钮门槛联动。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['form-control', 'password', 'strength-meter', 'validation', 'accessible', 'micro-interaction']
+    },
+    {
+      id: 'async-button',
+      title: 'Async Button · 异步状态按钮',
+      type: 'component',
+      category: 'components',
+      path: 'components/async-button/',
+      url: '/components/async-button/index.html',
+      description: 'idle / loading / success 三态按钮，旋转指示器与进度条同步推进，单任务互斥锁，Esc 取消，成功后弹性打勾并自动复位。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['async-button', 'loading-state', 'progress-bar', 'state-machine', 'form-control', 'micro-interaction']
+    },
+    {
+      id: 'floating-label',
+      title: 'Floating Label · 浮动标签',
+      type: 'component',
+      category: 'components',
+      path: 'components/floating-label/',
+      url: '/components/floating-label/index.html',
+      description: '聚焦或输入时标签收缩上浮到边框的浮动表单，下划线 scaleX 展开、文本域字数统计与轻量 Toast 校验提示，真实 label 关联读屏可用。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['floating-label', 'form-control', 'placeholder-shown', 'validation', 'accessible', 'micro-interaction']
+    },
+    {
       id: 'ring-progress',
       title: 'Ring Progress · 环形进度反馈',
       type: 'component',

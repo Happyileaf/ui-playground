@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Strength · 密码强度计</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Password Strength · 密码强度计</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · FORM SECURITY</span>
+      <h1>边输入，边告诉用户还差什么</h1>
+      <p>实时密码强度计：从长度、大小写字母、数字与符号五个维度即时打分，分段色条与文字同步反馈，逐条勾选的建议清单引导用户强化密码，右侧眼睛按钮切换明文显示，所有判定均在本地完成。</p>
+    </header>
+
+    <section class="stage">
+      <div class="pwd-field">
+        <input class="pwd-input" id="pwdInput" type="password" placeholder="设置一个密码" autocomplete="new-password" aria-describedby="strengthLabel">
+        <button class="toggle-btn" id="toggleBtn" type="button" aria-label="显示密码">
+          <svg class="eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+          <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="meter">
+        <span class="seg" data-seg="0"></span>
+        <span class="seg" data-seg="1"></span>
+        <span class="seg" data-seg="2"></span>
+        <span class="seg" data-seg="3"></span>
+      </div>
+
+      <div class="strength-row">
+        <span class="strength-label" id="strengthLabel" role="status" aria-live="polite">请输入密码</span>
+      </div>
+
+      <ul class="rule-list">
+        <li class="rule" data-rule="length"><span class="tick"></span>至少 8 个字符</li>
+        <li class="rule" data-rule="lower"><span class="tick"></span>包含小写字母</li>
+        <li class="rule" data-rule="upper"><span class="tick"></span>包含大写字母</li>
+        <li class="rule" data-rule="number"><span class="tick"></span>包含数字</li>
+        <li class="rule" data-rule="symbol"><span class="tick"></span>包含符号</li>
+      </ul>
+
+      <button class="confirm-btn" id="confirmBtn" type="button" disabled>确认密码</button>
+    </section>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">密码仅在本地判定 · 达到中等强度即可确认</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
