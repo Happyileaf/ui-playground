@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popover Card · 智能气泡卡片</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Popover Card · 智能气泡卡片</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · FLOATING LAYER</span>
+      <h1>贴着触发点弹出，靠近边缘自己让路</h1>
+      <p>纯原生定位引擎驱动的气泡卡片：声明期望方位后实时测量视口剩余空间，空间不足自动翻转或平移；带方向箭头、点击外部与 Esc 关闭、打开即聚焦、关闭后焦点归位，承载富文本与操作按钮，与 Tooltip 的轻提示明确区分。</p>
+    </header>
+
+    <section class="stage">
+      <div class="trigger-grid">
+        <button class="trigger-btn" data-placement="top" type="button">
+          <span class="btn-label">向上弹出</span>
+          <span class="btn-arrow" aria-hidden="true">↑</span>
+        </button>
+        <button class="trigger-btn primary" data-placement="bottom" type="button">
+          <span class="btn-label">分享面板</span>
+          <span class="btn-arrow" aria-hidden="true">↓</span>
+        </button>
+        <button class="trigger-btn" data-placement="left" type="button">
+          <span class="btn-arrow" aria-hidden="true">←</span>
+          <span class="btn-label">详情卡片</span>
+        </button>
+        <button class="trigger-btn" data-placement="right" type="button">
+          <span class="btn-label">通知中心</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+
+      <div class="popover" id="popover" role="dialog" aria-modal="false" aria-labelledby="popTitle" hidden>
+        <div class="pop-arrow" aria-hidden="true"></div>
+        <div class="pop-head">
+          <div class="pop-avatar" id="popAvatar">A</div>
+          <div class="pop-meta">
+            <strong class="pop-title" id="popTitle">Aurora Lab</strong>
+            <span class="pop-sub" id="popSub">在线 · 刚刚活跃</span>
+          </div>
+          <button class="pop-close" id="popClose" type="button" aria-label="关闭气泡卡片">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+        <p class="pop-body" id="popBody">气泡卡片可承载头像、说明文本与操作按钮，适合在不离开当前上下文时展示富信息。</p>
+        <div class="pop-actions">
+          <button class="pop-action primary" type="button" id="popPrimary">关注</button>
+          <button class="pop-action ghost" type="button">查看主页</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">点击按钮弹出卡片 · Esc 或点击外部关闭 · 靠近窗口边缘自动换位</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
