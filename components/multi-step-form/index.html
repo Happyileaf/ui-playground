@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Step Form · 分步工作流表单</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Multi-Step Form</span>
+  </div>
+
+  <main class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">GUIDED WORKFLOW · INLINE VALIDATION</span>
+      <h1>Create your workspace</h1>
+      <p>Three calm, validated steps with a persistent progress trail. Use <kbd>Enter</kbd> to advance.</p>
+    </header>
+
+    <section class="card" id="formCard">
+      <ol class="stepper" id="stepper">
+        <li class="step is-active" data-step="0">
+          <span class="step-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span class="step-num">1</span></span>
+          <span class="step-label">账户</span>
+        </li>
+        <li class="step" data-step="1">
+          <span class="step-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span class="step-num">2</span></span>
+          <span class="step-label">方案</span>
+        </li>
+        <li class="step" data-step="2">
+          <span class="step-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span class="step-num">3</span></span>
+          <span class="step-label">确认</span>
+        </li>
+      </ol>
+
+      <form id="wizForm" novalidate>
+        <fieldset class="panel is-active" data-panel="0">
+          <h2 class="panel-title">你的账户信息</h2>
+          <div class="field">
+            <label for="fullName">姓名</label>
+            <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="李雷" required>
+            <span class="error" id="err-fullName"></span>
+          </div>
+          <div class="field">
+            <label for="email">邮箱</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@studio.com" required>
+            <span class="error" id="err-email"></span>
+          </div>
+        </fieldset>
+
+        <fieldset class="panel" data-panel="1">
+          <h2 class="panel-title">选择你的角色与方案</h2>
+          <div class="field">
+            <label for="role">主要角色</label>
+            <div class="select-wrap">
+              <select id="role" name="role" required>
+                <option value="">请选择一个角色</option>
+                <option value="designer">设计师</option>
+                <option value="developer">开发者</option>
+                <option value="founder">创始人</option>
+              </select>
+            </div>
+            <span class="error" id="err-role"></span>
+          </div>
+          <div class="field">
+            <span class="group-label">订阅方案</span>
+            <div class="plan-grid" role="radiogroup" aria-label="订阅方案">
+              <label class="plan">
+                <input type="radio" name="plan" value="starter" required>
+                <span class="plan-body"><strong>Starter</strong><small>免费 · 单人项目</small></span>
+              </label>
+              <label class="plan">
+                <input type="radio" name="plan" value="pro" required>
+                <span class="plan-body"><strong>Pro</strong><small>¥68/月 · 全部能力</small></span>
+              </label>
+              <label class="plan">
+                <input type="radio" name="plan" value="team" required>
+                <span class="plan-body"><strong>Team</strong><small>¥168/月 · 协作空间</small></span>
+              </label>
+            </div>
+            <span class="error" id="err-plan"></span>
+          </div>
+        </fieldset>
+
+        <fieldset class="panel" data-panel="2">
+          <h2 class="panel-title">确认并创建</h2>
+          <dl class="summary" id="summary"></dl>
+          <label class="check-row">
+            <input type="checkbox" id="terms" required>
+            <span class="check-box" aria-hidden="true"></span>
+            <span>我已阅读并同意 <a href="#" onclick="event.preventDefault()">服务条款</a></span>
+          </label>
+          <span class="error" id="err-terms"></span>
+        </fieldset>
+
+        <div class="actions">
+          <button type="button" class="btn btn-ghost" id="backBtn" hidden>返回</button>
+          <button type="button" class="btn btn-primary" id="nextBtn">继续</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="success" id="successView" hidden>
+      <div class="success-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+      <h2>空间已就绪</h2>
+      <p id="successMsg"></p>
+      <button type="button" class="btn btn-ghost" id="restartBtn">重新填写</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

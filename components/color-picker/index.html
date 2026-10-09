@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Studio · HSL 色彩工作台</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Color Studio</span>
+  </div>
+
+  <main class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">HSL SLIDERS · HARMONY · ONE-CLICK COPY</span>
+      <h1>HSL 色彩工作台</h1>
+      <p>拖动滑块或直接选色，自动生成 HEX / RGB / HSL 三种色值与和谐配色方案。</p>
+    </header>
+
+    <section class="studio">
+      <div class="preview-card">
+        <div class="preview" id="preview">
+          <label class="native-pick">
+            <input type="color" id="nativeColor" value="#5b8def" aria-label="原生取色器">
+            <span>取色器</span>
+          </label>
+        </div>
+        <div class="values">
+          <div class="value-row">
+            <span class="value-label">HEX</span>
+            <code id="outHex">#5B8DEF</code>
+            <button type="button" class="copy-btn" data-copy="hex">复制</button>
+          </div>
+          <div class="value-row">
+            <span class="value-label">RGB</span>
+            <code id="outRgb">91, 141, 239</code>
+            <button type="button" class="copy-btn" data-copy="rgb">复制</button>
+          </div>
+          <div class="value-row">
+            <span class="value-label">HSL</span>
+            <code id="outHsl">219°, 82%, 65%</code>
+            <button type="button" class="copy-btn" data-copy="hsl">复制</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="slider-row">
+          <label for="hueRange">
+            <span class="slider-name">色相 H</span>
+            <span class="slider-val" id="hueVal">219°</span>
+          </label>
+          <input type="range" id="hueRange" min="0" max="360" value="219">
+        </div>
+        <div class="slider-row">
+          <label for="satRange">
+            <span class="slider-name">饱和度 S</span>
+            <span class="slider-val" id="satVal">82%</span>
+          </label>
+          <input type="range" id="satRange" min="0" max="100" value="82">
+        </div>
+        <div class="slider-row">
+          <label for="ligRange">
+            <span class="slider-name">亮度 L</span>
+            <span class="slider-val" id="ligVal">65%</span>
+          </label>
+          <input type="range" id="ligRange" min="0" max="100" value="65">
+        </div>
+
+        <div class="block">
+          <p class="block-title">预设色板</p>
+          <div class="swatches" id="presets"></div>
+        </div>
+
+        <div class="block">
+          <p class="block-title">和谐配色</p>
+          <div class="swatches" id="harmony"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
