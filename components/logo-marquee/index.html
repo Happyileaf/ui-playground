@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logo Marquee · 无缝跑马灯</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Logo Marquee · 无缝跑马灯</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · SEAMLESS MARQUEE</span>
+      <h1>循环往复，不见首尾</h1>
+      <p>纯 CSS 动画驱动的 Logo 无缝跑马灯：轨道内容复制一次并平移恰好 50%，实现无跳跃的无限滚动。悬停暂停、方向可切换、边缘渐隐遮罩，并完整支持减弱动态效果偏好。</p>
+    </header>
+
+    <section class="marquee-block">
+      <div class="marquee-meta">
+        <span class="marquee-label">受信赖的合作伙伴</span>
+        <div class="marquee-controls" role="group" aria-label="跑马灯控制">
+          <button class="dir-btn is-active" id="leftBtn" type="button" aria-pressed="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+          </button>
+          <button class="dir-btn" id="rightBtn" type="button" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+          <button class="dir-btn" id="pauseBtn" type="button" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+              <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="marquee" id="marquee">
+        <div class="marquee-track" id="marqueeTrack">
+          <article class="logo-item" style="--c:#38bdf8">
+            <span class="logo-mark">◈</span>
+            <div class="logo-text">
+              <strong>Nimbus</strong>
+              <small>云基础设施</small>
+            </div>
+          </article>
+          <article class="logo-item" style="--c:#fb7185">
+            <span class="logo-mark">✦</span>
+            <div class="logo-text">
+              <strong>Stellar</strong>
+              <small>数据分析</small>
+            </div>
+          </article>
+          <article class="logo-item" style="--c:#34d399">
+            <span class="logo-mark">⬡</span>
+            <div class="logo-text">
+              <strong>Hexon</strong>
+              <small>设计系统</small>
+            </div>
+          </article>
+          <article class="logo-item" style="--c:#fbbf24">
+            <span class="logo-mark">◉</span>
+            <div class="logo-text">
+              <strong>Orbit</strong>
+              <small>协同办公</small>
+            </div>
+          </article>
+          <article class="logo-item" style="--c:#a78bfa">
+            <span class="logo-mark">❖</span>
+            <div class="logo-text">
+              <strong>Prism</strong>
+              <small>智能硬件</small>
+            </div>
+          </article>
+          <article class="logo-item" style="--c:#2dd4bf">
+            <span class="logo-mark">⬢</span>
+            <div class="logo-text">
+              <strong>Verdant</strong>
+            <small>绿色能源</small>
+            </div>
+          </article>
+          <article class="logo-item" style="--c:#f472b6">
+            <span class="logo-mark">✺</span>
+            <div class="logo-text">
+              <strong>Bloom</strong>
+              <small>消费品牌</small>
+            </div>
+          </article>
+          <article class="logo-item" style="--c:#94a3b8">
+            <span class="logo-mark">◬</span>
+            <div class="logo-text">
+              <strong>Vertex</strong>
+              <small>金融科技</small>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-strip">
+      <div class="stat">
+        <strong>100%</strong>
+        <span>CSS 动画驱动</span>
+      </div>
+      <div class="stat">
+        <strong>0ms</strong>
+        <span>循环跳帧感</span>
+      </div>
+      <div class="stat">
+        <strong>8+</strong>
+        <span>品牌位无缝衔接</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

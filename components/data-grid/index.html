@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Grid · 数据表格</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Data Grid · 数据表格</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · DATA DENSE UI</span>
+      <h1>让密集数据井井有条</h1>
+      <p>纯原生数据表格：点击表头切换升降序、关键词即时筛选、复选框多选与批量操作、底部分页与每页条数切换。键盘 <kbd>Tab</kbd> 可依次访问全部控件。</p>
+    </header>
+
+    <section class="card">
+      <div class="toolbar">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" placeholder="搜索姓名、邮箱或部门…" autocomplete="off">
+        </div>
+        <select id="deptFilter" aria-label="按部门筛选">
+          <option value="all">全部部门</option>
+        </select>
+      </div>
+
+      <div class="bulk-bar" id="bulkBar" hidden>
+        <span id="selectedCount">已选 0 项</span>
+        <div class="bulk-actions">
+          <button type="button" class="bulk-btn" id="bulkActive">标记在职</button>
+          <button type="button" class="bulk-btn danger" id="bulkDelete">删除所选</button>
+          <button type="button" class="bulk-btn ghost" id="clearSelection">取消选择</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-check">
+                <input type="checkbox" id="selectAll" aria-label="全选当前页">
+              </th>
+              <th class="sortable" data-key="name">姓名<span class="sort-icon" aria-hidden="true"></span></th>
+              <th class="sortable" data-key="email">邮箱<span class="sort-icon" aria-hidden="true"></span></th>
+              <th class="sortable" data-key="dept">部门<span class="sort-icon" aria-hidden="true"></span></th>
+              <th class="sortable num" data-key="salary">薪资<span class="sort-icon" aria-hidden="true"></span></th>
+              <th class="sortable" data-key="status">状态<span class="sort-icon" aria-hidden="true"></span></th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="footer">
+        <div class="page-size">
+          <label for="pageSize">每页</label>
+          <select id="pageSize">
+            <option value="6">6</option>
+            <option value="8" selected>8</option>
+            <option value="12">12</option>
+          </select>
+          <span>条</span>
+        </div>
+        <div class="pagination" id="pagination"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
