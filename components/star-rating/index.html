@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Rating · 星级评分</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Star Rating · 星级评分</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · FEEDBACK CONTROL</span>
+      <h1>为这次体验打个分吧</h1>
+      <p>悬停即可实时预览分数，支持整星与半星两种精度。键盘用户用 ← → 微调、数字键直选，评分确认后会听到一声轻巧的反馈音。</p>
+    </header>
+
+    <section class="rating-panel">
+      <div class="product-row">
+        <div class="product-cover" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26">
+            <path d="M4 7h16M4 12h16M4 17h10"></path>
+          </svg>
+        </div>
+        <div class="product-info">
+          <p class="product-name">《原生交互设计实战》在线课程</p>
+          <p class="product-meta">已完成全部 24 节 · 学习时长 11 小时</p>
+        </div>
+      </div>
+
+      <div class="score-display">
+        <span class="score-number" id="scoreNumber">0.0</span>
+        <span class="score-max">/ 5.0</span>
+        <span class="score-text" id="scoreText">点击星星进行评分</span>
+      </div>
+
+      <div class="rating-block" id="ratingBlock"
+        role="slider" tabindex="0" aria-label="课程评分"
+        aria-valuemin="0" aria-valuemax="5" aria-valuenow="0"
+        aria-valuetext="未评分" aria-orientation="horizontal">
+        <div class="star-row" id="starRow">
+          <span class="star" data-value="1">
+            <span class="star-fill"></span>
+          </span>
+          <span class="star" data-value="2">
+            <span class="star-fill"></span>
+          </span>
+          <span class="star" data-value="3">
+            <span class="star-fill"></span>
+          </span>
+          <span class="star" data-value="4">
+            <span class="star-fill"></span>
+          </span>
+          <span class="star" data-value="5">
+            <span class="star-fill"></span>
+          </span>
+        </div>
+        <input type="range" class="sr-input" id="srInput" min="0" max="5" step="0.5" value="0" aria-hidden="true" tabindex="-1">
+      </div>
+
+      <div class="ticks-row" aria-hidden="true">
+        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+      </div>
+
+      <div class="options-row">
+        <div class="precision-group" role="group" aria-label="评分精度">
+          <button type="button" class="precision-btn is-active" data-step="1">整星</button>
+          <button type="button" class="precision-btn" data-step="0.5">半星</button>
+        </div>
+        <button type="button" class="clear-btn" id="clearBtn">清除评分</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">悬停预览 · 点击确认 · ← → 微调 · 数字 1–5 直选</span>
+  </div>
+
+  <p class="sr-live" id="srLive" aria-live="polite"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>

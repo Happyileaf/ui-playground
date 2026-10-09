@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sortable List · 拖拽排序列表</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Sortable · 拖拽排序</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · DRAG REORDER</span>
+      <h1>把今天的事情排出优先级</h1>
+      <p>按住任意任务卡片上下拖拽即可重排，放置指示线会告诉你确切落点。拖到列表边缘自动滚动，键盘用户可用 Alt + ↑ / ↓ 完成同样的操作。</p>
+    </header>
+
+    <section class="board">
+      <div class="board-head">
+        <div class="board-title">
+          <span class="title-mark"></span>
+          <h2>今日待办</h2>
+          <span class="count-badge" id="countBadge">6 项</span>
+        </div>
+        <button type="button" class="reset-btn" id="resetBtn">恢复默认顺序</button>
+      </div>
+
+      <ul class="task-list" id="taskList" aria-label="可排序的今日待办列表">
+        <li class="task-item" draggable="false" data-id="design">
+          <button type="button" class="drag-handle" aria-label="拖拽手柄：评审首页视觉稿">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <circle cx="9" cy="6" r="1.6"></circle>
+              <circle cx="15" cy="6" r="1.6"></circle>
+              <circle cx="9" cy="12" r="1.6"></circle>
+              <circle cx="15" cy="12" r="1.6"></circle>
+              <circle cx="9" cy="18" r="1.6"></circle>
+              <circle cx="15" cy="18" r="1.6"></circle>
+            </svg>
+          </button>
+          <span class="task-index">1</span>
+          <span class="task-icon icon-violet">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path d="M4 17.5V20h3.5L18 9.5 14.5 6 4 16.5v1Zm0 0L14.5 7"></path>
+              <path d="M13.5 7 17 10.5"></path>
+            </svg>
+          </span>
+          <div class="task-body">
+            <p class="task-name">评审首页视觉稿终版</p>
+            <p class="task-meta">设计 · 预计 45 分钟 · 高优</p>
+          </div>
+          <span class="task-tag tag-high">高优</span>
+        </li>
+
+        <li class="task-item" draggable="false" data-id="standup">
+          <button type="button" class="drag-handle" aria-label="拖拽手柄：参加每日站会">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <circle cx="9" cy="6" r="1.6"></circle>
+              <circle cx="15" cy="6" r="1.6"></circle>
+              <circle cx="9" cy="12" r="1.6"></circle>
+              <circle cx="15" cy="12" r="1.6"></circle>
+              <circle cx="9" cy="18" r="1.6"></circle>
+              <circle cx="15" cy="18" r="1.6"></circle>
+            </svg>
+          </button>
+          <span class="task-index">2</span>
+          <span class="task-icon icon-sky">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path d="M4 18v-2a3 3 0 0 1 3-3h3a3 3 0 0 1 3 3v2"></path>
+              <circle cx="8.5" cy="7" r="2.5"></circle>
+              <path d="M16 8.5a2.5 2.5 0 1 0 0 5"></path>
+              <path d="M20 18v-1.5a3 3 0 0 0-2.2-2.9"></path>
+            </svg>
+          </span>
+          <div class="task-body">
+            <p class="task-name">10:30 每日站会同步进度</p>
+            <p class="task-meta">协作 · 15 分钟</p>
+          </div>
+          <span class="task-tag">常规</span>
+        </li>
+
+        <li class="task-item" draggable="false" data-id="bug">
+          <button type="button" class="drag-handle" aria-label="拖拽手柄：修复登录态过期问题">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <circle cx="9" cy="6" r="1.6"></circle>
+              <circle cx="15" cy="6" r="1.6"></circle>
+              <circle cx="9" cy="12" r="1.6"></circle>
+              <circle cx="15" cy="12" r="1.6"></circle>
+              <circle cx="9" cy="18" r="1.6"></circle>
+              <circle cx="15" cy="18" r="1.6"></circle>
+            </svg>
+          </button>
+          <span class="task-index">3</span>
+          <span class="task-icon icon-rose">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path d="M12 3 3 8l9 5 9-5-9-5Z"></path>
+              <path d="m3 13 9 5 9-5"></path>
+            </svg>
+          </span>
+          <div class="task-body">
+            <p class="task-name">修复登录态过期后白屏问题</p>
+            <p class="task-meta">前端 · issue #218 · 阻塞发布</p>
+          </div>
+          <span class="task-tag tag-urgent">阻塞</span>
+        </li>
+
+        <li class="task-item" draggable="false" data-id="doc">
+          <button type="button" class="drag-handle" aria-label="拖拽手柄：补充接口文档">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <circle cx="9" cy="6" r="1.6"></circle>
+              <circle cx="15" cy="6" r="1.6"></circle>
+              <circle cx="9" cy="12" r="1.6"></circle>
+              <circle cx="15" cy="12" r="1.6"></circle>
+              <circle cx="9" cy="18" r="1.6"></circle>
+              <circle cx="15" cy="18" r="1.6"></circle>
+            </svg>
+          </button>
+          <span class="task-index">4</span>
+          <span class="task-icon icon-amber">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path d="M7 3h7l4 4v14H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+              <path d="M14 3v4h4"></path>
+              <path d="M9 12h7M9 16h5"></path>
+            </svg>
+          </span>
+          <div class="task-body">
+            <p class="task-name">补充 v2 接口字段说明文档</p>
+            <p class="task-meta">文档 · 预计 30 分钟</p>
+          </div>
+          <span class="task-tag">常规</span>
+        </li>
+
+        <li class="task-item" draggable="false" data-id="review">
+          <button type="button" class="drag-handle" aria-label="拖拽手柄：Code Review 合并请求">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <circle cx="9" cy="6" r="1.6"></circle>
+              <circle cx="15" cy="6" r="1.6"></circle>
+              <circle cx="9" cy="12" r="1.6"></circle>
+              <circle cx="15" cy="12" r="1.6"></circle>
+              <circle cx="9" cy="18" r="1.6"></circle>
+              <circle cx="15" cy="18" r="1.6"></circle>
+            </svg>
+          </button>
+          <span class="task-index">5</span>
+          <span class="task-icon icon-emerald">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <circle cx="6" cy="6" r="2.5"></circle>
+              <circle cx="6" cy="18" r="2.5"></circle>
+              <circle cx="18" cy="12" r="2.5"></circle>
+              <path d="M6 8.5v7M8.2 7.1l7.6 3.6M8.2 16.9l7.6-3.6"></path>
+            </svg>
+          </span>
+          <div class="task-body">
+            <p class="task-name">Code Review 支付模块合并请求</p>
+            <p class="task-meta">评审 · !142 · 3 个文件</p>
+          </div>
+          <span class="task-tag">常规</span>
+        </li>
+
+        <li class="task-item" draggable="false" data-id="mail">
+          <button type="button" class="drag-handle" aria-label="拖拽手柄：回复客户反馈邮件">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <circle cx="9" cy="6" r="1.6"></circle>
+              <circle cx="15" cy="6" r="1.6"></circle>
+              <circle cx="9" cy="12" r="1.6"></circle>
+              <circle cx="15" cy="12" r="1.6"></circle>
+              <circle cx="9" cy="18" r="1.6"></circle>
+              <circle cx="15" cy="18" r="1.6"></circle>
+            </svg>
+          </button>
+          <span class="task-index">6</span>
+          <span class="task-icon icon-slate">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+              <path d="m4 7 8 6 8-6"></path>
+            </svg>
+          </span>
+          <div class="task-body">
+            <p class="task-name">回复三封客户反馈邮件</p>
+            <p class="task-meta">沟通 · 预计 20 分钟</p>
+          </div>
+          <span class="task-tag tag-low">低优</span>
+        </li>
+      </ul>
+
+      <div class="order-preview">
+        <span class="preview-label">执行顺序</span>
+        <ol class="preview-list" id="previewList"></ol>
+      </div>
+    </section>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">按住卡片拖拽排序 · Alt + ↑ / ↓ 键盘重排 · 拖到边缘自动滚动</span>
+  </div>
+
+  <p class="sr-live" id="srLive" aria-live="polite"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
