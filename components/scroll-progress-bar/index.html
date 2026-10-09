@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Progress Bar · 滚动进度章节导航</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="progress-rail" id="progressRail">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Scroll Progress Bar</span>
+  </div>
+
+  <nav class="chapter-nav" id="chapterNav" aria-label="章节导航">
+    <a class="chapter-dot" href="#intro" data-target="intro" title="序章"><span class="dot-label">序章</span></a>
+    <a class="chapter-dot" href="#origin" data-target="origin" title="起源"><span class="dot-label">起源</span></a>
+    <a class="chapter-dot" href="#craft" data-target="craft" title="工艺"><span class="dot-label">工艺</span></a>
+    <a class="chapter-dot" href="#motion" data-target="motion" title="律动"><span class="dot-label">律动</span></a>
+    <a class="chapter-dot" href="#ending" data-target="ending" title="尾声"><span class="dot-label">尾声</span></a>
+  </nav>
+
+  <button type="button" class="back-top" id="backTop" aria-label="回到顶部">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+    <span class="back-top-percent" id="backTopPercent">0%</span>
+  </button>
+
+  <main class="article-wrap">
+    <article class="article">
+      <header class="article-hero">
+        <span class="eyebrow">SCROLL-DRIVEN · SECTION SPY</span>
+        <h1>在滚动中，知晓自己身处何方</h1>
+        <p class="hero-sub">顶部的进度条记录阅读的深度，右侧的章节点标记当下的段落。向下滑动，让界面为你引路。</p>
+      </header>
+
+      <section class="chapter" id="intro">
+        <span class="chapter-index">01</span>
+        <h2>序章 · 为什么需要进度感知</h2>
+        <p>长页面是内容型网站的常态。当读者沉浸于文字之中时，一个安静而准确的进度指示能够消除“还有多少没读”的焦虑，也让随时跳转到感兴趣的章节成为可能。</p>
+        <p>优秀的滚动反馈应当是克制的：它在你需要时浮现，在你专注时隐退，从不抢夺正文的注意力。渐变的进度光带与呼吸般的章节高亮，正是这种设计哲学的体现。</p>
+      </section>
+
+      <section class="chapter" id="origin">
+        <span class="chapter-index">02</span>
+        <h2>起源 · 从滚动条到进度条</h2>
+        <p>浏览器原生滚动条提供了最基础的位置反馈，却无法表达章节结构，也常常因为系统样式而显得突兀。于是开发者用一个固定在视口顶端的细条，将已滚动的比例转化为可视化的宽度。</p>
+        <p>配合 Intersection Observer，页面还能“感知”当前进入视野的段落，高亮对应的导航点，实现所谓的 Scroll Spy。点击导航点平滑滚动，则完成了从定位到跳转的闭环。</p>
+      </section>
+
+      <section class="chapter" id="craft">
+        <span class="chapter-index">03</span>
+        <h2>工艺 · 性能与细节的平衡</h2>
+        <p>滚动事件触发极为频繁，直接在回调里进行布局计算会造成掉帧。正确的做法是用 requestAnimationFrame 对更新进行节流，并优先使用 getBoundingClientRect 等单次读取的接口，避免强制同步布局。</p>
+        <p>进度条采用 CSS transform 而非宽度变化来驱动，因为合成层的位移不触发布局与重绘，在低端设备上也能保持丝滑。渐变光带收端的柔光，则让百分比的增长更具质感。</p>
+      </section>
+
+      <section class="chapter" id="motion">
+        <span class="chapter-index">04</span>
+        <h2>律动 · 章节高亮与平滑跳转</h2>
+        <p>当一个章节的标题越过视口中线，右侧对应的圆点会放大并点亮主题色，悬停时还会展开章节名称。这种轻量级的空间锚点，让长篇阅读拥有了清晰的节奏。</p>
+        <p>点击任意圆点，页面会以原生平滑滚动抵达目标章节；键盘用户同样可以通过 Tab 在章节链接间移动并回车跳转。右下角的悬浮按钮则实时显示阅读百分比，一键即可回到开头。</p>
+      </section>
+
+      <section class="chapter" id="ending">
+        <span class="chapter-index">05</span>
+        <h2>尾声 · 安静的陪伴者</h2>
+        <p>最好的界面反馈如同呼吸——自然、持续、却不被察觉。希望这条进度光带与这些章节光点，能成为你下一篇长文里安静的陪伴者。</p>
+        <p>你已经抵达文末。试着点击右下角的按钮回到顶部，观察光带如何反向收回，或者通过右侧导航重新跳转到任意章节。</p>
+      </section>
+
+      <footer class="article-foot">
+        <span>— 全文完 —</span>
+      </footer>
+    </article>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

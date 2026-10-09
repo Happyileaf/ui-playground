@@ -1,0 +1,308 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #07080d;
+  --surface: #10131c;
+  --surface-soft: #151926;
+  --line: rgba(255, 255, 255, 0.07);
+  --text: #f2f4fa;
+  --text-dim: #97a0b5;
+  --text-faint: #646d82;
+  --accent: #34d399;
+  --accent-deep: #059669;
+  --hud-bg: rgba(16, 18, 28, 0.72);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(820px 540px at 50% -12%, rgba(52, 211, 153, 0.1), transparent 62%),
+    radial-gradient(700px 500px at 100% 110%, rgba(99, 102, 241, 0.08), transparent 60%),
+    var(--bg);
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  padding: 5.5rem 1.5rem 4rem;
+}
+
+.hud-brand {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  height: 32px;
+  background: var(--hud-bg);
+  padding: 0 16px 0 10px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+.hud-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.8);
+  animation: hud-pulse 2.4s infinite ease-in-out;
+}
+
+.hud-title {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+@keyframes hud-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.8); }
+}
+
+.page-container {
+  max-width: 620px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.page-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--text-faint);
+}
+
+.page-header h1 {
+  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  background: linear-gradient(180deg, #ffffff, #b9c2d8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-header p {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+.settings-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8);
+}
+
+.settings-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-soft);
+}
+
+.settings-card-head h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.settings-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+.settings-list {
+  list-style: none;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem 1.5rem;
+}
+
+.setting-row + .setting-row {
+  border-top: 1px solid var(--line);
+}
+
+.setting-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.setting-icon {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+.setting-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.setting-row.is-on .setting-icon {
+  color: var(--accent);
+  background: rgba(52, 211, 153, 0.1);
+  border-color: rgba(52, 211, 153, 0.22);
+}
+
+.setting-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.setting-label {
+  font-size: 0.93rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.setting-desc {
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tilt-switch {
+  flex-shrink: 0;
+  border: none;
+  padding: 6px;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 999px;
+  touch-action: pan-y;
+}
+
+.tilt-switch:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.switch-track {
+  --progress: 0;
+  position: relative;
+  display: block;
+  width: 52px;
+  height: 30px;
+  border-radius: 999px;
+  background: #232838;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.45);
+  transform: perspective(240px) rotateX(calc(var(--tilt-y, 0) * 1deg)) rotateY(calc(var(--tilt-x, 0) * -1deg));
+  transform-style: preserve-3d;
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.tilt-switch.is-on .switch-track {
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 6px 18px -6px rgba(52, 211, 153, 0.55);
+}
+
+.tilt-switch.is-pressing .switch-track {
+  transform: perspective(240px) rotateX(calc(var(--tilt-y, 0) * 1deg)) rotateY(calc(var(--tilt-x, 0) * -1deg)) scale(0.96);
+}
+
+.switch-knob {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ffffff, #dfe3ee);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), 0 0 0 0.5px rgba(0, 0, 0, 0.05);
+  transform: translate3d(calc(var(--progress) * 22px), -50%, calc(var(--progress) * 6px));
+  will-change: transform;
+}
+
+.switch-knob::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.9), transparent 45%);
+}
+
+.page-foot-tip {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-faint);
+}
+
+@media (max-width: 480px) {
+  .setting-row {
+    padding: 1rem 1.1rem;
+  }
+
+  .settings-card-head {
+    padding: 1.1rem;
+  }
+
+  .setting-desc {
+    max-width: 42vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-dot {
+    animation: none;
+  }
+
+  .switch-track,
+  .tilt-switch.is-pressing .switch-track {
+    transform: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+}

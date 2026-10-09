@@ -308,6 +308,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '涵盖 6 种经典物理与动效曲线的胶囊切换器：基础线性、弹性阻尼、呼吸光影、SVG 粘滞流体、磁吸瞬动与遮罩浮现，支持全键盘无障碍与纯原生触感音效。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['capsule-tabs', 'tab-navigation', 'motion-design', 'cubic-bezier', 'svg-gooey', 'spring-physics', 'web-audio', 'accessibility']
+    },
+    {
+      id: 'tilt-toggle-switch',
+      title: 'Spring Tilt Switch · 弹簧倾斜拨动开关',
+      type: 'component',
+      category: 'components',
+      path: 'components/tilt-toggle-switch/',
+      url: '/components/tilt-toggle-switch/index.html',
+      description: '弹簧物理驱动的 3D 倾斜拨动开关，支持指针拖拽滑控、边界回弹、Web Audio 音效开关与实时开启计数。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['spring-physics', 'toggle-switch', '3d-transform', 'pointer-events', 'form-control', 'web-audio']
+    },
+    {
+      id: 'scroll-progress-bar',
+      title: 'Scroll Progress · 阅读进度条与章节导航',
+      type: 'component',
+      category: 'components',
+      path: 'components/scroll-progress-bar/',
+      url: '/components/scroll-progress-bar/index.html',
+      description: '顶部 scaleX 阅读进度条、右侧章节圆点滚动侦测导航与带实时百分比的回顶按钮，rAF 节流并适配减弱动效。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['scroll-progress', 'scroll-spy', 'raf-throttle', 'back-to-top', 'chapter-nav']
+    },
+    {
+      id: 'magnetic-copy-field',
+      title: 'Magnetic Copy Field · 磁吸复制输入框',
+      type: 'component',
+      category: 'components',
+      path: 'components/magnetic-copy-field/',
+      url: '/components/magnetic-copy-field/index.html',
+      description: '指针磁吸微移的一键复制字段，Clipboard API 配 execCommand 回退、复制成功闪光扫过状态与提示音反馈。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['clipboard-api', 'magnetic-hover', 'copy-to-clipboard', 'form-control', 'micro-interaction', 'web-audio']
+    },
+    {
+      id: 'accordion-faq',
+      title: 'Accordion FAQ · 手风琴问答列表',
+      type: 'component',
+      category: 'components',
+      path: 'components/accordion-faq/',
+      url: '/components/accordion-faq/index.html',
+      description: 'grid-rows 高度过渡的无障碍手风琴，支持单项展开、全部展开/收起与方向键/Home/End 焦点漫游。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['accordion', 'grid-rows-transition', 'accessible', 'keyboard-nav', 'faq']
+    },
+    {
+      id: 'image-comparison-slider',
+      title: 'Image Comparison Slider · 图片对比滑块',
+      type: 'component',
+      category: 'components',
+      path: 'components/image-comparison-slider/',
+      url: '/components/image-comparison-slider/index.html',
+      description: 'clip-path 裁剪的画面前后对比滑块，支持指针拖拽、键盘方向键微调、预设位置，场景由纯 CSS 渐变构造、零外部图片。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['image-comparison', 'clip-path', 'pointer-events', 'slider', 'keyboard-nav']
     }
   ];
 

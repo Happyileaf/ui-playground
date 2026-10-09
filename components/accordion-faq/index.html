@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accordion FAQ · 平滑展开手风琴</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Accordion FAQ</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">ARIA ACCORDION · GRID NAVIGATION</span>
+      <h1>常见问题，从容展开</h1>
+      <p>基于按钮高度过渡的手风琴，支持鼠标点击、键盘方向键导航与 Home / End 跳转，默认展开第一条帮助你快速上手。</p>
+    </header>
+
+    <section class="faq-card">
+      <div class="faq-toolbar">
+        <h2>产品常见问题</h2>
+        <div class="faq-tools">
+          <button type="button" class="text-tool-btn" id="expandAllBtn">全部展开</button>
+          <span class="tool-divider" aria-hidden="true"></span>
+          <button type="button" class="text-tool-btn" id="collapseAllBtn">全部收起</button>
+        </div>
+      </div>
+
+      <ul class="faq-list" id="faqList">
+        <li class="faq-item">
+          <h3 class="faq-heading">
+            <button type="button" class="faq-trigger" aria-expanded="true" aria-controls="faq-panel-1" id="faq-btn-1">
+              <span class="trigger-index">01</span>
+              <span class="trigger-text">UI Playground 中的案例可以直接用于商业项目吗？</span>
+              <span class="trigger-chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </button>
+          </h3>
+          <div class="faq-panel" id="faq-panel-1" role="region" aria-labelledby="faq-btn-1">
+            <div class="faq-panel-inner">
+              <p>可以。所有案例均采用原生 HTML、CSS 与 JavaScript 编写，不依赖任何需要付费授权的运行时框架。你可以将代码复制到自己的项目中，按需修改后用于商业用途，无需额外申请授权。</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="faq-item">
+          <h3 class="faq-heading">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-2" id="faq-btn-2">
+              <span class="trigger-index">02</span>
+              <span class="trigger-text">下载的案例为什么双击就能运行，不需要安装环境吗？</span>
+              <span class="trigger-chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </button>
+          </h3>
+          <div class="faq-panel" id="faq-panel-2" role="region" aria-labelledby="faq-btn-2">
+            <div class="faq-panel-inner">
+              <p>这正是“原生优先”的设计目标。每个案例都是完全自包含的静态文件，不经过编译步骤，也不引用任何外部 CDN。现代浏览器本身就是运行环境，因此解压后双击 index.html，即可在离线状态下获得完整的视觉与交互体验。</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="faq-item">
+          <h3 class="faq-heading">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-3" id="faq-btn-3">
+              <span class="trigger-index">03</span>
+              <span class="trigger-text">在手机上运行时，音效和动画会不会卡顿或失效？</span>
+              <span class="trigger-chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </button>
+          </h3>
+          <div class="faq-panel" id="faq-panel-3" role="region" aria-labelledby="faq-btn-3">
+            <div class="faq-panel-inner">
+              <p>不会。所有案例统一使用 Pointer Events 同时支持鼠标与触控，Canvas 会根据设备像素比进行高分屏适配，动画循环使用 requestAnimationFrame 并在页面隐藏时自动停止。音效则遵循浏览器策略，在首次触摸交互后才会激活，避免自动播放警告。</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="faq-item">
+          <h3 class="faq-heading">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-4" id="faq-btn-4">
+              <span class="trigger-index">04</span>
+              <span class="trigger-text">我想贡献自己的案例，需要遵循什么流程？</span>
+              <span class="trigger-chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </button>
+          </h3>
+          <div class="faq-panel" id="faq-panel-4" role="region" aria-labelledby="faq-btn-4">
+            <div class="faq-panel-inner">
+              <p>欢迎贡献。请先阅读仓库中的案例生命周期 SOP，确保新案例保持纯原生、可独立运行，并在 src/playground.js 中完成元数据注册，使 files 列表与物理文件严格一致。提交前运行 npm run build 与 npm run lint，确认零错误后通过 Pull Request 交付即可。</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="faq-item">
+          <h3 class="faq-heading">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-5" id="faq-btn-5">
+              <span class="trigger-index">05</span>
+              <span class="trigger-text">为什么案例之间不会互相影响样式或全局变量？</span>
+              <span class="trigger-chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </button>
+          </h3>
+          <div class="faq-panel" id="faq-panel-5" role="region" aria-labelledby="faq-btn-5">
+            <div class="faq-panel-inner">
+              <p>工作台通过沙箱化的 iframe 挂载每个案例。iframe 拥有独立的文档与 JavaScript 执行上下文，天然隔绝了 CSS 层叠冲突与全局变量污染。切换案例时外壳会销毁旧 iframe，对应的动画线程与音频上下文也会被浏览器安全回收。</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <p class="page-foot-tip">键盘提示：聚焦问题后使用 ↑ ↓ 切换，Home / End 跳转首尾</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

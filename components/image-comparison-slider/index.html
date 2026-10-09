@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Comparison Slider · 图片对比滑块</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Image Comparison Slider</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">CLIP-PATH · POINTER DRAG</span>
+      <h1>拖动滑块，见证改变</h1>
+      <p>按住分割线左右拖拽，对比同一画面处理前后的差异。支持鼠标、触控与键盘左右方向键微调。</p>
+    </header>
+
+    <figure class="compare-stage" id="compareStage">
+      <div class="layer layer-after" aria-hidden="true">
+        <div class="scene scene-after"></div>
+        <span class="layer-tag tag-after">AFTER · 处理后</span>
+      </div>
+
+      <div class="layer layer-before" id="layerBefore" aria-hidden="true">
+        <div class="scene scene-before"></div>
+        <span class="layer-tag tag-before">BEFORE · 处理前</span>
+      </div>
+
+      <div class="divider-line" id="dividerLine"></div>
+
+      <button type="button" class="divider-handle" id="dividerHandle" role="slider" aria-label="对比位置" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-orientation="horizontal">
+        <span class="handle-line" aria-hidden="true"></span>
+        <span class="handle-knob">
+          <svg class="knob-arrow arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <svg class="knob-arrow arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </span>
+      </button>
+    </figure>
+
+    <div class="preset-row">
+      <button type="button" class="preset-btn" data-pos="20">20%</button>
+      <button type="button" class="preset-btn is-active" data-pos="50">50%</button>
+      <button type="button" class="preset-btn" data-pos="80">80%</button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

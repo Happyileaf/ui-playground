@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magnetic Copy Field · 一键复制输入框</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Magnetic Copy Field</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">CLIPBOARD API · MAGNETIC HOVER</span>
+      <h1>一次点击，优雅地带走链接</h1>
+      <p>悬停时按钮被光标轻微吸引，点击即复制到剪贴板，并以弹性勾选、光带扫过与合成提示音给予明确反馈。</p>
+    </header>
+
+    <section class="share-card">
+      <div class="share-card-head">
+        <span class="share-avatar" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            <path d="M21 21v-2a4 4 0 0 0-3-3.87"></path>
+          </svg>
+        </span>
+        <div class="share-card-title">
+          <h2>邀请你的队友</h2>
+          <p>分享下方链接，队友加入后双方均可获得 7 天专业版</p>
+        </div>
+      </div>
+
+      <div class="copy-field" id="copyField">
+        <span class="copy-field-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+        </span>
+        <input class="copy-input" id="copyInput" type="text" value="https://uiplayground.app/invite/A7K9-2026" readonly aria-label="邀请链接">
+        <button type="button" class="copy-btn" id="copyBtn">
+          <span class="copy-btn-state state-idle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>复制</span>
+          </span>
+          <span class="copy-btn-state state-done">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>已复制</span>
+          </span>
+          <span class="copy-btn-shine"></span>
+        </button>
+      </div>
+
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite">链接已生成，点击右侧按钮复制</p>
+    </section>
+
+    <section class="snippet-card">
+      <h3>安装命令</h3>
+      <div class="copy-field compact" data-copy-value="npx ui-playground@latest init">
+        <code class="copy-code">npx ui-playground@latest init</code>
+        <button type="button" class="copy-btn mini">
+          <span class="copy-btn-state state-idle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </span>
+          <span class="copy-btn-state state-done">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span class="copy-btn-shine"></span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

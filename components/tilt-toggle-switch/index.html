@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tilt Toggle Switch · 弹性倾斜拨动开关</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Tilt Toggle Switch</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">SPRING PHYSICS · ROLE=SWITCH</span>
+      <h1>拨动之间，自有弹性</h1>
+      <p>可拖拽、可点击、可用键盘操作的 3D 倾斜开关，弹簧过冲与按压形变让每次切换都拥有真实的触感反馈。</p>
+    </header>
+
+    <section class="settings-card">
+      <div class="settings-card-head">
+        <h2>偏好设置</h2>
+        <span class="settings-count" id="settingsCount">0 / 5 已开启</span>
+      </div>
+
+      <ul class="settings-list" id="settingsList">
+        <li class="setting-row">
+          <div class="setting-meta">
+            <span class="setting-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+              </svg>
+            </span>
+            <div class="setting-text">
+              <span class="setting-label">推送通知</span>
+              <span class="setting-desc">在第一时间接收重要消息提醒</span>
+            </div>
+          </div>
+          <button type="button" class="tilt-switch" role="switch" aria-checked="false" aria-label="推送通知">
+            <span class="switch-track"><span class="switch-knob"></span></span>
+          </button>
+        </li>
+
+        <li class="setting-row">
+          <div class="setting-meta">
+            <span class="setting-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="m22 7-10 5L2 7"></path>
+              </svg>
+            </span>
+            <div class="setting-text">
+              <span class="setting-label">邮件摘要</span>
+              <span class="setting-desc">每周一上午汇总上周动态</span>
+            </div>
+          </div>
+          <button type="button" class="tilt-switch" role="switch" aria-checked="true" aria-label="邮件摘要">
+            <span class="switch-track"><span class="switch-knob"></span></span>
+          </button>
+        </li>
+
+        <li class="setting-row">
+          <div class="setting-meta">
+            <span class="setting-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.8 1 6.4 2.6"></path>
+                <path d="M21 3v6h-6"></path>
+              </svg>
+            </span>
+            <div class="setting-text">
+              <span class="setting-label">自动更新</span>
+              <span class="setting-desc">在后台静默安装最新版本</span>
+            </div>
+          </div>
+          <button type="button" class="tilt-switch" role="switch" aria-checked="false" aria-label="自动更新">
+            <span class="switch-track"><span class="switch-knob"></span></span>
+          </button>
+        </li>
+
+        <li class="setting-row">
+          <div class="setting-meta">
+            <span class="setting-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 5 6 9H2v6h4l5 4V5z"></path>
+                <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
+                <path d="M19 5a9 9 0 0 1 0 14"></path>
+              </svg>
+            </span>
+            <div class="setting-text">
+              <span class="setting-label">音效反馈</span>
+              <span class="setting-desc">切换时播放轻微的合成提示音</span>
+            </div>
+          </div>
+          <button type="button" class="tilt-switch" role="switch" aria-checked="true" aria-label="音效反馈">
+            <span class="switch-track"><span class="switch-knob"></span></span>
+          </button>
+        </li>
+
+        <li class="setting-row">
+          <div class="setting-meta">
+            <span class="setting-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </span>
+            <div class="setting-text">
+              <span class="setting-label">勿扰时段</span>
+              <span class="setting-desc">22:00 至次日 8:00 静音</span>
+            </div>
+          </div>
+          <button type="button" class="tilt-switch" role="switch" aria-checked="false" aria-label="勿扰时段">
+            <span class="switch-track"><span class="switch-knob"></span></span>
+          </button>
+        </li>
+      </ul>
+    </section>
+
+    <p class="page-foot-tip">提示：按住开关左右拖拽，或用 Tab 聚焦后按空格 / 回车切换</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
