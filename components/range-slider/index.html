@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dual Range Slider · 双拇指区间滑块</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Dual Range · 区间滑块</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · FILTER CONTROL</span>
+      <h1>圈定你想要的区间</h1>
+      <p>拖拽两端的拇指选择范围，系统会自动保证最小间距并避免越界。完整支持键盘方向键、PageUp/Down 与 Home/End。</p>
+    </header>
+
+    <section class="filter-panel">
+      <div class="slider-block" data-slider="price">
+        <div class="block-head">
+          <span class="block-title">价格区间</span>
+          <span class="block-value" id="priceValue">¥500 — ¥8,000</span>
+        </div>
+        <div class="range-slider" id="priceSlider">
+          <div class="slider-track"></div>
+          <div class="slider-fill"></div>
+          <button type="button" class="slider-thumb thumb-min" role="slider" aria-label="最低价格"
+            aria-valuemin="0" aria-valuemax="10000" aria-valuenow="500" aria-orientation="horizontal">
+            <span class="thumb-tip" id="priceTipMin"></span>
+          </button>
+          <button type="button" class="slider-thumb thumb-max" role="slider" aria-label="最高价格"
+            aria-valuemin="0" aria-valuemax="10000" aria-valuenow="8000" aria-orientation="horizontal">
+            <span class="thumb-tip" id="priceTipMax"></span>
+          </button>
+        </div>
+        <div class="scale-row">
+          <span>¥0</span>
+          <span>¥2,500</span>
+          <span>¥5,000</span>
+          <span>¥7,500</span>
+          <span>¥10,000</span>
+        </div>
+      </div>
+
+      <div class="slider-block" data-slider="age">
+        <div class="block-head">
+          <span class="block-title">使用年限</span>
+          <span class="block-value" id="ageValue">1 — 8 年</span>
+        </div>
+        <div class="range-slider" id="ageSlider">
+          <div class="slider-track"></div>
+          <div class="slider-fill"></div>
+          <button type="button" class="slider-thumb thumb-min" role="slider" aria-label="最短年限"
+            aria-valuemin="0" aria-valuemax="20" aria-valuenow="1" aria-orientation="horizontal">
+            <span class="thumb-tip" id="ageTipMin"></span>
+          </button>
+          <button type="button" class="slider-thumb thumb-max" role="slider" aria-label="最长年限"
+            aria-valuemin="0" aria-valuemax="20" aria-valuenow="8" aria-orientation="horizontal">
+            <span class="thumb-tip" id="ageTipMax"></span>
+          </button>
+        </div>
+        <div class="scale-row">
+          <span>0</span>
+          <span>5</span>
+          <span>10</span>
+          <span>15</span>
+          <span>20 年</span>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <p class="result-line">已为你筛选出 <strong id="resultCount">248</strong> 件匹配商品</p>
+        <div class="preset-row">
+          <button type="button" class="preset-btn" data-target="price" data-min="0" data-max="2000">入门价</button>
+          <button type="button" class="preset-btn is-active" data-target="price" data-min="500" data-max="8000">主流档</button>
+          <button type="button" class="preset-btn" data-target="price" data-min="5000" data-max="10000">高端档</button>
+          <button type="button" class="preset-btn" data-target="price" data-min="0" data-max="10000">不限</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">拖拽拇指选择 · ←→ 微调 · Shift+←→ 大步进 · Home / End 到端点</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

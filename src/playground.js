@@ -363,6 +363,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: 'clip-path 裁剪的画面前后对比滑块，支持指针拖拽、键盘方向键微调、预设位置，场景由纯 CSS 渐变构造、零外部图片。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['image-comparison', 'clip-path', 'pointer-events', 'slider', 'keyboard-nav']
+    },
+    {
+      id: 'context-menu',
+      title: 'Context Menu · 右键上下文菜单',
+      type: 'component',
+      category: 'components',
+      path: 'components/context-menu/',
+      url: '/components/context-menu/index.html',
+      description: '支持三级嵌套子菜单的右键上下文菜单，含视口边缘自动翻转、单选/勾选状态、禁用项、触屏长按唤起与完整键盘方向键导航。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['context-menu', 'submenu', 'keyboard-nav', 'long-press', 'floating-panel', 'accessibility']
+    },
+    {
+      id: 'range-slider',
+      title: 'Dual Range Slider · 双拇指区间滑块',
+      type: 'component',
+      category: 'components',
+      path: 'components/range-slider/',
+      url: '/components/range-slider/index.html',
+      description: '双拇指区间选择滑块，自动保证最小间距与边界不越界，支持指针捕获、预设区间快速跳转及方向键/PageUp/Down/Home/End 全键盘操作。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['range-slider', 'dual-thumb', 'form-control', 'pointer-capture', 'keyboard-nav', 'filter']
+    },
+    {
+      id: 'sortable-list',
+      title: 'Sortable List · 拖拽排序列表',
+      type: 'component',
+      category: 'components',
+      path: 'components/sortable-list/',
+      url: '/components/sortable-list/index.html',
+      description: 'Pointer Events 驱动的拖拽排序列表，FLIP 动画平滑让位、放置指示线精确定位、边缘自动滚动，并提供 Alt+↑/↓ 键盘重排与一键恢复默认顺序。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['sortable', 'drag-and-drop', 'flip-animation', 'auto-scroll', 'keyboard-nav', 'pointer-events']
+    },
+    {
+      id: 'star-rating',
+      title: 'Star Rating · 星级评分',
+      type: 'component',
+      category: 'components',
+      path: 'components/star-rating/',
+      url: '/components/star-rating/index.html',
+      description: '支持整星与半星两种精度的星级评分，悬停实时预览、弹性缩放反馈、ARIA slider 角色键盘操作，Web Audio 懒激活发出悬停滴答与确认和声。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['star-rating', 'form-control', 'half-star', 'web-audio', 'keyboard-nav', 'accessibility']
+    },
+    {
+      id: 'toast-notifications',
+      title: 'Toast Notifications · 吐司通知',
+      type: 'component',
+      category: 'components',
+      path: 'components/toast-notifications/',
+      url: '/components/toast-notifications/index.html',
+      description: '成功/信息/警告/错误四类型吐司通知系统，右上角堆叠滑入、倒计时进度条、悬停暂停计时、内联操作按钮即时处理，支持 Esc 关闭与一键清空。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['toast', 'notifications', 'countdown-progress', 'pause-on-hover', 'action-buttons', 'accessibility']
     }
   ];
 

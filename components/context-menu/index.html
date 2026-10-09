@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Context Menu · 右键上下文菜单</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Context Menu · 上下文菜单</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · CASCADING MENU</span>
+      <h1>右键，唤起一切操作</h1>
+      <p>在下方工作区的任意位置点击鼠标右键（触屏请长按），打开支持多级子菜单、边缘碰撞与全键盘操作的上下文菜单。</p>
+    </header>
+
+    <section class="workspace" id="workspace" aria-label="工作区">
+      <div class="workspace-toolbar">
+        <span class="ws-title">我的工作区</span>
+        <span class="ws-hint">右键 / 长按空白处</span>
+      </div>
+      <div class="file-grid">
+        <div class="file-card"><span class="file-ico ico-folder"></span><span class="file-name">设计稿</span></div>
+        <div class="file-card"><span class="file-ico ico-folder"></span><span class="file-name">素材库</span></div>
+        <div class="file-card"><span class="file-ico ico-image"></span><span class="file-name">封面.png</span></div>
+        <div class="file-card"><span class="file-ico ico-doc"></span><span class="file-name">需求文档</span></div>
+        <div class="file-card"><span class="file-ico ico-music"></span><span class="file-name">配乐.mp3</span></div>
+        <div class="file-card"><span class="file-ico ico-film"></span><span class="file-name">样片.mp4</span></div>
+      </div>
+      <div class="event-log" id="eventLog" aria-live="polite">
+        <span class="log-placeholder">执行结果将显示在这里</span>
+      </div>
+    </section>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">右键 / 长按打开菜单 · ↑↓ 导航 · → 展开子菜单 · Esc 关闭</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
