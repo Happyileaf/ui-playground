@@ -858,6 +858,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '渐进式披露的长文卡片：折叠态显示三行摘要与渐变遮罩，展开时通过 grid-template-rows 0fr↔1fr 实现高度自适应过渡，无需手动测量尺寸；支持全部展开/收起、收起回滚视口，短内容自动隐藏开关。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['text-expand', 'collapse', 'grid-rows', 'progressive-disclosure', 'article', 'reduced-motion']
+    },
+    {
+      id: 'cascader',
+      title: 'Cascader · 级联选择',
+      type: 'component',
+      category: 'components',
+      path: 'components/cascader/',
+      url: '/components/cascader/index.html',
+      description: '多层级联选择面板：逐级展开下钻、面包路径实时预览，叶子节点勾选后回显完整路径，支持方向键上下移动、右键深入、左键回退的完整键盘导航与点击遮罩外部关闭。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['cascader', 'cascade-select', 'multi-level', 'keyboard-nav', 'form-control', 'tree-select']
+    },
+    {
+      id: 'image-cropper',
+      title: 'Image Cropper · 图片裁剪器',
+      type: 'component',
+      category: 'components',
+      path: 'components/image-cropper/',
+      url: '/components/image-cropper/index.html',
+      description: '八向手柄图片裁剪工作台：自由拖拽与四角四边缩放、九宫格辅助线、多种固定宽高比、滚轮与滑杆缩放，内置 Canvas 绘制示例图并支持本地上传，确认后导出裁剪预览 PNG，DPR 适配高清屏。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['image-cropper', 'canvas', 'resize-handle', 'aspect-ratio', 'export-png', 'dpr-aware']
+    },
+    {
+      id: 'guided-tour',
+      title: 'Guided Tour · 新手引导',
+      type: 'component',
+      category: 'components',
+      path: 'components/guided-tour/',
+      url: '/components/guided-tour/index.html',
+      description: '聚光灯式新手功能导览：半透明遮罩挖空高亮目标元素、气泡卡片自动翻转避让边缘，支持上一步/下一步/跳过、Esc 与方向键操作、窗口缩放实时重定位，结束后还原焦点。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['guided-tour', 'spotlight', 'onboarding', 'overlay', 'focus-management', 'walkthrough']
+    },
+    {
+      id: 'date-range-picker',
+      title: 'Date Range Picker · 日期区间选择',
+      type: 'component',
+      category: 'components',
+      path: 'components/date-range-picker/',
+      url: '/components/date-range-picker/index.html',
+      description: '双月并排日期区间选择器：两次点击确定起止日期，悬停实时预览高亮区间，内置近 7/30/90 天与本月快捷预设，确认后回显晚数摘要，支持月份切换、键盘操作与点击外部关闭。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['date-range', 'calendar', 'date-picker', 'range-select', 'preset', 'keyboard-nav']
+    },
+    {
+      id: 'slide-to-confirm',
+      title: 'Slide to Confirm · 滑动确认',
+      type: 'component',
+      category: 'components',
+      path: 'components/slide-to-confirm/',
+      url: '/components/slide-to-confirm/index.html',
+      description: '防误触滑动确认控件：拖拽圆形滑块推进进度条，松手未满阈值即带弹性弹簧回弹，滑到终点自动吸附锁定并切换完成打勾态，Web Animations API 驱动补间，支持 Enter/Space 键盘确认与一键重置。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['slide-to-confirm', 'gesture', 'spring-back', 'intent-guard', 'web-animations', 'pointer-events']
     }
   ];
 
