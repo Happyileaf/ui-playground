@@ -1,0 +1,373 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0c0e14;
+  --frame: #11141d;
+  --pane: #151926;
+  --pane-2: #0f121b;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.18);
+  --text: #e8edf9;
+  --text-dim: #939db4;
+  --text-faint: #5c667d;
+  --accent: #f59e0b;
+  --accent-soft: rgba(245, 158, 11, 0.12);
+  --hud-bg: rgba(12, 15, 24, 0.72);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 520px at 50% -14%, rgba(245, 158, 11, 0.09), transparent 60%),
+    var(--bg);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  padding: 5.5rem 1.5rem 3rem;
+}
+
+.hud-brand {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  height: 32px;
+  background: var(--hud-bg);
+  padding: 0 15px 0 11px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 100;
+}
+
+.hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 9px rgba(245, 158, 11, 0.85);
+  animation: pulse 2.4s infinite ease-in-out;
+}
+
+.hud-title {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.18); }
+}
+
+.page-container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.page-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-bottom: 1.8rem;
+}
+
+.eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--text-faint);
+}
+
+.page-header h1 {
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(180deg, #fff, #b0b9cd);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-header p {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+.pane-frame {
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.85);
+}
+
+.split {
+  display: flex;
+  width: 100%;
+  height: 520px;
+  background: var(--frame);
+}
+
+.split.horizontal {
+  flex-direction: row;
+}
+
+.split.vertical {
+  flex-direction: column;
+  height: 100%;
+}
+
+.pane {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.pane-sidebar {
+  flex: 0 0 24%;
+  background: var(--pane-2);
+  border-right: 1px solid var(--line);
+}
+
+.pane-main {
+  flex: 1;
+}
+
+.pane-editor {
+  flex: 0 0 62%;
+}
+
+.pane-terminal {
+  flex: 1;
+  background: #0a0d15;
+}
+
+.pane-head {
+  height: 42px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.pane-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+.pane-badge {
+  font-size: 0.68rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+}
+
+.tree {
+  list-style: none;
+  padding: 0.6rem 0.5rem;
+  font-size: 0.82rem;
+  overflow-y: auto;
+}
+
+.tree-folder {
+  padding: 4px 6px;
+  color: var(--text-dim);
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+.tree-folder:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tree-folder ul {
+  list-style: none;
+  margin-left: 12px;
+  margin-top: 3px;
+}
+
+.tree-file {
+  padding: 4px 6px 4px 14px;
+  color: var(--text-faint);
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.tree-file:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tree-file.active {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.code {
+  flex: 1;
+  margin: 0;
+  padding: 1rem 0 1rem 0;
+  overflow: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1.75;
+  color: var(--text-dim);
+}
+
+.code .ln {
+  display: inline-block;
+  width: 40px;
+  text-align: right;
+  padding-right: 14px;
+  color: var(--text-faint);
+  user-select: none;
+}
+
+.code .kw { color: #c084fc; }
+.code .str { color: #34d399; }
+.code .fn { color: #60a5fa; }
+
+.terminal {
+  flex: 1;
+  padding: 0.9rem 1.1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1.8;
+  overflow-y: auto;
+}
+
+.terminal .prompt { color: var(--accent); }
+.terminal .muted { color: var(--text-faint); }
+.terminal .ok { color: #34d399; }
+
+.caret-blink {
+  color: var(--text);
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.splitter {
+  position: relative;
+  flex: 0 0 10px;
+  background: transparent;
+  cursor: col-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.splitter.h-splitter {
+  flex: 0 0 10px;
+  cursor: row-resize;
+}
+
+.splitter-grip {
+  width: 3px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--line-strong);
+  transition: background 0.16s ease, height 0.16s ease, width 0.16s ease;
+}
+
+.h-splitter .splitter-grip {
+  width: 34px;
+  height: 3px;
+}
+
+.splitter:hover .splitter-grip,
+.splitter.dragging .splitter-grip {
+  background: var(--accent);
+  height: 52px;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+}
+
+.h-splitter:hover .splitter-grip,
+.h-splitter.dragging .splitter-grip {
+  width: 52px;
+  height: 3px;
+}
+
+.splitter:focus-visible {
+  outline: none;
+}
+
+.splitter:focus-visible .splitter-grip {
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25);
+}
+
+body.resizing-h,
+body.resizing-h * {
+  cursor: col-resize !important;
+  user-select: none;
+}
+
+body.resizing-v,
+body.resizing-v * {
+  cursor: row-resize !important;
+  user-select: none;
+}
+
+.frame-actions {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 1.1rem;
+  justify-content: center;
+}
+
+.ghost-btn {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 0.83rem;
+  padding: 0.58rem 1.3rem;
+  border-radius: 11px;
+  cursor: pointer;
+  transition: border-color 0.16s ease, color 0.16s ease, background 0.16s ease;
+}
+
+.ghost-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  background: var(--accent-soft);
+}
+
+@media (max-width: 640px) {
+  .split {
+    height: 460px;
+  }
+}

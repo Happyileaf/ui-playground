@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Split Pane · 可调节分栏面板</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Split Pane · 可调分栏</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · LAYOUT CONTROL</span>
+      <h1>拖动分隔条，自由划分空间</h1>
+      <p>Pointer Events 捕获拖拽，最小宽度保护、双击重置、百分比持久化，并支持嵌套的垂直分栏。键盘 ←→ 亦可微调。</p>
+    </header>
+
+    <div class="pane-frame">
+      <div class="split horizontal" id="splitHorizontal">
+        <section class="pane pane-sidebar">
+          <div class="pane-head">
+            <span class="pane-title">文件浏览器</span>
+            <span class="pane-badge" id="leftPercent">24%</span>
+          </div>
+          <ul class="tree">
+            <li class="tree-folder open">▾ src
+              <ul>
+                <li class="tree-file active">playground.js</li>
+                <li class="tree-file">i18n.js</li>
+              </ul>
+            </li>
+            <li class="tree-folder">▸ components</li>
+            <li class="tree-folder">▸ effects</li>
+            <li class="tree-folder">▸ pages</li>
+            <li class="tree-file">package.json</li>
+            <li class="tree-file">vite.config.ts</li>
+          </ul>
+        </section>
+
+        <div class="splitter" role="separator" tabindex="0" aria-orientation="vertical"
+          aria-label="调整左右分栏宽度" aria-valuemin="15" aria-valuemax="60" aria-valuenow="24">
+          <span class="splitter-grip"></span>
+        </div>
+
+        <section class="pane pane-main">
+          <div class="split vertical" id="splitVertical">
+            <div class="pane pane-editor">
+              <div class="pane-head">
+                <span class="pane-title">编辑器</span>
+                <span class="pane-badge" id="topPercent">62%</span>
+              </div>
+<pre class="code"><span class="ln">1</span><span class="kw">import</span> JSZip <span class="kw">from</span> <span class="str">'jszip'</span>;
+<span class="ln">2</span><span class="kw">import</span> { t } <span class="kw">from</span> <span class="str">'./i18n.js'</span>;
+<span class="ln">3</span>
+<span class="ln">4</span><span class="kw">const</span> cases = [
+<span class="ln">5</span>  { id: <span class="str">'combo-box'</span>, type: <span class="str">'component'</span> },
+<span class="ln">6</span>  { id: <span class="str">'mega-menu'</span>, type: <span class="str">'component'</span> },
+<span class="ln">7</span>];
+<span class="ln">8</span>
+<span class="ln">9</span><span class="kw">function</span> <span class="fn">render</span>() {
+<span class="ln">10</span>  <span class="kw">return</span> cases.map(c => c.id);
+<span class="ln">11</span>}</pre>
+            </div>
+
+            <div class="splitter h-splitter" role="separator" tabindex="0" aria-orientation="horizontal"
+              aria-label="调整上下分栏高度" aria-valuemin="25" aria-valuemax="80" aria-valuenow="62">
+              <span class="splitter-grip"></span>
+            </div>
+
+            <div class="pane pane-terminal">
+              <div class="pane-head">
+                <span class="pane-title">终端</span>
+              </div>
+              <div class="terminal">
+                <p><span class="prompt">$</span> npm run build</p>
+                <p class="muted">vite v8.3.0 building for production...</p>
+                <p class="ok">✓ built in 412ms</p>
+                <p><span class="prompt">$</span> <span class="caret-blink">▋</span></p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="frame-actions">
+      <button type="button" class="ghost-btn" id="resetBtn">重置布局</button>
+      <button type="button" class="ghost-btn" id="evenBtn">均分</button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

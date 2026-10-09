@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Searchable Combo Box · 可搜索下拉选择框</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Combo Box · 可搜索选择</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · FORM CONTROL</span>
+      <h1>从长列表里快速锁定目标</h1>
+      <p>输入关键字即时过滤，支持 ↑↓ 漫游、Enter 确认、Esc 收起。分组标题、空结果提示与完整 ARIA combobox 语义一应俱全。</p>
+    </header>
+
+    <section class="form-panel">
+      <div class="field-block">
+        <label class="field-label" id="countryLabel">选择国家 / 地区</label>
+        <div class="combo" id="combo">
+          <div class="combo-control" id="comboControl" role="combobox" aria-expanded="false"
+            aria-haspopup="listbox" aria-controls="comboListbox" aria-labelledby="countryLabel" tabindex="0">
+            <input type="text" class="combo-input" id="comboInput" autocomplete="off"
+              role="searchbox" aria-autocomplete="list" aria-controls="comboListbox"
+              aria-expanded="false" aria-labelledby="countryLabel" placeholder="输入以搜索…">
+            <span class="combo-clear" id="comboClear" hidden aria-label="清除选择">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+            </span>
+            <span class="combo-chevron" id="comboChevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </div>
+          <div class="combo-pop" id="comboPop" role="presentation">
+            <ul class="combo-list" id="comboListbox" role="listbox" aria-labelledby="countryLabel"></ul>
+            <div class="combo-empty" id="comboEmpty" hidden>
+              <span class="empty-mark">🔎</span>
+              <span>没有匹配的结果</span>
+            </div>
+          </div>
+        </div>
+        <p class="field-hint">当前选择：<strong id="selectedReadout">未选择</strong></p>
+      </div>
+
+      <div class="preset-row">
+        <button type="button" class="ghost-btn" id="resetBtn">重置</button>
+        <button type="button" class="ghost-btn" data-jump="中国">定位：中国</button>
+        <button type="button" class="ghost-btn" data-jump="日本">定位：日本</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">点击/聚焦展开 · 输入过滤 · ↑↓ 选择 · Enter 确认 · Esc 收起</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

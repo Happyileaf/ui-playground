@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy Button · 一键复制按钮组</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Copy Button · 一键复制</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · MICRO INTERACTION</span>
+      <h1>一键复制，反馈要足够明确</h1>
+      <p>Clipboard API 优先、execCommand 兜底；成功时图标 morph 为对勾、按钮短暂变色，并提供行内代码块与命令行多种复制场景。</p>
+    </header>
+
+    <section class="demo-panel">
+      <div class="demo-row">
+        <span class="row-label">安装命令</span>
+        <div class="command-chip">
+          <code id="cmdInstall">npm i @nebula/core</code>
+          <button type="button" class="copy-mini" data-copy-target="cmdInstall" aria-label="复制安装命令">
+            <svg class="ic-copy" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="ic-check" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="demo-row">
+        <span class="row-label">API Key</span>
+        <div class="command-chip">
+          <code id="apiKey" class="blurred-text">nb_live_9f3a7c1e8d2b46f0a5c8e1d3b7f9a2c4</code>
+          <button type="button" class="copy-mini" data-copy-target="apiKey" aria-label="复制 API Key">
+            <svg class="ic-copy" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="ic-check" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="demo-row">
+        <span class="row-label">分享链接</span>
+        <div class="command-chip">
+          <code id="shareLink">https://nebula.app/s/7x2k9p</code>
+          <button type="button" class="copy-mini" data-copy-target="shareLink" aria-label="复制分享链接">
+            <svg class="ic-copy" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="ic-check" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="button-group">
+        <button type="button" class="copy-primary" data-copy-text="你好，世界！这段文字来自一键复制按钮。">
+          <span class="btn-icons">
+            <svg class="ic-copy" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="ic-check" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span class="btn-label">复制一段文本</span>
+        </button>
+
+        <button type="button" class="copy-ghost" data-copy-text="<div class='card'>卡片</div>">
+          <span class="btn-icons">
+            <svg class="ic-copy" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="ic-check" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span class="btn-label">复制 HTML 片段</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="copyToast" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toastText">已复制到剪贴板</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
