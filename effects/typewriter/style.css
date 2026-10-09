@@ -1,0 +1,333 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0c0c08;
+  --surface: #17170e;
+  --line: rgba(255, 255, 255, 0.09);
+  --text: #f4f5e6;
+  --text-dim: #a8aa8b;
+  --text-faint: #6a6c52;
+  --accent: #e8e15c;
+  --accent-soft: rgba(232, 225, 92, 0.14);
+  --hud-bg: rgba(20, 20, 12, 0.72);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(900px 600px at 50% 8%, rgba(232, 225, 92, 0.1), transparent 60%),
+    var(--bg);
+  font-family: "SF Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.hud-brand {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  height: 32px;
+  background: var(--hud-bg);
+  padding: 0 16px 0 10px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+.hud-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px rgba(232, 225, 92, 0.8);
+  animation: hud-pulse 2.4s infinite ease-in-out;
+}
+
+.hud-title {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+@keyframes hud-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.8); }
+}
+
+.stage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1.5rem 6rem;
+}
+
+.stage-inner {
+  width: min(820px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.3rem;
+  text-align: center;
+}
+
+.kicker {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--text-faint);
+}
+
+.type-line {
+  font-size: clamp(1.7rem, 5.5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  min-height: 2.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.type-text {
+  background: linear-gradient(180deg, #ffffe8, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.caret {
+  display: inline-block;
+  width: 3px;
+  height: 1.05em;
+  margin-left: 5px;
+  border-radius: 2px;
+  background: var(--accent);
+  align-self: center;
+  animation: caret-blink 0.9s steps(1) infinite;
+  box-shadow: 0 0 12px rgba(232, 225, 92, 0.55);
+}
+
+.caret.is-hidden {
+  display: none;
+}
+
+@keyframes caret-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.sub-line {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  max-width: 480px;
+}
+
+.phrases {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.phrases button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.18);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.phrases button.is-active {
+  background: var(--accent);
+  transform: scale(1.35);
+  box-shadow: 0 0 10px rgba(232, 225, 92, 0.7);
+}
+
+.replay-btn {
+  margin-top: 0.4rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.2s ease;
+}
+
+.replay-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.replay-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(232, 225, 92, 0.22);
+}
+
+.replay-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.replay-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.control-dock {
+  position: fixed;
+  left: 18px;
+  bottom: 52px;
+  width: 264px;
+  background: rgba(22, 22, 13, 0.88);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 0.9rem 1rem 1rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.9);
+  z-index: 90;
+  display: none;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.control-dock.is-open {
+  display: flex;
+}
+
+.dock-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.dock-close {
+  border: none;
+  background: transparent;
+  color: var(--text-faint);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.dock-close:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.dock-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.dock-row span:first-child {
+  width: 4.2rem;
+  flex-shrink: 0;
+}
+
+.dock-row input[type="range"] {
+  flex: 1;
+  accent-color: var(--accent);
+}
+
+.dock-row output {
+  width: 3.4rem;
+  text-align: right;
+  font-size: 0.74rem;
+  color: var(--accent);
+}
+
+.dock-row.check span:first-child {
+  width: auto;
+}
+
+.dock-row.check input {
+  accent-color: var(--accent);
+}
+
+.dock-hint {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 14px;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  pointer-events: none;
+}
+
+kbd {
+  display: inline-block;
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  padding: 1px 6px;
+  font-size: 0.68rem;
+  font-family: inherit;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+@media (max-width: 560px) {
+  .control-dock {
+    left: 12px;
+    right: 12px;
+    width: auto;
+    bottom: 46px;
+  }
+
+  .type-line {
+    min-height: 2.2em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-dot,
+  .caret {
+    animation: none;
+  }
+
+  .caret {
+    opacity: 1;
+  }
+
+  .replay-btn {
+    transition: none;
+  }
+}

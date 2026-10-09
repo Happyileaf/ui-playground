@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inline Alert · 内联通知条</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Inline Alert</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">BANNER · ROLE=ALERT · ARIA LIVE</span>
+      <h1>状态提醒，轻重分明</h1>
+      <p>信息、成功、警告、危险四种语义通知条，支持操作按钮、可关闭滑出与入场动画，正确设置 role 与 aria-live，可直接嵌入表单、卡片与页面顶部。</p>
+    </header>
+
+    <section class="alert-stack" id="alertStack">
+      <div class="alert alert-info" role="alert">
+        <span class="alert-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        </span>
+        <div class="alert-body">
+          <p class="alert-title">新版本可用</p>
+          <p class="alert-text">系统已发布 v2.4，包含若干性能优化，刷新页面即可生效。</p>
+        </div>
+        <div class="alert-actions">
+          <button type="button" class="alert-action" data-action="dismiss">稍后</button>
+          <button type="button" class="alert-action primary" data-action="reload">立即刷新</button>
+        </div>
+        <button type="button" class="alert-close" aria-label="关闭通知">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="alert alert-success" role="alert">
+        <span class="alert-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </span>
+        <div class="alert-body">
+          <p class="alert-title">保存成功</p>
+          <p class="alert-text">你的所有更改已同步到云端，可随时在其他设备继续编辑。</p>
+        </div>
+        <div class="alert-actions">
+          <button type="button" class="alert-action" data-action="undo">撤销</button>
+        </div>
+        <button type="button" class="alert-close" aria-label="关闭通知">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="alert alert-warning" role="alert">
+        <span class="alert-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        </span>
+        <div class="alert-body">
+          <p class="alert-title">存储空间即将用尽</p>
+          <p class="alert-text">剩余空间不足 10%，请清理无用文件或升级套餐以免影响使用。</p>
+        </div>
+        <div class="alert-actions">
+          <button type="button" class="alert-action primary" data-action="upgrade">去升级</button>
+        </div>
+        <button type="button" class="alert-close" aria-label="关闭通知">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="alert alert-danger" role="alert">
+        <span class="alert-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+        </span>
+        <div class="alert-body">
+          <p class="alert-title">连接已断开</p>
+          <p class="alert-text">与服务器的连接中断，正在尝试自动重连，期间数据将保存在本地。</p>
+        </div>
+        <div class="alert-actions">
+          <button type="button" class="alert-action primary" data-action="retry">手动重连</button>
+        </div>
+        <button type="button" class="alert-close" aria-label="关闭通知">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </section>
+
+    <section class="generator-card">
+      <div class="generator-head">
+        <h2>动态触发一条通知</h2>
+        <p>演示 JS 动态插入通知条，aria-live 区域会被读屏软件即时播报。</p>
+      </div>
+      <div class="generator-controls">
+        <label class="control-block">
+          <span class="control-label">类型</span>
+          <div class="seg-group" id="variantSeg">
+            <button type="button" class="seg-btn active" data-variant="info">信息</button>
+            <button type="button" class="seg-btn" data-variant="success">成功</button>
+            <button type="button" class="seg-btn" data-variant="warning">警告</button>
+            <button type="button" class="seg-btn" data-variant="danger">危险</button>
+          </div>
+        </label>
+        <label class="control-block grow">
+          <span class="control-label">通知内容</span>
+          <input type="text" class="text-input" id="messageInput" value="这是一条动态生成的通知消息" maxlength="60">
+        </label>
+        <button type="button" class="trigger-btn" id="triggerBtn">触发通知</button>
+      </div>
+    </section>
+
+    <p class="page-foot-tip">提示：点击通知上的关闭或操作按钮即可收起；屏幕阅读器会播报 role="alert" 区域</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Stepper · 数字步进器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Number Stepper</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">SPINBUTTON · LONG PRESS · ARIA</span>
+      <h1>数量与数值，从容步进</h1>
+      <p>统一鼠标与触控的数字步进器，支持边界钳制、长按连发、小数步进、键盘 ↑ ↓ 与直接键入修正，可直接用于电商数量、金额与参数配置场景。</p>
+    </header>
+
+    <section class="demo-grid">
+      <article class="demo-card featured">
+        <div class="demo-card-head">
+          <span class="demo-tag">电商数量</span>
+          <h2>选择购买数量</h2>
+          <p>整数步进，最少 1 件、最多 99 件，长按可快速连续增加。</p>
+        </div>
+        <div class="stepper" data-min="1" data-max="99" data-step="1" data-precision="0" data-unit="件">
+          <button type="button" class="stepper-btn" data-dir="-1" aria-label="减少数量">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="stepper-field">
+            <input class="stepper-input" type="text" inputmode="numeric" value="1" role="spinbutton" aria-label="购买数量" aria-valuenow="1" aria-valuemin="1" aria-valuemax="99">
+            <span class="stepper-unit">件</span>
+          </div>
+          <button type="button" class="stepper-btn" data-dir="1" aria-label="增加数量">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+        </div>
+        <div class="demo-readout">当前选择 <strong data-readout>1 件</strong></div>
+      </article>
+
+      <article class="demo-card">
+        <div class="demo-card-head">
+          <span class="demo-tag">小数步进</span>
+          <h2>重量（千克）</h2>
+          <p>步长 0.5，范围 0.5 – 10。</p>
+        </div>
+        <div class="stepper" data-min="0.5" data-max="10" data-step="0.5" data-precision="1" data-unit="kg">
+          <button type="button" class="stepper-btn" data-dir="-1" aria-label="减少重量">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="stepper-field">
+            <input class="stepper-input" type="text" inputmode="decimal" value="0.5" role="spinbutton" aria-label="重量" aria-valuenow="0.5" aria-valuemin="0.5" aria-valuemax="10">
+            <span class="stepper-unit">kg</span>
+          </div>
+          <button type="button" class="stepper-btn" data-dir="1" aria-label="增加重量">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="demo-card">
+        <div class="demo-card-head">
+          <span class="demo-tag">金额步进</span>
+          <h2>加价幅度</h2>
+          <p>步长 10，带 ¥ 前缀，范围 0 – 500。</p>
+        </div>
+        <div class="stepper" data-min="0" data-max="500" data-step="10" data-precision="0" data-prefix="¥" data-unit="">
+          <button type="button" class="stepper-btn" data-dir="-1" aria-label="减少金额">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="stepper-field">
+            <span class="stepper-prefix">¥</span>
+            <input class="stepper-input" type="text" inputmode="numeric" value="0" role="spinbutton" aria-label="加价金额" aria-valuenow="0" aria-valuemin="0" aria-valuemax="500">
+          </div>
+          <button type="button" class="stepper-btn" data-dir="1" aria-label="增加金额">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="demo-card">
+        <div class="demo-card-head">
+          <span class="demo-tag">紧凑模式</span>
+          <h2>人数</h2>
+          <p>纵向叠放的紧凑步进，适合窄列与表单内嵌。</p>
+        </div>
+        <div class="stepper compact" data-min="1" data-max="12" data-step="1" data-precision="0" data-unit="人">
+          <button type="button" class="stepper-btn" data-dir="1" aria-label="增加人数">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <div class="stepper-field">
+            <input class="stepper-input" type="text" inputmode="numeric" value="2" role="spinbutton" aria-label="人数" aria-valuenow="2" aria-valuemin="1" aria-valuemax="12">
+            <span class="stepper-unit">人</span>
+          </div>
+          <button type="button" class="stepper-btn" data-dir="-1" aria-label="减少人数">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+        </div>
+      </article>
+    </section>
+
+    <p class="page-foot-tip">操作提示：点击 / 长按按钮连发，或聚焦输入框后用 ↑ ↓ 微调、直接键入数值</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

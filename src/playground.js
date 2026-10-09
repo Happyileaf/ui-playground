@@ -748,6 +748,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '纯 CSS 动画驱动的 Logo 无缝跑马灯，轨道复制并平移恰好 50% 消除循环跳跃，悬停暂停、方向切换、边缘渐隐遮罩并支持减弱动态效果偏好。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['marquee', 'logo-wall', 'css-animation', 'infinite-scroll', 'seamless-loop', 'reduced-motion']
+    },
+    {
+      id: 'number-stepper',
+      title: 'Number Stepper · 数字步进器',
+      type: 'component',
+      category: 'components',
+      path: 'components/number-stepper/',
+      url: '/components/number-stepper/index.html',
+      description: '电商数量、重量、金额与人数四组数字步进器，Pointer Events 长按自加速连续增减，边界自动禁用并抖动提示，支持方向键、PageUp/PageDown、Home/End 与失焦提交。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['number-stepper', 'spinbutton', 'form-control', 'long-press', 'keyboard-nav', 'quantity-input']
+    },
+    {
+      id: 'inline-alert',
+      title: 'Inline Alert · 内联通知条',
+      type: 'component',
+      category: 'components',
+      path: 'components/inline-alert/',
+      url: '/components/inline-alert/index.html',
+      description: '信息、成功、警告、危险四种语义通知条，role=alert 与 aria-live 正确播报，支持操作按钮反馈、关闭滑出收起与入场动画，并可通过 JS 动态插入即时通知。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['inline-alert', 'banner', 'role-alert', 'aria-live', 'feedback', 'notification']
+    },
+    {
+      id: 'vertical-timeline',
+      title: 'Vertical Timeline · 垂直时间线',
+      type: 'component',
+      category: 'components',
+      path: 'components/vertical-timeline/',
+      url: '/components/vertical-timeline/index.html',
+      description: '产品里程碑垂直时间线，桌面端左右交替、移动端转单列，IntersectionObserver 滚动揭示卡片，中央脊柱随滚动填充进度，点击或键盘展开事件详情。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['vertical-timeline', 'milestones', 'scroll-reveal', 'intersection-observer', 'responsive', 'reduced-motion']
+    },
+    {
+      id: 'breadcrumb',
+      title: 'Breadcrumb · 面包屑导航',
+      type: 'component',
+      category: 'components',
+      path: 'components/breadcrumb/',
+      url: '/components/breadcrumb/index.html',
+      description: '斜杠、箭头、圆点三种分隔符的语义化面包屑，aria-current 标记当前页；文件浏览器演示点击文件夹实时钻取与层级跳转，窄空间下中间层级自动折叠为省略菜单。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['breadcrumb', 'navigation', 'aria-current', 'overflow-menu', 'file-explorer', 'responsive']
+    },
+    {
+      id: 'typewriter',
+      title: 'Typewriter · 打字机文字',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/typewriter/',
+      url: '/effects/typewriter/index.html',
+      description: '多段文案循环打字与删除的打字机特效，光标闪烁、文案进度点跳转、点击重播，H 呼出的控制台可调节打字速度、循环开关与光标显隐，并适配减弱动态偏好。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['typewriter', 'text-animation', 'typing-effect', 'loop', 'control-dock', 'reduced-motion']
     }
   ];
 
