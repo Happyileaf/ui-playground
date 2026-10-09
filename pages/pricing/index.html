@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Plans · 标准 SaaS 服务订阅中心</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Top Fixed HUD Tag per system guidelines -->
+  <aside class="case-hud-capsule" id="caseHud">
+    <div class="hud-tag">
+      <span class="hud-dot"></span>
+      <span class="hud-category">PAGE</span>
+      <span class="hud-sep">/</span>
+      <span class="hud-title">PRICING</span>
+    </div>
+    <div class="hud-actions">
+      <button type="button" class="hud-btn" id="audioToggleBtn" title="切换交互音效" aria-label="切换交互音效">
+        <svg class="icon-audio-on" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+        <svg class="icon-audio-off" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Global Nav Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            <path d="M2 17l10 5 10-5"></path>
+            <path d="M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <span class="brand-title">AURA</span>
+        <span class="brand-sub">PLATFORM</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Viewport -->
+  <main class="pricing-container">
+
+    <!-- Hero Header -->
+    <section class="hero-section">
+      <h1 class="hero-title">透明、清晰的定价方案</h1>
+      <p class="hero-desc">无论是个人探索还是跨国团队协作，都有契合您业务阶段的标准方案，支持随时平滑升降级。</p>
+
+      <!-- Monthly / Annual Billing Switcher -->
+      <div class="billing-switcher-wrap">
+        <div class="billing-switcher" id="billingSwitcher" role="tablist">
+          <button type="button" class="switch-opt active" data-period="monthly" role="tab" aria-selected="true">
+            <span>按月计费</span>
+          </button>
+          <button type="button" class="switch-opt" data-period="annual" role="tab" aria-selected="false">
+            <span>按年计费</span>
+            <span class="discount-badge">省 20%</span>
+          </button>
+          <div class="switch-slider" id="switchSlider"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Standard SaaS Tiers Grid -->
+    <section class="tiers-grid" id="tiersGrid">
+
+      <!-- 1. Starter Tier -->
+      <article class="tier-card" data-plan="starter">
+        <div class="tier-header">
+          <div class="tier-title-row">
+            <h2 class="tier-name">Starter</h2>
+          </div>
+          <p class="tier-summary">适用于个人学习、原型验证及早期探索。</p>
+        </div>
+
+        <div class="tier-price-box">
+          <div class="price-line">
+            <span class="curr-symbol">¥</span>
+            <span class="price-num" data-m="0" data-a="0">0</span>
+            <span class="price-cycle">/ 月</span>
+          </div>
+          <span class="price-hint">永久免费体验</span>
+        </div>
+
+        <button type="button" class="btn-tier" data-tier-name="Starter">立即订阅</button>
+
+        <div class="features-wrapper">
+          <span class="features-title">包含基础能力：</span>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>1 个独立协作工作区</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>至多 3 位团队成员</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>5 GB 云端存储空间</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>社区支持与帮助中心</span>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 2. Lite Tier -->
+      <article class="tier-card" data-plan="lite">
+        <div class="tier-header">
+          <div class="tier-title-row">
+            <h2 class="tier-name">Lite</h2>
+          </div>
+          <p class="tier-summary">适用于自由职业者、独立开发者与微型初创团队。</p>
+        </div>
+
+        <div class="tier-price-box">
+          <div class="price-line">
+            <span class="curr-symbol">¥</span>
+            <span class="price-num" data-m="108" data-a="86">108</span>
+            <span class="price-cycle">/ 月</span>
+          </div>
+          <span class="price-hint" id="hintLite">按月自动续订</span>
+        </div>
+
+        <button type="button" class="btn-tier" data-tier-name="Lite">立即订阅</button>
+
+        <div class="features-wrapper">
+          <span class="features-title">包含 Starter 全部功能，外加：</span>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>5 个独立协作工作区</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>至多 10 位团队成员</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>50 GB 高速加密存储</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>基础 API 访问权限 (1,000 次/天)</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>标准工作日工单支持</span>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 3. Pro Tier -->
+      <article class="tier-card" data-plan="pro">
+        <div class="tier-header">
+          <div class="tier-title-row">
+            <h2 class="tier-name">Pro</h2>
+            <span class="tier-tag">Most Popular</span>
+          </div>
+          <p class="tier-summary">适用于快速成长型业务与需要深度协同的团队。</p>
+        </div>
+
+        <div class="tier-price-box">
+          <div class="price-line">
+            <span class="curr-symbol">¥</span>
+            <span class="price-num" data-m="349" data-a="279">349</span>
+            <span class="price-cycle">/ 月</span>
+          </div>
+          <span class="price-hint" id="hintPro">按月自动续订</span>
+        </div>
+
+        <button type="button" class="btn-tier" data-tier-name="Pro">立即订阅</button>
+
+        <div class="features-wrapper">
+          <span class="features-title">包含 Lite 全部功能，外加：</span>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>无限次</strong> 独立工作区</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>至多 50 位团队成员</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>500 GB 高速加密存储</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>高级权限管理 (RBAC) 与审计日志</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>高并发 API 与 Webhooks 流水线</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>优先响应支持 (4 小时内)</span>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 4. Enterprise Tier -->
+      <article class="tier-card" data-plan="enterprise">
+        <div class="tier-header">
+          <div class="tier-title-row">
+            <h2 class="tier-name">Enterprise</h2>
+          </div>
+          <p class="tier-summary">适用于具有严苛合规、高安全与定制集成需求的企业。</p>
+        </div>
+
+        <div class="tier-price-box">
+          <div class="price-line">
+            <span class="price-custom">定制</span>
+          </div>
+          <span class="price-hint">根据业务规模专属定价</span>
+        </div>
+
+        <button type="button" class="btn-tier" data-tier-name="Enterprise">立即订阅</button>
+
+        <div class="features-wrapper">
+          <span class="features-title">专享企业级保障：</span>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>无限制席位与无限云存储</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>99.99% 金融级可用性 SLA 保证</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>SAML 2.0 / Okta / Azure AD 单点登录</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>私有网络互联与自定义数据驻留</span>
+            </li>
+            <li class="feature-item">
+              <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>专属客户成功经理 (CSM) 1 对 1 支持</span>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Clean FAQ Section -->
+    <section class="faq-section">
+      <div class="faq-header">
+        <h2 class="faq-title">常见问题</h2>
+      </div>
+
+      <div class="faq-accordion">
+        <details class="faq-item" open>
+          <summary class="faq-question">
+            <span>我可以在订阅期间随时升降级方案吗？</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>可以。升级方案将立即生效，系统将按当前计费周期的剩余天数折算差价；降级方案将在当前计费周期结束后于下个周期生效，期间不会收取额外取消费用。</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>支持哪些付款渠道？是否支持对公转账和发票？</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>我们支持主流国际信用卡（Visa、Mastercard、American Express）、支付宝以及微信支付。对于 Enterprise 企业用户，我们支持企业银行对公电汇结算并提供标准增值税专用发票。</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>按年计费的折扣是如何计算的？</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>选择按年计费时，您将在结账时一次性支付一年的服务费用，费率相比按月支付可直接享受 20% 的折扣优惠（相当于立省近两个半月费用）。</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Clean Standard Confirmation Dialog -->
+  <dialog class="plan-dialog" id="planDialog">
+    <div class="dialog-card">
+      <div class="dialog-header">
+        <div class="dialog-title-wrap">
+          <span class="dialog-sub">确认方案订阅</span>
+          <h3 class="dialog-title" id="dialogPlanName">Pro 计划</h3>
+        </div>
+        <button type="button" class="dialog-close-btn" id="dialogCloseBtn" aria-label="关闭窗口">&times;</button>
+      </div>
+
+      <div class="dialog-body">
+        <div class="summary-box">
+          <div class="summary-row">
+            <span class="sum-label">方案名称</span>
+            <span class="sum-val" id="sumPlan">Pro</span>
+          </div>
+          <div class="summary-row">
+            <span class="sum-label">计费周期</span>
+            <span class="sum-val" id="sumPeriod">按月支付</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row total">
+            <span class="sum-label">预计应付金额</span>
+            <span class="sum-total" id="sumTotal">¥349 / 月</span>
+          </div>
+        </div>
+
+        <form class="subscribe-form" id="subscribeForm">
+          <div class="form-group">
+            <label for="userEmail" class="form-label">工作电子邮箱</label>
+            <input type="email" id="userEmail" class="form-input" placeholder="name@company.com" required autocomplete="email">
+          </div>
+
+          <div class="dialog-actions">
+            <button type="button" class="btn-cancel" id="dialogCancelBtn">返回修改</button>
+            <button type="submit" class="btn-confirm" id="dialogConfirmBtn">
+              <span class="btn-text">确认开通</span>
+              <span class="btn-spinner"></span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Success notification -->
+        <div class="dialog-success" id="dialogSuccess" style="display: none;">
+          <div class="success-check">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <h4 class="success-title">开通请求已提交</h4>
+          <p class="success-desc">已向您的邮箱发送了激活链接与工作区配置凭证，感谢您选择 AURA PLATFORM。</p>
+          <button type="button" class="btn-done" id="dialogDoneBtn">完成</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>&copy; 2026 AURA PLATFORM. All rights reserved.</span>
+      <span class="footer-links">透明定价 · 随时升降级 · 零隐形费用</span>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>

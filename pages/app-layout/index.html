@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Shell Layout · 现代通用应用布局骨架</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Standard Case HUD Capsule (Top-Right per MAINTENANCE_GUIDELINES.md) -->
+  <aside class="case-hud-capsule" id="caseHud">
+    <div class="hud-tag">
+      <span class="hud-dot"></span>
+      <span class="hud-category">PAGE</span>
+      <span class="hud-sep">/</span>
+      <span class="hud-title">APP LAYOUT</span>
+    </div>
+    <div class="hud-actions">
+      <button type="button" class="hud-btn" id="audioToggleBtn" title="切换交互音效" aria-label="切换交互音效">
+        <svg class="icon-audio-on" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+        <svg class="icon-audio-off" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Master Layout Shell -->
+  <div class="app-layout" id="appLayout">
+
+    <!-- Mobile Drawer Backdrop Overlay -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- ==================================================================== -->
+    <!-- 1. 侧边栏 (Sidebar)                                                  -->
+    <!-- ==================================================================== -->
+    <aside class="app-sidebar" id="appSidebar">
+
+      <!-- Brand / Logo -->
+      <div class="sidebar-brand">
+        <div class="brand-logo">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="4"></rect>
+            <path d="M9 3v18"></path>
+            <path d="M14 9l3 3-3 3"></path>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <span class="brand-title">WORKSPACE</span>
+          <span class="brand-tag">SHELL UI</span>
+        </div>
+      </div>
+
+      <!-- Navigation Menu Groupings -->
+      <nav class="sidebar-nav">
+        <!-- Group 1 -->
+        <div class="nav-section-title">核心导航</div>
+        <ul class="nav-menu">
+          <li>
+            <button type="button" class="nav-item active" data-title="概览总览" data-crumb="仪表盘">
+              <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              <span class="nav-label">控制台</span>
+              <span class="nav-badge">NEW</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="nav-item" data-title="项目与流水线" data-crumb="项目管理">
+              <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span class="nav-label">项目管理</span>
+              <span class="nav-counter">12</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="nav-item" data-title="数据分析与报表" data-crumb="分析报告">
+              <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+              <span class="nav-label">数据看板</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="nav-item" data-title="资源与文件库" data-crumb="资产中心">
+              <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+              <span class="nav-label">资产库</span>
+            </button>
+          </li>
+        </ul>
+
+        <!-- Group 2 -->
+        <div class="nav-section-title">系统管理</div>
+        <ul class="nav-menu">
+          <li>
+            <button type="button" class="nav-item" data-title="团队与组织成员" data-crumb="团队成员">
+              <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span class="nav-label">组织架构</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="nav-item" data-title="系统偏好与配置" data-crumb="系统设置">
+              <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              <span class="nav-label">偏好设置</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Bottom (User Card & Collapse Switcher) -->
+      <div class="sidebar-footer">
+        <!-- User Profile Card -->
+        <div class="user-card">
+          <div class="user-avatar">
+            <span>U</span>
+            <span class="user-status-dot"></span>
+          </div>
+          <div class="user-details">
+            <span class="user-name">Alex Morgan</span>
+            <span class="user-role">alex@workspace.io</span>
+          </div>
+        </div>
+
+        <!-- Sidebar Collapse / Expand Button -->
+        <button type="button" class="sidebar-toggle-btn" id="sidebarToggleBtn" title="折叠/展开侧边栏 (快捷键 [)">
+          <svg class="toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="11 17 6 12 11 7"></polyline>
+            <polyline points="18 17 13 12 18 7"></polyline>
+          </svg>
+          <span class="toggle-text">折叠侧边栏</span>
+          <kbd class="toggle-kbd">[</kbd>
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- ==================================================================== -->
+    <!-- 2. 主视口区 (Main Viewport Container)                                -->
+    <!-- ==================================================================== -->
+    <div class="app-viewport">
+
+      <!-- ==================================================================== -->
+      <!-- 2.1 顶部栏 (Top Header Bar)                                         -->
+      <!-- ==================================================================== -->
+      <header class="app-topbar">
+        <!-- Topbar Left: Hamburger button & Breadcrumbs -->
+        <div class="topbar-left">
+          <!-- Mobile Drawer Trigger -->
+          <button type="button" class="mobile-drawer-btn" id="mobileDrawerBtn" aria-label="打开侧边栏">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+
+          <!-- Breadcrumb Trail -->
+          <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+            <span class="crumb-home">主工作区</span>
+            <span class="crumb-separator">/</span>
+            <span class="crumb-current" id="crumbTitle">控制台</span>
+          </nav>
+        </div>
+
+        <!-- Topbar Center: Global Search Bar -->
+        <div class="topbar-center">
+          <div class="search-input-wrap" id="searchWrap">
+            <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="globalSearchInput" class="search-input" placeholder="快速检索功能、菜单或页面..." autocomplete="off">
+            <kbd class="search-shortcut">⌘K</kbd>
+          </div>
+        </div>
+
+        <!-- Topbar Right: Actions, Notifications, Help -->
+        <div class="topbar-right">
+          <!-- Notification Button -->
+          <button type="button" class="topbar-icon-btn" id="bellBtn" title="通知消息" aria-label="通知消息">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="notice-badge"></span>
+          </button>
+
+          <!-- Help / Documentation -->
+          <button type="button" class="topbar-icon-btn" id="helpBtn" title="帮助中心" aria-label="帮助中心">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </button>
+
+          <!-- Topbar Action CTA -->
+          <button type="button" class="topbar-action-btn" id="primaryCtaBtn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>新建项目</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- ==================================================================== -->
+      <!-- 2.2 中间内容区 (完全空白的主画布插槽)                                  -->
+      <!-- ==================================================================== -->
+      <main class="app-content-slot" id="appContentSlot">
+        <!-- 业务内容保持空白 -->
+      </main>
+
+    </div>
+
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

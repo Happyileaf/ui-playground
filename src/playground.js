@@ -13,6 +13,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
   // Master Case Catalog
   const cases = [
     {
+      id: 'dynamic-dock',
+      title: 'Dynamic Magnification Dock · 动态鱼眼浮动坞台',
+      type: 'component',
+      category: 'components',
+      path: 'components/dynamic-dock/',
+      url: '/components/dynamic-dock/index.html',
+      description: '连续高斯物理插值鱼眼放大 Dock 坞台系统，具备微拟态磨砂玻璃质感、macOS 经典弹性跳跃反馈、多方位停靠与 Web Audio 触感咔嗒音效。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['dynamic-dock', 'fisheye-scale', 'gaussian-curve', 'spring-bounce', 'backdrop-blur', 'web-audio', 'tactile-feedback', 'micro-interaction']
+    },
+    {
       id: 'holo-card-studio',
       title: 'Holo Card Studio · 3D 全息典藏卡工坊',
       type: 'component',
@@ -69,14 +80,36 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
     },
     {
       id: 'auth',
-      title: 'LUMEN · Digital Studio Auth',
+      title: 'LUMEN · Digital Studio Auth · 登录与空间注册',
       type: 'page',
       category: 'pages',
       path: 'pages/auth/',
       url: '/pages/auth/index.html',
-      description: 'Haute-design digital atelier login & registration with living kinetic generative silk canvas, fine optical borders, tactile Web Audio feedback, and accessible modal flows.',
+      description: '数字工坊高保真登录与空间注册系统，配备活体流体光织画布、光学微边框、极细 Web Audio 触感音效与无障碍双向表单流。',
       files: ['index.html', 'style.css', 'script.js'],
-      tags: ['page', 'auth', 'generative-art', 'haute-design', 'kinetic', 'web-audio', 'atelier']
+      tags: ['page', 'auth', 'login', 'signup', 'generative-art', 'kinetic', 'web-audio', 'form-validation']
+    },
+    {
+      id: 'pricing',
+      title: 'SaaS Pricing Plans · 标准服务订阅中心',
+      type: 'page',
+      category: 'pages',
+      path: 'pages/pricing/',
+      url: '/pages/pricing/index.html',
+      description: '标准 SaaS 服务订阅中心：极简、克制、高级感设计。涵盖 Starter (免费入门)、Lite (个人/微型团队)、Pro (核心推荐专业版) 与 Enterprise (企业定制) 4 个清晰梯度，支持月付/年付联动折算与简洁确认流。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['page', 'saas-pricing', 'starter', 'lite', 'pro', 'enterprise', 'subscription', 'billing']
+    },
+    {
+      id: 'app-layout',
+      title: 'App Shell Layout · 现代通用应用布局骨架',
+      type: 'page',
+      category: 'pages',
+      path: 'pages/app-layout/',
+      url: '/pages/app-layout/index.html',
+      description: '专注通用应用系统布局架构（App Shell）：具备可展开/折叠紧凑导轨的侧边栏、移动端遮罩抽屉、面包屑与全局 ⌘K 检索顶部栏，以及优雅的内容占位插槽。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['page', 'app-layout', 'sidebar', 'topbar', 'breadcrumb', 'responsive', 'shell-ui']
     },
     {
       id: 'living-constellation',
@@ -264,6 +297,17 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: 'Tinder 式拖拽滑动卡牌堆，具备指针拖拽倾斜、LIKE/NOPE 印章、阈值飞出与弹性回弹、底层卡片前推、撤回重抽与 Web Audio 音效。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['pointer-events', 'drag-gesture', 'spring-physics', 'swipe-deck', 'throw-dismiss', 'web-audio', 'micro-interaction']
+    },
+    {
+      id: 'capsule-tabs',
+      title: 'Capsule Tab Motion Gallery · 胶囊标签动效展厅',
+      type: 'component',
+      category: 'components',
+      path: 'components/capsule-tabs/',
+      url: '/components/capsule-tabs/index.html',
+      description: '涵盖 6 种经典物理与动效曲线的胶囊切换器：基础线性、弹性阻尼、呼吸光影、SVG 粘滞流体、磁吸瞬动与遮罩浮现，支持全键盘无障碍与纯原生触感音效。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['capsule-tabs', 'tab-navigation', 'motion-design', 'cubic-bezier', 'svg-gooey', 'spring-physics', 'web-audio', 'accessibility']
     }
   ];
 

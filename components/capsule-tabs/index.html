@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capsule Tab Motion Design Gallery · 胶囊标签动效展厅</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Top Floating HUD -->
+  <div class="hud-actions">
+    <div class="hud-brand" id="hudBrand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Capsule Tabs · 动效展厅</span>
+    </div>
+    <div class="hud-tools">
+      <button type="button" class="btn-hud" id="btnSlowMotion" title="慢动作模式 (0.2x 速度对比)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        <span class="btn-text">慢放</span>
+      </button>
+      <button type="button" class="btn-hud" id="btnToggleAudio" title="切换触感音效反馈">
+        <svg class="icon-sound-on" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        <svg class="icon-sound-off hidden" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+        <span class="btn-text">音效</span>
+      </button>
+      <button type="button" class="btn-hud" id="btnToggleTheme" title="切换深浅色彩主题">
+        <svg class="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="icon-moon hidden" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <span class="btn-text">主题</span>
+      </button>
+    </div>
+  </div>
+
+  <main class="page-wrapper">
+    <header class="gallery-header">
+      <div class="kicker">INTERACTIVE MOTION DESIGN · 6 PHYSICAL SCHEMES</div>
+      <h1>Capsule Tab Motion Gallery</h1>
+      <p class="subtitle">Exploration of Interaction &amp; Animation</p>
+      
+      <!-- Interactive Quick Switcher Pill -->
+      <div class="global-cycle-bar">
+        <button type="button" class="btn-cycle" id="btnAutoCycle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+          </svg>
+          一键联动循环演练
+        </button>
+        <div class="cycle-hint">键盘支持 ← → 方向键切换 · 纯原生 0 依赖</div>
+      </div>
+    </header>
+
+    <div class="showcases-grid">
+      <!-- ===== 方案 01: Basic Switch ===== -->
+      <article class="showcase-card" data-scheme="scheme-01">
+        <div class="showcase-info">
+          <span class="showcase-id">01</span>
+          <div class="showcase-heading">
+            <h2 class="showcase-title">Basic Switch</h2>
+            <span class="showcase-desc">最基础的线性切换</span>
+          </div>
+        </div>
+        
+        <div class="tab-stage">
+          <div class="tab-container" id="scheme-01" role="tablist" aria-label="Basic Switch Tab Navigation">
+            <div class="slider" aria-hidden="true"></div>
+            <button role="tab" aria-selected="true" tabindex="0" class="tab-btn active" data-tab="overview">Overview</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="projects">Projects</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="about">About</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="contact">Contact</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== 方案 02: Elastic Slide ===== -->
+      <article class="showcase-card" data-scheme="scheme-02">
+        <div class="showcase-info">
+          <span class="showcase-id">02</span>
+          <div class="showcase-heading">
+            <h2 class="showcase-title">Elastic Slide</h2>
+            <span class="showcase-desc">具有物理弹性的滑动反馈</span>
+          </div>
+        </div>
+        
+        <div class="tab-stage">
+          <div class="tab-container" id="scheme-02" role="tablist" aria-label="Elastic Slide Tab Navigation">
+            <div class="slider" aria-hidden="true"></div>
+            <button role="tab" aria-selected="true" tabindex="0" class="tab-btn active" data-tab="overview">Overview</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="projects">Projects</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="about">About</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="contact">Contact</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== 方案 03: Breathing Capsule ===== -->
+      <article class="showcase-card" data-scheme="scheme-03">
+        <div class="showcase-info">
+          <span class="showcase-id">03</span>
+          <div class="showcase-heading">
+            <h2 class="showcase-title">Breathing Capsule</h2>
+            <span class="showcase-desc">带柔和阴影的胶囊滑动</span>
+          </div>
+        </div>
+        
+        <div class="tab-stage">
+          <div class="tab-container" id="scheme-03" role="tablist" aria-label="Breathing Capsule Tab Navigation">
+            <div class="slider" aria-hidden="true"></div>
+            <button role="tab" aria-selected="true" tabindex="0" class="tab-btn active" data-tab="overview">Overview</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="projects">Projects</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="about">About</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="contact">Contact</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== 方案 04: Liquid Morph ===== -->
+      <article class="showcase-card" data-scheme="scheme-04">
+        <div class="showcase-info">
+          <span class="showcase-id">04</span>
+          <div class="showcase-heading">
+            <h2 class="showcase-title">Liquid Morph</h2>
+            <span class="showcase-desc">有机的液体融合效果</span>
+          </div>
+        </div>
+        
+        <div class="tab-stage">
+          <div class="tab-container" id="scheme-04" role="tablist" aria-label="Liquid Morph Tab Navigation">
+            <div class="slider" aria-hidden="true"></div>
+            <button role="tab" aria-selected="true" tabindex="0" class="tab-btn active" data-tab="overview">Overview</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="projects">Projects</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="about">About</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="contact">Contact</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== 方案 05: Magnetic Snap ===== -->
+      <article class="showcase-card" data-scheme="scheme-05">
+        <div class="showcase-info">
+          <span class="showcase-id">05</span>
+          <div class="showcase-heading">
+            <h2 class="showcase-title">Magnetic Snap</h2>
+            <span class="showcase-desc">快速干脆的磁性吸附</span>
+          </div>
+        </div>
+        
+        <div class="tab-stage">
+          <div class="tab-container" id="scheme-05" role="tablist" aria-label="Magnetic Snap Tab Navigation">
+            <div class="slider" aria-hidden="true"></div>
+            <button role="tab" aria-selected="true" tabindex="0" class="tab-btn active" data-tab="overview">Overview</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="projects">Projects</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="about">About</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="contact">Contact</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== 方案 06: Mask Reveal ===== -->
+      <article class="showcase-card" data-scheme="scheme-06">
+        <div class="showcase-info">
+          <span class="showcase-id">06</span>
+          <div class="showcase-heading">
+            <h2 class="showcase-title">Mask Reveal</h2>
+            <span class="showcase-desc">从左侧延伸展开的遮罩</span>
+          </div>
+        </div>
+        
+        <div class="tab-stage">
+          <div class="tab-container" id="scheme-06" role="tablist" aria-label="Mask Reveal Tab Navigation">
+            <div class="slider" aria-hidden="true"></div>
+            <button role="tab" aria-selected="true" tabindex="0" class="tab-btn active" data-tab="overview">Overview</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="projects">Projects</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="about">About</button>
+            <button role="tab" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="contact">Contact</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Bottom Guide Capsule -->
+    <div class="bottom-hint-capsule">
+      <span class="hint-dot"></span>
+      <span class="hint-text">点击任意选项卡体验动效差异 · 键盘 ← → 导航</span>
+    </div>
+  </main>
+
+  <!-- Native SVG Filters Definition -->
+  <svg class="svg-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="liquid-filter">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+        <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+      </filter>
+    </defs>
+  </svg>
+
+  <script src="./script.js"></script>
+</body>
+</html>

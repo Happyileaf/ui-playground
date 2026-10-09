@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Magnification Dock · 动态鱼眼浮动坞台</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="theme-obsidian">
+  <!-- Top Floating Controls (Mandatory Title & Optional Control Panel Toggle) -->
+  <div class="hud-actions">
+    <div class="hud-brand" id="hudBrand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">动态鱼眼坞台 · DYNAMIC DOCK</span>
+    </div>
+    <button type="button" class="btn-tool btn-icon-only" id="btnToggleHud" title="隐藏/显示控制台 (H)" aria-label="切换控制面板">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Floating Parametric Controller Panel (HUD) - 默认隐藏 -->
+  <aside class="control-dock hidden" id="controlDock" aria-label="物理调谐面板">
+    <div class="dock-header">
+      <span class="dock-heading">鱼眼物理调谐器</span>
+      <span class="dock-shortcut">按 H 收起</span>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="dock-section">
+      <div class="section-label">坞台形态与方向</div>
+      <div class="dock-quick-actions">
+        <button type="button" class="btn-chip active" data-pos="bottom">底部悬浮</button>
+        <button type="button" class="btn-chip" data-pos="island">居中岛屿</button>
+        <button type="button" class="btn-chip" data-pos="left">左侧垂直</button>
+        <button type="button" class="btn-chip" id="btnToggleSound">音效: 开启</button>
+      </div>
+    </div>
+
+    <!-- Glass Themes -->
+    <div class="dock-section">
+      <div class="section-label">材质滤镜风格</div>
+      <div class="palette-grid">
+        <button type="button" class="theme-chip active" data-theme="obsidian">
+          <span class="chip-color" style="background: #0f172a;"></span>
+          <span class="chip-name">黑曜晶体</span>
+        </button>
+        <button type="button" class="theme-chip" data-theme="acrylic">
+          <span class="chip-color" style="background: #1e293b;"></span>
+          <span class="chip-name">极光毛玻璃</span>
+        </button>
+        <button type="button" class="theme-chip" data-theme="deepvoid">
+          <span class="chip-color" style="background: #030712;"></span>
+          <span class="chip-name">纯黑深渊</span>
+        </button>
+        <button type="button" class="theme-chip" data-theme="frosted">
+          <span class="chip-color" style="background: #334155;"></span>
+          <span class="chip-name">高透霜雾</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Range Sliders -->
+    <div class="dock-section sliders-section">
+      <div class="slider-row">
+        <div class="slider-meta">
+          <label for="rangeMaxScale">最大放大倍率</label>
+          <span class="slider-val" id="valMaxScale">1.85x</span>
+        </div>
+        <input type="range" id="rangeMaxScale" min="1.2" max="2.3" step="0.05" value="1.85">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-meta">
+          <label for="rangeSpread">高斯衰减半径</label>
+          <span class="slider-val" id="valSpread">160px</span>
+        </div>
+        <input type="range" id="rangeSpread" min="80" max="280" step="10" value="160">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-meta">
+          <label for="rangeBaseSize">基准图标尺寸</label>
+          <span class="slider-val" id="valBaseSize">54px</span>
+        </div>
+        <input type="range" id="rangeBaseSize" min="42" max="68" step="2" value="54">
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="dock-footer">
+      <button type="button" class="btn-reset" id="btnResetParams">重置物理默认参数</button>
+    </div>
+  </aside>
+
+  <!-- Main Canvas / Workspace Stage -->
+  <main class="workspace-stage">
+    <!-- Ambient Stage Background Elements -->
+    <div class="stage-ambient-glow" aria-hidden="true"></div>
+
+    <!-- Interactive Active App Window / Card -->
+    <section class="active-app-card hidden" id="activeAppCard">
+      <header class="app-card-header">
+        <div class="app-card-title-group">
+          <span class="app-status-badge"></span>
+          <h2 class="app-card-title" id="appCardTitle">终端 · Terminal</h2>
+        </div>
+        <button type="button" class="btn-close-app" id="btnCloseApp" aria-label="关闭预览窗口">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </header>
+      <div class="app-card-body" id="appCardBody">
+        <!-- Dynamic content injected here -->
+      </div>
+    </section>
+
+    <!-- Stage Center Kicker -->
+    <div class="stage-kicker-box" id="stageKicker">
+      <span class="kicker-eyebrow">PHYSICAL GAUSSIAN FISHEYE · HAPTIC LERP</span>
+      <h1 class="kicker-title">Dynamic Magnification Dock</h1>
+      <p class="kicker-desc">滑动光标体验连续高斯鱼眼插值与弹性回弹。点击图标触发物理跳跃与微应用唤醒。</p>
+    </div>
+
+    <!-- The Standalone Magnification Dock -->
+    <div class="dock-container pos-bottom" id="dockContainer">
+      <div class="dock-backdrop" id="dockBackdrop">
+        <!-- Separator slot if needed -->
+      </div>
+      <nav class="dock-nav" id="dockNav" aria-label="主应用快捷坞台">
+        <!-- 1. Finder / Files -->
+        <div class="dock-item" data-app="files" data-name="文件管理 · Files" tabindex="0" role="button">
+          <div class="dock-tooltip">文件管理 · Files</div>
+          <div class="dock-icon-wrapper">
+            <div class="dock-icon icon-files">
+              <svg viewBox="0 0 48 48" fill="none">
+                <rect width="48" height="48" rx="12" fill="url(#gradFilesBg)" />
+                <path d="M12 16C12 14.8954 12.8954 14 14 14H21.5L25 18H34C35.1046 18 36 18.8954 36 20V32C36 33.1046 35.1046 34 34 34H14C12.8954 34 12 33.1046 12 32V16Z" fill="#38BDF8" />
+                <path d="M12 21C12 19.8954 12.8954 19 14 19H34C35.1046 19 36 19.8954 36 21V32C36 33.1046 35.1046 34 34 34H14C12.8954 34 12 33.1046 12 32V21Z" fill="#E0F2FE" />
+                <defs>
+                  <linearGradient id="gradFilesBg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0284C7"/>
+                    <stop offset="1" stop-color="#0369A1"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="active-indicator"></span>
+          </div>
+        </div>
+
+        <!-- 2. Launchpad -->
+        <div class="dock-item" data-app="launchpad" data-name="启动台 · Launchpad" tabindex="0" role="button">
+          <div class="dock-tooltip">启动台 · Launchpad</div>
+          <div class="dock-icon-wrapper">
+            <div class="dock-icon icon-launchpad">
+              <svg viewBox="0 0 48 48" fill="none">
+                <rect width="48" height="48" rx="12" fill="url(#gradLaunchBg)" />
+                <circle cx="17" cy="17" r="4" fill="#FFFFFF" fill-opacity="0.9" />
+                <circle cx="31" cy="17" r="4" fill="#FFFFFF" fill-opacity="0.9" />
+                <circle cx="17" cy="31" r="4" fill="#FFFFFF" fill-opacity="0.9" />
+                <circle cx="31" cy="31" r="4" fill="#FFFFFF" fill-opacity="0.9" />
+                <defs>
+                  <linearGradient id="gradLaunchBg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#64748B"/>
+                    <stop offset="1" stop-color="#334155"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="active-indicator"></span>
+          </div>
+        </div>
+
+        <!-- 3. Terminal -->
+        <div class="dock-item is-active" data-app="terminal" data-name="终端 · Terminal" tabindex="0" role="button">
+          <div class="dock-tooltip">终端 · Terminal</div>
+          <div class="dock-icon-wrapper">
+            <div class="dock-icon icon-terminal">
+              <svg viewBox="0 0 48 48" fill="none">
+                <rect width="48" height="48" rx="12" fill="url(#gradTermBg)" />
+                <rect x="2" y="2" width="44" height="44" rx="10" stroke="#334155" stroke-width="1.5" />
+                <path d="M14 18L21 24L14 30" stroke="#4ADE80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="24" y1="30" x2="34" y2="30" stroke="#4ADE80" stroke-width="3" stroke-linecap="round"/>
+                <defs>
+                  <linearGradient id="gradTermBg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0F172A"/>
+                    <stop offset="1" stop-color="#020617"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="active-indicator"></span>
+          </div>
+        </div>
+
+        <!-- 4. Safari / Web -->
+        <div class="dock-item" data-app="browser" data-name="浏览器 · Safari" tabindex="0" role="button">
+          <div class="dock-tooltip">浏览器 · Safari</div>
+          <div class="dock-icon-wrapper">
+            <div class="dock-icon icon-browser">
+              <svg viewBox="0 0 48 48" fill="none">
+                <rect width="48" height="48" rx="12" fill="url(#gradBrowserBg)" />
+                <circle cx="24" cy="24" r="14" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="1.5" />
+                <polygon points="27,15 21,27 33,21" fill="#EF4444" />
+                <polygon points="21,33 27,21 15,27" fill="#F8FAFC" />
+                <circle cx="24" cy="24" r="2.5" fill="#FFFFFF" />
+                <defs>
+                  <linearGradient id="gradBrowserBg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0284C7"/>
+                    <stop offset="1" stop-color="#2563EB"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="active-indicator"></span>
+          </div>
+        </div>
+
+        <!-- 5. Music / Sound Player -->
+        <div class="dock-item" data-app="music" data-name="音乐电台 · Music" tabindex="0" role="button">
+          <div class="dock-tooltip">音乐电台 · Music</div>
+          <div class="dock-icon-wrapper">
+            <div class="dock-icon icon-music">
+              <svg viewBox="0 0 48 48" fill="none">
+                <rect width="48" height="48" rx="12" fill="url(#gradMusicBg)" />
+                <circle cx="18" cy="31" r="5" fill="#FFFFFF" />
+                <circle cx="30" cy="27" r="5" fill="#FFFFFF" />
+                <path d="M23 31V16L35 12V27" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M23 20L35 16" stroke="#FFFFFF" stroke-width="3" />
+                <defs>
+                  <linearGradient id="gradMusicBg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#EC4899"/>
+                    <stop offset="1" stop-color="#DB2777"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="active-indicator"></span>
+          </div>
+        </div>
+
+        <!-- 6. Photos / Canvas -->
+        <div class="dock-item" data-app="photos" data-name="照片图库 · Photos" tabindex="0" role="button">
+          <div class="dock-tooltip">照片图库 · Photos</div>
+          <div class="dock-icon-wrapper">
+            <div class="dock-icon icon-photos">
+              <svg viewBox="0 0 48 48" fill="none">
+                <rect width="48" height="48" rx="12" fill="url(#gradPhotosBg)" />
+                <circle cx="24" cy="24" r="8" fill="#F8FAFC" fill-opacity="0.9" />
+                <path d="M24 10C24 10 20 16 20 20C20 22.2 21.8 24 24 24C26.2 24 28 22.2 28 20C28 16 24 10 24 10Z" fill="#F59E0B" />
+                <path d="M24 38C24 38 28 32 28 28C28 25.8 26.2 24 24 24C21.8 24 20 25.8 20 28C20 32 24 38 24 38Z" fill="#10B981" />
+                <path d="M10 24C10 24 16 28 20 28C22.2 28 24 26.2 24 24C24 21.8 22.2 20 20 20C16 20 10 24 10 24Z" fill="#EC4899" />
+                <path d="M38 24C38 24 32 20 28 20C25.8 20 24 21.8 24 24C24 26.2 25.8 28 28 28C32 28 38 24 38 24Z" fill="#6366F1" />
+                <defs>
+                  <linearGradient id="gradPhotosBg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#FFFFFF"/>
+                    <stop offset="1" stop-color="#E2E8F0"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="active-indicator"></span>
+          </div>
+        </div>
+
+        <!-- 7. Settings -->
+        <div class="dock-item" data-app="settings" data-name="系统设置 · Settings" tabindex="0" role="button">
+          <div class="dock-tooltip">系统设置 · Settings</div>
+          <div class="dock-icon-wrapper">
+            <div class="dock-icon icon-settings">
+              <svg viewBox="0 0 48 48" fill="none">
+                <rect width="48" height="48" rx="12" fill="url(#gradSetBg)" />
+                <circle cx="24" cy="24" r="6" stroke="#FFFFFF" stroke-width="3" />
+                <path d="M24 12V15M24 33V36M12 24H15M33 24H36M15.5 15.5L17.6 17.6M30.4 30.4L32.5 32.5M15.5 32.5L17.6 30.4M30.4 17.6L32.5 15.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+                <defs>
+                  <linearGradient id="gradSetBg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#475569"/>
+                    <stop offset="1" stop-color="#1E293B"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="active-indicator"></span>
+          </div>
+        </div>
+
+        <div class="dock-divider" aria-hidden="true"></div>
+
+        <!-- 8. Trash -->
+        <div class="dock-item" data-app="trash" data-name="废纸篓 · Trash" tabindex="0" role="button">
+          <div class="dock-tooltip">废纸篓 · Trash</div>
+          <div class="dock-icon-wrapper">
+            <div class="dock-icon icon-trash">
+              <svg viewBox="0 0 48 48" fill="none">
+                <rect width="48" height="48" rx="12" fill="url(#gradTrashBg)" />
+                <path d="M16 18L18 34C18 35.1 18.9 36 20 36H28C29.1 36 30 35.1 30 34L32 18" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="14" y1="18" x2="34" y2="18" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M20 18V15C20 14.4 20.4 14 21 14H27C27.6 14 28 14.4 28 15V18" stroke="#FFFFFF" stroke-width="2.5"/>
+                <defs>
+                  <linearGradient id="gradTrashBg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#64748B"/>
+                    <stop offset="1" stop-color="#475569"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="active-indicator"></span>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </main>
+
+  <!-- Bottom Interactive Helper Hint -->
+  <div class="bottom-hint" id="bottomHint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">光标滑过体验高斯鱼眼放大 · 点击图标唤起微应用 · 按 H 切换物理控制台</span>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,475 @@
+:root {
+  --bg-color: #f5f5f7;
+  --text-main: #1d1d1f;
+  --text-sub: #86868b;
+  --tab-bg: #e5e5ea;
+  --tab-text: #6e6e73;
+  --active-color: #1d1d1f;
+  --active-text: #ffffff;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-border: rgba(0, 0, 0, 0.06);
+  --card-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+  --radius: 999px;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --motion-dur: 0.3s;
+  --accent-dot: #0ea5e9;
+}
+
+[data-theme="dark"] {
+  --bg-color: #0b0d13;
+  --text-main: #f3f4f6;
+  --text-sub: #9ca3af;
+  --tab-bg: #1a202c;
+  --tab-text: #94a3b8;
+  --active-color: #ffffff;
+  --active-text: #0f172a;
+  --card-bg: rgba(19, 24, 34, 0.85);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+body.slow-motion {
+  --motion-dur: 1.2s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 70px 20px 60px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   HUD BRAND & TOP FLOATING TOOLS
+   ========================================================================== */
+.hud-actions {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 100;
+  user-select: none;
+}
+
+.hud-brand {
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.76);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+}
+
+.hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-dot);
+  box-shadow: 0 0 8px var(--accent-dot);
+}
+
+.hud-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #f8fafc;
+  line-height: 1;
+}
+
+.hud-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-hud {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.76);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+  font-size: 11px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.btn-hud:hover {
+  background: rgba(30, 41, 59, 0.9);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.btn-hud.active {
+  background: rgba(14, 165, 233, 0.25);
+  border-color: rgba(14, 165, 233, 0.5);
+  color: #38bdf8;
+}
+
+.btn-hud svg {
+  flex-shrink: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   PAGE WRAPPER & HEADER
+   ========================================================================== */
+.page-wrapper {
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.gallery-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-sub);
+  text-transform: uppercase;
+}
+
+.gallery-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+}
+
+.subtitle {
+  color: var(--text-sub);
+  font-size: 14px;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.global-cycle-bar {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-cycle {
+  background: var(--text-main);
+  color: var(--bg-color);
+  border: none;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: opacity 0.2s ease;
+}
+
+.btn-cycle:hover {
+  opacity: 0.9;
+}
+
+.cycle-hint {
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+/* ==========================================================================
+   SHOWCASE GRID & STATIC CLEAN CARDS (No Card Hover Effects)
+   ========================================================================== */
+.showcases-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 860px) {
+  .showcases-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Clean, static card container without hover transform or hover border jumps */
+.showcase-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.showcase-info {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  width: 100%;
+}
+
+.showcase-id {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-sub);
+}
+
+.showcase-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.showcase-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.showcase-desc {
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+.tab-stage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 8px;
+  min-height: 64px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tab-stage::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==========================================================================
+   TAB CONTAINERS & SLIDERS (Motion Design Schemes)
+   ========================================================================== */
+.tab-container {
+  position: relative;
+  display: inline-flex;
+  background-color: var(--tab-bg);
+  padding: 4px;
+  border-radius: var(--radius);
+  user-select: none;
+  width: fit-content;
+  flex-shrink: 0;
+}
+
+.tab-btn {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--tab-text);
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.3s ease;
+  outline: none;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.tab-btn:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+
+/* ===== 方案 01: Basic Switch ===== */
+#scheme-01 .slider {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  background-color: var(--active-color);
+  border-radius: var(--radius);
+  z-index: 1;
+  transition: transform var(--motion-dur) ease, width var(--motion-dur) ease;
+}
+#scheme-01 .tab-btn.active {
+  color: var(--active-text);
+}
+
+/* ===== 方案 02: Elastic Slide ===== */
+#scheme-02 .slider {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  background-color: var(--active-color);
+  border-radius: var(--radius);
+  z-index: 1;
+  transition: transform calc(var(--motion-dur) * 1.66) cubic-bezier(0.34, 1.56, 0.64, 1), width var(--motion-dur) ease;
+}
+#scheme-02 .tab-btn.active {
+  color: var(--active-text);
+}
+
+/* ===== 方案 03: Breathing Capsule ===== */
+#scheme-03 .slider {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  background-color: var(--active-color);
+  border-radius: var(--radius);
+  z-index: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: transform calc(var(--motion-dur) * 1.33) cubic-bezier(0.25, 1, 0.5, 1), width calc(var(--motion-dur) * 1.33) ease;
+}
+#scheme-03 .tab-btn.active {
+  color: var(--active-text);
+}
+
+/* ===== 方案 04: Liquid Morph ===== */
+#scheme-04 {
+  filter: url('#liquid-filter');
+  padding: 6px;
+}
+#scheme-04 .slider {
+  position: absolute;
+  height: calc(100% - 12px);
+  top: 6px;
+  left: 0;
+  background-color: var(--active-color);
+  border-radius: var(--radius);
+  z-index: 1;
+  transition: transform calc(var(--motion-dur) * 1.33) ease-out, width calc(var(--motion-dur) * 1.33) ease-out;
+}
+#scheme-04 .tab-btn.active {
+  color: var(--active-text);
+}
+
+/* ===== 方案 05: Magnetic Snap ===== */
+#scheme-05 .slider {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  background-color: var(--active-color);
+  border-radius: var(--radius);
+  z-index: 1;
+  transition: transform calc(var(--motion-dur) * 0.66) cubic-bezier(0.2, 0, 0.2, 1), width calc(var(--motion-dur) * 0.66) ease;
+}
+#scheme-05 .tab-btn {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+#scheme-05 .tab-btn:active {
+  transform: scale(0.95);
+}
+#scheme-05 .tab-btn.active {
+  color: var(--active-text);
+}
+
+/* ===== 方案 06: Mask Reveal ===== */
+#scheme-06 .slider {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  background-color: var(--active-color);
+  border-radius: var(--radius);
+  z-index: 1;
+  transform-origin: left center;
+  transition: transform calc(var(--motion-dur) * 1.33) cubic-bezier(0.65, 0, 0.35, 1), width var(--motion-dur) ease;
+}
+#scheme-06 .tab-btn.active {
+  color: var(--active-text);
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   BOTTOM HINT CAPSULE
+   ========================================================================== */
+.bottom-hint-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  color: var(--text-sub);
+  font-size: 12px;
+  user-select: none;
+}
+
+.hint-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--text-sub);
+}
+
+.svg-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
