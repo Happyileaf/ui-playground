@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breadcrumb · 面包屑导航</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Breadcrumb</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NAV · ARIA-CURRENT · OVERFLOW ELLIPSIS</span>
+      <h1>知道自己从哪来</h1>
+      <p>语义化面包屑导航，当前页使用 aria-current 标记；支持斜杠、箭头、圆点三种分隔符，空间不足时中间层级自动折叠为省略菜单；下方文件浏览器可点击实时钻取。</p>
+    </header>
+
+    <section class="style-card">
+      <div class="style-row">
+        <span class="style-label">斜杠</span>
+        <nav class="bc bc-slash" aria-label="面包屑">
+          <ol>
+            <li class="bc-item"><a href="#" data-noop>首页</a></li>
+            <li class="bc-item"><a href="#" data-noop>产品中心</a></li>
+            <li class="bc-item"><a href="#" data-noop>智能硬件</a></li>
+            <li class="bc-item is-current" aria-current="page">无线耳机</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="style-row">
+        <span class="style-label">箭头</span>
+        <nav class="bc bc-chevron" aria-label="面包屑">
+          <ol>
+            <li class="bc-item"><a href="#" data-noop>首页</a></li>
+            <li class="bc-item"><a href="#" data-noop>文档</a></li>
+            <li class="bc-item"><a href="#" data-noop>组件</a></li>
+            <li class="bc-item is-current" aria-current="page">面包屑导航</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="style-row">
+        <span class="style-label">圆点</span>
+        <nav class="bc bc-dot" aria-label="面包屑">
+          <ol>
+            <li class="bc-item"><a href="#" data-noop>首页</a></li>
+            <li class="bc-item"><a href="#" data-noop>个人中心</a></li>
+            <li class="bc-item"><a href="#" data-noop>订单管理</a></li>
+            <li class="bc-item is-current" aria-current="page">订单详情</li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <section class="explorer-card">
+      <div class="explorer-bar">
+        <nav class="bc bc-chevron explorer-bc" id="explorerBc" aria-label="文件位置"></nav>
+      </div>
+      <div class="explorer-body" id="explorerBody"></div>
+    </section>
+
+    <p class="page-foot-tip">提示：点击文件夹进入下一层，点击面包屑可跳回任意层级；缩窄窗口可看到中间层级折叠为「…」</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vertical Timeline · 垂直时间线</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Vertical Timeline</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">MILESTONES · SCROLL REVEAL · INTERSECTION OBSERVER</span>
+      <h1>产品成长时间线</h1>
+      <p>桌面端左右交替、移动端自动转单列；中央脊柱随页面滚动填充进度，事件卡片滚动进入视口时依次浮现，点击卡片可展开里程碑详情。</p>
+    </header>
+
+    <div class="timeline" id="timeline">
+      <div class="timeline-spine" aria-hidden="true">
+        <span class="timeline-progress" id="timelineProgress"></span>
+      </div>
+
+      <article class="tl-item" data-kind="launch">
+        <span class="tl-node" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg>
+        </span>
+        <div class="tl-card" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-meta">
+            <time datetime="2023-03">2023 · 03</time>
+            <span class="tl-tag">发布</span>
+          </div>
+          <h2>项目正式立项</h2>
+          <p class="tl-summary">三人小团队完成原型验证，确定原生优先、零框架冗余的技术路线，并发布首个内部可用版本。</p>
+          <div class="tl-detail">
+            <p>初期版本仅包含 3 个基础组件，全部使用原生 HTML/CSS/JS 实现，双击 HTML 文件即可离线运行，为后续案例库奠定了独立性基线。</p>
+          </div>
+          <span class="tl-expand-hint">展开详情</span>
+        </div>
+      </article>
+
+      <article class="tl-item" data-kind="feature">
+        <span class="tl-node" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        </span>
+        <div class="tl-card" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-meta">
+            <time datetime="2023-08">2023 · 08</time>
+            <span class="tl-tag">功能</span>
+          </div>
+          <h2>特效库上线</h2>
+          <p class="tl-summary">引入 Canvas 粒子、Web Audio 与 SVG 滤镜，烟花、磁吸按钮等首批视觉特效案例上线。</p>
+          <div class="tl-detail">
+            <p>所有音频均在用户首次手势交互后懒加载 AudioContext，Canvas 根据设备像素比自适应缩放，确保高分辨率屏幕下画面依旧锐利。</p>
+          </div>
+          <span class="tl-expand-hint">展开详情</span>
+        </div>
+      </article>
+
+      <article class="tl-item" data-kind="milestone">
+        <span class="tl-node" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+        </span>
+        <div class="tl-card" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-meta">
+            <time datetime="2024-01">2024 · 01</time>
+            <span class="tl-tag">里程碑</span>
+          </div>
+          <h2>案例数突破 20</h2>
+          <p class="tl-summary">组件库与特效库累计收录超过 20 个案例，覆盖表单、反馈、导航、动效等多个技术域。</p>
+          <div class="tl-detail">
+            <p>同时建立案例全生命周期 SOP 与质量验收矩阵，统一 HUD 视觉规范，从流程上杜绝低质重复内容入库。</p>
+          </div>
+          <span class="tl-expand-hint">展开详情</span>
+        </div>
+      </article>
+
+      <article class="tl-item" data-kind="feature">
+        <span class="tl-node" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        </span>
+        <div class="tl-card" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-meta">
+            <time datetime="2024-06">2024 · 06</time>
+            <span class="tl-tag">功能</span>
+          </div>
+          <h2>多设备工作台</h2>
+          <p class="tl-summary">桌面 / 平板 / 手机三档视口模拟器上线，并支持一键导出案例 ZIP 离线包。</p>
+          <div class="tl-detail">
+            <p>ZIP 打包完全在浏览器端完成，基于 import.meta.glob 的 ?raw 查询读取源码，不依赖任何后端服务。</p>
+          </div>
+          <span class="tl-expand-hint">展开详情</span>
+        </div>
+      </article>
+
+      <article class="tl-item" data-kind="milestone">
+        <span class="tl-node" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </span>
+        <div class="tl-card" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-meta">
+            <time datetime="2025-02">2025 · 02</time>
+            <span class="tl-tag">里程碑</span>
+          </div>
+          <h2>自主迭代闭环</h2>
+          <p class="tl-summary">引入 Agent 自主迭代机制，按固定节奏自动洞察缺口、补齐案例并通过 PR 提交评审。</p>
+          <div class="tl-detail">
+            <p>每轮迭代固定交付 5 个高实用性案例，全部经过构建、lint 双重验证后以独立 Pull Request 交付，由人工决定是否合并。</p>
+          </div>
+          <span class="tl-expand-hint">展开详情</span>
+        </div>
+      </article>
+
+      <article class="tl-item" data-kind="launch">
+        <span class="tl-node" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"></path><path d="m16.24 7.76 2.83-2.83"></path><path d="M18 12h4"></path><path d="m16.24 16.24 2.83 2.83"></path><path d="M12 18v4"></path><path d="m4.93 19.07 2.83-2.83"></path><path d="M2 12h4"></path><path d="m4.93 4.93 2.83 2.83"></path></svg>
+        </span>
+        <div class="tl-card" tabindex="0" role="button" aria-expanded="false">
+          <div class="tl-meta">
+            <time datetime="2026-10">2026 · 10</time>
+            <span class="tl-tag">进行中</span>
+          </div>
+          <h2>下一站：社区共建</h2>
+          <p class="tl-summary">开放案例贡献通道，完善插件化扩展能力，让更多开发者参与原生交互实验。</p>
+          <div class="tl-detail">
+            <p>未来将持续坚持零运行时依赖与离线可用的黄金法则，在不牺牲独立性的前提下扩展工作台的协作与分发能力。</p>
+          </div>
+          <span class="tl-expand-hint">展开详情</span>
+        </div>
+      </article>
+    </div>
+
+    <p class="page-foot-tip">提示：向下滚动查看进度填充；点击或按 Enter / Space 展开卡片详情</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

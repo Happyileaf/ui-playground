@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typewriter · 打字机文字</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Typewriter</span>
+  </div>
+
+  <main class="stage">
+    <div class="stage-inner">
+      <p class="kicker">CHAR BY CHAR · LOOP · ARIA LIVE</p>
+      <h1 class="type-line">
+        <span class="type-text" id="typeText"></span><span class="caret" aria-hidden="true"></span>
+      </h1>
+      <p class="sub-line">用原生 JavaScript 逐字敲出、逐字删去，在多段文案之间循环往复</p>
+
+      <div class="phrases" id="phraseDots" aria-label="文案列表"></div>
+
+      <button type="button" class="replay-btn" id="replayBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+        <span>重新播放</span>
+      </button>
+    </div>
+  </main>
+
+  <aside class="control-dock" id="controlDock" aria-hidden="true">
+    <div class="dock-head">
+      <span>打字机控制台</span>
+      <button type="button" class="dock-close" id="dockClose" aria-label="关闭控制台">×</button>
+    </div>
+    <label class="dock-row">
+      <span>打字速度</span>
+      <input type="range" id="speedRange" min="30" max="180" step="10" value="85">
+      <output id="speedOut">85ms</output>
+    </label>
+    <label class="dock-row check">
+      <input type="checkbox" id="loopToggle" checked>
+      <span>循环播放</span>
+    </label>
+    <label class="dock-row check">
+      <input type="checkbox" id="caretToggle" checked>
+      <span>显示光标</span>
+    </label>
+  </aside>
+
+  <p class="dock-hint">按 <kbd>H</kbd> 呼出 / 隐藏控制台 · <kbd>Esc</kbd> 关闭 · 点击区域可重播</p>
+
+  <script src="script.js"></script>
+</body>
+</html>
