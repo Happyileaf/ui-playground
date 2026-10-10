@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stagger Headline · 逐词上滑标题</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Stagger Headline · 逐词上滑</span>
+  </div>
+
+  <main class="hero">
+    <p class="hero-eyebrow reveal-line"><span>Design that moves you</span></p>
+
+    <h1 class="hero-title" id="heroTitle" data-split></h1>
+
+    <noscript><h1>让每一个字，都拥有呼吸的节奏</h1></noscript>
+
+    <p class="hero-sub reveal-line" style="--line-delay: 700ms"><span>逐词上滑的入场系统，配合错峰延迟构建高级的标题节奏，滚动回到视口会重新触发。</span></p>
+
+    <div class="hero-actions reveal-line" style="--line-delay: 820ms">
+      <button class="btn-primary" id="replayBtn" type="button">
+        <span>重播动效</span>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v4h4"/></svg>
+      </button>
+      <button class="btn-ghost" type="button">了解更多</button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

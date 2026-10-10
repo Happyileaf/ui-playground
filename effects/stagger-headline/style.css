@@ -1,0 +1,176 @@
+:root {
+  --bg: #0a0c12;
+  --line: rgba(158, 174, 199, 0.14);
+  --text: #f3f6fc;
+  --text-dim: #97a2b6;
+  --accent: #c084fc;
+  --accent-2: #818cf8;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(900px 500px at 78% -10%, rgba(192, 132, 252, 0.14), transparent 60%),
+    radial-gradient(820px 520px at 8% 112%, rgba(129, 140, 248, 0.12), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 24px;
+}
+
+.hud-brand {
+  position: fixed;
+  top: 20px;
+  right: 22px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 14px 8px 11px;
+  border-radius: 999px;
+  background: rgba(18, 21, 30, 0.72);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.hud-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(192, 132, 252, 0.16), 0 0 14px var(--accent);
+}
+
+.hud-title { font-size: 12px; letter-spacing: 0.08em; color: var(--text-dim); font-weight: 600; }
+
+.hero { width: min(860px, 100%); }
+
+.hero-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+
+.hero-title {
+  font-size: clamp(38px, 8vw, 84px);
+  line-height: 1.06;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  margin-bottom: 26px;
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+.word > .word-inner {
+  display: inline-block;
+  transform: translateY(115%) rotate(4deg);
+  will-change: transform;
+}
+
+.hero-title.play .word-inner {
+  animation: word-up 0.9s var(--ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes word-up {
+  0% { transform: translateY(115%) rotate(4deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+.word.accent .word-inner {
+  background: linear-gradient(100deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-sub {
+  font-size: clamp(14px, 2vw, 17px);
+  line-height: 1.75;
+  color: var(--text-dim);
+  max-width: 540px;
+  margin-bottom: 36px;
+}
+
+.reveal-line { overflow: hidden; }
+.reveal-line > span {
+  display: block;
+  transform: translateY(110%);
+}
+
+.hero.play .reveal-line > span {
+  animation: line-up 0.9s var(--ease-out) both;
+  animation-delay: var(--line-delay, 560ms);
+}
+
+@keyframes line-up {
+  from { transform: translateY(110%); }
+  to { transform: translateY(0); }
+}
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+.btn-primary,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease-out), box-shadow 0.25s, background 0.25s;
+}
+
+.btn-primary {
+  border: 0;
+  color: #0a0c12;
+  background: linear-gradient(100deg, var(--accent), var(--accent-2));
+  box-shadow: 0 16px 36px -12px rgba(147, 112, 250, 0.7);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 22px 44px -12px rgba(147, 112, 250, 0.85); }
+
+.btn-ghost {
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.02);
+}
+.btn-ghost:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.06); }
+
+.btn-primary:focus-visible,
+.btn-ghost:focus-visible {
+  outline: 3px solid rgba(192, 132, 252, 0.5);
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  body { padding: 40px 18px; align-items: flex-start; }
+  .word { white-space: normal; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title .word-inner,
+  .hero .reveal-line > span {
+    animation: none !important;
+    transform: none !important;
+  }
+}

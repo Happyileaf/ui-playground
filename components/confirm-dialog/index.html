@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirm Dialog · 危险操作确认</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Confirm Dialog · 危险操作确认</span>
+  </div>
+
+  <main class="stage">
+    <header class="stage-head">
+      <p class="eyebrow">Destructive Confirmation</p>
+      <h1 class="title">删除前，<span class="hl">多一道确认</span></h1>
+      <p class="subtitle">危险操作需要「长按确认」环形蓄能或「输入确认词」双重防误触，动作完成后仍提供撤销窗口。</p>
+    </header>
+
+    <section class="panel" id="projectPanel">
+      <div class="panel-row">
+        <div class="project-meta">
+          <span class="project-name">季度营销官网改版</span>
+          <span class="project-sub">12 个页面 · 3 位协作者 · 更新于 2 小时前</span>
+        </div>
+        <span class="project-badge">生产环境</span>
+      </div>
+      <div class="panel-actions">
+        <button class="btn-ghost" type="button">进入项目</button>
+        <button class="btn-danger-text" id="openDeleteBtn" type="button">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
+            <path d="M10 11v6M14 11v6"></path>
+          </svg>
+          删除项目
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <div class="dialog-overlay" id="dialogOverlay" hidden>
+    <div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dialogTitle" aria-describedby="dialogDesc">
+      <div class="dialog-icon">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+      </div>
+
+      <h2 class="dialog-title" id="dialogTitle">永久删除该项目？</h2>
+      <p class="dialog-desc" id="dialogDesc">项目内全部页面、历史版本与协作者权限将被立即清除，<strong>此操作无法撤销</strong>。</p>
+
+      <div class="confirm-field">
+        <label class="field-label" for="confirmInput">请输入 <code>DELETE</code> 以继续</label>
+        <input type="text" id="confirmInput" class="confirm-input" autocomplete="off" spellcheck="false" placeholder="DELETE" />
+      </div>
+
+      <div class="dialog-actions">
+        <button class="btn-cancel" id="cancelBtn" type="button">取消</button>
+        <button class="btn-hold" id="holdBtn" type="button" disabled aria-disabled="true">
+          <svg class="hold-ring" viewBox="0 0 100 100" aria-hidden="true">
+            <circle class="ring-track" cx="50" cy="50" r="44"></circle>
+            <circle class="ring-fill" id="ringFill" cx="50" cy="50" r="44"></circle>
+          </svg>
+          <span class="hold-label" id="holdLabel">长按确认</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+    <span class="toast-text" id="toastText">项目已删除</span>
+    <button class="toast-undo" id="undoBtn" type="button">撤销</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
