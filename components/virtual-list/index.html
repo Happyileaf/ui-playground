@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual List · 服务器日志浏览器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Virtual List</span>
+  </div>
+
+  <main class="page">
+    <header class="page-header">
+      <span class="eyebrow">VIRTUAL SCROLL · FIXED ROW HEIGHT · RAF THROTTLE</span>
+      <h1>服务器日志浏览器</h1>
+      <p>共 10,000 条服务端日志记录。列表采用定高行虚拟滚动：DOM 始终只渲染可视区域内的行（含上下少量缓冲），无论数据总量多大，滚动都保持流畅。</p>
+    </header>
+
+    <section class="panel">
+      <div class="toolbar">
+        <div class="filter-group" role="group" aria-label="级别过滤">
+          <button type="button" class="filter-btn is-active" data-level="ALL">全部</button>
+          <button type="button" class="filter-btn" data-level="INFO">INFO</button>
+          <button type="button" class="filter-btn" data-level="WARN">WARN</button>
+          <button type="button" class="filter-btn" data-level="ERROR">ERROR</button>
+          <button type="button" class="filter-btn" data-level="DEBUG">DEBUG</button>
+        </div>
+
+        <div class="field search-field">
+          <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+          </svg>
+          <input type="search" id="searchInput" placeholder="搜索消息关键词…" autocomplete="off" aria-label="按消息关键词搜索">
+        </div>
+
+        <div class="field jump-field">
+          <input type="number" id="jumpInput" min="1" max="10000" step="1" placeholder="行号 1–10000" aria-label="跳转行号">
+          <button type="button" id="jumpBtn" class="jump-btn">跳转</button>
+          <span class="jump-hint" id="jumpHint" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="vl-viewport" id="viewport" aria-label="日志列表">
+        <div class="vl-phantom" id="phantom" aria-hidden="true"></div>
+        <div class="vl-content" id="content"></div>
+        <div class="vl-empty" id="empty" hidden>
+          <span class="vl-empty-icon" aria-hidden="true">∅</span>
+          没有匹配的日志记录
+        </div>
+      </div>
+
+      <div class="status-line">
+        <span id="statCount">当前过滤后 10,000 条 / 总计 10,000 条</span>
+        <span id="statDom">可视 DOM 0 行</span>
+      </div>
+    </section>
+
+    <section class="detail-panel" aria-label="记录详情">
+      <div class="detail-head">
+        <span class="detail-dot" aria-hidden="true"></span>
+        <span id="detailTitle">完整 JSON · 点击上方任意日志行</span>
+      </div>
+      <pre class="detail-json" id="detailJson">// 等待选择…
+点击任意一条日志，此处会展示该记录的完整 JSON 结构。</pre>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

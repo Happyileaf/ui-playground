@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>权限穿梭框 · Transfer List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Transfer List</span>
+  </div>
+
+  <main class="page">
+    <header class="page-head">
+      <h1 class="page-title">项目成员权限分配</h1>
+      <p class="page-subtitle">将系统用户从「未分配」列表加入目标项目，也可随时移除已有成员</p>
+    </header>
+
+    <div class="transfer" id="transfer">
+      <section class="panel" data-side="left" aria-labelledby="leftPanelName">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+            <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15z"/>
+          </svg>
+          <input type="search" class="search-input" id="leftSearch" placeholder="搜索姓名 / 部门" aria-label="搜索未分配用户">
+        </div>
+        <div class="panel-toolbar">
+          <label class="select-all">
+            <input type="checkbox" id="leftAll" class="select-all-box">
+            <span class="panel-name" id="leftPanelName">未分配用户</span>
+          </label>
+          <span class="panel-count" id="leftCount">已选 0 / 共 0</span>
+        </div>
+        <ul class="user-list" id="leftList"></ul>
+      </section>
+
+      <div class="controls" role="group" aria-label="穿梭操作">
+        <button type="button" class="ctrl-btn" id="moveAllRight" title="将当前过滤结果全部加入">全部加入 &raquo;</button>
+        <button type="button" class="ctrl-btn" id="moveRight" title="加入勾选项">&rsaquo; 加入</button>
+        <button type="button" class="ctrl-btn" id="moveLeft" title="移除勾选项">&lsaquo; 移除</button>
+        <button type="button" class="ctrl-btn" id="moveAllLeft" title="将当前过滤结果全部移除">&laquo; 全部移除</button>
+      </div>
+
+      <section class="panel" data-side="right" aria-labelledby="rightPanelName">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+            <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15z"/>
+          </svg>
+          <input type="search" class="search-input" id="rightSearch" placeholder="搜索姓名 / 部门" aria-label="搜索已加入用户">
+        </div>
+        <div class="panel-toolbar">
+          <label class="select-all">
+            <input type="checkbox" id="rightAll" class="select-all-box">
+            <span class="panel-name" id="rightPanelName">项目成员</span>
+          </label>
+          <span class="panel-count" id="rightCount">已选 0 / 共 0</span>
+        </div>
+        <ul class="user-list" id="rightList"></ul>
+      </section>
+    </div>
+
+    <section class="result-card">
+      <div class="result-title">已选成员 <strong id="memberCount">0</strong> 人</div>
+      <div class="chips" id="chips"></div>
+      <div class="result-actions">
+        <button type="button" class="btn-save" id="saveBtn">
+          <span class="spinner" aria-hidden="true"></span>
+          <span class="btn-label" id="saveLabel">保存配置</span>
+        </button>
+        <span class="save-status" id="saveStatus" aria-live="polite"></span>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

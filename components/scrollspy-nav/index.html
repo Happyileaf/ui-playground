@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scrollspy Nav · 文档锚点目录导航</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#sec-quickstart">
+      <span class="brand-mark">◈</span>
+      <span class="brand-name">Docs</span>
+    </a>
+    <nav class="header-links" aria-label="站点导航">
+      <a href="#sec-quickstart">指南</a>
+      <a href="#sec-concepts">API</a>
+      <a href="#sec-faq">帮助</a>
+      <a href="#sec-changelog">版本</a>
+    </nav>
+  </div>
+  <div class="progress-track" aria-hidden="true">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+</header>
+
+<div class="hud-brand">
+  <span class="hud-dot"></span>
+  <span class="hud-title">Scrollspy Nav</span>
+</div>
+
+<div class="layout">
+  <main class="article">
+
+    <div class="doc-lead">
+      <p class="eyebrow">DEVELOPER GUIDE · v2.4</p>
+      <h1>UI Playground 组件开发指南</h1>
+      <p class="lead">从零开始构建纯原生、零依赖的交互组件。本文档涵盖快速开始、安装配置、核心概念、基础用法、常见问题与更新日志，帮助你在十分钟内建立完整的开发心智模型。</p>
+    </div>
+
+    <section id="sec-quickstart">
+      <h2>一、快速开始</h2>
+      <p>欢迎使用本组件库。整个项目遵循「原生优先、零框架冗余」的设计哲学：你不需要安装任何构建工具，也不需要理解复杂的模块打包配置。只需要一个现代浏览器与一款趁手的文本编辑器，就可以开始编写高质量的交互界面。</p>
+      <p>最快的上手方式是直接克隆示例仓库，然后在浏览器中打开对应的 index.html 文件。所有案例均以静态文件形式提供，双击即可运行，离线环境下同样拥有完整的视觉效果与交互能力。</p>
+      <p>如果你希望在现有项目中引入组件，只需将对应的 HTML、CSS、JavaScript 三个文件复制到你的静态资源目录，并通过 <code>&lt;link&gt;</code> 与 <code>&lt;script&gt;</code> 标签引入即可，无需任何额外的运行时支持。</p>
+      <pre><code>$ git clone https://example.com/ui-playground.git
+$ cd ui-playground
+$ # 直接用浏览器打开 index.html，或启动任意静态服务器
+$ npx serve .</code></pre>
+      <p>启动后，你将看到暗黑风格的工作台界面。左侧画廊陈列全部可用案例，点击任意卡片即可在隔离的沙箱容器中加载并运行对应组件。</p>
+    </section>
+
+    <section id="sec-install">
+      <h2>二、安装配置</h2>
+      <p>本组件库不强制要求使用包管理器。你可以选择最适合团队工作流的方式进行安装：通过 npm 拉取源码、使用 CDN 引用（仅限分发场景），或者直接下载 ZIP 归档解压使用。</p>
+      <p>推荐的目录结构遵循关注点分离原则：标记语言、表现层与行为层各自独立成文件。这样的组织方式既便于代码审查，也让单个组件可以被轻松抽取到任意宿主项目中。</p>
+      <ul>
+        <li><strong>零依赖</strong>：组件运行时不依赖 React、Vue、jQuery 等任何外部库。</li>
+        <li><strong>零构建</strong>：无需 Babel、Webpack 或 Vite 等编译步骤即可运行。</li>
+        <li><strong>可移植</strong>：每个案例文件夹自包含，复制即可在任意站点复用。</li>
+        <li><strong>可访问</strong>：默认支持键盘导航、焦点管理与屏幕阅读器语义。</li>
+      </ul>
+      <p>如果你需要对源码进行二次开发，仅需在编辑器中开启对 ES2020+ 语法的支持即可。所有脚本均通过 IIFE 封装，不会向全局作用域泄漏任何变量。</p>
+      <pre><code>{
+  "name": "my-project",
+  "scripts": {
+    "dev": "serve .",
+    "check": "node --check script.js"
+  }
+}</code></pre>
+    </section>
+
+    <section id="sec-concepts">
+      <h2>三、核心概念</h2>
+      <p>理解三个核心概念，将帮助你掌握本组件库的设计全貌：隔离沙箱、渐进增强与声明式状态。它们共同构成了所有交互案例的底层骨架。</p>
+      <p><strong>隔离沙箱</strong>意味着每个案例都运行在独立的 iframe 之中，案例之间的 CSS 变量、全局样式与 JavaScript 变量互不干扰。音频上下文、画布状态也会随容器销毁而被完整回收。</p>
+      <p><strong>渐进增强</strong>要求我们先用语义化的 HTML 描述内容与结构，再用 CSS 叠加视觉表现，最后通过 JavaScript 赋予行为。即使脚本加载失败，文档的核心信息依然可以被完整阅读。</p>
+      <p><strong>声明式状态</strong>体现在滚动监听类组件中：当前阅读位置由 DOM 中的锚点关系唯一确定，脚本只负责同步 <code>is-active</code> 类名与 <code>aria-current</code> 属性，而非维护一份独立的状态副本。</p>
+      <pre><code>const observer = new IntersectionObserver((entries) =&gt; {
+  entries.forEach((entry) =&gt; {
+    if (entry.isIntersecting) setActive(entry.target.id);
+  });
+}, { rootMargin: '0px 0px -70% 0px', threshold: 0 });</code></pre>
+      <p>这种以浏览器原生能力为核心的思路，大幅降低了状态不一致的风险，也让代码在长时间运行后依然保持稳定。</p>
+    </section>
+
+    <section id="sec-usage">
+      <h2>四、基础用法</h2>
+      <p>本节通过几个典型场景，演示组件在真实页面中的组合方式。所有示例代码都可以直接复制到你的项目中运行，无需额外调整。</p>
+      <p>首先是锚点目录导航。目录容器使用 <code>position: sticky</code> 跟随视口滚动，内部锚点与正文 section 的 id 一一对应。当读者滚动页面时，IntersectionObserver 会根据元素与视口交叉区域的变化，自动高亮当前章节。</p>
+      <ul>
+        <li>在桌面端，目录固定于文章右侧，宽度比例约为 1:2。</li>
+        <li>在移动端，目录自动隐藏，替换为顶部的 select 下拉选择器。</li>
+        <li>点击锚点时平滑滚动，并通过 pushState 更新地址栏 hash。</li>
+        <li>使用浏览器前进、后退按钮时，高亮状态会随之正确同步。</li>
+      </ul>
+      <pre><code>links.forEach((link) =&gt; {
+  link.addEventListener('click', (event) =&gt; {
+    event.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth' });
+    history.pushState(null, '', '#' + target.id);
+  });
+});</code></pre>
+      <p>其次是阅读进度条。监听文档的总滚动距离与视口高度的比值，通过 requestAnimationFrame 节流后写入进度条的 transform 属性，可以获得丝滑且不占用主线程的更新体验。</p>
+      <p>最后建议为所有可聚焦元素提供清晰的 <code>:focus-visible</code> 样式，并在 <code>prefers-reduced-motion</code> 媒体查询下将平滑滚动降级为瞬间定位，以照顾对动画敏感的读者。</p>
+    </section>
+
+    <section id="sec-faq">
+      <h2>五、常见问题</h2>
+      <p><strong>Q：组件可以在旧版浏览器中运行吗？</strong></p>
+      <p>A：组件使用了 IntersectionObserver、CSS 自定义属性与 sticky 定位等现代特性，主流浏览器近两年的版本均可完整支持。对于不支持 IntersectionObserver 的环境，脚本内置了基于滚动位置的降级方案，目录高亮依然可用。</p>
+      <p><strong>Q：为什么锚点跳转后标题会被吸顶栏遮挡？</strong></p>
+      <p>A：这是固定头部布局的经典问题。解决方式是为每个 section 设置 <code>scroll-margin-top: 88px</code>，浏览器在计算锚点目标位置时会自动预留出吸顶栏的高度。</p>
+      <pre><code>section {
+  scroll-margin-top: 88px;
+}</code></pre>
+      <p><strong>Q：目录在很短的章节下高亮不准确怎么办？</strong></p>
+      <p>A：当章节高度小于观察者的判定区域时，可能出现两个条目同时或均不命中的情况。本组件通过「滚动方向 + 最近命中条目」的策略进行修正，确保任意时刻都有且仅有一个目录项处于激活状态。</p>
+      <p><strong>Q：如何在深色与浅色主题之间切换？</strong></p>
+      <p>A：所有颜色均以 CSS 变量定义在 <code>:root</code> 上，你只需覆盖这些变量即可整体换肤，无需修改任何组件内部的样式规则。</p>
+    </section>
+
+    <section id="sec-changelog">
+      <h2>六、更新日志</h2>
+      <p>本项目遵循语义化版本规范（Semantic Versioning）。版本号格式为主版本号.次版本号.修订号，分别对应不兼容的 API 变更、向下兼容的功能新增与向下兼容的问题修复。</p>
+      <ul>
+        <li><strong>v2.4.0</strong>：新增滚动方向感知的目录激活策略，修复短章节下高亮丢失的问题。</li>
+        <li><strong>v2.3.1</strong>：优化毛玻璃头部在低端设备上的合成层性能。</li>
+        <li><strong>v2.3.0</strong>：新增移动端 select 跳转控件与 prefers-reduced-motion 支持。</li>
+        <li><strong>v2.2.0</strong>：阅读进度条改用 transform 驱动，滚动帧率显著提升。</li>
+        <li><strong>v2.1.0</strong>：引入 aria-current 同步与完整的键盘焦点样式。</li>
+      </ul>
+      <pre><code># 2.4.0
+- feat: scroll-direction aware scrollspy
+- fix: active link lost on short sections
+- perf: gpu-composited progress bar
+- a11y: aria-current synchronization</code></pre>
+      <p>我们建议所有用户定期关注更新日志，及时获取安全修复与体验改进。如果你在使用过程中发现缺陷，或希望提出新的功能建议，欢迎通过项目的反馈渠道与维护团队取得联系。</p>
+      <p>感谢你阅读到这里。现在，你可以尝试使用右侧（移动端为顶部下拉）的目录在各个章节之间快速跳转，体验滚动监听、平滑定位与进度指示协同工作的完整流程。</p>
+    </section>
+
+  </main>
+
+  <aside class="toc-wrap">
+    <label class="toc-mobile-label" for="tocSelect">跳转到章节</label>
+    <select class="toc-select" id="tocSelect" aria-label="选择章节跳转">
+      <option value="#sec-quickstart">一、快速开始</option>
+      <option value="#sec-install">二、安装配置</option>
+      <option value="#sec-concepts">三、核心概念</option>
+      <option value="#sec-usage">四、基础用法</option>
+      <option value="#sec-faq">五、常见问题</option>
+      <option value="#sec-changelog">六、更新日志</option>
+    </select>
+    <nav class="toc" aria-label="文档目录">
+      <p class="toc-heading">本页目录</p>
+      <a href="#sec-quickstart">一、快速开始</a>
+      <a href="#sec-install">二、安装配置</a>
+      <a href="#sec-concepts">三、核心概念</a>
+      <a href="#sec-usage">四、基础用法</a>
+      <a href="#sec-faq">五、常见问题</a>
+      <a href="#sec-changelog">六、更新日志</a>
+    </nav>
+  </aside>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
