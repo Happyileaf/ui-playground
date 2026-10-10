@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Popconfirm · 气泡二次确认</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Popconfirm</span>
+  </div>
+
+  <main class="page">
+    <header class="page-head">
+      <h1>轻量的二次确认</h1>
+      <p>点击危险操作后就地弹出气泡确认，无需打断式弹窗；支持 Esc 取消、外点关闭与完整键盘操作。</p>
+    </header>
+
+    <section class="action-board">
+      <div class="action-row">
+        <span class="action-label">删除项目「2026 春季营销方案」</span>
+        <button class="danger-btn" type="button"
+          data-popconfirm data-placement="top"
+          data-title="确定要删除该项目吗？"
+          data-desc="删除后无法恢复，相关文件将一并清除。"
+          data-confirm="删除" data-cancel="再想想">
+          删除项目
+        </button>
+      </div>
+
+      <div class="action-row">
+        <span class="action-label">清空当前工作区的全部成员</span>
+        <button class="danger-btn" type="button"
+          data-popconfirm data-placement="right"
+          data-title="确定清空全部成员？"
+          data-desc="被移除的成员将立即失去访问权限。"
+          data-confirm="清空" data-cancel="取消">
+          清空成员
+        </button>
+      </div>
+
+      <div class="action-row">
+        <span class="action-label">退订「产品周报」邮件通知</span>
+        <button class="danger-btn outline" type="button"
+          data-popconfirm data-placement="left"
+          data-title="确定退订该通知？"
+          data-desc="退订后你将不再收到每周产品更新邮件。"
+          data-confirm="退订" data-cancel="保留">
+          退订通知
+        </button>
+      </div>
+
+      <div class="action-row">
+        <span class="action-label">撤销「编辑权限」并归档共享链接</span>
+        <button class="danger-btn outline" type="button"
+          data-popconfirm data-placement="bottom"
+          data-title="确定归档此共享链接？"
+          data-desc="已有该链接的人将无法继续访问。"
+          data-confirm="归档" data-cancel="取消">
+          归档链接
+        </button>
+      </div>
+    </section>
+
+    <div class="result-log" id="resultLog" aria-live="polite">尚未执行任何操作</div>
+  </main>
+
+  <div class="popconfirm" id="popconfirm" role="alertdialog" aria-modal="false"
+    aria-labelledby="popTitle" aria-describedby="popDesc" hidden>
+    <div class="pop-icon" aria-hidden="true">!</div>
+    <div class="pop-content">
+      <p class="pop-title" id="popTitle"></p>
+      <p class="pop-desc" id="popDesc"></p>
+    </div>
+    <div class="pop-actions">
+      <button class="pop-btn cancel" type="button" id="popCancel"></button>
+      <button class="pop-btn confirm" type="button" id="popConfirm"></button>
+    </div>
+    <span class="pop-arrow" aria-hidden="true"></span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1023,6 +1023,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: 'GDPR 风格 Cookie 授权横幅：底部滑入毛玻璃卡片，支持全部接受、仅必要与四类偏好开关自定义，localStorage 持久化选择并以 Toast 反馈。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['cookie-consent', 'gdpr', 'banner', 'toggle-switch', 'localstorage', 'toast']
+    },
+    {
+      id: 'theme-toggle',
+      title: 'Theme Toggle · 日夜主题切换',
+      type: 'component',
+      category: 'components',
+      path: 'components/theme-toggle/',
+      url: '/components/theme-toggle/index.html',
+      description: '太阳与月亮图标形变切换的整站日夜主题，色彩平滑过渡，读取系统偏好初始化并通过 localStorage 持久化用户选择。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['theme-toggle', 'dark-mode', 'icon-morph', 'color-scheme', 'localstorage', 'micro-interaction']
+    },
+    {
+      id: 'flip-card',
+      title: 'Flip Card · 3D 翻转卡片',
+      type: 'component',
+      category: 'components',
+      path: 'components/flip-card/',
+      url: '/components/flip-card/index.html',
+      description: '点击或键盘 Enter/空格翻转的 3D 卡片，正面概览、背面详情与操作，perspective 与 backface-visibility 构造立体翻面。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['flip-card', '3d-transform', 'card-flip', 'keyboard-nav', 'micro-interaction', 'accessibility']
+    },
+    {
+      id: 'popconfirm',
+      title: 'Popconfirm · 气泡二次确认',
+      type: 'component',
+      category: 'components',
+      path: 'components/popconfirm/',
+      url: '/components/popconfirm/index.html',
+      description: '就地弹出的轻量二次确认气泡，四方位期望与视口空间不足自动翻转，箭头随触发点移动，Esc 取消、外点关闭并循环管理焦点。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['popconfirm', 'floating-layer', 'edge-detection', 'focus-management', 'destructive', 'keyboard-nav']
+    },
+    {
+      id: 'sparkline-chart',
+      title: 'Sparkline Chart · SVG 迷你走势图',
+      type: 'component',
+      category: 'components',
+      path: 'components/sparkline-chart/',
+      url: '/components/sparkline-chart/index.html',
+      description: '仪表盘卡片用迷你走势图，进入视口描边绘制入场与数字爬升，悬停十字线、高亮点与数值提示，纯 SVG 渐变面积零外部资源。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['sparkline', 'svg', 'data-viz', 'line-chart', 'intersection-observer', 'tooltip', 'count-up']
+    },
+    {
+      id: 'top-loading-bar',
+      title: 'Top Loading Bar · 顶部加载进度条',
+      type: 'component',
+      category: 'components',
+      path: 'components/top-loading-bar/',
+      url: '/components/top-loading-bar/index.html',
+      description: '模拟路由请求的顶部细进度条，trickle 随机推进逼近但不满、完成后滑出，配合导航切换与手动开始完成，发光渐变末端。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['loading-bar', 'progress', 'navigation', 'route-transition', 'micro-interaction', 'nprogress']
     }
   ];
 

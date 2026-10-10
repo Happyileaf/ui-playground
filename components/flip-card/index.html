@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flip Card · 3D 翻转卡片</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Flip Card</span>
+  </div>
+
+  <main class="page">
+    <header class="page-head">
+      <h1>翻转之间，看见更多信息</h1>
+      <p>点击卡片或聚焦后按 Enter / 空格翻转，正面呈现概览，背面承载详情与操作。</p>
+    </header>
+
+    <section class="flip-grid">
+      <div class="flip-card" tabindex="0" role="button" aria-pressed="false"
+        aria-label="产品设计师卡片，点击翻转查看详情">
+        <div class="flip-inner">
+          <div class="flip-face front face-violet">
+            <span class="face-emoji">🎨</span>
+            <h2>产品设计师</h2>
+            <p>让复杂的产品变得简单而优雅</p>
+            <span class="flip-hint">点击翻转 ↻</span>
+          </div>
+          <div class="flip-face back">
+            <h3>核心技能</h3>
+            <ul>
+              <li>用户研究与旅程地图</li>
+              <li>高保真原型与设计系统</li>
+              <li>可用性测试与迭代</li>
+            </ul>
+            <button class="back-btn" type="button" data-flip-action>查看作品集</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" tabindex="0" role="button" aria-pressed="false"
+        aria-label="前端工程师卡片，点击翻转查看详情">
+        <div class="flip-inner">
+          <div class="flip-face front face-cyan">
+            <span class="face-emoji">💻</span>
+            <h2>前端工程师</h2>
+            <p>用代码把设计还原成流畅体验</p>
+            <span class="flip-hint">点击翻转 ↻</span>
+          </div>
+          <div class="flip-face back">
+            <h3>技术栈</h3>
+            <ul>
+              <li>原生 HTML / CSS / JavaScript</li>
+              <li>动画与交互性能优化</li>
+              <li>可访问性与工程化</li>
+            </ul>
+            <button class="back-btn" type="button" data-flip-action>查看技术博客</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" tabindex="0" role="button" aria-pressed="false"
+        aria-label="数据分析师卡片，点击翻转查看详情">
+        <div class="flip-inner">
+          <div class="flip-face front face-amber">
+            <span class="face-emoji">📊</span>
+            <h2>数据分析师</h2>
+            <p>从数据中发现增长的方向</p>
+            <span class="flip-hint">点击翻转 ↻</span>
+          </div>
+          <div class="flip-face back">
+            <h3>擅长领域</h3>
+            <ul>
+              <li>指标体系与漏斗分析</li>
+              <li>A/B 实验设计</li>
+              <li>可视化与洞察报告</li>
+            </ul>
+            <button class="back-btn" type="button" data-flip-action>查看分析案例</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
