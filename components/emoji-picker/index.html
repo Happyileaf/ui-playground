@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emoji Picker · 表情选择器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Emoji Picker</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">POPOVER · SEARCH · KEYBOARD</span>
+      <h1>随手插入，恰到好处的表情</h1>
+      <p>点击笑脸或在输入框内按下 <kbd>Ctrl</kbd> + <kbd>.</kbd> 唤出选择器，支持关键词搜索、分类切换与方向键导航，回车插入到光标处。</p>
+    </header>
+
+    <section class="composer">
+      <div class="composer-field" id="composerField">
+        <div class="composer-input" id="composerInput" contenteditable="true" role="textbox" aria-multiline="true" data-placeholder="说点什么，再加个表情吧…"></div>
+        <button type="button" class="emoji-trigger" id="emojiTrigger" aria-label="选择表情" aria-haspopup="dialog" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="composer-actions">
+        <span class="char-count" id="charCount">0 字</span>
+        <button type="button" class="send-btn" id="sendBtn">
+          <span>发送</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <section class="thread" id="thread" aria-live="polite">
+      <p class="thread-empty">发送的消息会显示在这里，纯前端演示，不会上传任何内容。</p>
+    </section>
+  </main>
+
+  <div class="emoji-popover hidden" id="emojiPopover" role="dialog" aria-modal="false" aria-label="表情选择器">
+    <div class="popover-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="search" id="emojiSearch" placeholder="搜索表情，如 smile / 火" autocomplete="off">
+    </div>
+
+    <div class="popover-cats" id="popoverCats" role="tablist" aria-label="表情分类"></div>
+
+    <div class="popover-grid" id="popoverGrid" role="listbox" aria-label="表情列表"></div>
+
+    <div class="popover-footer">
+      <span class="preview-emoji" id="previewEmoji" aria-hidden="true">🙂</span>
+      <span class="preview-name" id="previewName">微笑</span>
+      <span class="preview-hint">↑↓←→ 移动 · Enter 插入 · Esc 关闭</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

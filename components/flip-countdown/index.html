@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flip Countdown · 翻页倒计时</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Flip Countdown</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">Split-Flap Timer</span>
+      <h1>翻页倒计时</h1>
+      <p>复古翻牌机械质感 · 选择预设或自定义分秒，空格开始 / 暂停，R 复位</p>
+    </header>
+
+    <section class="flip-board" aria-label="倒计时">
+      <div class="flip-unit" data-unit="days">
+        <div class="flip-card">
+          <div class="card-half top static">00</div>
+          <div class="card-half bottom static">00</div>
+          <div class="card-half top flapper">00</div>
+          <div class="card-half bottom flapper">00</div>
+          <div class="card-seam" aria-hidden="true"></div>
+        </div>
+        <span class="unit-label">天</span>
+      </div>
+
+      <div class="flip-sep" aria-hidden="true">:</div>
+
+      <div class="flip-unit" data-unit="hours">
+        <div class="flip-card">
+          <div class="card-half top static">00</div>
+          <div class="card-half bottom static">00</div>
+          <div class="card-half top flapper">00</div>
+          <div class="card-half bottom flapper">00</div>
+          <div class="card-seam" aria-hidden="true"></div>
+        </div>
+        <span class="unit-label">时</span>
+      </div>
+
+      <div class="flip-sep" aria-hidden="true">:</div>
+
+      <div class="flip-unit" data-unit="minutes">
+        <div class="flip-card">
+          <div class="card-half top static">00</div>
+          <div class="card-half bottom static">00</div>
+          <div class="card-half top flapper">00</div>
+          <div class="card-half bottom flapper">00</div>
+          <div class="card-seam" aria-hidden="true"></div>
+        </div>
+        <span class="unit-label">分</span>
+      </div>
+
+      <div class="flip-sep" aria-hidden="true">:</div>
+
+      <div class="flip-unit" data-unit="seconds">
+        <div class="flip-card">
+          <div class="card-half top static">00</div>
+          <div class="card-half bottom static">00</div>
+          <div class="card-half top flapper">00</div>
+          <div class="card-half bottom flapper">00</div>
+          <div class="card-seam" aria-hidden="true"></div>
+        </div>
+        <span class="unit-label">秒</span>
+      </div>
+    </section>
+
+    <p class="target-line" id="targetLine">目标时刻 ——</p>
+
+    <section class="presets" aria-label="倒计时预设">
+      <button class="preset-btn" data-seconds="60">1 分钟</button>
+      <button class="preset-btn" data-seconds="300">5 分钟</button>
+      <button class="preset-btn" data-seconds="600">10 分钟</button>
+      <button class="preset-btn" data-seconds="1500">25 分钟番茄</button>
+      <button class="preset-btn" data-newyear="1">跨年倒计时</button>
+    </section>
+
+    <section class="controls">
+      <button class="ctl-btn primary" id="startBtn">开始</button>
+      <button class="ctl-btn" id="resetBtn">复位</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

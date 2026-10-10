@@ -968,6 +968,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '危险删除双重防误触：先输入确认词 DELETE 解锁，再长按按钮沿环形进度蓄能完成确认，删除后提供 6 秒撤销窗口 Toast；支持 Esc 关闭、焦点陷阱与触控指针事件。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['confirm-dialog', 'destructive', 'hold-to-confirm', 'type-to-confirm', 'undo-toast', 'focus-trap']
+    },
+    {
+      id: 'emoji-picker',
+      title: 'Emoji Picker · 表情选择器',
+      type: 'component',
+      category: 'components',
+      path: 'components/emoji-picker/',
+      url: '/components/emoji-picker/index.html',
+      description: '输入框旁的表情选择浮层：内置 8 分类约百枚表情与中英文搜索，光标位置插入、方向键网格漫游、视口边缘翻转定位，Ctrl+. 快捷唤起。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['emoji-picker', 'popover', 'contenteditable', 'search', 'keyboard-nav', 'caret-range']
+    },
+    {
+      id: 'flip-countdown',
+      title: 'Flip Countdown · 翻页倒计时',
+      type: 'component',
+      category: 'components',
+      path: 'components/flip-countdown/',
+      url: '/components/flip-countdown/index.html',
+      description: '分裂翻牌机械质感倒计时：上下半牌 3D 依次翻转，支持分钟预设与跨年目标时刻、空格开始暂停、R 复位，结束时播放三音提示铃声。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['flip', 'countdown', '3d-transform', 'web-animations', 'timer', 'web-audio']
+    },
+    {
+      id: 'emoji-rating',
+      title: 'Emoji Rating · 表情满意度评分',
+      type: 'component',
+      category: 'components',
+      path: 'components/emoji-rating/',
+      url: '/components/emoji-rating/index.html',
+      description: '五级表情满意度组件：灰阶到彩色的悬停点亮、渐变进度条联动、打勾式选中弹跳，3D 翻转展示成功态，支持数字键与方向键评分。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['rating', 'emoji', 'feedback', '3d-flip', 'keyboard-nav', 'radiogroup']
+    },
+    {
+      id: 'progress-steps',
+      title: 'Progress Steps · 步骤进度条',
+      type: 'component',
+      category: 'components',
+      path: 'components/progress-steps/',
+      url: '/components/progress-steps/index.html',
+      description: '结算流程步骤条：连线弹性生长、节点对勾描边动画、当前节点光环聚焦，点击已完成节点可回退，面板随步骤切换弹入。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['stepper', 'progress', 'checkmark-draw', 'accessible', 'keyboard-nav']
+    },
+    {
+      id: 'cookie-consent',
+      title: 'Cookie Consent · 授权同意横幅',
+      type: 'component',
+      category: 'components',
+      path: 'components/cookie-consent/',
+      url: '/components/cookie-consent/index.html',
+      description: 'GDPR 风格 Cookie 授权横幅：底部滑入毛玻璃卡片，支持全部接受、仅必要与四类偏好开关自定义，localStorage 持久化选择并以 Toast 反馈。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['cookie-consent', 'gdpr', 'banner', 'toggle-switch', 'localstorage', 'toast']
     }
   ];
 

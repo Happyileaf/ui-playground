@@ -1,0 +1,277 @@
+:root {
+  --bg: #08090f;
+  --card-top: #20242f;
+  --card-bottom: #171a23;
+  --card-edge: #0b0d13;
+  --text: #f4f6fc;
+  --text-dim: #97a0b5;
+  --text-faint: #5f687d;
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.14);
+  --hud-bg: rgba(16, 18, 28, 0.72);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", system-ui, sans-serif;
+  background:
+    radial-gradient(900px 480px at 50% -10%, rgba(56, 189, 248, 0.1), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 20px 48px;
+  overflow-x: hidden;
+}
+
+.hud-brand {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--hud-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 60;
+}
+
+.hud-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.9);
+  animation: hud-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes hud-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.8); }
+}
+
+.hud-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.page-container {
+  width: 100%;
+  max-width: 880px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-header { text-align: center; margin-bottom: 44px; }
+
+.eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.page-header h1 {
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+}
+
+.page-header p { font-size: 14px; color: var(--text-dim); line-height: 1.7; }
+
+.flip-board {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  perspective: 1400px;
+}
+
+.flip-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.flip-card {
+  position: relative;
+  width: clamp(64px, 13vw, 118px);
+  aspect-ratio: 118 / 168;
+  border-radius: 12px;
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.55));
+}
+
+.card-half {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: clamp(42px, 9vw, 84px);
+  line-height: clamp(92px, 18.4vw, 168px);
+  color: var(--text);
+  backface-visibility: hidden;
+}
+
+.flip-card.wide .card-half { font-size: clamp(30px, 6.4vw, 58px); }
+
+.card-half.top {
+  top: 0;
+  align-items: flex-start;
+  background: linear-gradient(180deg, #262a37, var(--card-top));
+  border-radius: 12px 12px 0 0;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.6);
+}
+
+.card-half.bottom {
+  bottom: 0;
+  align-items: flex-end;
+  background: linear-gradient(180deg, var(--card-bottom), #12151d);
+  border-radius: 0 0 12px 12px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.card-half.flapper { z-index: 3; will-change: transform; }
+
+.card-seam {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: translateY(-1px);
+  background: var(--card-edge);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.unit-label {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--text-faint);
+}
+
+.flip-sep {
+  font-size: clamp(26px, 5vw, 44px);
+  font-weight: 800;
+  color: var(--text-faint);
+  align-self: flex-start;
+  margin-top: clamp(14px, 3.4vw, 30px);
+  animation: sep-blink 1s steps(2, end) infinite;
+}
+
+@keyframes sep-blink {
+  50% { opacity: 0.25; }
+}
+
+.target-line {
+  margin-top: 34px;
+  font-size: 13px;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+.presets {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.preset-btn {
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.preset-btn:hover {
+  color: var(--text);
+  border-color: rgba(56, 189, 248, 0.5);
+  background: var(--accent-soft);
+}
+
+.preset-btn.active {
+  color: var(--accent);
+  border-color: rgba(56, 189, 248, 0.55);
+  background: var(--accent-soft);
+}
+
+.controls {
+  margin-top: 26px;
+  display: flex;
+  gap: 14px;
+}
+
+.ctl-btn {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 11px 34px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ctl-btn:hover { color: var(--text); transform: translateY(-1px); }
+.ctl-btn:active { transform: translateY(0); }
+
+.ctl-btn.primary {
+  color: #06222e;
+  background: linear-gradient(180deg, #67d3fb, var(--accent));
+  border-color: transparent;
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.3);
+}
+
+.ctl-btn.primary:hover { filter: brightness(1.08); }
+
+body.finished .flip-card { animation: card-glow 1.4s ease-in-out infinite; }
+
+@keyframes card-glow {
+  0%, 100% { filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.55)); }
+  50% { filter: drop-shadow(0 18px 34px rgba(56, 189, 248, 0.45)); }
+}
+
+@media (max-width: 560px) {
+  body { padding: 64px 10px 36px; }
+  .flip-board { gap: 5px; }
+  .flip-unit { gap: 8px; }
+  .card-seam { height: 1px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-dot, .flip-sep, body.finished .flip-card { animation: none; }
+  .card-half.flapper { animation-duration: 0.01ms !important; }
+}
