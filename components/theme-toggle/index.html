@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theme Toggle · 日夜主题切换</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Theme Toggle</span>
+  </div>
+
+  <main class="mock-app">
+    <header class="app-topbar">
+      <span class="app-logo">✦ Aurora</span>
+      <div class="topbar-right">
+        <span class="theme-label" id="themeLabel">深色模式</span>
+        <button class="theme-toggle" id="themeToggle" type="button"
+          role="switch" aria-checked="true" aria-label="切换浅色与深色主题">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>为你的产品<br />挑选舒适的光影</h1>
+      <p>点击右上角开关，整站色彩将在日间与夜间之间平滑过渡，选择会被本地记住。</p>
+      <div class="hero-actions">
+        <span class="btn-primary">立即体验</span>
+        <span class="btn-ghost">了解更多</span>
+      </div>
+    </section>
+
+    <section class="stat-grid">
+      <article class="stat-card">
+        <span class="stat-value">128k</span>
+        <span class="stat-name">活跃用户</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-value">99.9%</span>
+        <span class="stat-name">服务可用性</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-value">4.9</span>
+        <span class="stat-name">用户评分</span>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

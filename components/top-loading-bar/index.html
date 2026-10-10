@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Top Loading Bar · 顶部加载进度条</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="loading-bar" id="loadingBar">
+    <div class="loading-peg"></div>
+  </div>
+
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Top Loading Bar</span>
+  </div>
+
+  <main class="mock-app">
+    <header class="app-topbar">
+      <span class="app-logo">◈ Nimbus</span>
+      <nav class="app-nav">
+        <button class="nav-link is-active" type="button" data-page="概览">概览</button>
+        <button class="nav-link" type="button" data-page="项目">项目</button>
+        <button class="nav-link" type="button" data-page="团队">团队</button>
+        <button class="nav-link" type="button" data-page="设置">设置</button>
+      </nav>
+    </header>
+
+    <section class="content">
+      <div class="content-card">
+        <h1 id="pageTitle">概览</h1>
+        <p>点击顶部导航切换页面，每次切换都会在页面顶部呈现细窄的加载进度条，模拟真实路由的数据请求过程。</p>
+        <div class="demo-block">
+          <button class="demo-btn primary" id="startBtn" type="button">开始加载</button>
+          <button class="demo-btn" id="completeBtn" type="button">立即完成</button>
+        </div>
+        <div class="status-line" id="statusLine">状态：空闲</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

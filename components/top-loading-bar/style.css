@@ -1,0 +1,176 @@
+:root {
+  --bg: #0a0c14;
+  --text: #f2f4fa;
+  --text-dim: #9aa3b8;
+  --surface: rgba(21, 26, 41, 0.72);
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #6366f1;
+  --hud-bg: rgba(16, 18, 28, 0.72);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", system-ui, sans-serif;
+  background:
+    radial-gradient(900px 560px at 80% -12%, rgba(99, 102, 241, 0.16), transparent 55%),
+    radial-gradient(700px 480px at 0% 110%, rgba(56, 189, 248, 0.08), transparent 55%),
+    var(--bg);
+  color: var(--text);
+}
+
+.loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.loading-bar.active { opacity: 1; }
+
+.loading-peg {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #6366f1, #818cf8, #38bdf8);
+  border-radius: 0 3px 3px 0;
+  transform: translate3d(-100%, 0, 0);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.8), 0 0 5px rgba(99, 102, 241, 0.6);
+  transition: transform 0.2s linear;
+}
+
+.hud-brand {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--hud-bg);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 60;
+}
+
+.hud-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #818cf8;
+  box-shadow: 0 0 10px rgba(129, 140, 248, 0.9);
+  animation: hud-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes hud-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.8); }
+}
+
+.hud-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.app-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 48px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.app-logo { font-weight: 800; letter-spacing: 0.05em; }
+
+.app-nav { display: flex; gap: 6px; }
+
+.nav-link {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  background: transparent;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.nav-link:hover { color: var(--text); }
+.nav-link.is-active { color: #fff; background: rgba(99, 102, 241, 0.22); }
+
+.content {
+  max-width: 720px;
+  margin: 60px auto 0;
+  padding: 0 24px 90px;
+}
+
+.content-card {
+  padding: 40px 36px;
+  border-radius: 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.content-card h1 {
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 900;
+  margin-bottom: 14px;
+}
+
+.content-card p { font-size: 15px; line-height: 1.7; color: var(--text-dim); }
+
+.demo-block { display: flex; gap: 12px; margin: 26px 0 18px; flex-wrap: wrap; }
+
+.demo-btn {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 11px 22px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.demo-btn:hover { background: rgba(255, 255, 255, 0.1); }
+.demo-btn:active { transform: scale(0.96); }
+
+.demo-btn.primary {
+  color: #fff;
+  background: linear-gradient(180deg, var(--accent), #4f46e5);
+  border: none;
+  box-shadow: 0 8px 22px rgba(99, 102, 241, 0.35);
+}
+
+.status-line { font-size: 13px; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+
+:focus-visible { outline: 2px solid #818cf8; outline-offset: 3px; }
+
+@media (max-width: 560px) {
+  .app-topbar { padding: 18px 20px; }
+  .content-card { padding: 28px 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-peg { transition: none; }
+  .hud-dot { animation: none; }
+}

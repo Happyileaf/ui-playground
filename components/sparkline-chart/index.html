@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sparkline Chart · SVG 迷你走势图</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Sparkline Chart</span>
+  </div>
+
+  <main class="page">
+    <header class="page-head">
+      <h1>用迷你走势讲清数据故事</h1>
+      <p>轻量 SVG 走势图，进入视口以描边动画绘制，悬停显示十字线与具体数值，适配仪表盘与卡片场景。</p>
+    </header>
+
+    <section class="metric-grid">
+      <article class="metric-card"
+        data-values="42,45,41,48,52,49,55,58,54,61,64,68">
+        <div class="metric-top">
+          <span class="metric-name">月度活跃用户（千）</span>
+          <span class="metric-delta up">+21.4%</span>
+        </div>
+        <span class="metric-value" data-countup="68">0</span>
+        <div class="spark-wrap"></div>
+      </article>
+
+      <article class="metric-card"
+        data-values="88,84,86,79,76,72,74,69,65,62,58,54">
+        <div class="metric-top">
+          <span class="metric-name">用户流失率（%）</span>
+          <span class="metric-delta down">-12.1%</span>
+        </div>
+        <span class="metric-value" data-countup="54">0</span>
+        <div class="spark-wrap"></div>
+      </article>
+
+      <article class="metric-card"
+        data-values="120,132,128,144,150,138,156,168,172,164,180,192">
+        <div class="metric-top">
+          <span class="metric-name">日均订单量</span>
+          <span class="metric-delta up">+18.7%</span>
+        </div>
+        <span class="metric-value" data-countup="192">0</span>
+        <div class="spark-wrap"></div>
+      </article>
+
+      <article class="metric-card"
+        data-values="320,318,324,321,328,326,332,330,336,342,340,348">
+        <div class="metric-top">
+          <span class="metric-name">平均响应时长（ms）</span>
+          <span class="metric-delta up">+8.7%</span>
+        </div>
+        <span class="metric-value" data-countup="348">0</span>
+        <div class="spark-wrap"></div>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
