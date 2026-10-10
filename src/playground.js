@@ -1133,6 +1133,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '四列任务看板，Pointer Events 配合 setPointerCapture 跨列拖拽，浮动克隆与占位符实时指示落点、列高亮联动，Esc 取消拖拽，Alt+方向键键盘重排并播报状态。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['kanban', 'drag-and-drop', 'pointer-events', 'sortable', 'keyboard-nav', 'aria-live', 'accessibility']
+    },
+    {
+      id: 'idle-timeout-warning',
+      title: 'Idle Timeout Warning · 闲置超时预警',
+      type: 'component',
+      category: 'components',
+      path: 'components/idle-timeout-warning/',
+      url: '/components/idle-timeout-warning/index.html',
+      description: '安全敏感站点的会话闲置预警：指针、键盘、滚轮等操作实时续期，进入宽限期后环形倒计时并逐级变红，Esc 或按钮立即续期，超时切换登出态，支持 10/20/40 秒阈值模拟。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['session', 'security', 'countdown', 'dialog', 'raf', 'aria-live', 'accessibility']
+    },
+    {
+      id: 'mention-input',
+      title: 'Mention Input · @提及输入',
+      type: 'component',
+      category: 'components',
+      path: 'components/mention-input/',
+      url: '/components/mention-input/index.html',
+      description: '评论区 @提及输入框：光标前文本正则触发成员菜单，中英文昵称即时过滤，方向键与 Esc 完整键控，选中后以不可编辑胶囊插入，发布生成带提及高亮的预览卡片。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['mention', 'contenteditable', 'autocomplete', 'selection', 'keyboard-nav', 'listbox', 'accessibility']
+    },
+    {
+      id: 'resizable-table',
+      title: 'Resizable Table · 列宽可调数据表',
+      type: 'component',
+      category: 'components',
+      path: 'components/resizable-table/',
+      url: '/components/resizable-table/index.html',
+      description: '后台常见的列宽可调数据表：Pointer Capture 拖拽表头手柄、双击复位，键盘方向键以 8px 步进微调；点击表头排序、关键词过滤，粘性表头配合状态胶囊与进度条展示 12 行任务数据。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['table', 'resizable', 'sortable', 'pointer-events', 'data', 'keyboard-nav', 'sticky']
+    },
+    {
+      id: 'keyboard-shortcut-hint',
+      title: 'Keyboard Shortcut Hint · 快捷键录制提示',
+      type: 'component',
+      category: 'components',
+      path: 'components/keyboard-shortcut-hint/',
+      url: '/components/keyboard-shortcut-hint/index.html',
+      description: '设置页快捷键管理：键帽化展示全部绑定，点击动作进入录制区，实时捕获组合键，缺少修饰键时提示、与其他动作冲突时阻止保存，支持清除绑定与 Esc 取消，真实按下组合键高亮对应动作。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['keyboard', 'shortcut', 'key-capture', 'settings', 'conflict', 'keycap', 'accessibility']
+    },
+    {
+      id: 'rich-text-toolbar',
+      title: 'Rich Text Toolbar · 富文本工具条',
+      type: 'component',
+      category: 'components',
+      path: 'components/rich-text-toolbar/',
+      url: '/components/rich-text-toolbar/index.html',
+      description: '零框架依赖的富文本编辑条：加粗斜体、标题引用、列表颜色基于原生编辑能力，选中文字时按钮自动高亮；链接浮层录入并保存选区，状态栏统计字数与选区长，一键查看生成的 HTML。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['rich-text', 'contenteditable', 'toolbar', 'execCommand', 'dropdown', 'selection', 'editor']
     }
   ];
 

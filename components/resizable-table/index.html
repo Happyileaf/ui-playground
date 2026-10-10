@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resizable Table · 列宽可调数据表</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Resizable Table</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">DATA TABLE · DRAG RESIZE · STICKY HEADER</span>
+      <h1>列宽，交给使用者决定</h1>
+      <p>拖拽表头右缘即可调整列宽，支持双击恢复自适应、列序点击排序、最小宽度保护与固定表头。Pointer Capture 保证拖出表格也不丢失指针，键盘 ←→ 可微调当前列。</p>
+    </header>
+
+    <section class="table-toolbar">
+      <div class="toolbar-left">
+        <h2>项目任务清单</h2>
+        <p>共 <strong id="rowCount">0</strong> 条记录 · 拖拽列边缘调整宽度，双击复位</p>
+      </div>
+      <div class="toolbar-right">
+        <label class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="search" id="tableSearch" placeholder="搜索任务或负责人">
+        </label>
+        <button type="button" class="reset-cols-btn" id="resetColsBtn">重置列宽</button>
+      </div>
+    </section>
+
+    <section class="table-card">
+      <div class="table-scroll" id="tableScroll">
+        <table class="data-table" id="dataTable">
+          <colgroup id="colgroup"></colgroup>
+          <thead>
+            <tr id="headRow"></tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="page-foot-tip">提示：聚焦任一表头后可用 ← / → 以 8px 步进调整该列，Home 恢复该列默认宽度</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

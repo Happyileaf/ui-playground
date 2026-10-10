@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idle Timeout Warning · 会话闲置超时预警</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Idle Timeout Warning</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">SECURITY · IDLE DETECT · COUNTDOWN</span>
+      <h1>离开之前，留一次挽回</h1>
+      <p>银行、邮箱与后台系统常用的会话保护：持续无操作进入倒计时预警，用户可一键续期；超时未响应则模拟安全登出。任意键鼠、滚动或触摸都会重置闲置计时。</p>
+    </header>
+
+    <section class="status-card" id="statusCard">
+      <div class="status-row">
+        <span class="status-led" id="statusLed"></span>
+        <div class="status-text">
+          <p class="status-title" id="statusTitle">会话进行中</p>
+          <p class="status-sub" id="statusSub">闲置达到 20 秒将弹出预警，预警 15 秒后自动登出</p>
+        </div>
+      </div>
+      <div class="countdown-track" aria-hidden="true">
+        <div class="countdown-fill" id="countdownFill"></div>
+      </div>
+    </section>
+
+    <section class="mock-app">
+      <div class="mock-topbar">
+        <span class="mock-logo">Nimbus Console</span>
+        <span class="mock-session">剩余闲置宽限 <strong id="graceText">20s</strong></span>
+      </div>
+      <div class="mock-body">
+        <div class="mock-line w-70"></div>
+        <div class="mock-line w-90"></div>
+        <div class="mock-line w-55"></div>
+        <div class="mock-block">
+          <p>试着放下鼠标不要操作，观察右上角状态与进度条；预警出现后移动鼠标或点击“继续保持登录”即可续期。</p>
+        </div>
+        <div class="mock-line w-80"></div>
+        <div class="mock-line w-40"></div>
+      </div>
+    </section>
+
+    <section class="control-card">
+      <div class="control-head">
+        <h2>演练设置</h2>
+        <p>为方便演示使用短超时，生产环境通常配置为 15–30 分钟。</p>
+      </div>
+      <div class="control-grid">
+        <label class="control-block">
+          <span class="control-label">闲置预警阈值</span>
+          <div class="seg-group" id="idleSeg">
+            <button type="button" class="seg-btn" data-idle="10">10s</button>
+            <button type="button" class="seg-btn active" data-idle="20">20s</button>
+            <button type="button" class="seg-btn" data-idle="40">40s</button>
+          </div>
+        </label>
+        <div class="control-block">
+          <span class="control-label">手动操作</span>
+          <div class="btn-row">
+            <button type="button" class="ghost-btn" id="simulateBtn">模拟立即闲置</button>
+            <button type="button" class="ghost-btn" id="resetBtn">重新演练</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="dialog-backdrop" id="dialogBackdrop" hidden>
+    <div class="timeout-dialog" role="alertdialog" aria-modal="true" aria-labelledby="dialogTitle" aria-describedby="dialogDesc">
+      <div class="dialog-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+      </div>
+      <h2 class="dialog-title" id="dialogTitle">是否继续保持登录？</h2>
+      <p class="dialog-desc" id="dialogDesc">检测到你已有一段时间未操作，为保护账户安全，会话即将结束。</p>
+      <div class="dialog-count">
+        <svg class="dial-ring" viewBox="0 0 48 48" aria-hidden="true">
+          <circle class="dial-track" cx="24" cy="24" r="21"></circle>
+          <circle class="dial-progress" id="dialProgress" cx="24" cy="24" r="21"></circle>
+        </svg>
+        <span class="dial-num" id="dialNum">15</span>
+      </div>
+      <div class="dialog-actions">
+        <button type="button" class="dialog-btn" id="logoutBtn">立即登出</button>
+        <button type="button" class="dialog-btn primary" id="stayBtn" autofocus>继续保持登录</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="logged-screen" id="loggedScreen" hidden>
+    <div class="logged-card">
+      <div class="logged-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+      </div>
+      <h2>你已安全退出</h2>
+      <p id="loggedReason">会话因长时间未操作已自动结束，未保存的敏感数据已被清理。</p>
+      <button type="button" class="dialog-btn primary" id="reloginBtn">重新登录演练</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
