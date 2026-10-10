@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Hotspots · 图片热点标注</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="hud-brand">
+<span class="hud-dot"></span>
+<span class="hud-title">Image Hotspots</span>
+</div>
+
+<main class="page">
+<header class="page-head">
+<h1 class="page-title">图片热点标注</h1>
+<p class="page-sub">点击场景中的光点，探索这张日落海滩里的每一处细节。</p>
+</header>
+
+<section class="card">
+<div id="scene" class="scene" aria-label="日落海滩场景图"></div>
+<nav id="hotspotNav" class="hotspot-nav" aria-label="热点导航"></nav>
+</section>
+</main>
+
+<div class="hint-bar">点击热点查看标注 · 支持方向键</div>
+
+<script src="script.js"></script>
+</body>
+</html>

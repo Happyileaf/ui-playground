@@ -1078,6 +1078,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '模拟路由请求的顶部细进度条，trickle 随机推进逼近但不满、完成后滑出，配合导航切换与手动开始完成，发光渐变末端。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['loading-bar', 'progress', 'navigation', 'route-transition', 'micro-interaction', 'nprogress']
+    },
+    {
+      id: 'notification-center',
+      title: 'Notification Center · 通知中心',
+      type: 'component',
+      category: 'components',
+      path: 'components/notification-center/',
+      url: '/components/notification-center/index.html',
+      description: '顶栏铃铛驱动的通知下拉中心，未读徽标计数、全部/未读筛选、单条与一键已读，外点与 Esc 关闭并回收焦点，动画状态全程克制。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['notification', 'dropdown', 'badge', 'filter', 'focus-management', 'keyboard-nav', 'accessibility']
+    },
+    {
+      id: 'image-hotspots',
+      title: 'Image Hotspots · 图片热点标注',
+      type: 'component',
+      category: 'components',
+      path: 'components/image-hotspots/',
+      url: '/components/image-hotspots/index.html',
+      description: '可交互的图片热点标注，脉冲光点唤起探索，气泡靠近视口边缘自动翻转避让，圆点缩略导航与方向键同步浏览，纯 CSS 渐变场景零图片资源。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['hotspot', 'image-annotation', 'edge-detection', 'tooltip', 'keyboard-nav', 'accessibility']
+    },
+    {
+      id: 'contribution-graph',
+      title: 'Contribution Graph · 贡献热力图',
+      type: 'component',
+      category: 'components',
+      path: 'components/contribution-graph/',
+      url: '/components/contribution-graph/index.html',
+      description: 'GitHub 风格的年度贡献热力图，53 周×7 天网格配月份与星期标签，悬停提示具体日期与次数，方向键漫游单元格、总数 count-up，五级青绿配色。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['data-viz', 'heatmap', 'calendar', 'tooltip', 'keyboard-nav', 'count-up', 'grid']
+    },
+    {
+      id: 'confetti-burst',
+      title: 'Confetti Burst · 庆祝彩带迸发',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/confetti-burst/',
+      url: '/effects/confetti-burst/index.html',
+      description: 'Canvas 2D 庆祝彩带粒子：中心爆发与双侧礼炮两种发射，纸片受重力、阻尼与正弦摆动并做 3D 翻转，DPR 自适应、粒子上限保护，Web Audio 手势懒激活轻音效。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['canvas', 'particles', 'confetti', 'physics', 'web-audio', 'celebration', 'requestanimationframe']
+    },
+    {
+      id: 'kanban-board',
+      title: 'Kanban Board · 拖拽看板',
+      type: 'component',
+      category: 'components',
+      path: 'components/kanban-board/',
+      url: '/components/kanban-board/index.html',
+      description: '四列任务看板，Pointer Events 配合 setPointerCapture 跨列拖拽，浮动克隆与占位符实时指示落点、列高亮联动，Esc 取消拖拽，Alt+方向键键盘重排并播报状态。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['kanban', 'drag-and-drop', 'pointer-events', 'sortable', 'keyboard-nav', 'aria-live', 'accessibility']
     }
   ];
 

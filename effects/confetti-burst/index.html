@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confetti Burst · 庆祝彩带迸发</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas id="confettiCanvas"></canvas>
+
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Confetti Burst</span>
+  </div>
+
+  <main class="stage">
+    <section class="celebrate-card">
+      <p class="card-eyebrow">NATIVE CANVAS CELEBRATION</p>
+      <h1 class="card-title">为每个值得纪念的瞬间<br><span>撒一把漫天彩带</span></h1>
+      <p class="card-desc">纯原生 Canvas 2D 粒子物理：重力、阻尼、正弦摆动与纸片 3D 翻转，零框架零依赖，离线完整运行。</p>
+
+      <div class="card-actions">
+        <button type="button" id="burstBtn" class="btn btn-primary">🎉 庆祝一下</button>
+        <button type="button" id="cannonBtn" class="btn btn-ghost">双侧礼炮</button>
+        <button type="button" id="tripleBtn" class="btn btn-mini">连发 3 次</button>
+      </div>
+
+      <label class="sound-toggle">
+        <input type="checkbox" id="soundToggle" checked>
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        <span class="toggle-label">轻快音效</span>
+      </label>
+    </section>
+  </main>
+
+  <div class="bottom-hint">点击按钮或页面任意处迸发彩带</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
