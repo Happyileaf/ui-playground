@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanban Board · 拖拽看板</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Kanban Board</span>
+  </div>
+
+  <header class="topbar">
+    <div class="topbar-text">
+      <h1 class="topbar-title">◈ 项目看板</h1>
+      <p class="topbar-sub">跨列拖拽任务卡片，实时同步排序与状态流转</p>
+    </div>
+    <button type="button" class="ghost-btn" id="resetBtn">重置看板</button>
+  </header>
+
+  <main class="board-scroll">
+    <section class="board" id="board" aria-label="项目看板"></section>
+  </main>
+
+  <div class="bottom-hint">拖拽卡片跨列排序 · Alt+方向键键盘重排 · Esc 取消</div>
+
+  <p class="sr-live" id="srLive" aria-live="polite"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>

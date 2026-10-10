@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contribution Graph · 贡献热力图</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="hud-brand">
+<span class="hud-dot"></span>
+<span class="hud-title">Contribution Graph</span>
+</div>
+
+<main class="card">
+<header class="card-head">
+<h1 class="card-title">年度贡献热力图</h1>
+<p class="card-summary">过去一年共 <span class="total-count" id="totalCount">0</span> 次贡献</p>
+</header>
+
+<div class="chart-scroll">
+<div class="chart">
+<div class="months" id="months" aria-hidden="true"></div>
+<div class="chart-body">
+<div class="weekdays" aria-hidden="true">
+<span></span>
+<span>周一</span>
+<span></span>
+<span>周三</span>
+<span></span>
+<span>周五</span>
+<span></span>
+</div>
+<div class="grid" id="grid"></div>
+</div>
+</div>
+</div>
+
+<footer class="legend">
+<span class="legend-text">Less</span>
+<span class="legend-cell l0"></span>
+<span class="legend-cell l1"></span>
+<span class="legend-cell l2"></span>
+<span class="legend-cell l3"></span>
+<span class="legend-cell l4"></span>
+<span class="legend-text">More</span>
+</footer>
+</main>
+
+<div class="tooltip" id="tooltip" role="tooltip" aria-hidden="true"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
