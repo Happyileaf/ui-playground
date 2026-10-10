@@ -1188,6 +1188,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '零框架依赖的富文本编辑条：加粗斜体、标题引用、列表颜色基于原生编辑能力，选中文字时按钮自动高亮；链接浮层录入并保存选区，状态栏统计字数与选区长，一键查看生成的 HTML。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['rich-text', 'contenteditable', 'toolbar', 'execCommand', 'dropdown', 'selection', 'editor']
+    },
+    {
+      id: 'back-to-top',
+      title: 'Back To Top · 回到顶部悬浮按钮',
+      type: 'component',
+      category: 'components',
+      path: 'components/back-to-top/',
+      url: '/components/back-to-top/index.html',
+      description: '长文页面右下角的圆形回顶按钮，SVG 环形进度实时呈现阅读百分比，越过阈值淡入上浮，点击平滑回顶；rAF 节流滚动、reduced-motion 降级与完整焦点样式。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['back-to-top', 'scroll', 'reading-progress', 'svg', 'smooth-scroll', 'micro-interaction', 'accessible']
+    },
+    {
+      id: 'watermark',
+      title: 'Watermark Guard · 防泄密水印',
+      type: 'component',
+      category: 'components',
+      path: 'components/watermark/',
+      url: '/components/watermark/index.html',
+      description: '机密文档页的全屏平铺水印：Canvas 单元旋转绘制并 dataURL 平铺，文字、透明度、字号、角度可调且输入防抖；MutationObserver 监听删除与篡改，1 秒内自动重绘自愈。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['watermark', 'canvas', 'security', 'mutation-observer', 'anti-tamper', 'dpr', 'accessible']
+    },
+    {
+      id: 'scrollspy-nav',
+      title: 'Scrollspy Nav · 锚点目录导航',
+      type: 'component',
+      category: 'components',
+      path: 'components/scrollspy-nav/',
+      url: '/components/scrollspy-nav/index.html',
+      description: '技术文档页右侧粘性目录：IntersectionObserver 结合滚动方向精确高亮当前章节，指示条与位移反馈，平滑锚点跳转同步 hash，移动端降级下拉选择，顶部附阅读进度条。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['scrollspy', 'anchor-nav', 'intersection-observer', 'documentation', 'smooth-scroll', 'sticky', 'accessibility']
+    },
+    {
+      id: 'transfer-list',
+      title: 'Transfer List · 权限穿梭框',
+      type: 'component',
+      category: 'components',
+      path: 'components/transfer-list/',
+      url: '/components/transfer-list/index.html',
+      description: '项目成员分配穿梭框：双列表搜索过滤、全选半选、勾选/批量/双击四种穿梭方式，单状态源驱动渲染并保留焦点，底部成员胶囊联动保存的 loading 与成功播报。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['transfer', 'dual-list', 'checkbox', 'indeterminate', 'search', 'permissions', 'accessible']
+    },
+    {
+      id: 'virtual-list',
+      title: 'Virtual List · 万级数据虚拟滚动',
+      type: 'component',
+      category: 'components',
+      path: 'components/virtual-list/',
+      url: '/components/virtual-list/index.html',
+      description: '10000 条日志的定高虚拟滚动：phantom 撑高加 translate3d 窗口化渲染，DOM 始终只保留可视行与缓冲；级别过滤、防抖搜索、行号跳转、行详情面板与 ResizeObserver 自适应。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['virtual-list', 'performance', 'windowing', 'scroll', 'filter', 'logs', 'resize-observer']
     }
   ];
 
