@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyboard Shortcut Hint · 快捷键录制提示</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Keyboard Shortcut Hint</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">SETTINGS · KEY CAPTURE · CONFLICT</span>
+      <h1>快捷键，看得见也改得动</h1>
+      <p>设置页常见的快捷键管理：点击任意动作进入录制，按下组合键即时捕获，修饰键缺失时给出提示，与其他动作冲突时阻止保存，Esc 取消录制。所有按键以键帽形式渲染。</p>
+    </header>
+
+    <section class="hint-banner">
+      <div class="hint-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"></path></svg>
+      </div>
+      <div>
+        <p class="hint-title">试试真实按键</p>
+        <p class="hint-text">直接按下下方任意已绑定的组合键，页面会高亮对应动作并给出反馈。</p>
+      </div>
+    </section>
+
+    <section class="shortcut-list" id="shortcutList"></section>
+
+    <section class="capture-card" id="captureCard" hidden>
+      <div class="capture-head">
+        <h2 id="captureTitle">录制新快捷键</h2>
+        <p id="captureSub">请按下包含 Ctrl / Alt / Shift 的组合键</p>
+      </div>
+      <div class="capture-zone" id="captureZone" tabindex="0">
+        <div class="capture-keys" id="captureKeys">
+          <span class="capture-placeholder">按下组合键…</span>
+        </div>
+      </div>
+      <p class="capture-message" id="captureMessage"></p>
+      <div class="capture-actions">
+        <button type="button" class="cap-btn" id="cancelCapture">取消</button>
+        <button type="button" class="cap-btn danger-ghost" id="clearBinding">清除绑定</button>
+        <button type="button" class="cap-btn primary" id="saveBinding" disabled>保存</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

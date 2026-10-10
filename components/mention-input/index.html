@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mention Input · @提及输入</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Mention Input</span>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">COMPOSER · CARET MENU · ARIA</span>
+      <h1>输入 @，点名同事</h1>
+      <p>评论框与即时通讯常用的提及模式：输入 @ 唤起成员列表，继续输入即时过滤，方向键选择、回车确认，Esc 关闭。提及成员以胶囊形式插入，可整体删除，支持键盘全流程操作。</p>
+    </header>
+
+    <section class="composer-card">
+      <div class="composer-top">
+        <div class="avatar-self" aria-hidden="true">L</div>
+        <div class="composer-meta">
+          <p class="composer-name">Liang Chen</p>
+          <p class="composer-sub">发布到 #产品反馈</p>
+        </div>
+      </div>
+
+      <div class="editor-wrap" id="editorWrap">
+        <div class="mention-editor" id="editor" contenteditable="true" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="mentionMenu" aria-placeholder="写下你的想法，输入 @ 提及同事…"></div>
+        <div class="mention-menu" id="mentionMenu" role="listbox" hidden>
+          <p class="mention-menu-label" id="menuLabel">提及成员</p>
+          <div class="mention-options" id="mentionOptions"></div>
+        </div>
+      </div>
+
+      <div class="composer-bar">
+        <div class="composer-tools">
+          <button type="button" class="tool-chip" id="atTrigger" aria-label="插入提及">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"></path></svg>
+          </button>
+          <span class="bar-hint">提示：@ + 拼音 / 英文名过滤，↑↓ 选择</span>
+        </div>
+        <button type="button" class="publish-btn" id="publishBtn">发布评论</button>
+      </div>
+    </section>
+
+    <section class="preview-card" id="previewCard" hidden>
+      <div class="preview-head">
+        <div class="avatar-self small" aria-hidden="true">L</div>
+        <div>
+          <p class="composer-name">Liang Chen</p>
+          <p class="composer-sub" id="previewTime">刚刚</p>
+        </div>
+      </div>
+      <div class="preview-body" id="previewBody"></div>
+      <p class="preview-mentions" id="previewMentions"></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
