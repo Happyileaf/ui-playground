@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cookie Consent · 授权同意横幅</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Cookie Consent</span>
+  </div>
+
+  <main class="mock-site">
+    <nav class="mock-nav">
+      <span class="mock-logo">◆ Nebula</span>
+      <div class="mock-links">
+        <span>产品</span><span>定价</span><span>文档</span><span>关于</span>
+      </div>
+    </nav>
+
+    <section class="mock-hero">
+      <h1>构建下一代<br />云端协作空间</h1>
+      <p>这是一个模拟站点页面，用于演示符合 GDPR 规范的 Cookie 授权横幅</p>
+      <div class="mock-cta">
+        <span class="cta-primary">免费开始</span>
+        <span class="cta-ghost">观看演示</span>
+      </div>
+      <div class="consent-state" id="consentState">当前状态：尚未授权</div>
+      <button class="reset-demo" id="resetDemo">↺ 重新弹出授权横幅</button>
+    </section>
+  </main>
+
+  <div class="consent-banner" id="consentBanner" role="dialog" aria-modal="false"
+    aria-labelledby="bannerTitle" aria-describedby="bannerDesc">
+    <div class="cookie-emoji" aria-hidden="true">🍪</div>
+    <div class="banner-body">
+      <h2 class="banner-title" id="bannerTitle">我们重视你的隐私</h2>
+      <p class="banner-desc" id="bannerDesc">
+        我们使用 Cookie 来提供核心功能、分析访问情况并改善体验。
+        你可以随时更改偏好，详情请阅读
+        <a href="#" class="banner-link" id="policyLink">隐私政策</a>。
+      </p>
+
+      <div class="pref-detail" id="prefDetail" hidden>
+        <label class="pref-row">
+          <span class="pref-text">
+            <strong>必要 Cookie</strong>
+            <small>网站运行所必需，无法关闭</small>
+          </span>
+          <span class="switch on" data-switch="necessary" aria-disabled="true">
+            <span class="switch-knob"></span>
+          </span>
+        </label>
+        <label class="pref-row">
+          <span class="pref-text">
+            <strong>偏好 Cookie</strong>
+            <small>记住语言、主题等个性化设置</small>
+          </span>
+          <button class="switch" data-switch="preference" role="switch"
+            aria-checked="false"><span class="switch-knob"></span></button>
+        </label>
+        <label class="pref-row">
+          <span class="pref-text">
+            <strong>分析 Cookie</strong>
+            <small>匿名统计访问数据，帮助我们改进产品</small>
+          </span>
+          <button class="switch" data-switch="analytics" role="switch"
+            aria-checked="false"><span class="switch-knob"></span></button>
+        </label>
+        <label class="pref-row">
+          <span class="pref-text">
+            <strong>营销 Cookie</strong>
+            <small>用于投放个性化广告内容</small>
+          </span>
+          <button class="switch" data-switch="marketing" role="switch"
+            aria-checked="false"><span class="switch-knob"></span></button>
+        </label>
+      </div>
+    </div>
+
+    <div class="banner-actions">
+      <button class="banner-btn ghost" id="manageBtn">管理选项</button>
+      <button class="banner-btn reject" id="rejectBtn">仅必要</button>
+      <button class="banner-btn accept" id="acceptBtn">全部接受</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
