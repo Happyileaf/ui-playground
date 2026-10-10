@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu Morph · 汉堡形变导航</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Menu Morph · 汉堡形变导航</span>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#">NOVA<span class="brand-dot">.</span></a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="fullscreenMenu">
+      <span class="bars" aria-hidden="true">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </span>
+    </button>
+  </header>
+
+  <div class="fullscreen-menu" id="fullscreenMenu" role="dialog" aria-modal="true" aria-label="主导航" hidden>
+    <div class="menu-backdrop"></div>
+    <nav class="menu-nav" aria-label="全屏导航">
+      <ul>
+        <li style="--i:0"><a href="#" data-label="首页"><span class="nav-index">01</span>首页</a></li>
+        <li style="--i:1"><a href="#" data-label="作品"><span class="nav-index">02</span>作品</a></li>
+        <li style="--i:2"><a href="#" data-label="服务"><span class="nav-index">03</span>服务</a></li>
+        <li style="--i:3"><a href="#" data-label="洞察"><span class="nav-index">04</span>洞察</a></li>
+        <li style="--i:4"><a href="#" data-label="联系"><span class="nav-index">05</span>联系</a></li>
+      </ul>
+    </nav>
+    <footer class="menu-footer">
+      <a href="mailto:hi@nova.studio">hi@nova.studio</a>
+      <div class="socials">
+        <a href="#">Twitter</a>
+        <a href="#">Dribbble</a>
+        <a href="#">GitHub</a>
+      </div>
+    </footer>
+  </div>
+
+  <main class="landing">
+    <p class="landing-eyebrow">Independent Creative Studio</p>
+    <h1 class="landing-title">点击右上角<br />展开<span class="hl">全屏导航</span></h1>
+    <p class="landing-sub">汉堡按钮的三条线形变为关闭图标，导航链接以错峰遮罩动画依次进入，支持 Esc 关闭与完整键盘操作。</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

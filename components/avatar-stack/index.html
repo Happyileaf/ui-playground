@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avatar Stack · 重叠头像组</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud-brand">
+    <span class="hud-dot"></span>
+    <span class="hud-title">Avatar Stack · 重叠头像组</span>
+  </div>
+
+  <main class="panel">
+    <header class="panel-head">
+      <p class="eyebrow">Project · Aurora</p>
+      <h1 class="panel-title">设计评审 · 第 12 期</h1>
+      <p class="panel-sub">悬停任意头像查看成员名片，其余成员自动让位。可点击头像选中成员查看详情。</p>
+    </header>
+
+    <section class="members-card">
+      <div class="members-row">
+        <div class="avatar-stack" id="avatarStack" role="group" aria-label="项目成员"></div>
+        <button class="add-btn" id="addBtn" type="button" aria-label="邀请成员">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+      </div>
+      <p class="members-summary" id="summary">6 位成员正在协作</p>
+
+      <div class="profile-detail" id="profileDetail" hidden>
+        <div class="pd-avatar" id="pdAvatar"></div>
+        <div class="pd-info">
+          <span class="pd-name" id="pdName"></span>
+          <span class="pd-role" id="pdRole"></span>
+          <p class="pd-bio" id="pdBio"></p>
+        </div>
+        <button class="pd-close" id="pdClose" type="button" aria-label="关闭详情">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <p class="hint">键盘可聚焦头像后按 <kbd>Enter</kbd> 查看名片，<kbd>Tab</kbd> 在成员间切换</p>
+  </main>
+
+  <div class="card-pop" id="cardPop" role="tooltip" hidden>
+    <div class="cp-head">
+      <span class="cp-avatar" id="cpAvatar"></span>
+      <div>
+        <span class="cp-name" id="cpName"></span>
+        <span class="cp-role" id="cpRole"></span>
+      </div>
+    </div>
+    <p class="cp-status"><span class="cp-status-dot"></span><span id="cpStatus"></span></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -913,6 +913,61 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '防误触滑动确认控件：拖拽圆形滑块推进进度条，松手未满阈值即带弹性弹簧回弹，滑到终点自动吸附锁定并切换完成打勾态，Web Animations API 驱动补间，支持 Enter/Space 键盘确认与一键重置。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['slide-to-confirm', 'gesture', 'spring-back', 'intent-guard', 'web-animations', 'pointer-events']
+    },
+    {
+      id: 'like-button',
+      title: 'Like Button · 双击点赞迸发',
+      type: 'component',
+      category: 'components',
+      path: 'components/like-button/',
+      url: '/components/like-button/index.html',
+      description: '社交媒体风格点赞卡片：双击媒体或点击心形按钮切换赞态，触发大心形闪现与多颗碎片向四周迸发，计数即时增减，碎片动画结束自动回收，支持减少动态效果偏好。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['like-button', 'double-tap', 'heart-burst', 'micro-interaction', 'social', 'particle']
+    },
+    {
+      id: 'avatar-stack',
+      title: 'Avatar Stack · 头像堆叠名片',
+      type: 'component',
+      category: 'components',
+      path: 'components/avatar-stack/',
+      url: '/components/avatar-stack/index.html',
+      description: '重叠圆形成员头像组：悬停或键盘聚焦时头像抬升放大并弹出边缘避让名片，点击展开完整资料面板，气泡自动检测视口边界翻转方位，支持 Esc 关闭与焦点还原。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['avatar-stack', 'hover-card', 'edge-aware', 'tooltip', 'team', 'focus-management']
+    },
+    {
+      id: 'stagger-headline',
+      title: 'Stagger Headline · 逐词上滑标题',
+      type: 'effect',
+      category: 'effects',
+      path: 'effects/stagger-headline/',
+      url: '/effects/stagger-headline/index.html',
+      description: '标题逐字遮罩上滑入场：文本自动拆分为单字内层元素并按错峰延迟依次升起，强调字高亮呼吸，支持重播按钮、滚动进入视口再次播放，减少动态效果时直接呈现终态。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['stagger-headline', 'text-reveal', 'mask', 'stagger', 'intersection-observer', 'kinetic-type']
+    },
+    {
+      id: 'menu-morph',
+      title: 'Menu Morph · 汉堡形变导航',
+      type: 'component',
+      category: 'components',
+      path: 'components/menu-morph/',
+      url: '/components/menu-morph/index.html',
+      description: '汉堡按钮三条线形变为关闭图标，全屏遮罩自顶部扫入，导航链接按索引错峰遮罩上滑进入；支持点击遮罩、Esc 关闭、Tab 焦点循环与焦点还原，减少动态效果时即时呈现。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['menu-morph', 'hamburger', 'fullscreen-nav', 'stagger', 'focus-trap', 'morph']
+    },
+    {
+      id: 'confirm-dialog',
+      title: 'Confirm Dialog · 危险操作确认',
+      type: 'component',
+      category: 'components',
+      path: 'components/confirm-dialog/',
+      url: '/components/confirm-dialog/index.html',
+      description: '危险删除双重防误触：先输入确认词 DELETE 解锁，再长按按钮沿环形进度蓄能完成确认，删除后提供 6 秒撤销窗口 Toast；支持 Esc 关闭、焦点陷阱与触控指针事件。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['confirm-dialog', 'destructive', 'hold-to-confirm', 'type-to-confirm', 'undo-toast', 'focus-trap']
     }
   ];
 
