@@ -24,7 +24,7 @@ export const translations = {
 
     // Gallery Hero & Stats
     heroTitle: '创意动效与原生 UI 组件工作台',
-    heroDesc: '精选基于原生 Web 标准的物理动效与交互组件集合。100% 纯原生实现，零构建配置。',
+    heroDesc: '精选基于原生 Web 标准的动效与交互组件集合。100% 纯原生实现，零构建配置。',
     statCases: '个独立案例',
     statDeps: '构建配置',
     statNative: '原生 Web API',
@@ -137,7 +137,7 @@ export const translations = {
 
     // Gallery Hero & Stats
     heroTitle: 'Creative UI & Motion Playground',
-    heroDesc: 'A curated collection of physics-based visual effects and interactive UI components. Crafted with 100% native Web standards and zero build configuration.',
+    heroDesc: 'A curated collection of visual effects and interactive UI components. Crafted with 100% native Web standards and zero build configuration.',
     statCases: 'Standalone Cases',
     statDeps: 'Build Config',
     statNative: 'Native Web APIs',
@@ -250,7 +250,7 @@ export const translations = {
 
     // Gallery Hero & Stats
     heroTitle: 'Kreatives UI- & Animations-Playground',
-    heroDesc: 'Eine kuratierte Sammlung physikbasierter visueller Effekte und interaktiver UI-Komponenten. Zu 100 % mit nativen Webstandards und ohne Build-Konfiguration erstellt.',
+    heroDesc: 'Eine kuratierte Sammlung visueller Effekte und interaktiver UI-Komponenten. Zu 100 % mit nativen Webstandards und ohne Build-Konfiguration erstellt.',
     statCases: 'Eigenständige Fälle',
     statDeps: 'Build-Konfiguration',
     statNative: 'Native Web-APIs',
