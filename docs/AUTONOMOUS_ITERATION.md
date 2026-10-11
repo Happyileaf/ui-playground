@@ -37,7 +37,7 @@ Agent 在执行独立迭代任务时，应遵循完整的**“洞察 ➔ 策划 
                                    ▼
 ┌────────────────────────────────────────────────────────────────────────┐
 │  阶段 3：精工落地原生代码 (Craft & Implementation)                      │
-│  - 遵循 100% 纯原生原则，落地全部案例目录：/effects/、/components/     │
+│  - 遵循 100% 纯原生原则，落地 playground/ 下 effects、components、pages │
 │  - 注入防御性代码（Canvas 高分屏自适应、Web Audio 懒激活、零 CDN 依赖） │
 └──────────────────────────────────┬─────────────────────────────────────┘
                                    │
@@ -226,7 +226,7 @@ document.addEventListener('pointerdown', () => {
 git status
 
 # 2. 精确暂存本次迭代相关的文件
-git add effects/ components/ src/playground.js docs/
+git add playground/ src/playground.js docs/
 
 # 3. 提交并附带详尽的结构化信息
 git commit -m "<遵循下文规范的详细 Commit Message>"
@@ -268,7 +268,7 @@ feat(effects): 新增流体漩涡粒子特效并完成沙箱元数据注册
 - 针对当前案例库中角动量物理场与连续流体动效的盲区，自主规划并演进流体漩涡粒子（Fluid Vortex）交互案例。
 
 [核心技术实现清单]
-- 新增独立案例模块：/effects/fluid-vortex/ (index.html, style.css, script.js)
+- 新增独立案例模块：/playground/effects/fluid-vortex/ (index.html, style.css, script.js)
 - 物理渲染机制：构建 800+ 离散粒子场，基于切向加速度与径向向心力实时计算角动量漩涡
 - 交互动力学：通过 Pointer Events 实现鼠标/触控交互式引力中心位移与脉冲扰动
 - 元数据注册：在 src/playground.js 中完成 Schema 字段原子注入与标签索引

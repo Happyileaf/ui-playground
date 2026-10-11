@@ -23,8 +23,8 @@
 - **客户端纯前端 ZIP 打包导出器**：
   - 基于 `JSZip` 库，直接在用户浏览器内存中动态打包出 `${caseId}.zip`，无需经过任何后端服务器处理，实现零网络延迟导出。
 
-### 第 2 层：独立原生案例 (`/effects/*`, `/components/*`)
-- 存放于项目的根子目录中。
+### 第 2 层：独立原生案例 (`/playground/effects/*`, `/playground/components/*`, `/playground/pages/*`)
+- 统一存放于项目 `playground/` 根目录下（特效位于 `effects/`、组件位于 `components/`、页面案例位于 `pages/`）。
 - 遵循 100% 纯原生 Web 标准（HTML5 / CSS3 / ES6+ JS）。
 - 不包含对父级外壳资源的任何相对路径依赖。
 - 确保可以直接从本地文件系统（`file://` 协议）或任何静态服务器双击运行。
@@ -55,12 +55,12 @@
 ## 3. 客户端 ZIP 打包引擎原理
 
 ### Vite 开发环境 CSS 包装问题与解决方案
-在 Vite 开发服务器环境下，直接通过 `fetch('/effects/fireworks/style.css')` 发起请求时，Vite 会自动将 CSS 内容转换为包含 HMR 客户端热更新逻辑的 JavaScript 模块（包含 `import { updateStyle } from "/@vite/client"`）。若直接打包，用户下载解压后浏览器将无法识别该 CSS 文件。
+在 Vite 开发服务器环境下，直接通过 `fetch('/playground/effects/fireworks/style.css')` 发起请求时，Vite 会自动将 CSS 内容转换为包含 HMR 客户端热更新逻辑的 JavaScript 模块（包含 `import { updateStyle } from "/@vite/client"`）。若直接打包，用户下载解压后浏览器将无法识别该 CSS 文件。
 
 ### 解决方案：Vite 原始文本导入 (Raw Glob) + 智能回退
 ```javascript
 // 1. 在编译时通过 Vite 的 ?raw 查询预加载所有原生源码文本
-const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*'], {
+const rawSources = import.meta.glob(['/playground/effects/**/*', '/playground/components/**/*'], {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -115,6 +115,6 @@ async function downloadCaseZip(caseObj) {
    - 多语言词条字典仅用于外壳 UI 元素（顶栏导航、视口切换器、Cmd+K 命令面板、代码抽屉标签、复制/下载按钮、分类筛选器等）。
 2. **绝对禁止侵入案例内部**：
    - 严禁通过 `postMessage`、DOM 注入或全局变量向 `<iframe>` 内部强行传递多语言指令。
-   - 每一个案例（`/effects/*`、`/components/*`）的渲染逻辑、文字展现与视觉特效必须由案例本身 **100% 自包含与自维护**。
+   - 每一个案例（`/playground/effects/*`、`/playground/components/*`）的渲染逻辑、文字展现与视觉特效必须由案例本身 **100% 自包含与自维护**。
 3. **保证案例脱离平台后的纯粹性**：
    - 任何案例通过 ZIP 导出并在本地独立打开时，绝不能含有任何依赖外部多语言上下文的未定义变量或破损逻辑。

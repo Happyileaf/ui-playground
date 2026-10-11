@@ -29,7 +29,7 @@
 
 ### 核心架构原则（铁律）
 1. **案例独立性（黄金法则）**：
-   `/effects/`（特效）与 `/components/`（组件）目录下的每一个案例，**必须**保持 100% 纯原生、无构建步骤、完全独立自包含。用户脱离当前平台下载后，直接双击打开 `index.html` 必须拥有 100% 完整的视觉效果与交互功能。
+   `playground/effects/`（特效）、`playground/components/`（组件）与 `playground/pages/`（页面）目录下的每一个案例，**必须**保持 100% 纯原生、无构建步骤、完全独立自包含。用户脱离当前平台下载后，直接双击打开 `index.html` 必须拥有 100% 完整的视觉效果与交互功能。
 2. **外壳作为测试与分发沙箱**：
    外层应用（`/index.html`、`/src/playground.js`、`/src/playground.css`）负责提供开发者工作台能力（设备模拟、代码审查、实时搜索、一键导出 ZIP），并通过 `<iframe>` 挂载运行案例，以彻底隔绝各案例间的 CSS 样式冲突、音频上下文与全局 JS 变量污染。
 3. **渐进式披露（Progressive Disclosure）**：
@@ -47,17 +47,19 @@
 │   ├── CASE_LIFECYCLE_SOP.md  # 案例全生命周期管理 SOP（增、删、改、重构与质量验收）
 │   ├── AUTONOMOUS_ITERATION.md # 🚀 Agent 自主迭代与持续演进指南（生长闭环与技术域矩阵）
 │   └── MAINTENANCE_GUIDELINES.md # 维护规范、防 AI Slop 审美标准与排错指南
-├── effects/                   # 视觉与物理动画特效案例库 (100% 纯原生)
-│   ├── fireworks/             # Canvas 烟花粒子与 Web Audio 音效
-│   ├── particle-text/         # 文本光栅化粒子解构与弹性复原
-│   ├── count-up/              # 数字滚动爬升特效
-│   └── cursor-follow/         # 多层 Lerp 缓动跟随光标
-├── components/                # 交互式 UI 组件案例库 (100% 纯原生)
-│   ├── button/                # 现代按钮系统 (波纹/炫光/霓虹/毛玻璃)
-│   ├── card/                  # 3D 视差透视卡片与全息光影
-│   ├── modal/                 # 原生 <dialog> 弹窗与高斯模糊遮罩
-│   ├── tooltip/               # 智能边缘碰撞检测提示框
-│   └── drawer/                # 弹性四向滑出抽屉与焦点陷阱
+├── playground/                # 🧪 纯原生案例根目录 (100% 独立自包含，随构建原样复制到 dist)
+│   ├── effects/               # 视觉与物理动画特效案例库
+│   │   ├── fireworks/         # Canvas 烟花粒子与 Web Audio 音效
+│   │   ├── particle-text/     # 文本光栅化粒子解构与弹性复原
+│   │   ├── count-up/          # 数字滚动爬升特效
+│   │   └── cursor-follow/     # 多层 Lerp 缓动跟随光标
+│   ├── components/            # 交互式 UI 组件案例库
+│   │   ├── button/            # 现代按钮系统 (波纹/炫光/霓虹/毛玻璃)
+│   │   ├── card/              # 3D 视差透视卡片与全息光影
+│   │   ├── modal/             # 原生 <dialog> 弹窗与高斯模糊遮罩
+│   │   ├── tooltip/           # 智能边缘碰撞检测提示框
+│   │   └── drawer/            # 弹性四向滑出抽屉与焦点陷阱
+│   └── pages/                 # 页面级案例库（应用布局、登录鉴权、定价页等）
 ├── src/                       # 工作台外壳核心代码
 │   ├── playground.js          # 总案例元数据、状态机、iframe 沙箱与 ZIP 打包器
 │   └── playground.css         # 暗黑风格工作台样式与代码高亮主题
@@ -72,8 +74,8 @@
 
 | 任务类型 | 核心操作 | 关键文件 | 参考子文档 |
 | :--- | :--- | :--- | :--- |
-| **新增案例 (Create)** | 在 `effects/` 或 `components/` 编写自包含原生代码并在 `playground.js` 注册 | `effects/<id>/*` 或 `components/<id>/*`, `src/playground.js` | [`docs/CASE_LIFECYCLE_SOP.md`](./docs/CASE_LIFECYCLE_SOP.md) (第 1 节) |
-| **修改案例 (Update)** | 调优动效/交互，或更新元数据与文件列表 | `effects/<id>/*`, `src/playground.js` | [`docs/CASE_LIFECYCLE_SOP.md`](./docs/CASE_LIFECYCLE_SOP.md) (第 2 节) |
+| **新增案例 (Create)** | 在 `playground/effects/` 或 `playground/components/` 编写自包含原生代码并在 `playground.js` 注册 | `playground/effects/<id>/*` 或 `playground/components/<id>/*`, `src/playground.js` | [`docs/CASE_LIFECYCLE_SOP.md`](./docs/CASE_LIFECYCLE_SOP.md) (第 1 节) |
+| **修改案例 (Update)** | 调优动效/交互，或更新元数据与文件列表 | `playground/effects/<id>/*`, `src/playground.js` | [`docs/CASE_LIFECYCLE_SOP.md`](./docs/CASE_LIFECYCLE_SOP.md) (第 2 节) |
 | **重构/重命名案例** | 同步变更物理文件夹名、元数据 `id`、`path` 与 `url` | 案例目录, `src/playground.js` | [`docs/CASE_LIFECYCLE_SOP.md`](./docs/CASE_LIFECYCLE_SOP.md) (第 2 节) |
 | **删除案例 (Delete)** | 移除 `playground.js` 中 `cases` 元数据项并安全删除对应文件夹 | 案例目录, `src/playground.js` | [`docs/CASE_LIFECYCLE_SOP.md`](./docs/CASE_LIFECYCLE_SOP.md) (第 3 节) |
 | **自主迭代演进 (Autonomous Iteration)** | 执行 6 阶段闭环：盲区洞察、演进策划、精工写盘、原子注册、自愈验证、自动 Commit | `docs/AUTONOMOUS_ITERATION.md`, `src/playground.js` | [`docs/AUTONOMOUS_ITERATION.md`](./docs/AUTONOMOUS_ITERATION.md) |

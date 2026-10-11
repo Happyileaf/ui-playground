@@ -5,14 +5,15 @@ import path from 'path';
 import { defineConfig, type Plugin } from 'vite';
 
 /**
- * 纯原生案例目录清单
+ * 纯原生案例根目录
  * 案例内部使用非 module 的经典 script 以保证 file:// 双击可用，
- * Vite 无法将其打包进产物，必须以静态文件形式随构建输出分发
+ * Vite 无法将其打包进产物，必须以静态文件形式随构建输出分发。
+ * components / effects / pages 三类案例统一收纳于 playground/ 目录下
  */
-const STANDALONE_CASE_DIRS = ['effects', 'components', 'pages'];
+const STANDALONE_CASE_ROOT = 'playground';
 
 /**
- * 构建后将案例目录原样复制进 dist
+ * 构建后将案例根目录原样复制进 dist
  * 案例不作为 Rollup 入口、不经 Vite 改写，保证产物与源码逐字节一致，
  * 下载后双击 index.html 仍可 100% 离线运行
  */
@@ -21,13 +22,11 @@ function copyStandaloneCases(): Plugin {
     name: 'copy-standalone-cases',
     apply: 'build',
     closeBundle() {
-      for (const caseDir of STANDALONE_CASE_DIRS) {
-        cpSync(
-          path.resolve(import.meta.dirname, caseDir),
-          path.resolve(import.meta.dirname, 'dist', caseDir),
-          { recursive: true },
-        );
-      }
+      cpSync(
+        path.resolve(import.meta.dirname, STANDALONE_CASE_ROOT),
+        path.resolve(import.meta.dirname, 'dist', STANDALONE_CASE_ROOT),
+        { recursive: true },
+      );
     },
   };
 }

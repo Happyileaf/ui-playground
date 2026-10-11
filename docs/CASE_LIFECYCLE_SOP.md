@@ -10,7 +10,8 @@
 ```text
 ┌──────────────────────────────────────────────────────────────────┐
 │                   物理文件层 (Physical Files)                     │
-│  /effects/<case-id>/   或   /components/<case-id>/               │
+│  /playground/effects/<case-id>/                                  │
+│    或 /playground/components/<case-id>/                          │
 │  ├── index.html                                                  │
 │  ├── style.css (可选)                                             │
 │  └── script.js (可选)                                             │
@@ -29,14 +30,14 @@
 ## 1. ➕ 新增案例 SOP (Create)
 
 ### 步骤 1：决策分类与 ID 命名
-- **特效分类 (`/effects/<id>/`)**：适用于 Canvas 动画、物理引擎、着色器、生成艺术、粒子系统、音频合成。
-- **组件分类 (`/components/<id>/`)**：适用于 UI 控件、导航、弹窗、表单、微交互、卡片系统。
+- **特效分类 (`/playground/effects/<id>/`)**：适用于 Canvas 动画、物理引擎、着色器、生成艺术、粒子系统、音频合成。
+- **组件分类 (`/playground/components/<id>/`)**：适用于 UI 控件、导航、弹窗、表单、微交互、卡片系统。
 - **ID 命名规范**：必须使用小写 `kebab-case`（如 `particle-text`, `matrix-rain`），禁止使用下划线、大写字母或特殊字符。
 
 ### 步骤 2：创建原生文件
 选择多文件结构（推荐）或单文件结构编写代码：
 ```text
-effects/<case-id>/
+playground/effects/<case-id>/
 ├── index.html     # HTML 骨架（相对路径引入 ./style.css 与 ./script.js）
 ├── style.css      # 纯原生 CSS3（严禁引入外部框架）
 └── script.js      # 纯原生 ES6+ JavaScript（自包含逻辑）
@@ -50,8 +51,8 @@ effects/<case-id>/
   title: '代码雨特效',
   type: 'effect',               // 'effect' | 'component'
   category: 'effects',          // 'effects' | 'components'
-  path: 'effects/matrix-rain/', // 必须以 '/' 结尾
-  url: '/effects/matrix-rain/index.html',
+  path: 'playground/effects/matrix-rain/', // 必须以 '/' 结尾
+  url: '/playground/effects/matrix-rain/index.html',
   description: 'Canvas 绿磷字符雨落动效，包含动态字符随机变换与透明渐隐拖尾。',
   files: ['index.html', 'style.css', 'script.js'], // 与实际物理文件列表严格一致
   tags: ['canvas', 'matrix', 'typography', 'cyber']
@@ -80,11 +81,11 @@ effects/<case-id>/
 
 ### 场景 C：重构或重命名案例 (Rename / Refactor)
 - **标准操作流**：
-  1. **移动/重命名物理目录**：例如将 `effects/old-name/` 重命名为 `effects/new-name/`。
+  1. **移动/重命名物理目录**：例如将 `playground/effects/old-name/` 重命名为 `playground/effects/new-name/`。
   2. **全局更新元数据**：
      - `id`: `'new-name'`
-     - `path`: `'effects/new-name/'`
-     - `url`: `'/effects/new-name/index.html'`
+     - `path`: `'playground/effects/new-name/'`
+     - `url`: `'/playground/effects/new-name/index.html'`
      - 检查 `files` 列表是否与新目录内文件完全匹配。
   3. **清理缓存与测试**：重启预览，验证画廊跳转、Studio 加载与 ZIP 下载名称是否同步更新为 `new-name.zip`。
 
@@ -98,7 +99,7 @@ effects/<case-id>/
 在 `src/playground.js` 的 `cases` 数组中找到对应的对象，整块删除。
 
 ### 步骤 2：删除对应的物理文件夹
-删除对应的整个案例目录（例如 `rm -rf effects/old-case/` 或使用对应工具）。
+删除对应的整个案例目录（例如 `rm -rf playground/effects/old-case/` 或使用对应工具）。
 
 ### 步骤 3：默认案例回退检查
 如果被删除的案例是 `cases[0]`（默认选中的案例），确认 `currentCase = cases[0]` 能正常指向新的首个案例，避免页面初始化产生空指针。
@@ -113,7 +114,7 @@ effects/<case-id>/
 在维护或重构现有案例前，推荐按照以下流程进行审查：
 
 1. **查阅元数据**：在 `src/playground.js` 中查找目标 `id`，了解其包含的 `files` 与 `tags`。
-2. **独立预览测试**：直接在浏览器访问 `/effects/<id>/index.html` 查看原生表现。
+2. **独立预览测试**：直接在浏览器访问 `/playground/effects/<id>/index.html` 查看原生表现。
 3. **沙箱运行测试**：在 Playground 工作台中查看各视口尺寸下的响应式缩放与动画帧率表现。
 4. **源码高亮审查**：在 Studio 中展开 Code 抽屉，检查各标签页内容是否为纯净的源代码。
 

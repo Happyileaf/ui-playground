@@ -96,7 +96,7 @@ export const translations = {
     guidePrinciple2Title: '2. 100% 独立离线运行保证 (Standalone Guarantee)',
     guidePrinciple2Desc: '每个特效与组件均位于独立的专属目录中。脱离外壳直接在任何浏览器双击 index.html 即可 100% 完整运行，拥有完整视觉与交互体验。',
     guidePrinciple3Title: '3. 极速自主扩展新案例 (Rapid Extension)',
-    guidePrinciple3Desc: '只需在 effects/ 或 components/ 下新建子文件夹，编写 index.html，并在 playground.js 中注册元数据即可瞬时接入沙箱工作台。',
+    guidePrinciple3Desc: '只需在 playground/effects/ 或 playground/components/ 下新建子文件夹，编写 index.html，并在 playground.js 中注册元数据即可瞬时接入沙箱工作台。',
 
     // Footer
     footerBadgeNative: '原生优先',
@@ -209,7 +209,7 @@ export const translations = {
     guidePrinciple2Title: '2. Independent Execution Guarantee',
     guidePrinciple2Desc: 'Each effect and component lives in its own dedicated directory. Opening index.html in any web browser executes immediately with 100% fidelity without needing the parent playground.',
     guidePrinciple3Title: '3. Adding a New Case in Seconds',
-    guidePrinciple3Desc: 'Simply create a new subfolder under effects/ or components/, add your index.html, and register the metadata entry in playground.js.',
+    guidePrinciple3Desc: 'Simply create a new subfolder under playground/effects/ or playground/components/, add your index.html, and register the metadata entry in playground.js.',
 
     // Footer
     footerBadgeNative: 'Native-First',
@@ -322,7 +322,7 @@ export const translations = {
     guidePrinciple2Title: '2. Unabhängige Ausführungsgarantie',
     guidePrinciple2Desc: 'Jeder Effekt und jede Komponente befindet sich in einem eigenen Verzeichnis. Das Öffnen der index.html in einem beliebigen Browser wird sofort und zu 100 % originalgetreu ausgeführt.',
     guidePrinciple3Title: '3. Neues Beispiel in Sekundenschnelle',
-    guidePrinciple3Desc: 'Erstellen Sie einfach einen neuen Unterordner unter effects/ oder components/, fügen Sie Ihre index.html hinzu und registrieren Sie den Eintrag in playground.js.',
+    guidePrinciple3Desc: 'Erstellen Sie einfach einen neuen Unterordner unter playground/effects/ oder playground/components/, fügen Sie Ihre index.html hinzu und registrieren Sie den Eintrag in playground.js.',
 
     // Footer
     footerBadgeNative: 'Native-First',

@@ -6,7 +6,7 @@
 
 ## 1. 原生 Web (Vanilla) 编码规范
 
-在编写或修改 `/effects/` 与 `/components/` 案例时，请遵循以下规范：
+在编写或修改 `/playground/effects/` 与 `/playground/components/` 案例时，请遵循以下规范：
 
 ### A. JavaScript 与事件处理规范
 - **统一指针事件 (Pointer Events)**：优先使用 `pointerdown`、`pointermove`、`pointerup`，而不是分别编写 `mousedown` 和 `touchstart`，以实现鼠标与触屏设备的无缝统一支持。
