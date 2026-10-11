@@ -42,7 +42,7 @@
 ```text
 /
 ├── AGENTS.md                  # 🌟 Agent 总入口指南（即本文档）
-├── .agent/                    # 🤖 自主迭代工作流的规则与数据目录（纳入 Git 版本管理）
+├── .agents/                   # 🤖 自主迭代工作流的规则与数据目录（纳入 Git 版本管理）
 │   ├── SOP/
 │   │   ├── idea-exploration-sop.md # Idea 探索 SOP（发现/筛选/深化/Ready 准入/记录/独立 PR 交付）
 │   │   └── case-development-sop.md # 案例开发 SOP（选 Ready Idea/实现/验证/归档/独立 PR 交付）
@@ -87,8 +87,8 @@
 | **修改案例 (Update)** | 调优动效/交互，或更新元数据与文件列表 | `playground/effects/<id>/*`, `src/playground.js` | [`docs/CASE_LIFECYCLE_SOP.md`](./docs/CASE_LIFECYCLE_SOP.md) (第 2 节) |
 | **重构/重命名案例** | 同步变更物理文件夹名、元数据 `id`、`path` 与 `url` | 案例目录, `src/playground.js` | [`docs/CASE_LIFECYCLE_SOP.md`](./docs/CASE_LIFECYCLE_SOP.md) (第 2 节) |
 | **删除案例 (Delete)** | 移除 `playground.js` 中 `cases` 元数据项并安全删除对应文件夹 | 案例目录, `src/playground.js` | [`docs/CASE_LIFECYCLE_SOP.md`](./docs/CASE_LIFECYCLE_SOP.md) (第 3 节) |
-| **Idea 探索（自主迭代·策划）** | 发现/筛选/深化 Idea，执行 Ready 准入，维护 Idea 池与归档，独立交付 PR（不写案例代码） | `.agent/ideas/idea-pool.md`, `.agent/ideas/idea-details/`, `.agent/ideas/completed.md`, `.agent/ideas/rejected.md` | [`.agent/SOP/idea-exploration-sop.md`](./.agent/SOP/idea-exploration-sop.md) |
-| **案例开发（自主迭代·落地）** | 从 Idea 池按序选取 **Ready** Idea，实现注册、自愈验证、状态归档，独立交付 PR | `.agent/ideas/idea-pool.md`, `playground/<分类>/<id>/`, `src/playground.js` | [`.agent/SOP/case-development-sop.md`](./.agent/SOP/case-development-sop.md) |
+| **Idea 探索（自主迭代·策划）** | 发现/筛选/深化 Idea，执行 Ready 准入，维护 Idea 池与归档，独立交付 PR（不写案例代码） | `.agents/ideas/idea-pool.md`, `.agents/ideas/idea-details/`, `.agents/ideas/completed.md`, `.agents/ideas/rejected.md` | [`.agents/SOP/idea-exploration-sop.md`](./.agents/SOP/idea-exploration-sop.md) |
+| **案例开发（自主迭代·落地）** | 从 Idea 池按序选取 **Ready** Idea，实现注册、自愈验证、状态归档，独立交付 PR | `.agents/ideas/idea-pool.md`, `playground/<分类>/<id>/`, `src/playground.js` | [`.agents/SOP/case-development-sop.md`](./.agents/SOP/case-development-sop.md) |
 | **自主迭代一体化（旧版全流程）** | 单次运行内完成 6 阶段闭环：盲区洞察 ➔ 演进策划 ➔ 精工写盘 ➔ 原子注册 ➔ 自愈验证 ➔ 自动 Commit | `docs/AUTONOMOUS_ITERATION.md`, `src/playground.js` | [`docs/AUTONOMOUS_ITERATION.md`](./docs/AUTONOMOUS_ITERATION.md) |
 | **维护工作台外壳 / ZIP** | 调整沙箱生命周期、搜索过滤或源码导出逻辑 | `src/playground.js`, `src/playground.css` | [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) |
 | **代码自检与构建验证** | 运行语法检查与编译验证，确保零构建错误 | `package.json` | [`docs/MAINTENANCE_GUIDELINES.md`](./docs/MAINTENANCE_GUIDELINES.md) |
@@ -110,14 +110,14 @@
    - 新增（Create）、修改（Update）、重命名重构（Refactor）、删除（Delete）与审查（Inspect）的标准操作流。
    - 全流程 6 项质量验收矩阵（QA Matrix）。
 
-3. 🤖 [**自主迭代工作流（`.agent/`）**](./.agent/SOP/idea-exploration-sop.md)：自主迭代已拆分为两个**职责独立、各自独立提交并创建 PR** 的 SOP，按需加载，不假定两者同次运行：
-   - 💡 [**`.agent/SOP/idea-exploration-sop.md`（Idea 探索 SOP）**](./.agent/SOP/idea-exploration-sop.md)
+3. 🤖 [**自主迭代工作流（`.agents/`）**](./.agents/SOP/idea-exploration-sop.md)：自主迭代已拆分为两个**职责独立、各自独立提交并创建 PR** 的 SOP，按需加载，不假定两者同次运行：
+   - 💡 [**`.agents/SOP/idea-exploration-sop.md`（Idea 探索 SOP）**](./.agents/SOP/idea-exploration-sop.md)
      - 适用于创意生成、Idea 发现/筛选/深化、Idea 池维护任务；只产出 Idea 与管理文档，**不写案例代码**。
      - 含统一状态机（Candidate / Refining / Ready / In Progress / Completed / Rejected）、容量参数、9 大技术域探索矩阵、重复性与实用性评审、Ready 准入四项标准、独立 Git/PR 交付闭环。
-   - 🛠️ [**`.agent/SOP/case-development-sop.md`（案例开发 SOP）**](./.agent/SOP/case-development-sop.md)
-     - 适用于案例开发与自主实现任务；严格按 [`.agent/ideas/idea-pool.md`](./.agent/ideas/idea-pool.md) 表格顺序消费 **Ready** Idea，不得绕过 Ready 门槛。
+   - 🛠️ [**`.agents/SOP/case-development-sop.md`（案例开发 SOP）**](./.agents/SOP/case-development-sop.md)
+     - 适用于案例开发与自主实现任务；严格按 [`.agents/ideas/idea-pool.md`](./.agents/ideas/idea-pool.md) 表格顺序消费 **Ready** Idea，不得绕过 Ready 门槛。
      - 含选择规则、防御性编码铁律（Canvas 缩放、Web Audio 懒激活、零 CDN、HUD 规范）、自愈验证、失败归档与独立 Git/PR 交付闭环。
-   - 📌 两个 SOP 共享 `.agent/ideas/idea-pool.md`（唯一活动索引）、`.agent/ideas/idea-details/`（详情）、`.agent/ideas/completed.md` / `.agent/ideas/rejected.md`（归档）；启动时只需读取当前任务相关的条目，无需读完全部详情。
+   - 📌 两个 SOP 共享 `.agents/ideas/idea-pool.md`（唯一活动索引）、`.agents/ideas/idea-details/`（详情）、`.agents/ideas/completed.md` / `.agents/ideas/rejected.md`（归档）；启动时只需读取当前任务相关的条目，无需读完全部详情。
    - 🧭 [**`docs/AUTONOMOUS_ITERATION.md`（旧版一体化自主迭代）**](./docs/AUTONOMOUS_ITERATION.md)：原有单次运行内“探索 ➔ 实现 ➔ 验证 ➔ 提交”的 6 阶段一体化闭环**继续保留**，与拆分后的双 SOP 并存；需要职责分离、独立交付时使用上方两个 SOP，需要单次运行贯穿全流程时使用本文件。
 
 4. 🛡️ [**`docs/MAINTENANCE_GUIDELINES.md`（维护规范与排错指南）**](./docs/MAINTENANCE_GUIDELINES.md)

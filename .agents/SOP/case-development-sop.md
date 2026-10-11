@@ -207,7 +207,7 @@ playground/<category>/<case-id>/
 - [ ] Title 胶囊必备；Micro-HUD（如有）默认折叠、齿轮 + `H`/`Esc` 可用、事件防穿透已注册。
 - [ ] `Completed` / `Rejected` 归档行格式正确、已移出活动池；Rejected 含阶段与具体原因。
 - [ ] 全部 Markdown 相对链接有效（含详情链接、归档链接）。
-- [ ] `git diff` 仅含本轮案例目录、`src/playground.js` 注册与 `.agent/` 状态/归档文档，无无关变更、无他人改动。
+- [ ] `git diff` 仅含本轮案例目录、`src/playground.js` 注册与 `.agents/` 状态/归档文档，无无关变更、无他人改动。
 - [ ] 本轮实现数量 ≤ `MAX_IMPLEMENTATIONS_PER_RUN`。
 
 ---
@@ -216,10 +216,10 @@ playground/<category>/<case-id>/
 
 PR 是预期交付物，**本地 commit 完成 ≠ 交付完成**。
 
-1. **最终变更检查**：`git status` 与 `git diff --stat` 确认改动只包含：本轮案例目录（`playground/effects|components|pages/<id>/`）、`src/playground.js`、`.agent/` 下的状态与归档文档。**精确指定路径暂存**，禁止 `git add -A` / `git add .`：
+1. **最终变更检查**：`git status` 与 `git diff --stat` 确认改动只包含：本轮案例目录（`playground/effects|components|pages/<id>/`）、`src/playground.js`、`.agents/` 下的状态与归档文档。**精确指定路径暂存**，禁止 `git add -A` / `git add .`：
 
    ```bash
-   git add playground/ src/playground.js .agent/
+   git add playground/ src/playground.js .agents/
    ```
 
    不得混入用户未提交修改或其他任务的变更。
@@ -271,7 +271,7 @@ PR 是预期交付物，**本地 commit 完成 ≠ 交付完成**。
 
 5. **CI 与 auto-merge**：
    - CI（`.github/workflows/ci.yml`，job 检查名固定为 `ci`，不可改）执行 `pnpm install --frozen-lockfile` + `lint` + `build`。
-   - auto-merge workflow 对满足以下全部条件的 PR 自动启用 GitHub auto-merge，CI 绿后自动合并并删除分支：分支名匹配 `feat/autonomous-iteration/*`、非 draft、无 `no-auto-merge` label、**不触及受保护路径**（`.github/`、`AGENTS.md`、`package.json`、锁文件、`.env*`）。纯案例 + `.agent/` 文档 PR 通常满足条件，可自动合并。
+   - auto-merge workflow 对满足以下全部条件的 PR 自动启用 GitHub auto-merge，CI 绿后自动合并并删除分支：分支名匹配 `feat/autonomous-iteration/*`、非 draft、无 `no-auto-merge` label、**不触及受保护路径**（`.github/`、`AGENTS.md`、`package.json`、锁文件、`.env*`）。纯案例 + `.agents/` 文档 PR 通常满足条件，可自动合并。
    - Agent **不擅自手动合并**；CI 红灯时定位修复后推送新提交（auto-merge 保持有效，无需重建 PR）；命中熔断护栏时转人工并在结果报告中说明。
 
 6. **结果报告**：PR 链接（或阻塞原因 + 已完成的 commit hash）、本轮实现内容（ID/路径/数量）、验证结果、归档情况与遗留问题。
@@ -282,4 +282,4 @@ PR 是预期交付物，**本地 commit 完成 ≠ 交付完成**。
 
 - **探索与深化**（产生 Candidate、补全设计、历史对比、验收标准，推进到 `Ready`）由 [idea-exploration-sop.md](./idea-exploration-sop.md) 负责。
 - **本 SOP 严格消费 `Ready`**：只做实现、验证、归档与 PR 交付，不反向产出或拔熟 Idea。
-- 两个 SOP 可**独立启动、独立交付 PR**；共享同一套状态定义（第 1 节）与同一组 `.agent/` 数据文件（[../ideas/idea-pool.md](../ideas/idea-pool.md)、`../ideas/idea-details/`、[../ideas/completed.md](../ideas/completed.md)、[../ideas/rejected.md](../ideas/rejected.md)），任一方写入后状态必须保持双边一致。
+- 两个 SOP 可**独立启动、独立交付 PR**；共享同一套状态定义（第 1 节）与同一组 `.agents/` 数据文件（[../ideas/idea-pool.md](../ideas/idea-pool.md)、`../ideas/idea-details/`、[../ideas/completed.md](../ideas/completed.md)、[../ideas/rejected.md](../ideas/rejected.md)），任一方写入后状态必须保持双边一致。

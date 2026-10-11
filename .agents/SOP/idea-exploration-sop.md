@@ -2,7 +2,7 @@
 
 > **适用场景**：AI Agent 独立或定时执行 Idea 的发现、筛选、深化、准入、记录与 PR 交付。
 >
-> **职责边界**：本 SOP 只负责探索和记录，产出高质量 Idea 与 `.agent/` 下的管理文档，**不编写任何案例代码**（不触碰 `playground/`、`src/playground.js` 等实现文件）。本 SOP 可被单独启动、独立交付 PR，不假定案例开发 SOP（[case-development-sop.md](./case-development-sop.md)）会在同一次运行中执行。
+> **职责边界**：本 SOP 只负责探索和记录，产出高质量 Idea 与 `.agents/` 下的管理文档，**不编写任何案例代码**（不触碰 `playground/`、`src/playground.js` 等实现文件）。本 SOP 可被单独启动、独立交付 PR，不假定案例开发 SOP（[case-development-sop.md](./case-development-sop.md)）会在同一次运行中执行。
 
 相关文件：
 
@@ -223,7 +223,7 @@ Candidate/Refining 只是中间状态，不是轮次产出。每轮可在任何�
 - [ ] 归档项已移出活动池；[completed.md](../ideas/completed.md) / [rejected.md](../ideas/rejected.md) 索引完整，淘汰项原因具体。
 - [ ] Markdown 表格结构正确，所有相对链接均可解析。
 - [ ] ID 唯一、无重复（含活动池、历史归档与已淘汰记录），序号连续无跳号冲突。
-- [ ] `git diff` 仅涉及 `.agent/` 下本轮 Idea 管理文档；若确有必要触及其他管理文档（如入口文档），已在 PR 摘要中说明原因。
+- [ ] `git diff` 仅涉及 `.agents/` 下本轮 Idea 管理文档；若确有必要触及其他管理文档（如入口文档），已在 PR 摘要中说明原因。
 - [ ] **未编写任何案例代码**：未改 `playground/`、`src/`、`.github/` 及任何工程配置。
 
 ---
@@ -245,14 +245,14 @@ Candidate/Refining 只是中间状态，不是轮次产出。每轮可在任何�
 
 ### 9.1 最终检查
 
-- 执行 `git status` 与 `git diff --stat`，确认变更仅限本轮 `.agent/` 管理文档。
+- 执行 `git status` 与 `git diff --stat`，确认变更仅限本轮 `.agents/` 管理文档。
 - 若必要时触及 `AGENTS.md` 等入口文档，须在 PR 摘要中显式说明（注意这会命中 auto-merge 熔断，见 9.5）。
 
 ### 9.2 分支与暂存
 
 - 从最新 `main` 创建工作分支，命名沿用：`feat/autonomous-iteration/<时间戳或主题>`，例如 `feat/autonomous-iteration/20261011-idea-exploration`。
 - **不得直接向 `main` 提交**。
-- 只精确暂存本轮相关文件（写明路径，如 `git add .agent/ideas/idea-pool.md .agent/ideas/idea-details/ .agent/ideas/rejected.md`），**禁止 `git add -A` / `git add .`**，避免带入无关改动。
+- 只精确暂存本轮相关文件（写明路径，如 `git add .agents/ideas/idea-pool.md .agents/ideas/idea-details/ .agents/ideas/rejected.md`），**禁止 `git add -A` / `git add .`**，避免带入无关改动。
 
 ### 9.3 提交信息（Conventional Commits 强化规范，中文结构化）
 
@@ -300,7 +300,7 @@ PR 标题简明（如 `docs(ideas): Idea 探索第 N 轮（新增 X / Ready Y / 
 
 - **CI 门禁**（[ci.yml](../../.github/workflows/ci.yml)）：PR 触发 `pnpm install --frozen-lockfile` + `pnpm lint` + `pnpm build`。
 - **自动合并**（[auto-merge.yml](../../.github/workflows/auto-merge.yml)）：仅对 `feat/autonomous-iteration/*` 分支、非 draft、未带 `no-auto-merge` label、且**不触及受保护路径**（`.github/`、`AGENTS.md`、`package.json`、锁文件、`.env*`）的 PR 自动启用 GitHub auto-merge；CI 全绿后自动合并并删除远端分支。
-- Idea 文档-only 变更（仅 `.agent/`）通常安全，可走自动合并；若本轮触及 `AGENTS.md` 等受保护路径，会熔断转人工审查——这是预期行为，须在结果报告中说明。
+- Idea 文档-only 变更（仅 `.agents/`）通常安全，可走自动合并；若本轮触及 `AGENTS.md` 等受保护路径，会熔断转人工审查——这是预期行为，须在结果报告中说明。
 - **Agent 不得擅自合并 PR**，除非既有规则或用户授权允许。无需轮询合并状态；若 CI 红灯，定位原因修复后推送即可（文档-only 变更一般不会引发 CI 失败，若失败多为分支/基线问题）。
 
 ### 9.6 结果报告
