@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breathing Dot · 呼吸光点与状态指示器</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Top Floating Controls (Title & Micro-HUD Dock Standard) -->
+  <div class="hud-actions">
+    <div class="hud-brand" id="hudBrand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Breathing Dot · 呼吸光点</span>
+    </div>
+    <button type="button" class="btn-tool btn-icon-only" id="btnToggleHud" title="隐藏/显示控制台 (H)" aria-label="切换控制面板">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Micro-HUD Parametric Controller Panel (Collapsed by default) -->
+  <aside class="control-dock hidden" id="controlDock" aria-label="参数调谐控制台">
+    <div class="dock-header">
+      <div class="dock-title-group">
+        <span class="dock-dot"></span>
+        <span class="dock-title">光点参数调谐控制台</span>
+      </div>
+      <span class="dock-hint">按 H / Esc 收起</span>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="dock-section">
+      <div class="section-label">快捷声学与反馈</div>
+      <div class="dock-quick-actions">
+        <button type="button" class="btn-action" id="btnToggleSound">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <span id="soundLabel">合成音效: 开启</span>
+        </button>
+        <button type="button" class="btn-action" id="btnTriggerPulse">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span>激发脉冲波</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Effect Mode Selector -->
+    <div class="dock-section">
+      <div class="section-label">呼吸动效形态切换</div>
+      <div class="mode-selector-grid" id="modeSelectorGrid">
+        <button type="button" class="mode-chip" data-mode="soft"><span class="m-dot"></span>柔光脉动</button>
+        <button type="button" class="mode-chip active" data-mode="radar"><span class="m-dot"></span>声呐雷达</button>
+        <button type="button" class="mode-chip" data-mode="multiwave"><span class="m-dot"></span>三重交错</button>
+        <button type="button" class="mode-chip" data-mode="heartbeat"><span class="m-dot"></span>双击心跳</button>
+        <button type="button" class="mode-chip" data-mode="quantum"><span class="m-dot"></span>量子耀斑</button>
+        <button type="button" class="mode-chip" data-mode="orbital"><span class="m-dot"></span>天体微轨</button>
+        <button type="button" class="mode-chip" data-mode="bio"><span class="m-dot"></span>生物荧光</button>
+        <button type="button" class="mode-chip" data-mode="beacon"><span class="m-dot"></span>灯塔信标</button>
+      </div>
+    </div>
+
+    <!-- Color Theme Chips -->
+    <div class="dock-section">
+      <div class="section-label">光点色相预设</div>
+      <div class="palette-grid" id="paletteGrid">
+        <button type="button" class="palette-chip" data-color="#10b981" data-glow="rgba(16, 185, 129, 0.75)" style="--chip-c: #10b981;">
+          <span class="chip-dot"></span>
+          <span class="chip-name">翠绿在线</span>
+        </button>
+        <button type="button" class="palette-chip active" data-color="#fbbf24" data-glow="rgba(251, 191, 36, 0.8)" style="--chip-c: #fbbf24;">
+          <span class="chip-dot"></span>
+          <span class="chip-name">金黄滚动</span>
+        </button>
+        <button type="button" class="palette-chip" data-color="#f472b6" data-glow="rgba(244, 114, 182, 0.75)" style="--chip-c: #f472b6;">
+          <span class="chip-dot"></span>
+          <span class="chip-name">霓粉揭示</span>
+        </button>
+        <button type="button" class="palette-chip" data-color="#f43f5e" data-glow="rgba(244, 63, 94, 0.85)" style="--chip-c: #f43f5e;">
+          <span class="chip-dot"></span>
+          <span class="chip-name">赤红警示</span>
+        </button>
+        <button type="button" class="palette-chip" data-color="#38bdf8" data-glow="rgba(56, 189, 248, 0.85)" style="--chip-c: #38bdf8;">
+          <span class="chip-dot"></span>
+          <span class="chip-name">深空冰青</span>
+        </button>
+        <button type="button" class="palette-chip" data-color="#a855f7" data-glow="rgba(168, 85, 247, 0.8)" style="--chip-c: #a855f7;">
+          <span class="chip-dot"></span>
+          <span class="chip-name">量子极光</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sliders -->
+    <div class="dock-section">
+      <div class="section-label">参数细调</div>
+      <div class="slider-group">
+        <div class="slider-row">
+          <label for="sliderSpeed">呼吸周期 (速度)</label>
+          <span class="slider-val" id="valSpeed">2.0s</span>
+        </div>
+        <input type="range" id="sliderSpeed" min="0.6" max="4.0" step="0.1" value="2.0">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-row">
+          <label for="sliderSize">核心基准尺寸</label>
+          <span class="slider-val" id="valSize">8px</span>
+        </div>
+        <input type="range" id="sliderSize" min="4" max="22" step="1" value="8">
+      </div>
+
+      <div class="slider-group">
+        <div class="slider-row">
+          <label for="sliderGlow">光晕扩散强度</label>
+          <span class="slider-val" id="valGlow">100%</span>
+        </div>
+        <input type="range" id="sliderGlow" min="0" max="200" step="10" value="100">
+      </div>
+    </div>
+
+    <!-- Reset -->
+    <div class="dock-footer">
+      <button type="button" class="btn-reset" id="btnResetParams">恢复默认参数</button>
+    </div>
+  </aside>
+
+  <!-- Main Showcase Container -->
+  <main class="page-container">
+    <header class="page-header">
+      <h1>呼吸光点 · 赋予界面生命的状态指示灯</h1>
+      <p>
+        精选 8 种原生 CSS 呼吸动效，支持右侧控制面板实时调参、微交互音效与一键复制 CSS 代码。
+      </p>
+    </header>
+
+    <!-- Hero Spotlight Stage -->
+    <section class="hero-stage">
+      <div class="stage-backdrop" aria-hidden="true">
+        <div class="glow-orb" id="glowOrb"></div>
+        <div class="radar-rings-ambient"></div>
+      </div>
+
+      <div class="hero-core-display">
+        <!-- Left: Standalone Macro Breathing Dot Observation Chamber -->
+        <div class="macro-dot-col">
+          <div class="macro-dot-wrapper" id="macroDotContainer" title="点击切换至下一动效">
+            <div class="breathing-dot-macro effect-radar" id="heroDot"></div>
+          </div>
+          <span class="macro-dot-tip">点击光核轮播动效</span>
+        </div>
+
+        <!-- Right: Text Combination & Action Controls -->
+        <div class="hero-content-col">
+          <div class="hero-info">
+            <div class="hero-mode-pill">
+              <span class="pill-dot"></span>
+              <span class="pill-name" id="heroModeTitle">Radar Sonar · 声呐雷达扩散</span>
+              <span class="pill-index" id="heroModeIndex">02 / 08</span>
+            </div>
+            <p class="hero-mode-desc" id="heroModeDesc">
+              类似 Scroll Reveal 右上角指示灯：实体核心恒定，外层涟漪光环按指数缓动向外扩散并淡出消失，常用于状态探活、信号广播与动态探测。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Real-World HUD Capsules Showcase -->
+    <section class="badges-showcase-section">
+      <div class="section-title-wrap">
+        <h2>真实的 HUD 胶囊徽章融合场景</h2>
+        <p>点击任意徽章，直观体验其在实际产品级右上角品牌栏与状态栏中的呈现表现</p>
+      </div>
+
+      <div class="badges-grid">
+        <div class="badge-item-card" data-target-mode="soft" data-target-color="#fbbf24">
+          <div class="badge-hud-preview">
+            <div class="hud-brand-demo">
+              <span class="hud-dot-demo effect-soft" style="--c: #fbbf24;"></span>
+              <span class="hud-title-demo">Count Up · 数字滚动</span>
+            </div>
+          </div>
+          <div class="badge-item-caption">
+            <span class="badge-pill amber">柔光脉动</span>
+            <span class="badge-context">案例右上角：数值奔涌与统计</span>
+          </div>
+        </div>
+
+        <div class="badge-item-card" data-target-mode="radar" data-target-color="#f472b6">
+          <div class="badge-hud-preview">
+            <div class="hud-brand-demo">
+              <span class="hud-dot-demo effect-radar" style="--c: #f472b6;"></span>
+              <span class="hud-title-demo">Scroll Reveal · 视口揭示</span>
+            </div>
+          </div>
+          <div class="badge-item-caption">
+            <span class="badge-pill pink">声呐单环</span>
+            <span class="badge-context">案例右上角：视口入场观察哨</span>
+          </div>
+        </div>
+
+        <div class="badge-item-card" data-target-mode="multiwave" data-target-color="#10b981">
+          <div class="badge-hud-preview">
+            <div class="hud-brand-demo">
+              <span class="hud-dot-demo effect-multiwave" style="--c: #10b981;"></span>
+              <span class="hud-title-demo">EDGE GATEWAY · 边缘节点已连接</span>
+            </div>
+          </div>
+          <div class="badge-item-caption">
+            <span class="badge-pill green">三重波纹</span>
+            <span class="badge-context">网关监控：心跳高频同步</span>
+          </div>
+        </div>
+
+        <div class="badge-item-card" data-target-mode="heartbeat" data-target-color="#f43f5e">
+          <div class="badge-hud-preview">
+            <div class="hud-brand-demo">
+              <span class="hud-dot-demo effect-heartbeat" style="--c: #f43f5e;"></span>
+              <span class="hud-title-demo">REC · 4K 60FPS 录制中</span>
+            </div>
+          </div>
+          <div class="badge-item-caption">
+            <span class="badge-pill rose">双击心跳</span>
+            <span class="badge-context">媒体捕获：防遗漏录制指示</span>
+          </div>
+        </div>
+
+        <div class="badge-item-card" data-target-mode="quantum" data-target-color="#38bdf8">
+          <div class="badge-hud-preview">
+            <div class="hud-brand-demo">
+              <span class="hud-dot-demo effect-quantum" style="--c: #38bdf8;"></span>
+              <span class="hud-title-demo">AI CORE · 神经张量推理加速</span>
+            </div>
+          </div>
+          <div class="badge-item-caption">
+            <span class="badge-pill cyan">高能耀斑</span>
+            <span class="badge-context">模型推理：高并发计算信标</span>
+          </div>
+        </div>
+
+        <div class="badge-item-card" data-target-mode="orbital" data-target-color="#a855f7">
+          <div class="badge-hud-preview">
+            <div class="hud-brand-demo">
+              <span class="hud-dot-demo effect-orbital" style="--c: #a855f7;"></span>
+              <span class="hud-title-demo">QUANTUM SYNC · 量子轨道纠缠</span>
+            </div>
+          </div>
+          <div class="badge-item-caption">
+            <span class="badge-pill violet">天体微轨</span>
+            <span class="badge-context">多路同步：双机热备校验</span>
+          </div>
+        </div>
+
+        <div class="badge-item-card" data-target-mode="bio" data-target-color="#34d399">
+          <div class="badge-hud-preview">
+            <div class="hud-brand-demo">
+              <span class="hud-dot-demo effect-bio" style="--c: #34d399;"></span>
+              <span class="hud-title-demo">DEEP SEA LAB · 深海生物观测</span>
+            </div>
+          </div>
+          <div class="badge-item-caption">
+            <span class="badge-pill green">生物荧光</span>
+            <span class="badge-context">科研传感：有机环境节律</span>
+          </div>
+        </div>
+
+        <div class="badge-item-card" data-target-mode="beacon" data-target-color="#fb923c">
+          <div class="badge-hud-preview">
+            <div class="hud-brand-demo">
+              <span class="hud-dot-demo effect-beacon" style="--c: #fb923c;"></span>
+              <span class="hud-title-demo">COASTAL TOWER · 灯塔信标广播</span>
+            </div>
+          </div>
+          <div class="badge-item-caption">
+            <span class="badge-pill amber">灯塔信标</span>
+            <span class="badge-context">远距信标：骤亮缓熄脉冲</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Inspection Panel -->
+    <section class="code-output-section">
+      <div class="code-header">
+        <div class="code-title">
+          <span class="code-badge">纯 CSS 原生实现</span>
+          <span id="currentCodeLabel">当前选中：Radar Sonar · 声呐雷达扩散</span>
+        </div>
+        <button type="button" class="btn-copy-code" id="btnCopySnippet">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span id="copySnippetBtnText">复制代码片段</span>
+        </button>
+      </div>
+      <pre class="code-block"><code id="codeOutput">/* 加载中... */</code></pre>
+    </section>
+  </main>
+
+  <!-- Bottom Hint -->
+  <div class="bottom-hint">
+    <span class="hint-dot"></span>
+    <span class="hint-msg">点击卡片切换呼吸形态 · 按 H 呼出微调控制台 · 支持一键复制 CSS 代码</span>
+  </div>
+
+  <div class="toast-popup" id="toastPopup" role="status" aria-live="polite">已复制到剪贴板！</div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

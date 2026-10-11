@@ -35,6 +35,17 @@ const rawSources = import.meta.glob(['/playground/effects/**/*', '/playground/co
       tags: ['scroll-reveal', 'intersection-observer', 'entrance-animation', 'stagger', 'fade-transition', 'reduced-motion']
     },
     {
+      id: 'breathing-dot',
+      title: 'Breathing Dot · 呼吸光点与状态指示器',
+      type: 'effect',
+      category: 'effects',
+      path: 'playground/effects/breathing-dot/',
+      url: '/playground/effects/breathing-dot/index.html',
+      description: '提取自 Count Up 柔光脉动与 Scroll Reveal 声呐雷达扩散的多形态状态指示系统：涵盖 8 种高质感原生 CSS 呼吸动效、Micro-HUD 实时调参、真实胶囊徽章展台与一键 CSS 代码提取。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['breathing-dot', 'pulse-indicator', 'radar-sonar', 'status-badge', 'micro-interaction', 'glowing-dot', 'hud-capsule', 'css-animation']
+    },
+    {
       id: 'dynamic-dock',
       title: 'Dynamic Magnification Dock · 动态鱼眼浮动坞台',
       type: 'component',
