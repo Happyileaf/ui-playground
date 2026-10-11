@@ -24,61 +24,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['count-up', 'easing', 'intersection-observer', 'tabular-nums', 'data-viz', 'reduced-motion']
     },
     {
-      id: 'popover-card',
-      title: 'Popover Card · 智能气泡卡片',
-      type: 'component',
-      category: 'components',
-      path: 'components/popover-card/',
-      url: '/components/popover-card/index.html',
-      description: '声明期望方位、实时测量视口空间的气泡卡片，空间不足自动翻转平移，方向箭头随触发点移动，外点与 Esc 关闭并完整管理焦点。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['popover', 'floating-layer', 'edge-detection', 'focus-trap', 'keyboard-nav', 'micro-interaction']
-    },
-    {
-      id: 'password-strength',
-      title: 'Password Strength · 密码强度仪表',
-      type: 'component',
-      category: 'components',
-      path: 'components/password-strength/',
-      url: '/components/password-strength/index.html',
-      description: '五规则实时打分的密码强度仪表，四段进度条按弱到极强分色，规则清单逐条打勾，明文切换与确认按钮门槛联动。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['form-control', 'password', 'strength-meter', 'validation', 'accessible', 'micro-interaction']
-    },
-    {
-      id: 'async-button',
-      title: 'Async Button · 异步状态按钮',
-      type: 'component',
-      category: 'components',
-      path: 'components/async-button/',
-      url: '/components/async-button/index.html',
-      description: 'idle / loading / success 三态按钮，旋转指示器与进度条同步推进，单任务互斥锁，Esc 取消，成功后弹性打勾并自动复位。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['async-button', 'loading-state', 'progress-bar', 'state-machine', 'form-control', 'micro-interaction']
-    },
-    {
-      id: 'floating-label',
-      title: 'Floating Label · 浮动标签',
-      type: 'component',
-      category: 'components',
-      path: 'components/floating-label/',
-      url: '/components/floating-label/index.html',
-      description: '聚焦或输入时标签收缩上浮到边框的浮动表单，下划线 scaleX 展开、文本域字数统计与轻量 Toast 校验提示，真实 label 关联读屏可用。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['floating-label', 'form-control', 'placeholder-shown', 'validation', 'accessible', 'micro-interaction']
-    },
-    {
-      id: 'ring-progress',
-      title: 'Ring Progress · 环形进度反馈',
-      type: 'component',
-      category: 'components',
-      path: 'components/ring-progress/',
-      url: '/components/ring-progress/index.html',
-      description: 'SVG stroke-dashoffset 环形进度，含缓冲轨道、模拟任务、完成态，支持在圆环上指针拖拽直接设定数值与方向键微调。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['ring-progress', 'svg', 'stroke-dashoffset', 'drag-to-set', 'form-control', 'micro-interaction']
-    },
-    {
       id: 'scroll-reveal',
       title: 'Scroll Reveal · 滚动入场揭示',
       type: 'effect',
@@ -88,39 +33,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: 'IntersectionObserver 驱动的入场系统，支持上移、缩放、左右滑入与模糊四形态，同组错峰、一次触发解除观察并尊重减弱动效。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['scroll-reveal', 'intersection-observer', 'entrance-animation', 'stagger', 'fade-transition', 'reduced-motion']
-    },
-    {
-      id: 'text-scramble',
-      title: 'Text Scramble · 字符乱码解密',
-      type: 'effect',
-      category: 'effects',
-      path: 'effects/text-scramble/',
-      url: '/effects/text-scramble/index.html',
-      description: '字符在乱码字符集中滚动后逐字定格还原的解密动效，悬停重播、按钮切换，中文方块占位保证排版零跳动并支持减弱动效。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['typography', 'text-scramble', 'decode', 'micro-interaction', 'text-effects', 'reduced-motion']
-    },
-    {
-      id: 'choice-control',
-      title: 'Choice Control · 复选单选开关控件组',
-      type: 'component',
-      category: 'components',
-      path: 'components/choice-control/',
-      url: '/components/choice-control/index.html',
-      description: '卡片式复选、单选与开关三组原生控件，自定义层弹性勾选与描边反馈，支持空格切换、方向键移动并实时汇总选择。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['checkbox', 'radio', 'toggle-switch', 'form-control', 'accessible', 'keyboard-nav']
-    },
-    {
-      id: 'speed-dial',
-      title: 'Speed Dial · 悬浮快捷操作',
-      type: 'component',
-      category: 'components',
-      path: 'components/speed-dial/',
-      url: '/components/speed-dial/index.html',
-      description: 'FAB 主按钮向上、向左或扇形弹性展开动作项，Esc 与外点收起，展开自动聚焦首个动作，支持完整键盘操作。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['speed-dial', 'floating-action', 'fab', 'spring-physics', 'keyboard-nav', 'micro-interaction']
     },
     {
       id: 'dynamic-dock',
@@ -156,17 +68,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['3d-relief', 'shallow-depth', 'flat-card', 'gold-foil', 'parallax-depth', 'collectible-card', 'gallery-switcher', 'web-audio']
     },
     {
-      id: 'topological-ribbon',
-      title: 'Topological Ribbon · 拓扑莫比乌斯织带',
-      type: 'effect',
-      category: 'effects',
-      path: 'effects/topological-ribbon/',
-      url: '/effects/topological-ribbon/index.html',
-      description: '三维参数化莫比乌斯环与拓扑多维流形织带，具备实时深度光栅化、能量流脉冲测地线与谐波共鸣合成。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['canvas', 'topology', 'mobius', 'parametric-3d', 'geodesic-flow', 'generative-art', 'web-audio']
-    },
-    {
       id: 'holographic-card',
       title: 'Holographic Specular Card · 全息金属折射卡片',
       type: 'component',
@@ -176,17 +77,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '拟真金属拉丝基底、色散全息棱镜彩箔与菲涅尔镜面反射卡片，支持 3D 触觉翻转与多种奢雅贵金属工艺。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['3d-transform', 'holographic', 'specular-reflection', 'prismatic-foil', 'metal-finish', 'card-flip']
-    },
-    {
-      id: 'origami-sheet',
-      title: 'Fluid Origami Note · 流体折纸与翻页手势',
-      type: 'component',
-      category: 'components',
-      path: 'components/origami-sheet/',
-      url: '/components/origami-sheet/index.html',
-      description: '动态流体多角卷曲折叠手势与物理撕纸便签本，具备拟真折痕阴影、弹性回弹与纯前端 Web Audio 纸张音效。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['origami', 'paper-curl', 'peel-gesture', 'tear-physics', 'spring-lerp', 'web-audio', 'interactive-note']
     },
     {
       id: 'auth',
@@ -255,17 +145,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['canvas', 'particles', 'physics', 'web-audio']
     },
     {
-      id: 'magnetic-button',
-      title: 'Magnetic Button',
-      type: 'effect',
-      category: 'effects',
-      path: 'effects/magnetic-button/',
-      url: '/effects/magnetic-button/index.html',
-      description: 'Elastic magnetic pointer pull with radial spotlight tracking and spring relaxation (Single-file demo).',
-      files: ['index.html'],
-      tags: ['pointer-events', 'spring-physics', 'single-file']
-    },
-    {
       id: 'particle-text',
       title: 'Particle Text',
       type: 'effect',
@@ -275,17 +154,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: 'Interactive rasterized canvas typography with particle scatter explosion and elastic spring recovery.',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['canvas', 'typography', 'raster-analysis', 'spring']
-    },
-    {
-      id: 'liquid-button',
-      title: 'SVG Liquid Button',
-      type: 'effect',
-      category: 'effects',
-      path: 'effects/liquid-button/',
-      url: '/effects/liquid-button/index.html',
-      description: 'Organic fluid gooey physics created with native SVG feGaussianBlur and feColorMatrix matrix filters.',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['svg-filters', 'gooey', 'liquid-motion']
     },
     {
       id: 'glitch-text',
@@ -365,28 +233,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['collision-detection', 'smart-positioning', 'micro-ui']
     },
     {
-      id: 'navigation',
-      title: 'Sliding Pill Navbar',
-      type: 'component',
-      category: 'components',
-      path: 'components/navigation/',
-      url: '/components/navigation/index.html',
-      description: 'Floating navigation bar with dynamic elastic sliding pill indicator that resizes to the active tab.',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['navigation', 'sliding-pill', 'elastic-indicator']
-    },
-    {
-      id: 'spinning-menu',
-      title: 'Circular Spinning Menu',
-      type: 'component',
-      category: 'components',
-      path: 'components/spinning-menu/',
-      url: '/components/spinning-menu/index.html',
-      description: 'Interactive circular radial menu with smooth spinning selection to bring clicked item to top position.',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['circular-menu', 'radial-navigation', 'spinning-selection', 'interactive-menu']
-    },
-    {
       id: 'spotlight-cards',
       title: 'Spotlight Border Cards · 光标聚光描边卡片',
       type: 'component',
@@ -420,17 +266,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['capsule-tabs', 'tab-navigation', 'motion-design', 'cubic-bezier', 'svg-gooey', 'spring-physics', 'web-audio', 'accessibility']
     },
     {
-      id: 'tilt-toggle-switch',
-      title: 'Spring Tilt Switch · 弹簧倾斜拨动开关',
-      type: 'component',
-      category: 'components',
-      path: 'components/tilt-toggle-switch/',
-      url: '/components/tilt-toggle-switch/index.html',
-      description: '弹簧物理驱动的 3D 倾斜拨动开关，支持指针拖拽滑控、边界回弹、Web Audio 音效开关与实时开启计数。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['spring-physics', 'toggle-switch', '3d-transform', 'pointer-events', 'form-control', 'web-audio']
-    },
-    {
       id: 'scroll-progress-bar',
       title: 'Scroll Progress · 阅读进度条与章节导航',
       type: 'component',
@@ -440,17 +275,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '顶部 scaleX 阅读进度条、右侧章节圆点滚动侦测导航与带实时百分比的回顶按钮，rAF 节流并适配减弱动效。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['scroll-progress', 'scroll-spy', 'raf-throttle', 'back-to-top', 'chapter-nav']
-    },
-    {
-      id: 'magnetic-copy-field',
-      title: 'Magnetic Copy Field · 磁吸复制输入框',
-      type: 'component',
-      category: 'components',
-      path: 'components/magnetic-copy-field/',
-      url: '/components/magnetic-copy-field/index.html',
-      description: '指针磁吸微移的一键复制字段，Clipboard API 配 execCommand 回退、复制成功闪光扫过状态与提示音反馈。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['clipboard-api', 'magnetic-hover', 'copy-to-clipboard', 'form-control', 'micro-interaction', 'web-audio']
     },
     {
       id: 'accordion-faq',
@@ -497,50 +321,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['range-slider', 'dual-thumb', 'form-control', 'pointer-capture', 'keyboard-nav', 'filter']
     },
     {
-      id: 'sortable-list',
-      title: 'Sortable List · 拖拽排序列表',
-      type: 'component',
-      category: 'components',
-      path: 'components/sortable-list/',
-      url: '/components/sortable-list/index.html',
-      description: 'Pointer Events 驱动的拖拽排序列表，FLIP 动画平滑让位、放置指示线精确定位、边缘自动滚动，并提供 Alt+↑/↓ 键盘重排与一键恢复默认顺序。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['sortable', 'drag-and-drop', 'flip-animation', 'auto-scroll', 'keyboard-nav', 'pointer-events']
-    },
-    {
-      id: 'star-rating',
-      title: 'Star Rating · 星级评分',
-      type: 'component',
-      category: 'components',
-      path: 'components/star-rating/',
-      url: '/components/star-rating/index.html',
-      description: '支持整星与半星两种精度的星级评分，悬停实时预览、弹性缩放反馈、ARIA slider 角色键盘操作，Web Audio 懒激活发出悬停滴答与确认和声。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['star-rating', 'form-control', 'half-star', 'web-audio', 'keyboard-nav', 'accessibility']
-    },
-    {
-      id: 'toast-notifications',
-      title: 'Toast Notifications · 吐司通知',
-      type: 'component',
-      category: 'components',
-      path: 'components/toast-notifications/',
-      url: '/components/toast-notifications/index.html',
-      description: '成功/信息/警告/错误四类型吐司通知系统，右上角堆叠滑入、倒计时进度条、悬停暂停计时、内联操作按钮即时处理，支持 Esc 关闭与一键清空。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['toast', 'notifications', 'countdown-progress', 'pause-on-hover', 'action-buttons', 'accessibility']
-    },
-    {
-      id: 'carousel',
-      title: 'Swipe Carousel · 弹性视差轮播',
-      type: 'component',
-      category: 'components',
-      path: 'components/carousel/',
-      url: '/components/carousel/index.html',
-      description: 'Pointer Events 拖拽切换的轮播组件，跟手位移配合边缘阻尼、相邻幻灯片多层视差、自动播放悬停暂停，并支持指示点、箭头按钮与键盘左右方向键控制。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['carousel', 'drag-swipe', 'parallax', 'autoplay', 'keyboard-nav', 'micro-interaction']
-    },
-    {
       id: 'drawer',
       title: 'Slide Drawer · 弹性四向抽屉',
       type: 'component',
@@ -550,17 +330,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '支持上下左右四个方向滑出的抽屉面板，带高斯模糊遮罩、Tab 焦点陷阱循环、Esc 关闭、背景滚动锁定，关闭后焦点自动归还触发按钮。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['drawer', 'slide-panel', 'focus-trap', 'scroll-lock', 'four-direction', 'accessibility']
-    },
-    {
-      id: 'pagination',
-      title: 'Pagination · 智能省略分页',
-      type: 'component',
-      category: 'components',
-      path: 'components/pagination/',
-      url: '/components/pagination/index.html',
-      description: '大数据集分页导航，页码过多时智能插入首尾与省略号，支持每页条数切换、跳转指定页、边界按钮禁用态，以及方向键与 Home/End 键盘翻页。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['pagination', 'smart-ellipsis', 'jump-to-page', 'page-size', 'keyboard-nav', 'navigation']
     },
     {
       id: 'otp-input',
@@ -574,50 +343,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['otp-input', 'one-time-code', 'auto-advance', 'paste-fill', 'form-control', 'verification']
     },
     {
-      id: 'skeleton-shimmer',
-      title: 'Skeleton Shimmer · 扫光骨架屏',
-      type: 'component',
-      category: 'components',
-      path: 'components/skeleton-shimmer/',
-      url: '/components/skeleton-shimmer/index.html',
-      description: '与真实布局结构一致的内容占位块配合循环扫光动画，模拟异步请求加载，加载完成后真实内容淡入切换且页面零跳动，可一键关闭扫光动画。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['skeleton', 'shimmer', 'loading-state', 'placeholder', 'fade-transition', 'micro-interaction']
-    },
-    {
-      id: 'multi-step-form',
-      title: 'Multi-Step Form · 分步表单',
-      type: 'component',
-      category: 'components',
-      path: 'components/multi-step-form/',
-      url: '/components/multi-step-form/index.html',
-      description: '三步工作区分步表单，顶部进度点指示当前步骤，逐页校验姓名、邮箱、角色、方案与协议，错误字段内联提示，末步汇总确认，提交后展示成功态并可重新填写。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['multi-step-form', 'wizard', 'form-validation', 'stepper', 'summary', 'form-control']
-    },
-    {
-      id: 'tags-input',
-      title: 'Tags Input · 标签输入',
-      type: 'component',
-      category: 'components',
-      path: 'components/tags-input/',
-      url: '/components/tags-input/index.html',
-      description: '邮箱邀请标签输入框，回车或逗号成签、退格删除末签、整段粘贴批量解析，自动校验邮箱格式与去重，联系人联想列表支持方向键高亮选择，并实时统计人数上限。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['tags-input', 'email-validation', 'autocomplete', 'bulk-paste', 'form-control', 'keyboard-nav']
-    },
-    {
-      id: 'lightbox',
-      title: 'Lightbox Gallery · 全屏灯箱',
-      type: 'component',
-      category: 'components',
-      path: 'components/lightbox/',
-      url: '/components/lightbox/index.html',
-      description: '纯 CSS 渐变场景的零图片画廊，点击缩略图进入全屏灯箱，左右按钮与方向键循环切换、Esc 与点击遮罩关闭，面板内 Tab 焦点陷阱，关闭后焦点自动归还缩略图。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['lightbox', 'gallery', 'focus-trap', 'keyboard-nav', 'zero-images', 'overlay']
-    },
-    {
       id: 'color-picker',
       title: 'Color Studio · HSL 色彩工作台',
       type: 'component',
@@ -627,17 +352,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: 'HSL 三滑块联动原生取色器，实时输出 HEX、RGB、HSL 三种色值并一键复制，12 色预设板快速起稿，另据色相自动生成互补、邻近、三角与明暗共 7 种和谐配色。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['color-picker', 'hsl', 'color-harmony', 'copy-to-clipboard', 'presets', 'form-control']
-    },
-    {
-      id: 'date-picker',
-      title: 'Date Picker · 键盘日历选择器',
-      type: 'component',
-      category: 'components',
-      path: 'components/date-picker/',
-      url: '/components/date-picker/index.html',
-      description: '弹出式日历选择器，过去日期自动禁用，今天与选中态清晰区分；完整键盘网格支持方向键移动、翻月翻年、Home/End 跳首尾、Enter 确认，外部点击关闭并归还焦点。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['date-picker', 'calendar', 'keyboard-nav', 'disabled-dates', 'focus-management', 'form-control']
     },
     {
       id: 'combo-box',
@@ -673,17 +387,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['file-dropzone', 'drag-and-drop', 'file-upload', 'thumbnail', 'progress', 'validation', 'form-control']
     },
     {
-      id: 'copy-button',
-      title: 'Copy Button · 一键复制按钮组',
-      type: 'component',
-      category: 'components',
-      path: 'components/copy-button/',
-      url: '/components/copy-button/index.html',
-      description: '覆盖命令、密钥与链接场景的一键复制按钮组，Clipboard API 配 execCommand 回退，图标 morph 对勾与成功吐司反馈，密钥默认模糊悬停揭示。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['copy-button', 'clipboard-api', 'copy-to-clipboard', 'icon-morph', 'toast', 'micro-interaction']
-    },
-    {
       id: 'split-pane',
       title: 'Split Pane · 可调节分栏面板',
       type: 'component',
@@ -704,17 +407,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: 'Ctrl 或 Cmd + K 唤出的键盘命令面板，模糊检索 15 个分组动作，方向键循环导航、回车执行、Esc 关闭，支持匹配高亮、快捷键提示与最近使用记录。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['command-palette', 'keyboard-nav', 'fuzzy-search', 'developer-tools', 'accessible', 'micro-interaction']
-    },
-    {
-      id: 'data-grid',
-      title: 'Data Grid · 数据表格',
-      type: 'component',
-      category: 'components',
-      path: 'components/data-grid/',
-      url: '/components/data-grid/index.html',
-      description: '承载 42 条记录的数据表格，列头点击排序、部门筛选与关键词搜索、跨页多选与批量操作、每页条数切换与智能省略号分页，中文本地化排序。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['data-grid', 'table', 'sorting', 'filtering', 'pagination', 'multi-select', 'data-viz']
     },
     {
       id: 'signature-pad',
@@ -748,28 +440,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '纯 CSS 动画驱动的 Logo 无缝跑马灯，轨道复制并平移恰好 50% 消除循环跳跃，悬停暂停、方向切换、边缘渐隐遮罩并支持减弱动态效果偏好。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['marquee', 'logo-wall', 'css-animation', 'infinite-scroll', 'seamless-loop', 'reduced-motion']
-    },
-    {
-      id: 'number-stepper',
-      title: 'Number Stepper · 数字步进器',
-      type: 'component',
-      category: 'components',
-      path: 'components/number-stepper/',
-      url: '/components/number-stepper/index.html',
-      description: '电商数量、重量、金额与人数四组数字步进器，Pointer Events 长按自加速连续增减，边界自动禁用并抖动提示，支持方向键、PageUp/PageDown、Home/End 与失焦提交。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['number-stepper', 'spinbutton', 'form-control', 'long-press', 'keyboard-nav', 'quantity-input']
-    },
-    {
-      id: 'inline-alert',
-      title: 'Inline Alert · 内联通知条',
-      type: 'component',
-      category: 'components',
-      path: 'components/inline-alert/',
-      url: '/components/inline-alert/index.html',
-      description: '信息、成功、警告、危险四种语义通知条，role=alert 与 aria-live 正确播报，支持操作按钮反馈、关闭滑出收起与入场动画，并可通过 JS 动态插入即时通知。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['inline-alert', 'banner', 'role-alert', 'aria-live', 'feedback', 'notification']
     },
     {
       id: 'vertical-timeline',
@@ -827,17 +497,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['tree-view', 'file-tree', 'wai-aria', 'keyboard-nav', 'search-filter', 'navigation']
     },
     {
-      id: 'swipe-list',
-      title: 'Swipe List · 滑动操作列表',
-      type: 'component',
-      category: 'components',
-      path: 'components/swipe-list/',
-      url: '/components/swipe-list/index.html',
-      description: '移动端经典滑动操作列表：右滑露出标记完成、左滑露出删除，超过阈值自动吸附、不足回弹，同时只允许一个条目展开；删除带折叠动画与五秒撤销 Toast，Pointer Events 统一鼠标与触屏。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['swipe-list', 'gesture', 'pointer-events', 'threshold', 'undo', 'mobile-pattern']
-    },
-    {
       id: 'infinite-feed',
       title: 'Infinite Feed · 无限加载信息流',
       type: 'component',
@@ -847,28 +506,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '基于 IntersectionObserver 的无限信息流：哨兵提前进入视口即模拟异步请求，先展示贴近真实布局的骨架屏，数据返回后卡片入场，支持点赞、关注与失败重试，加载全部内容后展示明确终态。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['infinite-scroll', 'intersection-observer', 'skeleton', 'lazy-loading', 'feed', 'retry']
-    },
-    {
-      id: 'text-expand',
-      title: 'Text Expand · 长文展开收起',
-      type: 'component',
-      category: 'components',
-      path: 'components/text-expand/',
-      url: '/components/text-expand/index.html',
-      description: '渐进式披露的长文卡片：折叠态显示三行摘要与渐变遮罩，展开时通过 grid-template-rows 0fr↔1fr 实现高度自适应过渡，无需手动测量尺寸；支持全部展开/收起、收起回滚视口，短内容自动隐藏开关。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['text-expand', 'collapse', 'grid-rows', 'progressive-disclosure', 'article', 'reduced-motion']
-    },
-    {
-      id: 'cascader',
-      title: 'Cascader · 级联选择',
-      type: 'component',
-      category: 'components',
-      path: 'components/cascader/',
-      url: '/components/cascader/index.html',
-      description: '多层级联选择面板：逐级展开下钻、面包路径实时预览，叶子节点勾选后回显完整路径，支持方向键上下移动、右键深入、左键回退的完整键盘导航与点击遮罩外部关闭。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['cascader', 'cascade-select', 'multi-level', 'keyboard-nav', 'form-control', 'tree-select']
     },
     {
       id: 'image-cropper',
@@ -893,28 +530,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['guided-tour', 'spotlight', 'onboarding', 'overlay', 'focus-management', 'walkthrough']
     },
     {
-      id: 'date-range-picker',
-      title: 'Date Range Picker · 日期区间选择',
-      type: 'component',
-      category: 'components',
-      path: 'components/date-range-picker/',
-      url: '/components/date-range-picker/index.html',
-      description: '双月并排日期区间选择器：两次点击确定起止日期，悬停实时预览高亮区间，内置近 7/30/90 天与本月快捷预设，确认后回显晚数摘要，支持月份切换、键盘操作与点击外部关闭。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['date-range', 'calendar', 'date-picker', 'range-select', 'preset', 'keyboard-nav']
-    },
-    {
-      id: 'slide-to-confirm',
-      title: 'Slide to Confirm · 滑动确认',
-      type: 'component',
-      category: 'components',
-      path: 'components/slide-to-confirm/',
-      url: '/components/slide-to-confirm/index.html',
-      description: '防误触滑动确认控件：拖拽圆形滑块推进进度条，松手未满阈值即带弹性弹簧回弹，滑到终点自动吸附锁定并切换完成打勾态，Web Animations API 驱动补间，支持 Enter/Space 键盘确认与一键重置。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['slide-to-confirm', 'gesture', 'spring-back', 'intent-guard', 'web-animations', 'pointer-events']
-    },
-    {
       id: 'like-button',
       title: 'Like Button · 双击点赞迸发',
       type: 'component',
@@ -937,17 +552,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['avatar-stack', 'hover-card', 'edge-aware', 'tooltip', 'team', 'focus-management']
     },
     {
-      id: 'stagger-headline',
-      title: 'Stagger Headline · 逐词上滑标题',
-      type: 'effect',
-      category: 'effects',
-      path: 'effects/stagger-headline/',
-      url: '/effects/stagger-headline/index.html',
-      description: '标题逐字遮罩上滑入场：文本自动拆分为单字内层元素并按错峰延迟依次升起，强调字高亮呼吸，支持重播按钮、滚动进入视口再次播放，减少动态效果时直接呈现终态。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['stagger-headline', 'text-reveal', 'mask', 'stagger', 'intersection-observer', 'kinetic-type']
-    },
-    {
       id: 'menu-morph',
       title: 'Menu Morph · 汉堡形变导航',
       type: 'component',
@@ -957,116 +561,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '汉堡按钮三条线形变为关闭图标，全屏遮罩自顶部扫入，导航链接按索引错峰遮罩上滑进入；支持点击遮罩、Esc 关闭、Tab 焦点循环与焦点还原，减少动态效果时即时呈现。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['menu-morph', 'hamburger', 'fullscreen-nav', 'stagger', 'focus-trap', 'morph']
-    },
-    {
-      id: 'confirm-dialog',
-      title: 'Confirm Dialog · 危险操作确认',
-      type: 'component',
-      category: 'components',
-      path: 'components/confirm-dialog/',
-      url: '/components/confirm-dialog/index.html',
-      description: '危险删除双重防误触：先输入确认词 DELETE 解锁，再长按按钮沿环形进度蓄能完成确认，删除后提供 6 秒撤销窗口 Toast；支持 Esc 关闭、焦点陷阱与触控指针事件。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['confirm-dialog', 'destructive', 'hold-to-confirm', 'type-to-confirm', 'undo-toast', 'focus-trap']
-    },
-    {
-      id: 'emoji-picker',
-      title: 'Emoji Picker · 表情选择器',
-      type: 'component',
-      category: 'components',
-      path: 'components/emoji-picker/',
-      url: '/components/emoji-picker/index.html',
-      description: '输入框旁的表情选择浮层：内置 8 分类约百枚表情与中英文搜索，光标位置插入、方向键网格漫游、视口边缘翻转定位，Ctrl+. 快捷唤起。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['emoji-picker', 'popover', 'contenteditable', 'search', 'keyboard-nav', 'caret-range']
-    },
-    {
-      id: 'flip-countdown',
-      title: 'Flip Countdown · 翻页倒计时',
-      type: 'component',
-      category: 'components',
-      path: 'components/flip-countdown/',
-      url: '/components/flip-countdown/index.html',
-      description: '分裂翻牌机械质感倒计时：上下半牌 3D 依次翻转，支持分钟预设与跨年目标时刻、空格开始暂停、R 复位，结束时播放三音提示铃声。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['flip', 'countdown', '3d-transform', 'web-animations', 'timer', 'web-audio']
-    },
-    {
-      id: 'emoji-rating',
-      title: 'Emoji Rating · 表情满意度评分',
-      type: 'component',
-      category: 'components',
-      path: 'components/emoji-rating/',
-      url: '/components/emoji-rating/index.html',
-      description: '五级表情满意度组件：灰阶到彩色的悬停点亮、渐变进度条联动、打勾式选中弹跳，3D 翻转展示成功态，支持数字键与方向键评分。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['rating', 'emoji', 'feedback', '3d-flip', 'keyboard-nav', 'radiogroup']
-    },
-    {
-      id: 'progress-steps',
-      title: 'Progress Steps · 步骤进度条',
-      type: 'component',
-      category: 'components',
-      path: 'components/progress-steps/',
-      url: '/components/progress-steps/index.html',
-      description: '结算流程步骤条：连线弹性生长、节点对勾描边动画、当前节点光环聚焦，点击已完成节点可回退，面板随步骤切换弹入。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['stepper', 'progress', 'checkmark-draw', 'accessible', 'keyboard-nav']
-    },
-    {
-      id: 'cookie-consent',
-      title: 'Cookie Consent · 授权同意横幅',
-      type: 'component',
-      category: 'components',
-      path: 'components/cookie-consent/',
-      url: '/components/cookie-consent/index.html',
-      description: 'GDPR 风格 Cookie 授权横幅：底部滑入毛玻璃卡片，支持全部接受、仅必要与四类偏好开关自定义，localStorage 持久化选择并以 Toast 反馈。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['cookie-consent', 'gdpr', 'banner', 'toggle-switch', 'localstorage', 'toast']
-    },
-    {
-      id: 'theme-toggle',
-      title: 'Theme Toggle · 日夜主题切换',
-      type: 'component',
-      category: 'components',
-      path: 'components/theme-toggle/',
-      url: '/components/theme-toggle/index.html',
-      description: '太阳与月亮图标形变切换的整站日夜主题，色彩平滑过渡，读取系统偏好初始化并通过 localStorage 持久化用户选择。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['theme-toggle', 'dark-mode', 'icon-morph', 'color-scheme', 'localstorage', 'micro-interaction']
-    },
-    {
-      id: 'flip-card',
-      title: 'Flip Card · 3D 翻转卡片',
-      type: 'component',
-      category: 'components',
-      path: 'components/flip-card/',
-      url: '/components/flip-card/index.html',
-      description: '点击或键盘 Enter/空格翻转的 3D 卡片，正面概览、背面详情与操作，perspective 与 backface-visibility 构造立体翻面。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['flip-card', '3d-transform', 'card-flip', 'keyboard-nav', 'micro-interaction', 'accessibility']
-    },
-    {
-      id: 'popconfirm',
-      title: 'Popconfirm · 气泡二次确认',
-      type: 'component',
-      category: 'components',
-      path: 'components/popconfirm/',
-      url: '/components/popconfirm/index.html',
-      description: '就地弹出的轻量二次确认气泡，四方位期望与视口空间不足自动翻转，箭头随触发点移动，Esc 取消、外点关闭并循环管理焦点。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['popconfirm', 'floating-layer', 'edge-detection', 'focus-management', 'destructive', 'keyboard-nav']
-    },
-    {
-      id: 'sparkline-chart',
-      title: 'Sparkline Chart · SVG 迷你走势图',
-      type: 'component',
-      category: 'components',
-      path: 'components/sparkline-chart/',
-      url: '/components/sparkline-chart/index.html',
-      description: '仪表盘卡片用迷你走势图，进入视口描边绘制入场与数字爬升，悬停十字线、高亮点与数值提示，纯 SVG 渐变面积零外部资源。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['sparkline', 'svg', 'data-viz', 'line-chart', 'intersection-observer', 'tooltip', 'count-up']
     },
     {
       id: 'top-loading-bar',
@@ -1089,17 +583,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '顶栏铃铛驱动的通知下拉中心，未读徽标计数、全部/未读筛选、单条与一键已读，外点与 Esc 关闭并回收焦点，动画状态全程克制。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['notification', 'dropdown', 'badge', 'filter', 'focus-management', 'keyboard-nav', 'accessibility']
-    },
-    {
-      id: 'image-hotspots',
-      title: 'Image Hotspots · 图片热点标注',
-      type: 'component',
-      category: 'components',
-      path: 'components/image-hotspots/',
-      url: '/components/image-hotspots/index.html',
-      description: '可交互的图片热点标注，脉冲光点唤起探索，气泡靠近视口边缘自动翻转避让，圆点缩略导航与方向键同步浏览，纯 CSS 渐变场景零图片资源。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['hotspot', 'image-annotation', 'edge-detection', 'tooltip', 'keyboard-nav', 'accessibility']
     },
     {
       id: 'contribution-graph',
@@ -1135,28 +618,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['kanban', 'drag-and-drop', 'pointer-events', 'sortable', 'keyboard-nav', 'aria-live', 'accessibility']
     },
     {
-      id: 'idle-timeout-warning',
-      title: 'Idle Timeout Warning · 闲置超时预警',
-      type: 'component',
-      category: 'components',
-      path: 'components/idle-timeout-warning/',
-      url: '/components/idle-timeout-warning/index.html',
-      description: '安全敏感站点的会话闲置预警：指针、键盘、滚轮等操作实时续期，进入宽限期后环形倒计时并逐级变红，Esc 或按钮立即续期，超时切换登出态，支持 10/20/40 秒阈值模拟。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['session', 'security', 'countdown', 'dialog', 'raf', 'aria-live', 'accessibility']
-    },
-    {
-      id: 'mention-input',
-      title: 'Mention Input · @提及输入',
-      type: 'component',
-      category: 'components',
-      path: 'components/mention-input/',
-      url: '/components/mention-input/index.html',
-      description: '评论区 @提及输入框：光标前文本正则触发成员菜单，中英文昵称即时过滤，方向键与 Esc 完整键控，选中后以不可编辑胶囊插入，发布生成带提及高亮的预览卡片。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['mention', 'contenteditable', 'autocomplete', 'selection', 'keyboard-nav', 'listbox', 'accessibility']
-    },
-    {
       id: 'resizable-table',
       title: 'Resizable Table · 列宽可调数据表',
       type: 'component',
@@ -1166,17 +627,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '后台常见的列宽可调数据表：Pointer Capture 拖拽表头手柄、双击复位，键盘方向键以 8px 步进微调；点击表头排序、关键词过滤，粘性表头配合状态胶囊与进度条展示 12 行任务数据。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['table', 'resizable', 'sortable', 'pointer-events', 'data', 'keyboard-nav', 'sticky']
-    },
-    {
-      id: 'keyboard-shortcut-hint',
-      title: 'Keyboard Shortcut Hint · 快捷键录制提示',
-      type: 'component',
-      category: 'components',
-      path: 'components/keyboard-shortcut-hint/',
-      url: '/components/keyboard-shortcut-hint/index.html',
-      description: '设置页快捷键管理：键帽化展示全部绑定，点击动作进入录制区，实时捕获组合键，缺少修饰键时提示、与其他动作冲突时阻止保存，支持清除绑定与 Esc 取消，真实按下组合键高亮对应动作。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['keyboard', 'shortcut', 'key-capture', 'settings', 'conflict', 'keycap', 'accessibility']
     },
     {
       id: 'rich-text-toolbar',
@@ -1190,17 +640,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       tags: ['rich-text', 'contenteditable', 'toolbar', 'execCommand', 'dropdown', 'selection', 'editor']
     },
     {
-      id: 'back-to-top',
-      title: 'Back To Top · 回到顶部悬浮按钮',
-      type: 'component',
-      category: 'components',
-      path: 'components/back-to-top/',
-      url: '/components/back-to-top/index.html',
-      description: '长文页面右下角的圆形回顶按钮，SVG 环形进度实时呈现阅读百分比，越过阈值淡入上浮，点击平滑回顶；rAF 节流滚动、reduced-motion 降级与完整焦点样式。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['back-to-top', 'scroll', 'reading-progress', 'svg', 'smooth-scroll', 'micro-interaction', 'accessible']
-    },
-    {
       id: 'watermark',
       title: 'Watermark Guard · 防泄密水印',
       type: 'component',
@@ -1210,28 +649,6 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
       description: '机密文档页的全屏平铺水印：Canvas 单元旋转绘制并 dataURL 平铺，文字、透明度、字号、角度可调且输入防抖；MutationObserver 监听删除与篡改，1 秒内自动重绘自愈。',
       files: ['index.html', 'style.css', 'script.js'],
       tags: ['watermark', 'canvas', 'security', 'mutation-observer', 'anti-tamper', 'dpr', 'accessible']
-    },
-    {
-      id: 'scrollspy-nav',
-      title: 'Scrollspy Nav · 锚点目录导航',
-      type: 'component',
-      category: 'components',
-      path: 'components/scrollspy-nav/',
-      url: '/components/scrollspy-nav/index.html',
-      description: '技术文档页右侧粘性目录：IntersectionObserver 结合滚动方向精确高亮当前章节，指示条与位移反馈，平滑锚点跳转同步 hash，移动端降级下拉选择，顶部附阅读进度条。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['scrollspy', 'anchor-nav', 'intersection-observer', 'documentation', 'smooth-scroll', 'sticky', 'accessibility']
-    },
-    {
-      id: 'transfer-list',
-      title: 'Transfer List · 权限穿梭框',
-      type: 'component',
-      category: 'components',
-      path: 'components/transfer-list/',
-      url: '/components/transfer-list/index.html',
-      description: '项目成员分配穿梭框：双列表搜索过滤、全选半选、勾选/批量/双击四种穿梭方式，单状态源驱动渲染并保留焦点，底部成员胶囊联动保存的 loading 与成功播报。',
-      files: ['index.html', 'style.css', 'script.js'],
-      tags: ['transfer', 'dual-list', 'checkbox', 'indeterminate', 'search', 'permissions', 'accessible']
     },
     {
       id: 'virtual-list',

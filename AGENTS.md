@@ -49,16 +49,15 @@
 │   └── MAINTENANCE_GUIDELINES.md # 维护规范、防 AI Slop 审美标准与排错指南
 ├── effects/                   # 视觉与物理动画特效案例库 (100% 纯原生)
 │   ├── fireworks/             # Canvas 烟花粒子与 Web Audio 音效
-│   ├── magnetic-button/       # 弹性磁吸按钮 (单文件演示)
 │   ├── particle-text/         # 文本光栅化粒子解构与弹性复原
-│   ├── liquid-button/         # SVG 粘滞滤镜流动按钮
+│   ├── count-up/              # 数字滚动爬升特效
 │   └── cursor-follow/         # 多层 Lerp 缓动跟随光标
 ├── components/                # 交互式 UI 组件案例库 (100% 纯原生)
 │   ├── button/                # 现代按钮系统 (波纹/炫光/霓虹/毛玻璃)
 │   ├── card/                  # 3D 视差透视卡片与全息光影
 │   ├── modal/                 # 原生 <dialog> 弹窗与高斯模糊遮罩
 │   ├── tooltip/               # 智能边缘碰撞检测提示框
-│   └── navigation/            # 弹性滑动胶囊导航栏
+│   └── drawer/                # 弹性四向滑出抽屉与焦点陷阱
 ├── src/                       # 工作台外壳核心代码
 │   ├── playground.js          # 总案例元数据、状态机、iframe 沙箱与 ZIP 打包器
 │   └── playground.css         # 暗黑风格工作台样式与代码高亮主题
