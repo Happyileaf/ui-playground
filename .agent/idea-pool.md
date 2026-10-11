@@ -15,4 +15,13 @@
 
 | ID | 名称 | 状态 | 分类 | 详情 |
 |---|---|---|---|---|
-| _（空池：尚无 Idea。新增时按 `IDEA-001` 起顺序分配 ID，ID 唯一且稳定，永不重新分配）_ | | | | |
+| IDEA-001 | Toast 通知系统（Toast & Snackbar） | Ready | components | [./idea-details/IDEA-001.md](./idea-details/IDEA-001.md) |
+| IDEA-002 | 标签输入芯片（Tag Input Chips） | Ready | components | [./idea-details/IDEA-002.md](./idea-details/IDEA-002.md) |
+| IDEA-003 | 滚动驱动叙事（Scroll-Driven Storytelling） | Ready | effects | [./idea-details/IDEA-003.md](./idea-details/IDEA-003.md) |
+| IDEA-004 | SVG 路径描边绘制动效（SVG Path Draw） | Ready | effects | [./idea-details/IDEA-004.md](./idea-details/IDEA-004.md) |
+| IDEA-005 | 明暗主题切换（Theme Toggle） | Ready | components | [./idea-details/IDEA-005.md](./idea-details/IDEA-005.md) |
+| IDEA-006 | 翻牌时钟（Flip Clock） | Ready | components | [./idea-details/IDEA-006.md](./idea-details/IDEA-006.md) |
+| IDEA-007 | 无障碍轮播（Accessible Carousel） | Refining | components | [./idea-details/IDEA-007.md](./idea-details/IDEA-007.md) |
+| IDEA-008 | 步进音序器（Step Sequencer） | Refining | effects | [./idea-details/IDEA-008.md](./idea-details/IDEA-008.md) |
+| IDEA-009 | 分页器（Pagination） | Candidate | components | [./idea-details/IDEA-009.md](./idea-details/IDEA-009.md) |
+| IDEA-010 | 数据仪表盘页（Analytics Dashboard Page） | Candidate | pages | [./idea-details/IDEA-010.md](./idea-details/IDEA-010.md) |
