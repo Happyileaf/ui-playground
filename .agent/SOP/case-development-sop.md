@@ -2,7 +2,7 @@
 
 > **适用场景**：AI Agent 独立或定时运行，从 Idea 池选取状态为 `Ready` 的 Idea，完成案例实现、验证、归档，并独立交付 PR。
 >
-> **边界声明**：本 SOP **不探索新 Idea**、不做选题评分、不绕过 Ready 门槛；可单独启动，不假定 Idea 探索 SOP（[idea-exploration.md](./idea-exploration.md)）同次运行。本 SOP 只消费已就绪的 Idea，产出可合并的案例代码 PR。
+> **边界声明**：本 SOP **不探索新 Idea**、不做选题评分、不绕过 Ready 门槛；可单独启动，不假定 Idea 探索 SOP（[idea-exploration-sop.md](./idea-exploration-sop.md)）同次运行。本 SOP 只消费已就绪的 Idea，产出可合并的案例代码 PR。
 
 ---
 
@@ -40,7 +40,7 @@ Idea 状态机与 Idea 探索 SOP **完全一致**，两边对同一状态的含
 
 **容量与 ID 规则**：
 
-- 活动池统计一律以 [../idea-pool.md](../idea-pool.md) 表格为准。
+- 活动池统计一律以 [../ideas/idea-pool.md](../ideas/idea-pool.md) 表格为准。
 - `Completed` / `Rejected` 必须移出活动池并归档，不再占用容量。
 - Idea ID 一经分配永久唯一、稳定，**不重新分配、不复用**。
 
@@ -49,7 +49,7 @@ Idea 状态机与 Idea 探索 SOP **完全一致**，两边对同一状态的含
 ## 2. Idea 选择规则
 
 1. **用户明确指定某 Idea**：优先检查指定项。指定项**必须处于 `Ready`** 才能开发；若处于其他状态（含不存在），说明原因后结束本轮，不得绕过门槛、不得替用户提升状态。
-2. **用户未指定**：严格按 [../idea-pool.md](../idea-pool.md) 表格**自上而下选取第一个 `Ready`**。表格行顺序即默认开发优先级，不引入额外评分、排序或偏好机制。
+2. **用户未指定**：严格按 [../ideas/idea-pool.md](../ideas/idea-pool.md) 表格**自上而下选取第一个 `Ready`**。表格行顺序即默认开发优先级，不引入额外评分、排序或偏好机制。
 3. **池中没有 `Ready`**：立即结束本轮——不临时生成 Idea、不擅自提升 `Candidate` / `Refining`、不制造空提交或空 PR。
 4. 单轮开发数量不超过 `MAX_IMPLEMENTATIONS_PER_RUN`；完成一个（含判失败并归档）再处理下一个，直到达上限或池中再无 `Ready`。
 
@@ -60,17 +60,17 @@ Idea 状态机与 Idea 探索 SOP **完全一致**，两边对同一状态的含
 ### 步骤 1：开工前检查
 
 - 执行 `git status` 检查工作区与当前分支：工作区存在**他人未提交变更**时不得覆盖或混入本轮提交，应先报告并停止。
-- 阅读 [../idea-pool.md](../idea-pool.md)，按第 2 节规则确定本轮候选；确认本轮数量上限 `MAX_IMPLEMENTATIONS_PER_RUN` 与用户是否有指定项。
+- 阅读 [../ideas/idea-pool.md](../ideas/idea-pool.md)，按第 2 节规则确定本轮候选；确认本轮数量上限 `MAX_IMPLEMENTATIONS_PER_RUN` 与用户是否有指定项。
 - 总纲遵循 [../../AGENTS.md](../../AGENTS.md) 的案例独立性黄金法则。
 
 ### 步骤 2：读取 Idea 详情
 
-完整读取所选 Idea 的详情文档 `../idea-details/IDEA-xxx.md`，逐条理解：创意概述、预期展示效果、动态与交互、核心亮点、历史案例对比、**实现约束**与**验收标准**。验收标准是后续步骤 6 的判定依据。
+完整读取所选 Idea 的详情文档 `../ideas/idea-details/IDEA-xxx.md`，逐条理解：创意概述、预期展示效果、动态与交互、核心亮点、历史案例对比、**实现约束**与**验收标准**。验收标准是后续步骤 6 的判定依据。
 
 ### 步骤 3：认领（Ready → In Progress）
 
 - 将详情文档状态改为 `In Progress`，更新「更新时间」并在「处理记录」追加一条认领记录（时间、动作、认领轮次）。
-- 同步更新 [../idea-pool.md](../idea-pool.md) 该行状态。
+- 同步更新 [../ideas/idea-pool.md](../ideas/idea-pool.md) 该行状态。
 - 状态文件变更与后续案例代码在**同一轮提交、同一 PR** 交付，无需单独提前提交（也可先暂存，最终单提交即可）。
 
 ### 步骤 4：实现案例
@@ -145,8 +145,8 @@ playground/<category>/<case-id>/
 ### 步骤 7：验收通过（In Progress → Completed）
 
 - 更新详情文档：状态 `Completed`、更新时间、处理记录（含最终案例路径、PR 链接，PR 创建后补登）。
-- 从 [../idea-pool.md](../idea-pool.md) **删除该行**。
-- 按 [../completed.md](../completed.md) 既有表格格式追加归档行：ID、名称、分类、完成结果（案例路径 / PR）、完成时间、详情链接（`./idea-details/IDEA-xxx.md`）。
+- 从 [../ideas/idea-pool.md](../ideas/idea-pool.md) **删除该行**。
+- 按 [../ideas/completed.md](../ideas/completed.md) 既有表格格式追加归档行：ID、名称、分类、完成结果（案例路径 / PR）、完成时间、详情链接（`./idea-details/IDEA-xxx.md`）。
 
 ### 步骤 8：验收失败（→ Rejected）
 
@@ -185,8 +185,8 @@ playground/<category>/<case-id>/
 同步动作：
 
 1. 更新详情文档状态为 `Rejected`，在处理记录写明阶段与具体原因；
-2. 从 [../idea-pool.md](../idea-pool.md) 删除该行；
-3. 按 [../rejected.md](../rejected.md) 表格格式追加：ID、名称、分类、阶段、具体原因、处理时间、详情链接；
+2. 从 [../ideas/idea-pool.md](../ideas/idea-pool.md) 删除该行；
+3. 按 [../ideas/rejected.md](../ideas/rejected.md) 表格格式追加：ID、名称、分类、阶段、具体原因、处理时间、详情链接；
 4. 清理本轮为该失败案例产生的代码与注册项（不应把未通过验收的案例留在仓库中），随后继续下一个候选。
 
 因**运行时间限制**临时中断不算失败：保留 `In Progress` / `Ready` 原状并记录进度（见第 1 节）。
@@ -199,7 +199,7 @@ playground/<category>/<case-id>/
 
 - [ ] 所选 Idea 确为 `Ready`（用户指定场景下，指定项也必须是 `Ready`）。
 - [ ] 状态流转正确：仅发生 `Ready→In Progress→Completed/Rejected`，未越权提升 `Candidate/Refining`。
-- [ ] [../idea-pool.md](../idea-pool.md) 行状态与各详情文档状态严格一致。
+- [ ] [../ideas/idea-pool.md](../ideas/idea-pool.md) 行状态与各详情文档状态严格一致。
 - [ ] 案例目录文件齐全（`index.html` / `style.css` / `script.js`），`index.html` 可独立运行，零 CDN、零框架。
 - [ ] `src/playground.js` 已注册且 `files` 列表与磁盘文件 1:1，`path`/`url` 正确。
 - [ ] `pnpm run lint` 与 `pnpm run build` 均实际执行并通过。
@@ -280,6 +280,6 @@ PR 是预期交付物，**本地 commit 完成 ≠ 交付完成**。
 
 ## 8. 与 Idea 探索 SOP 的边界
 
-- **探索与深化**（产生 Candidate、补全设计、历史对比、验收标准，推进到 `Ready`）由 [idea-exploration.md](./idea-exploration.md) 负责。
+- **探索与深化**（产生 Candidate、补全设计、历史对比、验收标准，推进到 `Ready`）由 [idea-exploration-sop.md](./idea-exploration-sop.md) 负责。
 - **本 SOP 严格消费 `Ready`**：只做实现、验证、归档与 PR 交付，不反向产出或拔熟 Idea。
-- 两个 SOP 可**独立启动、独立交付 PR**；共享同一套状态定义（第 1 节）与同一组 `.agent/` 数据文件（[../idea-pool.md](../idea-pool.md)、`idea-details/`、[../completed.md](../completed.md)、[../rejected.md](../rejected.md)），任一方写入后状态必须保持双边一致。
+- 两个 SOP 可**独立启动、独立交付 PR**；共享同一套状态定义（第 1 节）与同一组 `.agent/` 数据文件（[../ideas/idea-pool.md](../ideas/idea-pool.md)、`../ideas/idea-details/`、[../ideas/completed.md](../ideas/completed.md)、[../ideas/rejected.md](../ideas/rejected.md)），任一方写入后状态必须保持双边一致。

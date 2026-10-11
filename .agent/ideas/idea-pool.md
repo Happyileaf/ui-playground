@@ -1,6 +1,6 @@
 # Idea 池（活动索引）
 
-> 本文件是所有**未完成 Idea** 的唯一活动索引，由「Idea 探索 SOP」（`.agent/SOP/idea-exploration.md`）与「案例开发 SOP」（`.agent/SOP/case-development.md`）共同维护。
+> 本文件是所有**未完成 Idea** 的唯一活动索引，由「Idea 探索 SOP」（`.agent/SOP/idea-exploration-sop.md`）与「案例开发 SOP」（`.agent/SOP/case-development-sop.md`）共同维护。
 
 ## 规则
 
