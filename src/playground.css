@@ -9,11 +9,39 @@
   --bg-surface-hover: #262c3e;
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-medium: rgba(255, 255, 255, 0.14);
-  --border-active: rgba(99, 102, 241, 0.6);
+  /* ============================================================
+     🌟 CENTRAL SHELL BRAND COLOR CONFIGURATION (单一全局品牌色配置源)
+     只需修改 --brand-hue (色相 0-360) 即可一键更换整个 Workbench Shell 的品牌色！
+     常见预设色相 (Hue Reference):
+       - 199 : 电光青蓝 (Electric Cyan / Sky) [当前默认]
+       - 250 : 科技紫罗兰 (Violet / Indigo)
+       - 160 : 极客翡翠绿 (Emerald Green)
+       - 215 : 经典专业蓝 (Royal Blue)
+       - 340 : 霓虹玫瑰红 (Rose / Magenta)
+       - 32  : 暖阳琥珀金 (Amber / Gold)
+     ============================================================ */
+  --brand-hue: 199;
+  --brand-sat: 95%;
+  --brand-light: 60%;
+
+  /* 自动派生语义级品牌色阶与半透明外发光通道 */
+  --brand-primary: hsl(var(--brand-hue), var(--brand-sat), var(--brand-light));
+  --brand-hover: hsl(var(--brand-hue), var(--brand-sat), calc(var(--brand-light) - 10%));
+  --brand-active: hsl(var(--brand-hue), var(--brand-sat), calc(var(--brand-light) - 18%));
   
-  --accent-primary: #6366f1;
-  --accent-primary-hover: #4f46e5;
-  --accent-glow: rgba(99, 102, 241, 0.25);
+  --brand-subtle: hsla(var(--brand-hue), var(--brand-sat), var(--brand-light), 0.12);
+  --brand-border: hsla(var(--brand-hue), var(--brand-sat), var(--brand-light), 0.32);
+  --brand-border-active: hsla(var(--brand-hue), var(--brand-sat), var(--brand-light), 0.55);
+  --brand-glow: hsla(var(--brand-hue), var(--brand-sat), var(--brand-light), 0.25);
+  --brand-glow-lg: hsla(var(--brand-hue), var(--brand-sat), var(--brand-light), 0.45);
+
+  /* 统一绑定映射至系统强调色 Tokens */
+  --accent-primary: var(--brand-primary);
+  --accent-primary-hover: var(--brand-hover);
+  --accent-glow: var(--brand-glow);
+  --border-active: var(--brand-border-active);
+  --shadow-glow: 0 0 24px -2px var(--brand-glow-lg);
+
   --accent-cyan: #38bdf8;
   --accent-pink: #ec4899;
   --accent-emerald: #10b981;
@@ -35,7 +63,6 @@
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -2px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 12px 32px -4px rgba(0, 0, 0, 0.6), 0 4px 12px -2px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 24px -2px rgba(99, 102, 241, 0.35);
 
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -129,7 +156,7 @@ html, body {
 .brand-wrapper svg {
   width: 19px;
   height: 19px;
-  color: var(--accent-cyan);
+  color: var(--brand-primary);
   flex-shrink: 0;
 }
 
@@ -148,9 +175,9 @@ html, body {
   letter-spacing: 0.05em;
   padding: 0.15rem 0.45rem;
   border-radius: var(--radius-full);
-  background: rgba(99, 102, 241, 0.12);
-  color: var(--accent-cyan);
-  border: 1px solid rgba(56, 189, 248, 0.25);
+  background: var(--brand-subtle);
+  color: var(--brand-primary);
+  border: 1px solid var(--brand-border);
 }
 
 /* Header Center (Search Trigger) */
@@ -428,9 +455,9 @@ html, body {
 }
 
 .btn-icon-subtle.active {
-  color: var(--accent-cyan);
-  background: rgba(56, 189, 248, 0.12);
-  border-color: rgba(56, 189, 248, 0.35);
+  color: var(--brand-primary);
+  background: var(--brand-subtle);
+  border-color: var(--brand-border);
 }
 
 .btn-icon-subtle svg {
@@ -447,16 +474,16 @@ html, body {
   font-size: 0.8rem;
   font-weight: 600;
   color: #fff;
-  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+  background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-hover) 100%);
+  border: 1px solid var(--brand-border);
+  box-shadow: 0 2px 10px var(--brand-glow);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .btn-primary-gradient:hover {
   filter: brightness(1.1);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.45);
+  box-shadow: 0 4px 14px var(--brand-glow-lg);
 }
 
 .btn-primary-gradient svg {
@@ -656,8 +683,8 @@ html, body {
 }
 
 .search-box-inline:focus-within {
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 2px var(--brand-glow);
 }
 
 .search-box-inline svg {
@@ -706,9 +733,9 @@ html, body {
 
 .showcase-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(99, 102, 241, 0.35);
+  border-color: var(--brand-border);
   background: var(--bg-surface-2);
-  box-shadow: var(--shadow-md), 0 0 20px rgba(99, 102, 241, 0.12);
+  box-shadow: var(--shadow-md), 0 0 20px var(--brand-subtle);
 }
 
 .card-top-row {
@@ -911,7 +938,7 @@ html, body {
 .footer-logo svg {
   width: 18px;
   height: 18px;
-  color: var(--accent-cyan);
+  color: var(--brand-primary);
 }
 
 .footer-brand-title {
@@ -927,9 +954,9 @@ html, body {
   font-weight: 600;
   padding: 0.15rem 0.45rem;
   border-radius: 4px;
-  background: rgba(56, 189, 248, 0.12);
-  color: var(--accent-cyan);
-  border: 1px solid rgba(56, 189, 248, 0.3);
+  background: var(--brand-subtle);
+  color: var(--brand-primary);
+  border: 1px solid var(--brand-border);
 }
 
 .footer-desc {
@@ -1026,7 +1053,7 @@ html, body {
 .footer-filter-link:hover,
 .footer-action-btn:hover,
 .footer-action-link:hover {
-  color: var(--accent-cyan);
+  color: var(--brand-primary);
   transform: translateX(3px);
 }
 
@@ -1221,7 +1248,7 @@ html, body {
 
 .sidebar-case-item.active {
   background: var(--bg-surface-3);
-  border-color: rgba(99, 102, 241, 0.4);
+  border-color: var(--brand-border-active);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -1360,7 +1387,7 @@ html, body {
 
 .stage-path-badge code {
   font-family: var(--font-mono);
-  color: var(--accent-cyan);
+  color: var(--brand-primary);
   font-size: 0.75rem;
   background: transparent;
   padding: 0;
@@ -1429,7 +1456,7 @@ html, body {
 }
 
 .vp-icon-btn.active {
-  color: var(--accent-cyan);
+  color: var(--brand-primary);
   background: var(--bg-surface-3);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
@@ -1590,7 +1617,7 @@ html, body {
 }
 
 .file-tab-item.active {
-  color: var(--accent-cyan);
+  color: var(--brand-primary);
   background: var(--bg-surface-3);
   border-color: var(--border-subtle);
 }
@@ -1656,7 +1683,7 @@ html, body {
   background: var(--bg-surface-1);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg), 0 0 50px rgba(99, 102, 241, 0.2);
+  box-shadow: var(--shadow-lg), 0 0 50px var(--brand-glow);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1825,7 +1852,7 @@ html, body {
 .guide-principle-title svg {
   width: 16px;
   height: 16px;
-  color: var(--accent-cyan);
+  color: var(--brand-primary);
 }
 
 .guide-principle-card p {
@@ -1841,7 +1868,7 @@ html, body {
   padding: 0.75rem 1rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--accent-cyan);
+  color: var(--brand-primary);
   overflow-x: auto;
 }
 
@@ -1871,8 +1898,8 @@ html, body {
 
 .btn-github-guide:hover {
   background: rgba(255, 255, 255, 0.1);
-  border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
