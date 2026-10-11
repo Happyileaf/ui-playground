@@ -1485,24 +1485,69 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
     }
   }
 
-  // Switch View Mode
-  function setViewMode(mode) {
-    currentMode = mode;
-    if (mode === 'gallery') {
-      galleryView.classList.add('active-view');
-      studioView.classList.remove('active-view');
-      modeGalleryBtn.classList.add('active');
-      modeStudioBtn.classList.remove('active');
-      unmountStudioIframe(); // stop active studio execution when back in gallery
-      renderGallery();
+  // ----- Hash Router -----
+  // Routes: #/gallery | #/studio/<case-id>
+  function parseHash() {
+    const raw = window.location.hash.replace(/^#\/?/, '');
+    const segments = raw.split('/').filter(Boolean);
+    const mode = segments[0] === 'studio' ? 'studio' : 'gallery';
+    const caseId = mode === 'studio' ? segments[1] : null;
+    return { mode, caseId };
+  }
+
+  function navigate(mode, caseId) {
+    const target = mode === 'studio'
+      ? `#/studio/${caseId || currentCase.id}`
+      : '#/gallery';
+    if (window.location.hash === target) {
+      applyRoute();
     } else {
-      galleryView.classList.remove('active-view');
-      studioView.classList.add('active-view');
-      modeGalleryBtn.classList.remove('active');
-      modeStudioBtn.classList.add('active');
-      renderStudioSidebar();
-      loadStudioCase(currentCase);
+      window.location.hash = target;
     }
+  }
+
+  function applyRoute() {
+    const route = parseHash();
+
+    if (route.mode === 'studio' && route.caseId) {
+      const target = cases.find(c => c.id === route.caseId);
+      if (!target) {
+        window.history.replaceState(null, '', `#/studio/${currentCase.id}`);
+        applyRoute();
+        return;
+      }
+      const enteringStudio = currentMode !== 'studio';
+      if (enteringStudio) {
+        currentMode = 'studio';
+        galleryView.classList.remove('active-view');
+        studioView.classList.add('active-view');
+        modeGalleryBtn.classList.remove('active');
+        modeStudioBtn.classList.add('active');
+      }
+      // Always (re)mount when entering studio from gallery (iframe was blanked), or when the case changes
+      if (enteringStudio || currentCase.id !== target.id) {
+        loadStudioCase(target);
+      }
+    } else {
+      if (window.location.hash !== '#/gallery') {
+        window.history.replaceState(null, '', '#/gallery');
+      }
+      if (currentMode !== 'gallery') {
+        currentMode = 'gallery';
+        document.title = 'UI Playground';
+        galleryView.classList.add('active-view');
+        studioView.classList.remove('active-view');
+        modeGalleryBtn.classList.add('active');
+        modeStudioBtn.classList.remove('active');
+        unmountStudioIframe(); // stop active studio execution when back in gallery
+        renderGallery();
+      }
+    }
+  }
+
+  // Switch View Mode (kept as a thin wrapper over the router)
+  function setViewMode(mode) {
+    navigate(mode);
   }
 
   // Render Gallery Grid
@@ -1662,7 +1707,7 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
         <span class="case-item-badge ${c.type}">${badgeText}</span>
       `;
       item.addEventListener('click', () => {
-        loadStudioCase(c);
+        navigate('studio', c.id);
       });
       studioCasesList.appendChild(item);
     });
@@ -1671,6 +1716,7 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
   // Load a case into the Studio Stage with clean teardown
   function loadStudioCase(c) {
     currentCase = c;
+    document.title = `${c.title} · UI Playground`;
     if (stageActiveTitle) stageActiveTitle.textContent = c.title;
     if (stageActivePath) stageActivePath.textContent = `/${c.path}`;
     if (openExternalBtn) openExternalBtn.href = c.url;
@@ -2100,8 +2146,14 @@ const rawSources = import.meta.glob(['/effects/**/*', '/components/**/*', '/page
     }
   });
 
-  // Initialize
+  // Initialize: render the default gallery content first, then restore route from hash
   applyLanguage(currentLang);
-  setViewMode('gallery');
+  renderGallery();
+
+  if (!window.location.hash) {
+    window.location.hash = '#/gallery';
+  }
+  window.addEventListener('hashchange', applyRoute);
+  applyRoute();
 })();
 
