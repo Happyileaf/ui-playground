@@ -927,6 +927,7 @@ const rawSources = import.meta.glob(['/playground/effects/**/*', '/playground/co
     const route = parseHash();
 
     if (route.mode === 'studio' && route.caseId) {
+      document.body.classList.add('mode-studio');
       const target = cases.find(c => c.id === route.caseId);
       if (!target) {
         window.history.replaceState(null, '', `#/studio/${currentCase.id}`);
@@ -946,6 +947,7 @@ const rawSources = import.meta.glob(['/playground/effects/**/*', '/playground/co
         loadStudioCase(target);
       }
     } else {
+      document.body.classList.remove('mode-studio');
       if (window.location.hash !== '#/gallery') {
         window.history.replaceState(null, '', '#/gallery');
       }
@@ -958,6 +960,9 @@ const rawSources = import.meta.glob(['/playground/effects/**/*', '/playground/co
         modeStudioBtn.classList.remove('active');
         unmountStudioIframe(); // stop active studio execution when back in gallery
         renderGallery();
+        if (galleryView) {
+          galleryView.scrollTo({ top: 0, behavior: 'instant' });
+        }
       }
     }
   }
@@ -1013,7 +1018,6 @@ const rawSources = import.meta.glob(['/playground/effects/**/*', '/playground/co
         <div class="card-top-row">
           <div class="card-heading-box">
             <div class="card-title">${c.title}</div>
-            <div class="card-path-sub">/${c.path}</div>
           </div>
           <span class="card-type-chip ${c.type}">
             <span style="width: 5px; height: 5px; border-radius: 50%; background: currentColor;"></span>
@@ -1022,10 +1026,6 @@ const rawSources = import.meta.glob(['/playground/effects/**/*', '/playground/co
         </div>
 
         <p class="card-description">${c.description}</p>
-
-        <div class="card-tags">
-          ${c.tags.map(t => `<span class="tag-badge">#${t}</span>`).join('')}
-        </div>
 
         <div class="card-bottom-bar">
           <div class="card-quick-actions">
@@ -1519,8 +1519,8 @@ const rawSources = import.meta.glob(['/playground/effects/**/*', '/playground/co
         });
         galleryFilter = filter;
         renderGallery();
-        if (galleryLayout) {
-          galleryLayout.scrollTo({ top: 0, behavior: 'smooth' });
+        if (galleryView) {
+          galleryView.scrollTo({ top: 0, behavior: 'smooth' });
         }
       }
     });
