@@ -2,13 +2,13 @@
 
 > **适用场景**：AI Agent 独立或定时执行 Idea 的发现、筛选、深化、准入、记录与 PR 交付。
 >
-> **职责边界**：本 SOP 只负责探索和记录，产出高质量 Idea 与 `.agent/` 下的管理文档，**不编写任何案例代码**（不触碰 `playground/`、`src/playground.js` 等实现文件）。本 SOP 可被单独启动、独立交付 PR，不假定案例开发 SOP（[case-development.md](./case-development.md)）会在同一次运行中执行。
+> **职责边界**：本 SOP 只负责探索和记录，产出高质量 Idea 与 `.agent/` 下的管理文档，**不编写任何案例代码**（不触碰 `playground/`、`src/playground.js` 等实现文件）。本 SOP 可被单独启动、独立交付 PR，不假定案例开发 SOP（[case-development-sop.md](./case-development-sop.md)）会在同一次运行中执行。
 
 相关文件：
 
-- 活动池索引：[idea-pool.md](../idea-pool.md)
-- 详情模板：[_template.md](../idea-details/_template.md)
-- 归档索引：[completed.md](../completed.md) / [rejected.md](../rejected.md)
+- 活动池索引：[idea-pool.md](../ideas/idea-pool.md)
+- 详情模板：[_template.md](../ideas/idea-details/_template.md)
+- 归档索引：[completed.md](../ideas/completed.md) / [rejected.md](../ideas/rejected.md)
 - 项目总入口：[AGENTS.md](../../AGENTS.md)
 
 ---
@@ -27,7 +27,7 @@
 
 ## 2. 统一状态定义
 
-以下状态定义必须与案例开发 SOP（[case-development.md](./case-development.md)）保持严格一致，两边不得出现分歧：
+以下状态定义必须与案例开发 SOP（[case-development-sop.md](./case-development-sop.md)）保持严格一致，两边不得出现分歧：
 
 | 状态 | 含义 | 维护方 |
 | :--- | :--- | :--- |
@@ -53,10 +53,10 @@
 ## 3. 容量规则
 
 - `Candidate`、`Refining`、`Ready`、`In Progress` 均占用 Idea 池容量；`Completed`、`Rejected` 移出活动池、不占容量。
-- 容量只统计 [idea-pool.md](../idea-pool.md) 表格中的行数，不以磁盘上的详情文件数计算。
+- 容量只统计 [idea-pool.md](../ideas/idea-pool.md) 表格中的行数，不以磁盘上的详情文件数计算。
 - 达到 `IDEA_POOL_MAX_SIZE`：**停止新增** Idea，但仍可完善、深化、淘汰或推动已有 Idea（含将候选推进至 Ready、将无价值项淘汰归档）。
 - 达到 `IDEA_POOL_WARNING_THRESHOLD`：本轮优先完善、推动开发或淘汰存量 Idea，而非继续扩张。
-- **不得机械删除旧 Idea** 来腾容量；淘汰必须有具体原因并归档至 [rejected.md](../rejected.md)。
+- **不得机械删除旧 Idea** 来腾容量；淘汰必须有具体原因并归档至 [rejected.md](../ideas/rejected.md)。
 - 每次新增前必须再次检查当前容量（统计可能在本轮过程中发生变化）。
 - 发现并发修改或 Git 冲突（如远端已有他人新增的 Idea）时，先协调、对齐 ID 序号与状态，**不得覆盖**他人修改。
 
@@ -80,9 +80,9 @@
 
 ### 步骤 3：盘点现状
 
-- 统计 [idea-pool.md](../idea-pool.md)：容量占用、各状态分布、处于 `Candidate`/`Refining` 等待处理的内容与排序。
+- 统计 [idea-pool.md](../ideas/idea-pool.md)：容量占用、各状态分布、处于 `Candidate`/`Refining` 等待处理的内容与排序。
 - 盘点历史案例：通读 [src/playground.js](../../src/playground.js) 的全部注册案例（id / 标题 / 描述），并浏览 `playground/effects`、`playground/components`、`playground/pages` 目录，了解已有视觉风格与交互形式。
-- 通读 [rejected.md](../rejected.md)，避免重复提出已淘汰且无实质改进的创意。
+- 通读 [rejected.md](../ideas/rejected.md)，避免重复提出已淘汰且无实质改进的创意。
 
 ### 步骤 4：确定本轮探索方向
 
@@ -109,7 +109,7 @@
 
 为每个候选记录：
 
-- **ID**：`IDEA-001` 起的三位顺序号（`IDEA-001`、`IDEA-002`……）。ID 唯一、稳定、**永不重新分配**；分配前须核对活动池、[completed.md](../completed.md) 与 [rejected.md](../rejected.md)，不与历史（含已淘汰）ID 冲突。
+- **ID**：`IDEA-001` 起的三位顺序号（`IDEA-001`、`IDEA-002`……）。ID 唯一、稳定、**永不重新分配**；分配前须核对活动池、[completed.md](../ideas/completed.md) 与 [rejected.md](../ideas/rejected.md)，不与历史（含已淘汰）ID 冲突。
 - **名称**：简洁达意。
 - **简述**：一两句话说明做什么。
 - **分类**：`effects` / `components` / `pages` 之一。
@@ -151,11 +151,11 @@
 - 2 分：偏展示，实用性低；
 - 1 分：纯学术/纯艺术展示，几乎无实用价值。
 
-**淘汰处理**：缺乏价值或高度重复的候选予以淘汰，按 `Rejected` 记录到 [rejected.md](../rejected.md)，写清淘汰阶段（探索/筛选）与具体原因。探索阶段被否的候选**可以仅在 rejected.md 记录、不创建完整详情文件**；但**一旦为某候选创建了详情文件，该 ID 即永久保留**，淘汰时连同详情一并归档，不得删除或复用 ID。
+**淘汰处理**：缺乏价值或高度重复的候选予以淘汰，按 `Rejected` 记录到 [rejected.md](../ideas/rejected.md)，写清淘汰阶段（探索/筛选）与具体原因。探索阶段被否的候选**可以仅在 rejected.md 记录、不创建完整详情文件**；但**一旦为某候选创建了详情文件，该 ID 即永久保留**，淘汰时连同详情一并归档，不得删除或复用 ID。
 
 ### 步骤 7：深化有潜力的候选
 
-- 对通过筛选的候选补充：设计意图、预期展示效果（构图风格、视觉元素、层次材质光影细节）、动态与交互、核心亮点、实现约束与验收标准（复制 [_template.md](../idea-details/_template.md) 结构）。
+- 对通过筛选的候选补充：设计意图、预期展示效果（构图风格、视觉元素、层次材质光影细节）、动态与交互、核心亮点、实现约束与验收标准（复制 [_template.md](../ideas/idea-details/_template.md) 结构）。
 - 尚不成熟的可保留为 `Candidate` 或推进为 `Refining`，如实记录待澄清点。
 - **不要求每轮产出固定数量的 Ready**：质量优先，数量服从容量与准入标准。
 
@@ -166,8 +166,8 @@
 ### 步骤 9：容量复检与文档落盘
 
 - 新增前再次统计容量，按第 3 节规则处理（达 `IDEA_POOL_MAX_SIZE` 只完善不新增；达 `IDEA_POOL_WARNING_THRESHOLD` 优先存量）。
-- 创建/更新详情文档（基于 [_template.md](../idea-details/_template.md)），同步更新 [idea-pool.md](../idea-pool.md) 表格：新就绪的 `Ready` 放在符合默认开发顺序的合适位置（行顺序即默认开发顺序，不得随意打乱已有排序）。
-- 发生归档时，同步更新 [completed.md](../completed.md) / [rejected.md](../rejected.md)，并将对应行移出活动池。
+- 创建/更新详情文档（基于 [_template.md](../ideas/idea-details/_template.md)），同步更新 [idea-pool.md](../ideas/idea-pool.md) 表格：新就绪的 `Ready` 放在符合默认开发顺序的合适位置（行顺序即默认开发顺序，不得随意打乱已有排序）。
+- 发生归档时，同步更新 [completed.md](../ideas/completed.md) / [rejected.md](../ideas/rejected.md)，并将对应行移出活动池。
 - 每次状态变化同步更新详情文件的「状态」「更新时间」与「处理记录」。
 
 ### 步骤 10：一致性验证
@@ -185,7 +185,7 @@
 一个 Idea 必须**同时**满足以下四条标准，才允许置为 `Ready`：
 
 1. **明确的设计亮点**：在视觉创意、交互创意、表现形式、设计细节中，至少有一个方面具备值得展示的亮点。普通按钮、简单渐变背景、仅更换配色/文案/尺寸的方案不通过。
-2. **与历史案例有实质差异**：判断前必须先检查历史案例（[src/playground.js](../../src/playground.js) 注册列表 + `playground/` 目录）与 [rejected.md](../rejected.md)。差异须体现在核心创意、视觉表达、交互方式或整体表现上；仅换颜色、文案或微调参数不构成新意。本项目**不引入查重算法**，由 Agent 依据上述维度人工判断，并在详情文档的「历史案例对比」中记录检查范围、相似案例与差异说明。
+2. **与历史案例有实质差异**：判断前必须先检查历史案例（[src/playground.js](../../src/playground.js) 注册列表 + `playground/` 目录）与 [rejected.md](../ideas/rejected.md)。差异须体现在核心创意、视觉表达、交互方式或整体表现上；仅换颜色、文案或微调参数不构成新意。本项目**不引入查重算法**，由 Agent 依据上述维度人工判断，并在详情文档的「历史案例对比」中记录检查范围、相似案例与差异说明。
 3. **设计描述足够具体**：至少说明创意概述、预期展示效果、构图与整体风格、主要视觉元素、层次材质光影关键细节、动态与交互（适用时）、核心亮点。除非属于创意不可缺少的约束，**不过早限定**具体算法、代码组织、精确尺寸或颜色值。
 4. **可验收的完成标准**：定义可验证的验收标准，覆盖主要视觉特征、关键动画与交互、符合设计意图、独立运行与项目约束（双击 `index.html` 完整可用、零框架、零 CDN）。
 
@@ -195,12 +195,12 @@
 
 ## 6. Idea 详情文档与索引维护规范
 
-- [idea-pool.md](../idea-pool.md) 是**唯一活动索引**，表格列为 `| ID | 名称 | 状态 | 分类 | 详情 |`；只含 `Candidate`/`Refining`/`Ready`/`In Progress`。
+- [idea-pool.md](../ideas/idea-pool.md) 是**唯一活动索引**，表格列为 `| ID | 名称 | 状态 | 分类 | 详情 |`；只含 `Candidate`/`Refining`/`Ready`/`In Progress`。
 - **行顺序 = 默认开发顺序**：案例开发 SOP 无特别指定时自上而下取第一个 `Ready`；调整排序须有理由，不随意打乱。
 - 每行「状态」必须与对应详情文档中的状态严格一致；详情链接使用相对路径 `./idea-details/IDEA-xxx.md`，保持可解析。
-- `Completed`/`Rejected` 必须移出活动池并归档至 [completed.md](../completed.md) / [rejected.md](../rejected.md)；归档保留原始 ID 与 `idea-details/` 中的详情文件，不占容量、不复用 ID。
-- 详情字段以 [_template.md](../idea-details/_template.md) 为准：`Candidate` 允许仅填写基本信息 + 创意概述；进入 `Ready` 前必须补全设计内容、历史案例对比与验收标准。
-- 归档至 [rejected.md](../rejected.md) 必须写明**具体原因**（不允许只写“失败/不合适”）与所处阶段。
+- `Completed`/`Rejected` 必须移出活动池并归档至 [completed.md](../ideas/completed.md) / [rejected.md](../ideas/rejected.md)；归档保留原始 ID 与 `idea-details/` 中的详情文件，不占容量、不复用 ID。
+- 详情字段以 [_template.md](../ideas/idea-details/_template.md) 为准：`Candidate` 允许仅填写基本信息 + 创意概述；进入 `Ready` 前必须补全设计内容、历史案例对比与验收标准。
+- 归档至 [rejected.md](../ideas/rejected.md) 必须写明**具体原因**（不允许只写“失败/不合适”）与所处阶段。
 - 更新时保持 Markdown 表格结构完整、相对链接有效。
 
 ---
@@ -209,8 +209,8 @@
 
 - [ ] 容量统计正确：未完成数量相对 `IDEA_POOL_MAX_SIZE` / `IDEA_POOL_WARNING_THRESHOLD` 的处理符合第 3 节（超限未新增、预警线优先存量）。
 - [ ] 每个 `Ready` 均满足第 5 节四条准入标准，且详情中含完整历史案例对比（检查范围、相似案例、差异说明）。
-- [ ] [idea-pool.md](../idea-pool.md) 中每行状态与各详情文档中的状态严格一致。
-- [ ] 归档项已移出活动池；[completed.md](../completed.md) / [rejected.md](../rejected.md) 索引完整，淘汰项原因具体。
+- [ ] [idea-pool.md](../ideas/idea-pool.md) 中每行状态与各详情文档中的状态严格一致。
+- [ ] 归档项已移出活动池；[completed.md](../ideas/completed.md) / [rejected.md](../ideas/rejected.md) 索引完整，淘汰项原因具体。
 - [ ] Markdown 表格结构正确，所有相对链接均可解析。
 - [ ] ID 唯一、无重复（含活动池、历史归档与已淘汰记录），序号连续无跳号冲突。
 - [ ] `git diff` 仅涉及 `.agent/` 下本轮 Idea 管理文档；若确有必要触及其他管理文档（如入口文档），已在 PR 摘要中说明原因。
@@ -238,7 +238,7 @@
 
 - 从最新 `main` 创建工作分支，命名沿用：`feat/autonomous-iteration/<时间戳或主题>`，例如 `feat/autonomous-iteration/20261011-idea-exploration`。
 - **不得直接向 `main` 提交**。
-- 只精确暂存本轮相关文件（写明路径，如 `git add .agent/idea-pool.md .agent/idea-details/ .agent/rejected.md`），**禁止 `git add -A` / `git add .`**，避免带入无关改动。
+- 只精确暂存本轮相关文件（写明路径，如 `git add .agent/ideas/idea-pool.md .agent/ideas/idea-details/ .agent/ideas/rejected.md`），**禁止 `git add -A` / `git add .`**，避免带入无关改动。
 
 ### 9.3 提交信息（Conventional Commits 强化规范，中文结构化）
 
@@ -303,6 +303,6 @@ PR 标题简明（如 `docs(ideas): Idea 探索第 N 轮（新增 X / Ready Y / 
 ## 10. 与案例开发 SOP 的边界
 
 - 本 SOP 只产出**高质量 Idea 与管理文档**，止步于 `Ready`；不编写案例代码、不改动 `playground/` 与 `src/playground.js`。
-- `Ready` 之后的实现、注册、验证与归档由 [case-development.md](./case-development.md) 负责（`Ready → In Progress → Completed`）。
+- `Ready` 之后的实现、注册、验证与归档由 [case-development-sop.md](./case-development-sop.md) 负责（`Ready → In Progress → Completed`）。
 - 两个 SOP **独立启动、独立交付 PR**，互不假定对方同次运行。
 - 第 2 节的状态定义与容量口径两边必须保持一致；任一方调整状态语义须同步另一方。
