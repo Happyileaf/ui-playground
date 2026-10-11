@@ -18,24 +18,32 @@
         <!-- Left Brand Identity -->
         <div class="header-left">
           <div class="brand-wrapper" id="brandHomeBtn" title="Back to Gallery" data-i18n-title="navGalleryTitle">
-            <div class="brand-icon-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                <polyline points="2 17 12 22 22 17"></polyline>
-                <polyline points="2 12 12 17 22 12"></polyline>
-              </svg>
-            </div>
-            <div class="brand-info">
-              <div class="brand-name">
-                UI Playground
-                <span class="brand-tag" data-i18n="brandTag">原生</span>
-              </div>
-            </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+            <div class="brand-name">UI Playground</div>
           </div>
         </div>
 
-        <!-- Center View Navigation Mode (Gallery vs Studio) -->
+        <!-- Center Search Trigger Button -->
         <div class="header-center">
+          <button class="search-trigger-btn" id="openPaletteBtn" title="Quick Search (Cmd+K)" data-i18n-title="searchTitle">
+            <span class="search-trigger-left">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <span data-i18n="searchBtn">搜索</span>
+            </span>
+            <kbd class="kbd-shortcut">⌘K</kbd>
+          </button>
+        </div>
+
+        <!-- Right Quick Actions -->
+        <div class="header-right">
+          <!-- View Navigation Mode (Gallery vs Studio) at the Leftmost Position of Right Group -->
           <div class="nav-pill-group">
             <button class="pill-tab-btn active" id="modeGalleryBtn" title="Grid Showcase of All Cases" data-i18n-title="navGalleryTitle">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -55,11 +63,8 @@
               <span data-i18n="navStudio">工作台</span>
             </button>
           </div>
-        </div>
 
-        <!-- Right Quick Actions -->
-        <div class="header-right">
-          <!-- Compact Language Selector Dropdown -->
+          <!-- Compact Language Selector Dropdown (Icon Only) -->
           <div class="lang-dropdown-wrapper" id="langDropdownWrapper">
             <button class="lang-dropdown-trigger" id="langDropdownTrigger" title="Switch Language" data-i18n-title="langMenuTitle" aria-haspopup="true" aria-expanded="false">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lang-globe-icon">
@@ -68,9 +73,6 @@
                 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
               </svg>
               <span class="lang-current-label" id="langCurrentLabel">中文</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lang-chevron-icon">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
             </button>
             <div class="lang-dropdown-menu" id="langDropdownMenu" role="menu">
               <button class="lang-option-item active" data-lang="zh-CN" role="menuitem">
@@ -85,29 +87,14 @@
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
               </button>
-              <button class="lang-option-item" data-lang="de-DE" role="menuitem">
-                <span class="lang-option-text">Deutsch</span>
-                <svg class="lang-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </button>
             </div>
           </div>
 
-          <button class="search-trigger-btn" id="openPaletteBtn" title="Quick Search (Cmd+K)" data-i18n-title="searchTitle">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <span data-i18n="searchBtn">搜索</span>
-            <kbd class="kbd-shortcut">⌘K</kbd>
-          </button>
-
+          <!-- GitHub Icon Link (Icon Only) -->
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-github-link" id="topbarGithubLink" title="View on GitHub" data-i18n-title="githubTooltip">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
             </svg>
-            <span data-i18n="githubBtn">GitHub</span>
           </a>
 
           <button class="btn-primary-gradient" id="openGuideBtn" title="Native-First Principles & Guidelines" data-i18n-title="guideTitle">
@@ -200,15 +187,23 @@
                       <polyline points="2 12 12 17 22 12"></polyline>
                     </svg>
                     <span class="footer-brand-title">UI Playground</span>
-                    <span class="footer-brand-badge" data-i18n="footerBadgeNative">原生优先</span>
                   </div>
                   <p class="footer-desc" data-i18n="footerDesc">
                     面向现代 Web 的原生交互组件与物理动效试验台。100% 纯原生实现，免构建步骤，双击即用。
                   </p>
-                  <div class="footer-features-pills">
-                    <span class="footer-pill"><span class="footer-pill-dot green"></span>0 Runtime Bloat</span>
-                    <span class="footer-pill"><span class="footer-pill-dot blue"></span>Iframe Sandbox</span>
-                    <span class="footer-pill"><span class="footer-pill-dot purple"></span>100% Standalone</span>
+                  <div class="footer-stats-bar">
+                    <div class="footer-stat-item">
+                      <span class="footer-stat-dot"></span>
+                      <span><strong>0</strong> Runtime Bloat</span>
+                    </div>
+                    <div class="footer-stat-divider"></div>
+                    <div class="footer-stat-item">
+                      <span><strong>Iframe</strong> Sandbox</span>
+                    </div>
+                    <div class="footer-stat-divider"></div>
+                    <div class="footer-stat-item">
+                      <span><strong>100%</strong> Standalone</span>
+                    </div>
                   </div>
                 </div>
 
@@ -249,12 +244,7 @@
               <!-- Bottom Bar -->
               <div class="footer-bottom-row">
                 <div class="footer-copyright">
-                  <span>© 2026 UI Playground · <span data-i18n="footerCopyrightText">纯原生零依赖交互试验台</span></span>
-                </div>
-                <div class="footer-shortcuts-bar">
-                  <span class="footer-shortcut-item"><kbd class="kbd-shortcut">⌘K</kbd> <span data-i18n="footerShortcutCmdK">命令检索</span></span>
-                  <span class="footer-shortcut-item"><kbd class="kbd-shortcut">Esc</kbd> <span data-i18n="footerShortcutEsc">关闭浮层</span></span>
-                  <span class="footer-status-pill" id="footerCaseCountPill">10 Active Cases</span>
+                  <span>© 2026 UI Playground</span>
                 </div>
               </div>
             </footer>

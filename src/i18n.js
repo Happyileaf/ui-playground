@@ -3,8 +3,7 @@
 
 export const SUPPORTED_LANGS = [
   { code: 'zh-CN', label: '中文' },
-  { code: 'en-US', label: 'English' },
-  { code: 'de-DE', label: 'Deutsch' }
+  { code: 'en-US', label: 'English' }
 ];
 
 export const translations = {
@@ -232,119 +231,6 @@ export const translations = {
     toastDownloaded: 'Downloaded',
     toastDownloadFailed: 'Download failed',
     toastReloaded: 'Reloaded stage preview'
-  },
-
-  'de-DE': {
-    // Brand & Header
-    brandTag: 'Nativ',
-    navGallery: 'Galerie',
-    navGalleryTitle: 'Rasterübersicht aller Beispiele',
-    navStudio: 'Studio',
-    navStudioTitle: 'Interaktiver Arbeitsbereich & Gerätevorschau',
-    githubBtn: 'GitHub',
-    githubTooltip: 'Auf GitHub ansehen (Open Source)',
-    searchBtn: 'Suche',
-    searchTitle: 'Schnellsuche (Cmd+K)',
-    guideBtn: 'Leitfaden',
-    guideTitle: 'Native-First Prinzipien & Richtlinien',
-
-    // Gallery Hero & Stats
-    heroTitle: 'Kreatives UI- & Animations-Playground',
-    heroDesc: 'Eine kuratierte Sammlung visueller Effekte und interaktiver UI-Komponenten. Zu 100 % mit nativen Webstandards und ohne Build-Konfiguration erstellt.',
-    statCases: 'Eigenständige Fälle',
-    statDeps: 'Build-Konfiguration',
-    statNative: 'Native Web-APIs',
-
-    // Gallery Filters & Search
-    filterAll: 'Alle Fälle',
-    filterEffects: 'Visuelle Effekte',
-    filterComponents: 'UI-Komponenten',
-    filterPages: 'Seiten',
-    gallerySearchPlaceholder: 'Nach Titel, Tag, API filtern...',
-    noCasesFoundTitle: 'Keine Fälle gefunden',
-    noCasesFoundHint: 'Versuchen Sie ein anderes Suchwort oder wechseln Sie die Kategorie.',
-
-    // Card Actions
-    cardRun: 'Starten',
-    cardCodeTitle: 'Quellcode anzeigen',
-    cardDownloadTitle: 'Beispielpaket (ZIP) herunterladen',
-    cardOpenTabTitle: 'In neuem Tab öffnen',
-
-    // Studio Sidebar
-    studioSearchPlaceholder: 'Fall schnell finden...',
-    studioCatAll: 'Alle',
-    studioCatEffects: 'Effekte',
-    studioCatComponents: 'Komponenten',
-    studioCatPages: 'Seiten',
-    studioCounterOf: 'von',
-    studioCounterCases: 'Fälle',
-    studioCounterNative: 'Nativ Eigenständig',
-    studioNoMatches: 'Keine passenden Fälle',
-
-    // Studio Stage Toolbar & Breadcrumb
-    breadcrumbEffect: 'Effekt',
-    breadcrumbComponent: 'Komponente',
-    breadcrumbPage: 'Seite',
-    copyPathTitle: 'Pfad in die Zwischenablage kopieren',
-    toastCopiedPath: 'Pfad in die Zwischenablage kopiert!',
-    langMenuTitle: 'Sprache wechseln',
-    vpDesktopTitle: 'Desktop 100%',
-    vpTabletTitle: 'Tablet (768px)',
-    vpMobileTitle: 'Mobil (390px)',
-    reloadStageTitle: 'Frame neu laden',
-    stageCodeBtn: 'Code',
-    stageCodeTitle: 'Quellcode dieses Beispiels anzeigen',
-    stageDownloadBtn: 'Download',
-    stageDownloadTitle: 'Beispielpaket (ZIP) herunterladen',
-    stageStandaloneBtn: 'Eigenständig',
-    stageStandaloneTitle: 'Dieses Beispiel im neuen Tab öffnen',
-
-    // Code Drawer
-    drawerCopy: 'Kopieren',
-    drawerCopied: 'Kopiert!',
-    drawerCopyTitle: 'Code der aktuellen Datei kopieren',
-    drawerDownload: 'ZIP herunterladen',
-    drawerDownloadTitle: 'Vollständiges Beispiel-ZIP herunterladen',
-    loadingSource: 'Quellcode wird geladen...',
-    couldNotLoadFile: 'Datei konnte nicht geladen werden',
-
-    // Command Palette
-    palettePlaceholder: 'Komponentenname oder Aktion eingeben...',
-    paletteEmpty: 'Keine passenden Befehle oder Komponenten gefunden',
-    paletteNavHint: 'Navigation: ↑ ↓ zum Navigieren, ↵ zum Auswählen',
-    paletteEscHint: 'ESC zum Schließen',
-
-    // Architecture Guide Modal
-    guideModalTitle: 'UI Playground Architekturleitfaden',
-    guideGithubLink: 'Auf GitHub folgen & mitwirken',
-    guidePrinciple1Title: '1. Native First & Zero Bloat',
-    guidePrinciple1Desc: 'Jeder Fall wird ausschließlich mit nativem HTML5, modernem CSS3 und ES6+ JavaScript implementiert. Keine Bindung an Drittanbieter-Bundler, null Laufzeit-Frameworks und reine Webleistung.',
-    guidePrinciple2Title: '2. Unabhängige Ausführungsgarantie',
-    guidePrinciple2Desc: 'Jeder Effekt und jede Komponente befindet sich in einem eigenen Verzeichnis. Das Öffnen der index.html in einem beliebigen Browser wird sofort und zu 100 % originalgetreu ausgeführt.',
-    guidePrinciple3Title: '3. Neues Beispiel in Sekundenschnelle',
-    guidePrinciple3Desc: 'Erstellen Sie einfach einen neuen Unterordner unter playground/effects/ oder playground/components/, fügen Sie Ihre index.html hinzu und registrieren Sie den Eintrag in playground.js.',
-
-    // Footer
-    footerBadgeNative: 'Native-First',
-    footerDesc: 'Eine moderne native Werkbank für Physik-Animationen und interaktive UI-Komponenten. 100 % native Standards, null Build-Schritte, sofort offline lauffähig.',
-    footerColCategories: 'Kategorien',
-    footerColTech: 'Web-Standards',
-    footerColQuick: 'Navigation',
-    footerActionSearch: '⌘K Befehlspalette',
-    footerActionGuide: 'Architekturleitfaden',
-    footerActionStudio: 'Studio starten',
-    footerActionGithub: 'GitHub-Repository',
-    footerCopyrightText: 'Abhängigkeitsfreie native UI- & Animations-Werkbank',
-    footerShortcutCmdK: 'Suche',
-    footerShortcutEsc: 'Schließen',
-    footerTotalCases: 'Aktive Fälle',
-
-    // Toasts
-    toastCopied: 'In die Zwischenablage kopiert!',
-    toastPackaging: 'Verpacke',
-    toastDownloaded: 'Heruntergeladen',
-    toastDownloadFailed: 'Download fehlgeschlagen',
-    toastReloaded: 'Vorschau neu geladen'
   }
 };
 
@@ -356,7 +242,6 @@ export function getInitialLanguage() {
 
   const browserLang = navigator.language || '';
   if (browserLang.startsWith('zh')) return 'zh-CN';
-  if (browserLang.startsWith('de')) return 'de-DE';
   return 'en-US';
 }
 

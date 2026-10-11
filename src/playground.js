@@ -779,7 +779,6 @@ const rawSources = import.meta.glob(['/playground/effects/**/*', '/playground/co
     // Update label in dropdown trigger
     if (langCurrentLabel) {
       if (lang === 'zh-CN') langCurrentLabel.textContent = '中文';
-      else if (lang === 'de-DE') langCurrentLabel.textContent = 'Deutsch';
       else langCurrentLabel.textContent = 'English';
     }
 
@@ -1026,6 +1025,10 @@ const rawSources = import.meta.glob(['/playground/effects/**/*', '/playground/co
         </div>
 
         <p class="card-description">${c.description}</p>
+
+        <div class="card-tags">
+          ${c.tags.map(t => `<span class="tag-badge">#${t}</span>`).join('')}
+        </div>
 
         <div class="card-bottom-bar">
           <div class="card-quick-actions">
