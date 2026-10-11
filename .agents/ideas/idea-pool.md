@@ -15,4 +15,4 @@
 
 | ID | 名称 | 状态 | 分类 | 详情 |
 |---|---|---|---|---|
-| _（空池：尚无 Idea。新增时按 `IDEA-001` 起顺序分配 ID，ID 唯一且稳定，永不重新分配）_ | | | | |
+| IDEA-016 | Accessible Sortable List · 键盘可达的原生拖拽排序列表 | Ready | components | [./idea-details/IDEA-016.md](./idea-details/IDEA-016.md) |
