@@ -15,4 +15,4 @@
 
 | ID | 名称 | 状态 | 分类 | 详情 |
 |---|---|---|---|---|
-| _（空池：尚无 Idea。新增时按 `IDEA-001` 起顺序分配 ID，ID 唯一且稳定，永不重新分配）_ | | | | |
+| IDEA-024 | Scroll Stack Cards · 滚动堆叠叙事卡片 | Ready | components | [./idea-details/IDEA-024.md](./idea-details/IDEA-024.md) |
