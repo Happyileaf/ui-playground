@@ -16,3 +16,4 @@
 | ID | 名称 | 状态 | 分类 | 详情 |
 |---|---|---|---|---|
 | IDEA-001 | 日历日期选择器（Date Picker） | Ready | components | [./idea-details/IDEA-001.md](./idea-details/IDEA-001.md) |
+| IDEA-002 | 内容轮播（Carousel · Hero 展示轮播） | Ready | components | [./idea-details/IDEA-002.md](./idea-details/IDEA-002.md) |
