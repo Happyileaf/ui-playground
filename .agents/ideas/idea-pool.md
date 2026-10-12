@@ -18,3 +18,4 @@
 | IDEA-001 | 日历日期选择器（Date Picker） | Ready | components | [./idea-details/IDEA-001.md](./idea-details/IDEA-001.md) |
 | IDEA-002 | 内容轮播（Carousel · Hero 展示轮播） | Ready | components | [./idea-details/IDEA-002.md](./idea-details/IDEA-002.md) |
 | IDEA-003 | Toast 轻提示系统（Toast · 堆叠即时反馈通知） | Ready | components | [./idea-details/IDEA-003.md](./idea-details/IDEA-003.md) |
+| IDEA-004 | 标签输入（Tags Input · 多值芯片输入） | Ready | components | [./idea-details/IDEA-004.md](./idea-details/IDEA-004.md) |
