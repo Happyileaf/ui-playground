@@ -27,3 +27,4 @@
 | IDEA-010 | 级联选择器（Cascader · 多列逐级联动选择框） | Ready | components | [./idea-details/IDEA-010.md](./idea-details/IDEA-010.md) |
 | IDEA-011 | 星级评分（Star Rating · 半星精度的可访问评价组件） | Ready | components | [./idea-details/IDEA-011.md](./idea-details/IDEA-011.md) |
 | IDEA-012 | 分页器（Pagination · 滑动胶囊指示的可访问数据分页组件） | Ready | components | [./idea-details/IDEA-012.md](./idea-details/IDEA-012.md) |
+| IDEA-013 | 环形拨盘时间选择器（Time Picker · 拟真时钟表盘选时组件） | Ready | components | [./idea-details/IDEA-013.md](./idea-details/IDEA-013.md) |
