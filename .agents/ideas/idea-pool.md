@@ -29,3 +29,4 @@
 | IDEA-012 | 分页器（Pagination · 滑动胶囊指示的可访问数据分页组件） | Ready | components | [./idea-details/IDEA-012.md](./idea-details/IDEA-012.md) |
 | IDEA-013 | 环形拨盘时间选择器（Time Picker · 拟真时钟表盘选时组件） | Ready | components | [./idea-details/IDEA-013.md](./idea-details/IDEA-013.md) |
 | IDEA-014 | 日夜形变开关合集（Toggle Switch Gallery · 主题叙事开关组） | Ready | components | [./idea-details/IDEA-014.md](./idea-details/IDEA-014.md) |
+| IDEA-015 | 视图转场画廊（View Transition Gallery · 共享元素页面形变转场） | Ready | effects | [./idea-details/IDEA-015.md](./idea-details/IDEA-015.md) |
