@@ -20,3 +20,4 @@
 | IDEA-003 | Toast 轻提示系统（Toast · 堆叠即时反馈通知） | Ready | components | [./idea-details/IDEA-003.md](./idea-details/IDEA-003.md) |
 | IDEA-004 | 标签输入（Tags Input · 多值芯片输入） | Ready | components | [./idea-details/IDEA-004.md](./idea-details/IDEA-004.md) |
 | IDEA-005 | 步骤向导（Step Wizard · 多步骤表单流程容器） | Ready | components | [./idea-details/IDEA-005.md](./idea-details/IDEA-005.md) |
+| IDEA-006 | 极速拨号菜单（FAB Speed Dial · 展开式快捷操作菜单） | Ready | components | [./idea-details/IDEA-006.md](./idea-details/IDEA-006.md) |
