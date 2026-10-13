@@ -22,3 +22,4 @@
 | IDEA-005 | 步骤向导（Step Wizard · 多步骤表单流程容器） | Ready | components | [./idea-details/IDEA-005.md](./idea-details/IDEA-005.md) |
 | IDEA-006 | 极速拨号菜单（FAB Speed Dial · 展开式快捷操作菜单） | Ready | components | [./idea-details/IDEA-006.md](./idea-details/IDEA-006.md) |
 | IDEA-007 | Gooey 液态下载按钮（Liquid Download Button · 多状态形变进度按钮） | Ready | components | [./idea-details/IDEA-007.md](./idea-details/IDEA-007.md) |
+| IDEA-008 | 实时对话工作台（Chat Workspace · 拟真即时通讯界面） | Ready | pages | [./idea-details/IDEA-008.md](./idea-details/IDEA-008.md) |
