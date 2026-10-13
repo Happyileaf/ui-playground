@@ -26,3 +26,4 @@
 | IDEA-009 | SVG 数据图表动效仪表盘（Animated SVG Charts · 描边生长数据看板） | Ready | components | [./idea-details/IDEA-009.md](./idea-details/IDEA-009.md) |
 | IDEA-010 | 级联选择器（Cascader · 多列逐级联动选择框） | Ready | components | [./idea-details/IDEA-010.md](./idea-details/IDEA-010.md) |
 | IDEA-011 | 星级评分（Star Rating · 半星精度的可访问评价组件） | Ready | components | [./idea-details/IDEA-011.md](./idea-details/IDEA-011.md) |
+| IDEA-012 | 分页器（Pagination · 滑动胶囊指示的可访问数据分页组件） | Ready | components | [./idea-details/IDEA-012.md](./idea-details/IDEA-012.md) |
