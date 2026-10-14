@@ -35,3 +35,4 @@
 | IDEA-018 | 机械翻页倒计时（Flip Countdown · Split-Flap 拟真翻牌计时器） | Ready | effects | [./idea-details/IDEA-018.md](./idea-details/IDEA-018.md) |
 | IDEA-019 | 表情选择器（Emoji Picker · 可搜索分类的高可访问表情面板） | Ready | components | [./idea-details/IDEA-019.md](./idea-details/IDEA-019.md) |
 | IDEA-020 | 提及输入（Mentions Input · 触发式联系人 @ 提及组件） | Ready | components | [./idea-details/IDEA-020.md](./idea-details/IDEA-020.md) |
+| IDEA-021 | 滑动操作列表（Swipe Action List · 横滑露出操作的手势列表） | Ready | components | [./idea-details/IDEA-021.md](./idea-details/IDEA-021.md) |
