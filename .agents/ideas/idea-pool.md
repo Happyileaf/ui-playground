@@ -36,3 +36,4 @@
 | IDEA-019 | 表情选择器（Emoji Picker · 可搜索分类的高可访问表情面板） | Ready | components | [./idea-details/IDEA-019.md](./idea-details/IDEA-019.md) |
 | IDEA-020 | 提及输入（Mentions Input · 触发式联系人 @ 提及组件） | Ready | components | [./idea-details/IDEA-020.md](./idea-details/IDEA-020.md) |
 | IDEA-021 | 滑动操作列表（Swipe Action List · 横滑露出操作的手势列表） | Ready | components | [./idea-details/IDEA-021.md](./idea-details/IDEA-021.md) |
+| IDEA-022 | 滑块拼图验证码（Slider Puzzle CAPTCHA · 拖拽缺口对位人机校验） | Ready | components | [./idea-details/IDEA-022.md](./idea-details/IDEA-022.md) |
