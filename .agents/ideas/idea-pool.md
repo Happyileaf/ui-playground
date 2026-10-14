@@ -40,3 +40,4 @@
 | IDEA-023 | 方向感知悬停图廊（Direction-Aware Hover Gallery · 随出入边缘滑入滑出的图卡遮罩） | Ready | components | [./idea-details/IDEA-023.md](./idea-details/IDEA-023.md) |
 | IDEA-024 | 双栏穿梭选择框（Transfer · 候选到已选的穿梭选择器） | Ready | components | [./idea-details/IDEA-024.md](./idea-details/IDEA-024.md) |
 | IDEA-025 | 刮刮乐涂层揭示卡（Scratch Card · 刮开银漆揭晓奖品的互动券卡） | Ready | components | [./idea-details/IDEA-025.md](./idea-details/IDEA-025.md) |
+| IDEA-026 | 气泡确认框（Popconfirm · 锚定式轻量二次确认） | Ready | components | [./idea-details/IDEA-026.md](./idea-details/IDEA-026.md) |
