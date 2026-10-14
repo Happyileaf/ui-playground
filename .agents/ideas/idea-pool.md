@@ -37,3 +37,4 @@
 | IDEA-020 | 提及输入（Mentions Input · 触发式联系人 @ 提及组件） | Ready | components | [./idea-details/IDEA-020.md](./idea-details/IDEA-020.md) |
 | IDEA-021 | 滑动操作列表（Swipe Action List · 横滑露出操作的手势列表） | Ready | components | [./idea-details/IDEA-021.md](./idea-details/IDEA-021.md) |
 | IDEA-022 | 滑块拼图验证码（Slider Puzzle CAPTCHA · 拖拽缺口对位人机校验） | Ready | components | [./idea-details/IDEA-022.md](./idea-details/IDEA-022.md) |
+| IDEA-023 | 方向感知悬停图廊（Direction-Aware Hover Gallery · 随出入边缘滑入滑出的图卡遮罩） | Ready | components | [./idea-details/IDEA-023.md](./idea-details/IDEA-023.md) |
