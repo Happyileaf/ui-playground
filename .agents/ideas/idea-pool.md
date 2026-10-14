@@ -41,3 +41,4 @@
 | IDEA-024 | 双栏穿梭选择框（Transfer · 候选到已选的穿梭选择器） | Ready | components | [./idea-details/IDEA-024.md](./idea-details/IDEA-024.md) |
 | IDEA-025 | 刮刮乐涂层揭示卡（Scratch Card · 刮开银漆揭晓奖品的互动券卡） | Ready | components | [./idea-details/IDEA-025.md](./idea-details/IDEA-025.md) |
 | IDEA-026 | 气泡确认框（Popconfirm · 锚定式轻量二次确认） | Ready | components | [./idea-details/IDEA-026.md](./idea-details/IDEA-026.md) |
+| IDEA-027 | 弹性下拉刷新（Pull to Refresh · 阻尼拉伸手势刷新） | Ready | components | [./idea-details/IDEA-027.md](./idea-details/IDEA-027.md) |
