@@ -31,3 +31,4 @@
 | IDEA-014 | 日夜形变开关合集（Toggle Switch Gallery · 主题叙事开关组） | Ready | components | [./idea-details/IDEA-014.md](./idea-details/IDEA-014.md) |
 | IDEA-015 | 视图转场画廊（View Transition Gallery · 共享元素页面形变转场） | Ready | effects | [./idea-details/IDEA-015.md](./idea-details/IDEA-015.md) |
 | IDEA-016 | 全屏图片灯箱（Image Lightbox · 沉浸式图集查看器） | Ready | components | [./idea-details/IDEA-016.md](./idea-details/IDEA-016.md) |
+| IDEA-017 | CSS 贝塞尔缓动工坊（Cubic Bézier Easing Studio · 可拖拽缓动曲线实验室） | Ready | components | [./idea-details/IDEA-017.md](./idea-details/IDEA-017.md) |
