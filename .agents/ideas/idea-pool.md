@@ -34,3 +34,4 @@
 | IDEA-017 | CSS 贝塞尔缓动工坊（Cubic Bézier Easing Studio · 可拖拽缓动曲线实验室） | Ready | components | [./idea-details/IDEA-017.md](./idea-details/IDEA-017.md) |
 | IDEA-018 | 机械翻页倒计时（Flip Countdown · Split-Flap 拟真翻牌计时器） | Ready | effects | [./idea-details/IDEA-018.md](./idea-details/IDEA-018.md) |
 | IDEA-019 | 表情选择器（Emoji Picker · 可搜索分类的高可访问表情面板） | Ready | components | [./idea-details/IDEA-019.md](./idea-details/IDEA-019.md) |
+| IDEA-020 | 提及输入（Mentions Input · 触发式联系人 @ 提及组件） | Ready | components | [./idea-details/IDEA-020.md](./idea-details/IDEA-020.md) |
