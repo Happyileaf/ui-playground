@@ -54,3 +54,4 @@
 | IDEA-037 | 文本乱码解码器（Text Scramble Decoder · 逐字符随机解码的终端美学标题动效） | Ready | effects | [./idea-details/IDEA-037.md](./idea-details/IDEA-037.md) |
 | IDEA-038 | Bento 形变特性网格（Bento Feature Grid · FLIP 展开的非对称产品特性墙） | Ready | components | [./idea-details/IDEA-038.md](./idea-details/IDEA-038.md) |
 | IDEA-039 | 步进鼓机音序器（Step Sequencer · 可编程节拍网格的合成鼓机） | Ready | effects | [./idea-details/IDEA-039.md](./idea-details/IDEA-039.md) |
+| IDEA-040 | 滚动叙事产品页（Scroll-Scrubbed Product Story · 视口定格分层产品发布页） | Ready | pages | [./idea-details/IDEA-040.md](./idea-details/IDEA-040.md) |
