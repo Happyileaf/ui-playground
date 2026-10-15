@@ -47,3 +47,4 @@
 | IDEA-030 | 音频反应频谱可视化（Audio Spectrum Visualizer · Web Audio 实时频谱律动可视化） | Ready | effects | [./idea-details/IDEA-030.md](./idea-details/IDEA-030.md) |
 | IDEA-031 | 密码强度工坊（Password Strength Studio · 实时熵评估与破解耗时可视化注册表单） | Ready | components | [./idea-details/IDEA-031.md](./idea-details/IDEA-031.md) |
 | IDEA-032 | 可视化节点流编辑器（Node Flow Editor · 拖拽节点与 SVG 贝塞尔连线的工作流编排画布） | Ready | components | [./idea-details/IDEA-032.md](./idea-details/IDEA-032.md) |
+| IDEA-033 | 骨架屏加载系统（Skeleton Loading System · 多布局占位与异步状态切换组件） | Ready | components | [./idea-details/IDEA-033.md](./idea-details/IDEA-033.md) |
