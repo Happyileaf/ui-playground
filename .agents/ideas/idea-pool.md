@@ -48,3 +48,4 @@
 | IDEA-031 | 密码强度工坊（Password Strength Studio · 实时熵评估与破解耗时可视化注册表单） | Ready | components | [./idea-details/IDEA-031.md](./idea-details/IDEA-031.md) |
 | IDEA-032 | 可视化节点流编辑器（Node Flow Editor · 拖拽节点与 SVG 贝塞尔连线的工作流编排画布） | Ready | components | [./idea-details/IDEA-032.md](./idea-details/IDEA-032.md) |
 | IDEA-033 | 骨架屏加载系统（Skeleton Loading System · 多布局占位与异步状态切换组件） | Ready | components | [./idea-details/IDEA-033.md](./idea-details/IDEA-033.md) |
+| IDEA-034 | 状态化形变图标按钮库（Stateful Morphing Icon Buttons · SVG 路径形变交互图标组） | Ready | components | [./idea-details/IDEA-034.md](./idea-details/IDEA-034.md) |
