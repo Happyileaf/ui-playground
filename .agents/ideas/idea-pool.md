@@ -52,3 +52,4 @@
 | IDEA-035 | 飞入购物车微交互（Fly to Cart · FLIP 抛物线加购反馈组件） | Ready | components | [./idea-details/IDEA-035.md](./idea-details/IDEA-035.md) |
 | IDEA-036 | 快捷键录制器（Keyboard Shortcut Recorder · 捕获组合键与冲突检测的设置面板组件） | Ready | components | [./idea-details/IDEA-036.md](./idea-details/IDEA-036.md) |
 | IDEA-037 | 文本乱码解码器（Text Scramble Decoder · 逐字符随机解码的终端美学标题动效） | Ready | effects | [./idea-details/IDEA-037.md](./idea-details/IDEA-037.md) |
+| IDEA-038 | Bento 形变特性网格（Bento Feature Grid · FLIP 展开的非对称产品特性墙） | Ready | components | [./idea-details/IDEA-038.md](./idea-details/IDEA-038.md) |
