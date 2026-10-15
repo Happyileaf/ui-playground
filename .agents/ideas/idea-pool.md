@@ -44,3 +44,4 @@
 | IDEA-027 | 弹性下拉刷新（Pull to Refresh · 阻尼拉伸手势刷新） | Ready | components | [./idea-details/IDEA-027.md](./idea-details/IDEA-027.md) |
 | IDEA-028 | 行内原地编辑（Inline Edit · 点击即改的查看/编辑态无缝切换） | Ready | components | [./idea-details/IDEA-028.md](./idea-details/IDEA-028.md) |
 | IDEA-029 | 幸运抽奖转盘（Lucky Wheel · 加权概率拟真幸运大转盘） | Ready | components | [./idea-details/IDEA-029.md](./idea-details/IDEA-029.md) |
+| IDEA-030 | 音频反应频谱可视化（Audio Spectrum Visualizer · Web Audio 实时频谱律动可视化） | Ready | effects | [./idea-details/IDEA-030.md](./idea-details/IDEA-030.md) |
