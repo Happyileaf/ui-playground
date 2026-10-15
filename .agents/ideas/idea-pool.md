@@ -50,3 +50,4 @@
 | IDEA-033 | 骨架屏加载系统（Skeleton Loading System · 多布局占位与异步状态切换组件） | Ready | components | [./idea-details/IDEA-033.md](./idea-details/IDEA-033.md) |
 | IDEA-034 | 状态化形变图标按钮库（Stateful Morphing Icon Buttons · SVG 路径形变交互图标组） | Ready | components | [./idea-details/IDEA-034.md](./idea-details/IDEA-034.md) |
 | IDEA-035 | 飞入购物车微交互（Fly to Cart · FLIP 抛物线加购反馈组件） | Ready | components | [./idea-details/IDEA-035.md](./idea-details/IDEA-035.md) |
+| IDEA-036 | 快捷键录制器（Keyboard Shortcut Recorder · 捕获组合键与冲突检测的设置面板组件） | Ready | components | [./idea-details/IDEA-036.md](./idea-details/IDEA-036.md) |
