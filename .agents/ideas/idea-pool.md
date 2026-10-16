@@ -58,3 +58,4 @@
 | IDEA-041 | 交互式甘特排期图（Interactive Gantt Chart · 拖拽调度的可访问项目时间线） | Ready | components | [./idea-details/IDEA-041.md](./idea-details/IDEA-041.md) |
 | IDEA-042 | 拟真旋转旋钮控制台（Rotary Knob Console · 径向拖拽的硬件感连续数值调节台） | Ready | components | [./idea-details/IDEA-042.md](./idea-details/IDEA-042.md) |
 | IDEA-043 | 影院选座图（Cinema Seat Picker · 影厅座位图点选与订单联动） | Ready | components | [./idea-details/IDEA-043.md](./idea-details/IDEA-043.md) |
+| IDEA-044 | 磁吸行动号召交互系统（Magnetic CTA · 元素级磁力吸附与内容分层视差） | Ready | components | [./idea-details/IDEA-044.md](./idea-details/IDEA-044.md) |
