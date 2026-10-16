@@ -63,3 +63,4 @@
 | IDEA-046 | 影院级自定义视频播放器（Cinematic Video Player · 程序化片源的沉浸式播放器） | Ready | components | [./idea-details/IDEA-046.md](./idea-details/IDEA-046.md) |
 | IDEA-047 | 代码差异查看器（Code Diff Viewer · 行级配对的并排与统一差异审查组件） | Ready | components | [./idea-details/IDEA-047.md](./idea-details/IDEA-047.md) |
 | IDEA-048 | 滚动逐词点亮排版（Scroll-Kinetic Typography · 随阅读进度逐词显影的叙事文案动效） | Ready | effects | [./idea-details/IDEA-048.md](./idea-details/IDEA-048.md) |
+| IDEA-049 | 交互式图像热点导览（Interactive Image Hotspot Map · 坐标锚定标记的图解导览组件） | Ready | components | [./idea-details/IDEA-049.md](./idea-details/IDEA-049.md) |
