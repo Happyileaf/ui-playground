@@ -61,3 +61,4 @@
 | IDEA-044 | 磁吸行动号召交互系统（Magnetic CTA · 元素级磁力吸附与内容分层视差） | Ready | components | [./idea-details/IDEA-044.md](./idea-details/IDEA-044.md) |
 | IDEA-045 | 手势底部弹层（Bottom Sheet · 多吸附点可拖拽底部面板） | Ready | components | [./idea-details/IDEA-045.md](./idea-details/IDEA-045.md) |
 | IDEA-046 | 影院级自定义视频播放器（Cinematic Video Player · 程序化片源的沉浸式播放器） | Ready | components | [./idea-details/IDEA-046.md](./idea-details/IDEA-046.md) |
+| IDEA-047 | 代码差异查看器（Code Diff Viewer · 行级配对的并排与统一差异审查组件） | Ready | components | [./idea-details/IDEA-047.md](./idea-details/IDEA-047.md) |
