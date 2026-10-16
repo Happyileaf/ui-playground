@@ -55,3 +55,4 @@
 | IDEA-038 | Bento 形变特性网格（Bento Feature Grid · FLIP 展开的非对称产品特性墙） | Ready | components | [./idea-details/IDEA-038.md](./idea-details/IDEA-038.md) |
 | IDEA-039 | 步进鼓机音序器（Step Sequencer · 可编程节拍网格的合成鼓机） | Ready | effects | [./idea-details/IDEA-039.md](./idea-details/IDEA-039.md) |
 | IDEA-040 | 滚动叙事产品页（Scroll-Scrubbed Product Story · 视口定格分层产品发布页） | Ready | pages | [./idea-details/IDEA-040.md](./idea-details/IDEA-040.md) |
+| IDEA-041 | 交互式甘特排期图（Interactive Gantt Chart · 拖拽调度的可访问项目时间线） | Ready | components | [./idea-details/IDEA-041.md](./idea-details/IDEA-041.md) |
