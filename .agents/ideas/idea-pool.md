@@ -59,3 +59,4 @@
 | IDEA-042 | 拟真旋转旋钮控制台（Rotary Knob Console · 径向拖拽的硬件感连续数值调节台） | Ready | components | [./idea-details/IDEA-042.md](./idea-details/IDEA-042.md) |
 | IDEA-043 | 影院选座图（Cinema Seat Picker · 影厅座位图点选与订单联动） | Ready | components | [./idea-details/IDEA-043.md](./idea-details/IDEA-043.md) |
 | IDEA-044 | 磁吸行动号召交互系统（Magnetic CTA · 元素级磁力吸附与内容分层视差） | Ready | components | [./idea-details/IDEA-044.md](./idea-details/IDEA-044.md) |
+| IDEA-045 | 手势底部弹层（Bottom Sheet · 多吸附点可拖拽底部面板） | Ready | components | [./idea-details/IDEA-045.md](./idea-details/IDEA-045.md) |
