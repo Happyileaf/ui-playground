@@ -56,3 +56,4 @@
 | IDEA-039 | 步进鼓机音序器（Step Sequencer · 可编程节拍网格的合成鼓机） | Ready | effects | [./idea-details/IDEA-039.md](./idea-details/IDEA-039.md) |
 | IDEA-040 | 滚动叙事产品页（Scroll-Scrubbed Product Story · 视口定格分层产品发布页） | Ready | pages | [./idea-details/IDEA-040.md](./idea-details/IDEA-040.md) |
 | IDEA-041 | 交互式甘特排期图（Interactive Gantt Chart · 拖拽调度的可访问项目时间线） | Ready | components | [./idea-details/IDEA-041.md](./idea-details/IDEA-041.md) |
+| IDEA-042 | 拟真旋转旋钮控制台（Rotary Knob Console · 径向拖拽的硬件感连续数值调节台） | Ready | components | [./idea-details/IDEA-042.md](./idea-details/IDEA-042.md) |
