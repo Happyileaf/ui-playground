@@ -60,3 +60,4 @@
 | IDEA-043 | 影院选座图（Cinema Seat Picker · 影厅座位图点选与订单联动） | Ready | components | [./idea-details/IDEA-043.md](./idea-details/IDEA-043.md) |
 | IDEA-044 | 磁吸行动号召交互系统（Magnetic CTA · 元素级磁力吸附与内容分层视差） | Ready | components | [./idea-details/IDEA-044.md](./idea-details/IDEA-044.md) |
 | IDEA-045 | 手势底部弹层（Bottom Sheet · 多吸附点可拖拽底部面板） | Ready | components | [./idea-details/IDEA-045.md](./idea-details/IDEA-045.md) |
+| IDEA-046 | 影院级自定义视频播放器（Cinematic Video Player · 程序化片源的沉浸式播放器） | Ready | components | [./idea-details/IDEA-046.md](./idea-details/IDEA-046.md) |
