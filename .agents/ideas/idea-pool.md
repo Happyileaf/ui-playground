@@ -62,3 +62,4 @@
 | IDEA-045 | 手势底部弹层（Bottom Sheet · 多吸附点可拖拽底部面板） | Ready | components | [./idea-details/IDEA-045.md](./idea-details/IDEA-045.md) |
 | IDEA-046 | 影院级自定义视频播放器（Cinematic Video Player · 程序化片源的沉浸式播放器） | Ready | components | [./idea-details/IDEA-046.md](./idea-details/IDEA-046.md) |
 | IDEA-047 | 代码差异查看器（Code Diff Viewer · 行级配对的并排与统一差异审查组件） | Ready | components | [./idea-details/IDEA-047.md](./idea-details/IDEA-047.md) |
+| IDEA-048 | 滚动逐词点亮排版（Scroll-Kinetic Typography · 随阅读进度逐词显影的叙事文案动效） | Ready | effects | [./idea-details/IDEA-048.md](./idea-details/IDEA-048.md) |
