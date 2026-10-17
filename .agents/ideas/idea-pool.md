@@ -11,6 +11,17 @@
 - 容量上限与预警线以 Idea 探索 SOP 开头声明的参数为准（`IDEA_POOL_MAX_SIZE` / `IDEA_POOL_WARNING_THRESHOLD`）。
 - 详情链接使用相对路径 `./idea-details/IDEA-xxx.md`，新增或移动文件时必须保持链接有效。
 
+## 容量与轮次审计记录
+
+> 仅记录探索轮次的容量盘点、供给顺序与阻塞结论，不改变下表任何行的状态与排序。
+
+- 2026-10-18（Idea 探索第 54 轮，分支 `feat/autonomous-iteration/20261018-idea-exploration-round54`）：**本轮 Ready 未达标 · 阻塞轮次（容量阻塞）**。
+  - 容量盘点：表内 50 行 = `IDEA_POOL_MAX_SIZE` 50（已满，高于预警线 40），状态分布为 Ready 50 / Candidate 0 / Refining 0 / In Progress 0；`completed.md`、`rejected.md` 均为空。
+  - 供给顺序核对：第一供给来源（池中 Candidate/Refining 存量草稿）为空，无存量可深化；从零生成新候选须新增容量，但池已满，按第 3 节「达到上限停止新增」，不能新增。
+  - 释放容量排查：逐一交叉比对 `src/playground.js` 全部 60 个注册案例及 `playground/` 物理目录——① 50 个 Ready 的拟定案例 id 均未被实现，无「已开发漏归档」可移入 Completed；② 50 个 Ready 与历史案例全部存在实质差异（重点复核 animated-charts/contribution-graph、view-transitions/capsule-tabs、audio-spectrum/interactive-piano、morphing-icon-buttons/menu-morph、rotary-knob/range-slider、fly-to-cart/like-button、flip-countdown/count-up、skeleton-loading/infinite-feed、popconfirm/tooltip、image-lightbox/image-zoom、pull-to-refresh/top-loading-bar、gantt-chart/kanban-board 等 12 组近邻，机制/编码维度/状态机/数据模型均不同），无合规可淘汰项，不得为腾容量机械淘汰。
+  - 阻塞结论：满足 SOP 第 8 节客观阻塞条件 1「容量阻塞——活动池已达上限，且无可继续深化至 Ready 的草稿、也无可淘汰项」；在不降低第 5 节准入标准、不违规淘汰的前提下，本轮无法新推进 Ready，`IDEA_EXPLORATION_READY_PER_ROUND=1` 未达成。
+  - 下一轮建议：优先由案例开发 SOP 按表顺序消费 Ready（IDEA-001 起），实现并归档后容量自然释放；在出现空槽前，探索轮次将持续处于容量阻塞，不应强行新增或降标准子。
+
 ## Idea 列表
 
 | ID | 名称 | 状态 | 分类 | 详情 |
