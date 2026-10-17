@@ -8,7 +8,7 @@
 - **分类**：components
 - **未来案例目录 id**：`step-wizard`
 - **创建时间**：2026-10-13
-- **更新时间**：2026-10-13
+- **更新时间**：2026-10-17
 
 ## 创意概述
 
@@ -55,7 +55,7 @@
 
 ## 历史案例对比（进入 Ready 前必填）
 
-- **检查范围**：src/playground.js 全部 59 个注册案例（id / 标题 / 描述 / tags）+ playground/effects、playground/components、playground/pages 目录 + rejected.md（当前为空）+ completed.md（当前为空）。
+- **检查范围**：src/playground.js 全部 60 个注册案例（id / 标题 / 描述 / tags，实测 effects 12 / components 45 / pages 3）+ playground/effects、playground/components、playground/pages 目录 + rejected.md（当前为空）+ completed.md（当前为空）。
 - **相似案例**：
   - `accordion-faq`（手风琴问答列表）：同为「多个分区 + 展开切换 + 键盘漫游」，但手风琴是可任意开合的并列 FAQ 内容，无线性顺序、无分步校验拦截、无进度状态机与前进/回退导航；
   - `capsule-tabs`（胶囊标签动效展厅）：同为多面板切换，但是并列 tab 展示，不含步骤顺序、完成态、校验与流程提交；
@@ -86,4 +86,5 @@
 
 ## 处理记录
 
-- 2026-10-13 创建（Candidate）并于同轮深化至 Ready（Candidate→Ready）：活动池 4 条全部为 Ready（IDEA-001~004），无 Candidate/Refining 存量草稿，按 SOP 供给顺序转入步骤 4–8 从零生成。盘点 9 大技术域与 src/playground.js 全部 59 个注册案例后，确认「多步骤流程容器」为表单/流程原语空白（现有表单案例均为单字段控件，guided-tour 为页面讲解而非表单流程），实用性 5/5。重复性评审逐一核对 accordion-faq、capsule-tabs、guided-tour 及表单类案例，确认核心创意无实质重叠。第 5 节四项准入（设计亮点 / 实质差异 / 描述具体 / 可验收标准）逐项通过，准入为 Ready。
+- 2026-10-13 创建（Candidate）并于同轮深化至 Ready（Candidate→Ready）：活动池 4 条全部为 Ready（IDEA-001~004），无 Candidate/Refining 存量草稿，按 SOP 供给顺序转入步骤 4–8 从零生成。盘点 9 大技术域与 src/playground.js 全部 60 个注册案例后，确认「多步骤流程容器」为表单/流程原语空白（现有表单案例均为单字段控件，guided-tour 为页面讲解而非表单流程），实用性 5/5。重复性评审逐一核对 accordion-faq、capsule-tabs、guided-tour 及表单类案例，确认核心创意无实质重叠。第 5 节四项准入（设计亮点 / 实质差异 / 描述具体 / 可验收标准）逐项通过，准入为 Ready。
+- 2026-10-17 事实性勘误（本轮 Ready 未达标·容量阻塞轮次，50/50 满容、零草稿）：本文两处「全部 59 个注册案例」更正为「全部 60 个（effects 12 / components 45 / pages 3）」。取证依据：git 全历史显示 src/playground.js 最后修改为 2026-10-11（commit 59069f2），彼时注册案例数即为 60 且此后未再变更，而本 Idea 创建于 2026-10-13，故 59 系创建轮次盘点笔误。仅更正计数事实，创意内容、历史对比与 Ready 准入结论均不受影响，状态保持 Ready。

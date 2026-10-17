@@ -8,7 +8,7 @@
 - **分类**：components
 - **未来案例目录 id**：`pagination`
 - **创建时间**：2026-10-13
-- **更新时间**：2026-10-13
+- **更新时间**：2026-10-17
 
 ## 创意概述
 
@@ -51,7 +51,7 @@
 
 ## 历史案例对比（进入 Ready 前必填）
 
-- **检查范围**：src/playground.js 全部 63 个注册案例（id / 标题 / 描述 / tags）+ playground/effects、playground/components、playground/pages 三个目录（effects 12 个、components 45 个、pages 3 个）+ rejected.md（当前为空）+ completed.md（当前为空）+ 活动池 IDEA-001~011。
+- **检查范围**：src/playground.js 全部 60 个注册案例（id / 标题 / 描述 / tags；分项实测 effects 12 个、components 45 个、pages 3 个）+ playground/effects、playground/components、playground/pages 三个目录 + rejected.md（当前为空）+ completed.md（当前为空）+ 活动池 IDEA-001~011。
 - **相似案例**：
   - `capsule-tabs`（胶囊标签动效展厅）：视觉上同样有「胶囊指示器在选项间移动」，但它是**同页内容分区切换的标签控件**，主体是对比 6 种动效曲线的展厅，无页码语义、无多页数据切片、无折叠省略号、无首末页/跳页/每页条数；本案例的胶囊只是翻页指示的一种呈现，核心是**带折叠算法的多页数据导航与数据切片联动**，信息模型（离散等权标签 vs 有序数值页码 + 总页数）与交互完全不同。
   - `infinite-feed`（无限加载信息流）：同属长列表浏览范式，但是**滚动驱动的无限追加**，无页码、无总页数、无精确定位与跳页；两者互补，本案例演示的是「精确翻页」范式，且不使用 IntersectionObserver 哨兵那一套。
@@ -86,4 +86,5 @@
 
 ## 处理记录
 
-- 2026-10-13 创建（Candidate）并于同轮深化至 Ready（Candidate→Ready）：活动池 11 条（IDEA-001~011）全部为 Ready，无 Candidate/Refining 存量草稿，按 SOP 供给顺序转入步骤 4–8 从零生成。盘点 9 大技术域与 src/playground.js 全部 63 个注册案例（effects 12 / components 45 / pages 3）及 playground/ 三目录后，确认「经典分页导航 / Pagination」控件完全空白（已有 resizable-table 静态数据表、infinite-feed 无限滚动、breadcrumb 层级导航、capsule-tabs 标签切换，但无页码折叠分页），故选技术域 3（导航与页面切换）结合域 1（高可访问性 UI 组件）与域 2（微交互动效）的高实用方向「FLIP 胶囊分页器」。重复性评审逐一核对 capsule-tabs、infinite-feed、resizable-table、scroll-progress-bar、breadcrumb/tree-view/context-menu/combo-box、range-slider/otp-input 及活动池 IDEA-001~011（重点 IDEA-002 Carousel 的上/下一项切换），确认核心创意（FLIP 页码胶囊 + 省略号折叠算法 + 边界/钳制处理 + 数据切片与条数/跳页联动）无实质重叠；全仓检索 pagination/pager/page-nav 无历史（含已删除）id 冲突，案例 id 定为 pagination。实用性 5/5、交互 5/5、视觉 4.5/5，无维度低于 4。第 5 节四项准入（设计亮点 / 实质差异 / 描述具体 / 可验收标准）逐项通过，准入为 Ready。当前容量 11（上限 IDEA_POOL_MAX_SIZE=50，预警线 40），新增后为 12，远未触阈。
+- 2026-10-13 创建（Candidate）并于同轮深化至 Ready（Candidate→Ready）：活动池 11 条（IDEA-001~011）全部为 Ready，无 Candidate/Refining 存量草稿，按 SOP 供给顺序转入步骤 4–8 从零生成。盘点 9 大技术域与 src/playground.js 全部 60 个注册案例（effects 12 / components 45 / pages 3）及 playground/ 三目录后，确认「经典分页导航 / Pagination」控件完全空白（已有 resizable-table 静态数据表、infinite-feed 无限滚动、breadcrumb 层级导航、capsule-tabs 标签切换，但无页码折叠分页），故选技术域 3（导航与页面切换）结合域 1（高可访问性 UI 组件）与域 2（微交互动效）的高实用方向「FLIP 胶囊分页器」。重复性评审逐一核对 capsule-tabs、infinite-feed、resizable-table、scroll-progress-bar、breadcrumb/tree-view/context-menu/combo-box、range-slider/otp-input 及活动池 IDEA-001~011（重点 IDEA-002 Carousel 的上/下一项切换），确认核心创意（FLIP 页码胶囊 + 省略号折叠算法 + 边界/钳制处理 + 数据切片与条数/跳页联动）无实质重叠；全仓检索 pagination/pager/page-nav 无历史（含已删除）id 冲突，案例 id 定为 pagination。实用性 5/5、交互 5/5、视觉 4.5/5，无维度低于 4。第 5 节四项准入（设计亮点 / 实质差异 / 描述具体 / 可验收标准）逐项通过，准入为 Ready。当前容量 11（上限 IDEA_POOL_MAX_SIZE=50，预警线 40），新增后为 12，远未触阈。
+- 2026-10-17 事实性勘误（本轮 Ready 未达标·容量阻塞轮次，50/50 满容、零草稿）：本文两处「全部 63 个注册案例」更正为「全部 60 个（effects 12 / components 45 / pages 3）」；原检查范围行内「总数 63」与同句分项合计 60 自相矛盾，一并消除。取证依据：git 全历史显示 src/playground.js 最后修改为 2026-10-11（commit 59069f2），彼时注册案例数即为 60 且此后未再变更，而本 Idea 创建于 2026-10-13，故 63 系创建轮次盘点笔误。仅更正计数事实，创意内容、历史对比与 Ready 准入结论均不受影响，状态保持 Ready。

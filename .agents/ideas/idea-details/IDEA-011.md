@@ -8,7 +8,7 @@
 - **分类**：components
 - **未来案例目录 id**：`star-rating`
 - **创建时间**：2026-10-13
-- **更新时间**：2026-10-13
+- **更新时间**：2026-10-17
 
 ## 创意概述
 
@@ -50,7 +50,7 @@
 
 ## 历史案例对比（进入 Ready 前必填）
 
-- **检查范围**：src/playground.js 全部 63 个注册案例（id / 标题 / 描述 / tags）+ playground/effects、playground/components、playground/pages 三个目录 + rejected.md（当前为空）+ completed.md（当前为空）+ 活动池 IDEA-001~010。
+- **检查范围**：src/playground.js 全部 60 个注册案例（id / 标题 / 描述 / tags，实测 effects 12 / components 45 / pages 3）+ playground/effects、playground/components、playground/pages 三个目录 + rejected.md（当前为空）+ completed.md（当前为空）+ 活动池 IDEA-001~010。
 - **相似案例**：
   - `like-button`（双击点赞迸发）：同属「正反馈类微交互」且都有心形/碎片迸发，但它是**二值（赞/不赞）的社交按钮**，核心是双击手势与单颗心形迸发；本案例是 **0.5 步进、0–5 的连续评分控件**，核心是双层星图形裁切、半区判定、悬停预览与评分摘要，信息量、交互模型与控件语义完全不同。
   - `range-slider`（双拇指区间滑块）/ `image-comparison-slider`（对比滑块）：同样有「按指针位置映射连续值」的控件思维，但它们是**一维滑轨**（区间/图片裁剪位置），无星形双层图形、无档位语义文案、无评分摘要；本案例把连续值映射到离散星视觉并叠加情绪语义。
@@ -83,4 +83,5 @@
 
 ## 处理记录
 
-- 2026-10-13 创建（Candidate）并于同轮深化至 Ready（Candidate→Ready）：活动池 10 条（IDEA-001~010）全部为 Ready，无 Candidate/Refining 存量草稿，按 SOP 供给顺序转入步骤 4–8 从零生成。盘点 9 大技术域与 src/playground.js 全部 63 个注册案例（components / effects / pages）及 playground/ 三目录后，确认「评分 / Rating」表单控件完全空白（已覆盖 OTP、标签、取色、区间滑块、银行卡、文件、富文本等，但无星级评分），故选技术域 5（按钮与表单交互）结合域 2（微交互光影）的高实用方向「星级评分（含半星精度）」。重复性评审逐一核对 like-button、range-slider、image-comparison-slider、avatar-stack/tooltip/guided-tour、confetti-burst/fireworks、count-up 及活动池 IDEA-001~010（重点 IDEA-009 图表分布条），确认核心创意（双层星裁切半星 + 跟手预览 + 弹性确认 + 情绪语义 + 评分摘要）无实质重叠；全仓检索 rating/rate/star/score/review 无历史（含已删除）id 冲突，案例 id 定为 star-rating。实用性 5/5、交互 5/5、视觉 4.5/5，无维度低于 4。第 5 节四项准入（设计亮点 / 实质差异 / 描述具体 / 可验收标准）逐项通过，准入为 Ready。当前容量 10（上限 IDEA_POOL_MAX_SIZE=50，预警线 40），新增后为 11，远未触阈。
+- 2026-10-13 创建（Candidate）并于同轮深化至 Ready（Candidate→Ready）：活动池 10 条（IDEA-001~010）全部为 Ready，无 Candidate/Refining 存量草稿，按 SOP 供给顺序转入步骤 4–8 从零生成。盘点 9 大技术域与 src/playground.js 全部 60 个注册案例（effects 12 / components 45 / pages 3）及 playground/ 三目录后，确认「评分 / Rating」表单控件完全空白（已覆盖 OTP、标签、取色、区间滑块、银行卡、文件、富文本等，但无星级评分），故选技术域 5（按钮与表单交互）结合域 2（微交互光影）的高实用方向「星级评分（含半星精度）」。重复性评审逐一核对 like-button、range-slider、image-comparison-slider、avatar-stack/tooltip/guided-tour、confetti-burst/fireworks、count-up 及活动池 IDEA-001~010（重点 IDEA-009 图表分布条），确认核心创意（双层星裁切半星 + 跟手预览 + 弹性确认 + 情绪语义 + 评分摘要）无实质重叠；全仓检索 rating/rate/star/score/review 无历史（含已删除）id 冲突，案例 id 定为 star-rating。实用性 5/5、交互 5/5、视觉 4.5/5，无维度低于 4。第 5 节四项准入（设计亮点 / 实质差异 / 描述具体 / 可验收标准）逐项通过，准入为 Ready。当前容量 10（上限 IDEA_POOL_MAX_SIZE=50，预警线 40），新增后为 11，远未触阈。
+- 2026-10-17 事实性勘误（本轮 Ready 未达标·容量阻塞轮次，50/50 满容、零草稿）：本文两处「全部 63 个注册案例」更正为「全部 60 个（effects 12 / components 45 / pages 3）」。取证依据：git 全历史显示 src/playground.js 最后修改为 2026-10-11（commit 59069f2），彼时注册案例数即为 60 且此后未再变更，而本 Idea 创建于 2026-10-13，故 63 系创建轮次盘点笔误。仅更正计数事实，创意内容、历史对比与 Ready 准入结论均不受影响，状态保持 Ready。

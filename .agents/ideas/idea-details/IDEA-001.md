@@ -8,7 +8,7 @@
 - **分类**：components
 - **未来案例目录 id**：`date-picker`
 - **创建时间**：2026-10-13
-- **更新时间**：2026-10-13
+- **更新时间**：2026-10-17
 
 ## 创意概述
 
@@ -55,7 +55,7 @@
 
 ## 历史案例对比（进入 Ready 前必填）
 
-- **检查范围**：src/playground.js 全部 53 个注册案例（id / 标题 / 描述 / tags）+ playground/effects、playground/components、playground/pages 目录 + rejected.md（当前为空）+ completed.md（当前为空）。
+- **检查范围**：src/playground.js 全部 60 个注册案例（id / 标题 / 描述 / tags，实测 effects 12 / components 45 / pages 3）+ playground/effects、playground/components、playground/pages 目录 + rejected.md（当前为空）+ completed.md（当前为空）。
 - **相似案例**：
   - `range-slider`（双拇指区间滑块）：同为「区间」输入，但对象是连续数值，无日历网格与日期逻辑；
   - `combo-box`（可搜索下拉选择框）：同为「输入框 + 弹出面板 + ARIA 键盘」，但面板是 listbox 文本匹配，无日期网格、区间连接带与日期状态机；
@@ -87,4 +87,5 @@
 
 ## 处理记录
 
-- 2026-10-13 创建（Candidate）并于同轮深化至 Ready（Candidate→Ready）：Idea 池为空（0/50），按 SOP 步骤 4–8 从零生成。盘点 9 大技术域与 src/playground.js 全部 53 个注册案例后，确认日期选择器为表单原语中的完全空白方向，实用性 5/5；重复性评审确认与 range-slider、combo-box 等仅形态相近、核心创意无重叠。第 5 节四项准入（设计亮点 / 实质差异 / 描述具体 / 可验收标准）逐项通过，准入为 Ready。
+- 2026-10-13 创建（Candidate）并于同轮深化至 Ready（Candidate→Ready）：Idea 池为空（0/50），按 SOP 步骤 4–8 从零生成。盘点 9 大技术域与 src/playground.js 全部 60 个注册案例后，确认日期选择器为表单原语中的完全空白方向，实用性 5/5；重复性评审确认与 range-slider、combo-box 等仅形态相近、核心创意无重叠。第 5 节四项准入（设计亮点 / 实质差异 / 描述具体 / 可验收标准）逐项通过，准入为 Ready。
+- 2026-10-17 事实性勘误（本轮 Ready 未达标·容量阻塞轮次，50/50 满容、零草稿）：本文两处「全部 53 个注册案例」更正为「全部 60 个（effects 12 / components 45 / pages 3）」。取证依据：git 全历史显示 src/playground.js 最后修改为 2026-10-11（commit 59069f2），彼时注册案例数即为 60 且此后未再变更，而本 Idea 创建于 2026-10-13，故 53 系创建轮次盘点笔误。仅更正计数事实，创意内容、历史对比与 Ready 准入结论均不受影响，状态保持 Ready。

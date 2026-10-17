@@ -8,7 +8,7 @@
 - **分类**：components
 - **未来案例目录 id**：`popconfirm`
 - **创建时间**：2026-10-15
-- **更新时间**：2026-10-15
+- **更新时间**：2026-10-17
 
 ## 创意概述
 
@@ -54,7 +54,7 @@
 
 ## 历史案例对比（进入 Ready 前必填）
 
-- **检查范围**：src/playground.js 全部 62 个注册案例（id / 标题 / 描述 / tags）+ playground/effects、playground/components、playground/pages 物理目录（12 effects / 47 components / 3 pages）+ 活动池 IDEA-001～IDEA-025 + rejected.md（当前为空）+ completed.md（当前为空）。
+- **检查范围**：src/playground.js 全部 60 个注册案例（id / 标题 / 描述 / tags）+ playground/effects、playground/components、playground/pages 物理目录（12 effects / 45 components / 3 pages，与注册数一致）+ 活动池 IDEA-001～IDEA-025 + rejected.md（当前为空）+ completed.md（当前为空）。
 - **相似案例**：
   - `modal`（Native Modal Dialog）：最接近的「确认对话框」近亲，同样承载取消 / 确定与焦点陷阱；但它是**居中、强阻断、带高斯模糊全屏遮罩**的重对话框，本 Idea 是**锚定在触发元素旁、小体量、无重遮罩（非模态）**的轻确认，视觉重量、定位方式（锚点 + 箭头 + 边缘翻转）与打断程度完全不同。
   - `tooltip`（Smart Tooltip）：同样是「锚定触发元素 + 智能边缘碰撞翻转 + 小卡片 + 弹性动效」的浮层近亲；但 Tooltip **只读、无交互按钮、悬停即显**，本 Idea 内含标题 / 图标 / 取消 / 确定按钮组、点击触发、焦点陷阱与异步确认状态机，承载的是「需要用户决策」的确认动作而非信息展示。
@@ -87,4 +87,5 @@
 
 ## 处理记录
 
-- 2026-10-15 探索（新建并于同轮深化至 Ready，Candidate→Ready）：盘点活动池发现 IDEA-001～IDEA-025 全部为 Ready、无 Candidate/Refining 存量草稿（第一供给来源为空），按 SOP 供给顺序转入步骤 4–8 从零生成；容量 25/50（低于预警线 40），新增后 26/50，可新增。盘点 9 大技术域与 src/playground.js 全部 62 个注册案例后，确认浮层体系虽已覆盖 modal / drawer / context-menu / tooltip / notification-center / guided-tour，但高频生产原语「锚定式轻量二次确认（Popconfirm）」完全空白，属技术域 1（现代高可访问性 UI 组件）的薄弱点，实用性 5/5。重复性评审逐一核对 modal（居中强阻断）、tooltip（只读无按钮）、context-menu（多动作菜单）、drawer（重浮层）、guided-tour（多步只读导览）、avatar-stack（资料卡）及活动池 25 条，确认核心创意无实质重叠；拟定案例目录 id `popconfirm`，全仓检索无历史（含已删除）id 冲突，IDEA-026 永久绑定。第 5 节四项准入（设计亮点 / 实质差异 / 描述具体 / 可验收标准）逐项通过，置为 Ready。
+- 2026-10-15 探索（新建并于同轮深化至 Ready，Candidate→Ready）：盘点活动池发现 IDEA-001～IDEA-025 全部为 Ready、无 Candidate/Refining 存量草稿（第一供给来源为空），按 SOP 供给顺序转入步骤 4–8 从零生成；容量 25/50（低于预警线 40），新增后 26/50，可新增。盘点 9 大技术域与 src/playground.js 全部 60 个注册案例后，确认浮层体系虽已覆盖 modal / drawer / context-menu / tooltip / notification-center / guided-tour，但高频生产原语「锚定式轻量二次确认（Popconfirm）」完全空白，属技术域 1（现代高可访问性 UI 组件）的薄弱点，实用性 5/5。重复性评审逐一核对 modal（居中强阻断）、tooltip（只读无按钮）、context-menu（多动作菜单）、drawer（重浮层）、guided-tour（多步只读导览）、avatar-stack（资料卡）及活动池 25 条，确认核心创意无实质重叠；拟定案例目录 id `popconfirm`，全仓检索无历史（含已删除）id 冲突，IDEA-026 永久绑定。第 5 节四项准入（设计亮点 / 实质差异 / 描述具体 / 可验收标准）逐项通过，置为 Ready。
+- 2026-10-17 事实性勘误（本轮 Ready 未达标·容量阻塞轮次，50/50 满容、零草稿）：本文「全部 62 个注册案例」两处更正为「全部 60 个」，检查范围物理目录分项「47 components」更正为「45 components」（原 12+47+3=62 虽内部自洽，但与注册总数及实际目录数均不符）。取证依据：git 全历史显示 src/playground.js 最后修改为 2026-10-11（commit 59069f2），彼时注册案例数即为 60（effects 12 / components 45 / pages 3）且此后未再变更，而本 Idea 创建于 2026-10-15，故 62 与 47 系创建轮次盘点笔误。仅更正计数事实，创意内容、历史对比与 Ready 准入结论均不受影响，状态保持 Ready。
