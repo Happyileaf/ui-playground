@@ -8,7 +8,7 @@
 - **分类**：components
 - **案例目录 id（拟定）**：`slider-captcha`
 - **创建时间**：2026-10-14
-- **更新时间**：2026-10-14
+- **更新时间**：2026-10-17
 
 ## 创意概述
 
@@ -55,7 +55,7 @@
 
 ## 历史案例对比（进入 Ready 前必填）
 
-- **检查范围**：`src/playground.js` 全部 56 个注册案例（id / 标题 / 描述）+ `playground/effects`、`playground/components`、`playground/pages` 目录 + 活动池 IDEA-001～IDEA-021 + `rejected.md`（当前为空）+ `completed.md`（当前为空）。
+- **检查范围**：`src/playground.js` 全部 60 个注册案例（id / 标题 / 描述，实测 effects 12 / components 45 / pages 3）+ `playground/effects`、`playground/components`、`playground/pages` 目录 + 活动池 IDEA-001～IDEA-021 + `rejected.md`（当前为空）+ `completed.md`（当前为空）。
 - **相似案例**：
   - `range-slider`（双拇指区间滑块）与 `image-comparison-slider`（图片对比滑块）：同属「沿水平轨道拖动手柄」，但前者是**数值区间选择表单控件**、后者是**裁剪窗口前后对比**，均无拼图块 / 缺口、无「松手对位命中判定」、无成功 / 失败安全校验语义。
   - `swipe-card-deck`（弹性拖拽卡牌堆）：同为指针拖拽 + 阈值 + 弹性回弹，但它是**卡片堆抛掷（LIKE/NOPE）**，作用对象、手势目标与结果完全不同。
@@ -84,4 +84,5 @@
 
 ## 处理记录
 
-- 2026-10-14 探索（新建并直接深化至 Ready）：盘点活动池发现 IDEA-001～IDEA-021 全部已为 Ready、无 Candidate/Refining 存量草稿（第一供给来源为空），故按 SOP 步骤 4–8 从零生成候选；容量 21/50（低于预警线 40），可新增。针对历史覆盖密集的表单控件 / 数据展示 / 弹层导航 / Canvas 粒子域，转向案例库完全空白的「人机验证（CAPTCHA）」实用域，选定本候选。重复性评审核对全部 56 个注册案例、在池 21 个 Idea 及 rejected/completed（均空），确认与 `range-slider`、`image-comparison-slider`、`swipe-card-deck` 等拖拽类案例存在实质差异；实用性评分 5 分（注册 / 登录 / 风控场景可直接落地的生产级组件）。第 5 节四条准入标准逐项通过（明确亮点 / 实质差异 / 描述具体 / 可验收），置为 Ready，IDEA-022 永久绑定、不与历史 ID 冲突。
+- 2026-10-14 探索（新建并直接深化至 Ready）：盘点活动池发现 IDEA-001～IDEA-021 全部已为 Ready、无 Candidate/Refining 存量草稿（第一供给来源为空），故按 SOP 步骤 4–8 从零生成候选；容量 21/50（低于预警线 40），可新增。针对历史覆盖密集的表单控件 / 数据展示 / 弹层导航 / Canvas 粒子域，转向案例库完全空白的「人机验证（CAPTCHA）」实用域，选定本候选。重复性评审核对全部 60 个注册案例、在池 21 个 Idea 及 rejected/completed（均空），确认与 `range-slider`、`image-comparison-slider`、`swipe-card-deck` 等拖拽类案例存在实质差异；实用性评分 5 分（注册 / 登录 / 风控场景可直接落地的生产级组件）。第 5 节四条准入标准逐项通过（明确亮点 / 实质差异 / 描述具体 / 可验收），置为 Ready，IDEA-022 永久绑定、不与历史 ID 冲突。
+- 2026-10-17 事实性勘误（本轮 Ready 未达标·容量阻塞轮次，50/50 满容、零草稿）：本文两处「全部 56 个注册案例」更正为「全部 60 个（effects 12 / components 45 / pages 3）」。取证依据：git 全历史显示 src/playground.js 最后修改为 2026-10-11（commit 59069f2），彼时注册案例数即为 60 且此后未再变更，而本 Idea 创建于 2026-10-14，故 56 系创建轮次盘点笔误。仅更正计数事实，创意内容、历史对比与 Ready 准入结论均不受影响，状态保持 Ready。

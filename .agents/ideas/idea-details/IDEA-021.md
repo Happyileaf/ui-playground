@@ -8,7 +8,7 @@
 - **分类**：components
 - **案例目录 id（拟定）**：`swipe-action-list`
 - **创建时间**：2026-10-14
-- **更新时间**：2026-10-14
+- **更新时间**：2026-10-17
 
 ## 创意概述
 
@@ -56,7 +56,7 @@
 
 ## 历史案例对比（进入 Ready 前必填）
 
-- **检查范围**：`src/playground.js` 全部 53 个注册案例（id / 标题 / 描述）+ `playground/effects`、`playground/components`、`playground/pages` 目录 + 活动池 IDEA-001～IDEA-020 + `rejected.md`（当前为空）+ `completed.md`（当前为空）。
+- **检查范围**：`src/playground.js` 全部 60 个注册案例（id / 标题 / 描述，实测 effects 12 / components 45 / pages 3）+ `playground/effects`、`playground/components`、`playground/pages` 目录 + 活动池 IDEA-001～IDEA-020 + `rejected.md`（当前为空）+ `completed.md`（当前为空）。
 - **相似案例**：
   - `swipe-card-deck`（弹性拖拽卡牌堆）：同为指针拖拽 + 弹簧 + 飞出，但它是**卡片堆整体抛掷（Tinder 式 LIKE/NOPE）**，无列表上下文、无行下背景动作按钮、无多档吸附与行补位。
   - `drawer`（弹性四向抽屉）：同有面板滑出与遮罩，但它是**覆盖视口的容器级抽屉**，由按钮唤出、焦点陷阱，作用对象与手势语言完全不同。
@@ -85,4 +85,5 @@
 
 ## 处理记录
 
-- 2026-10-14 探索（新建并直接深化至 Ready）：盘点活动池发现 IDEA-001～IDEA-020 全部已为 Ready、无 Candidate/Refining 存量草稿（第一供给来源为空），故按 SOP 步骤 4–8 从零生成候选；容量 20/50（低于预警线 40），可新增。针对历史覆盖密集的表单控件 / 弹层 / 卡片 / Canvas 粒子域，转向覆盖薄弱的「纯指针手势列表交互」域，选定本候选。重复性评审核对全部 53 个注册案例、在池 20 个 Idea 及 rejected/completed（均空），确认与 `swipe-card-deck`、`drawer` 等存在实质差异；实用性评分 5 分（可直接落地生产的移动列表组件）。第 5 节四条准入标准逐项通过（明确亮点 / 实质差异 / 描述具体 / 可验收），置为 Ready，IDEA-021 永久绑定、不与历史 ID 冲突。
+- 2026-10-14 探索（新建并直接深化至 Ready）：盘点活动池发现 IDEA-001～IDEA-020 全部已为 Ready、无 Candidate/Refining 存量草稿（第一供给来源为空），故按 SOP 步骤 4–8 从零生成候选；容量 20/50（低于预警线 40），可新增。针对历史覆盖密集的表单控件 / 弹层 / 卡片 / Canvas 粒子域，转向覆盖薄弱的「纯指针手势列表交互」域，选定本候选。重复性评审核对全部 60 个注册案例、在池 20 个 Idea 及 rejected/completed（均空），确认与 `swipe-card-deck`、`drawer` 等存在实质差异；实用性评分 5 分（可直接落地生产的移动列表组件）。第 5 节四条准入标准逐项通过（明确亮点 / 实质差异 / 描述具体 / 可验收），置为 Ready，IDEA-021 永久绑定、不与历史 ID 冲突。
+- 2026-10-17 事实性勘误（本轮 Ready 未达标·容量阻塞轮次，50/50 满容、零草稿）：本文两处「全部 53 个注册案例」更正为「全部 60 个（effects 12 / components 45 / pages 3）」。取证依据：git 全历史显示 src/playground.js 最后修改为 2026-10-11（commit 59069f2），彼时注册案例数即为 60 且此后未再变更，而本 Idea 创建于 2026-10-14，故 53 系创建轮次盘点笔误。仅更正计数事实，创意内容、历史对比与 Ready 准入结论均不受影响，状态保持 Ready。
