@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas Shape Lab · 即时渲染图形实验室</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud-actions">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-title">Canvas Shape Lab · 即时渲染实验室</span>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <header class="page-header">
+      <span class="eyebrow">NATIVE COMPONENT · IMMEDIATE-MODE CANVAS</span>
+      <h1>画布没有记忆，对象在你手中</h1>
+      <p>Canvas 是<em>即时模式</em>绘图 API：它只负责逐像素上色，不保存任何图形。每一个矩形、椭圆、层级与命中判定，都由 JavaScript 数据对象维护——拖动一像素，整张画布就按数据全量重绘一次。</p>
+    </header>
+
+    <section class="lab-card">
+      <div class="lab-toolbar">
+        <div class="tool-group" role="group" aria-label="添加图形">
+          <button class="tool-btn tool-btn--primary" id="addRectBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="4" y="6" width="16" height="12" rx="2"></rect>
+            </svg>
+            <span>矩形</span>
+          </button>
+          <button class="tool-btn tool-btn--primary" id="addEllipseBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <ellipse cx="12" cy="12" rx="8" ry="7"></ellipse>
+            </svg>
+            <span>椭圆</span>
+          </button>
+        </div>
+        <div class="tool-group" role="group" aria-label="图形操作">
+          <button class="tool-btn" id="duplicateBtn" type="button" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="11" height="11" rx="2"></rect>
+              <path d="M5 15V5a2 2 0 0 1 2-2h10"></path>
+            </svg>
+            <span>复制</span>
+          </button>
+          <button class="tool-btn tool-btn--danger" id="deleteBtn" type="button" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
+            </svg>
+            <span>删除</span>
+          </button>
+          <button class="tool-btn" id="resetBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path>
+              <polyline points="3 3 3 8 8 8"></polyline>
+            </svg>
+            <span>重置</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="lab-body">
+        <div class="canvas-wrap" id="canvasWrap">
+          <canvas id="stage" aria-label="图形画布"></canvas>
+          <div class="canvas-grid" aria-hidden="true"></div>
+          <div class="canvas-empty" id="canvasEmpty" hidden>画布已空 · 点击上方按钮或双击空白处添加图形</div>
+          <div class="canvas-hud">
+            <span class="hud-chip"><b id="shapeCount">0</b> 个对象</span>
+            <span class="hud-chip">全量重绘 <b id="frameCount">0</b> 帧</span>
+          </div>
+        </div>
+
+        <aside class="inspector" aria-label="数据检查器">
+          <div class="inspector-head">
+            <span class="inspector-label">
+              <span class="pulse-dot"></span>
+              shapes[]
+            </span>
+            <span class="inspector-sub" id="inspectorSub">未选中</span>
+          </div>
+          <pre class="inspector-code" id="inspector">[]</pre>
+          <div class="inspector-note">
+            这就是「真相之源」：画布上的每一帧都由这份数据重绘，
+            Canvas 自身不保存任何图形。
+          </div>
+        </aside>
+      </div>
+
+      <div class="lab-footer">
+        <span class="status-line" id="statusLine" role="status">就绪 · 点击图形选中，拖动移动，拖手柄缩放</span>
+        <div class="kbd-hints">
+          <span><kbd>双击</kbd> 空白添加</span>
+          <span><kbd>⌘/Ctrl D</kbd> 复制</span>
+          <span><kbd>⌫</kbd> 删除</span>
+          <span><kbd>↑↓←→</kbd> 微移</span>
+          <span><kbd>Esc</kbd> 取消</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
