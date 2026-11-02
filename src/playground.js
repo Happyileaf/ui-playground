@@ -431,6 +431,17 @@ const rawSources = import.meta.glob(['/playground/effects/**/*', '/playground/co
       tags: ['signature-pad', 'canvas', 'pointer-events', 'dpr-scaling', 'drawing', 'form-control', 'reduced-motion']
     },
     {
+      id: 'canvas-shape-lab',
+      title: 'Canvas Shape Lab · 即时渲染图形实验室',
+      type: 'component',
+      category: 'components',
+      path: 'playground/components/canvas-shape-lab/',
+      url: '/playground/components/canvas-shape-lab/index.html',
+      description: '演示 Canvas 即时模式本质的交互实验室：图形真相之源是 JS shapes 数组，命中检测、层级置顶、8 向缩放、拖动与双击创建均由数据驱动，每次操作全量重绘并实时同步 JSON 数据检查器与帧计数。',
+      files: ['index.html', 'style.css', 'script.js'],
+      tags: ['canvas', 'immediate-mode', 'shape-editor', 'hit-testing', 'drag-resize', 'pointer-events', 'dpr-scaling', 'data-inspector', 'keyboard-nav']
+    },
+    {
       id: 'payment-card-input',
       title: 'Payment Card Input · 银行卡输入',
       type: 'component',
